@@ -1,0 +1,585 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}          %koniecnie
+\usepackage{amssymb,amsfonts,amsthm}%dodatkowo
+\usepackage[polish]{babel}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{circuitikz}
+
+\selectlanguage{polish}
+
+\newgeometry{tmargin=3cm, bmargin=3cm, lmargin=2cm, rmargin=2cm}
+
+\newcommand{\PRzFieldDsc}[1]{\sffamily\bfseries\scriptsize #1}
+\newcommand{\PRzFieldCnt}[1]{\textit{#1}}
+\newcommand{\PRzHeading}[8]{
+\begin{center}
+\begin{tabular}{ p{0.32\textwidth} p{0.15\textwidth} p{0.15\textwidth} p{0.12\textwidth} p{0.12\textwidth} }
+
+  &   &   &   &   \\
+\hline
+\multicolumn{5}{|c|}{}\\[-1ex]
+\multicolumn{5}{|c|}{{\LARGE #1}}\\
+\multicolumn{5}{|c|}{}\\[-1ex]
+
+\hline
+\multicolumn{1}{|l|}{\PRzFieldDsc{Kierunek}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Specjalność}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Rok studiów}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Symbol grupy lab.}} \\
+\multicolumn{1}{|c|}{\PRzFieldCnt{#2}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#3}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#4}}		& \multicolumn{2}{|c|}{\PRzFieldCnt{#5}} \\
+
+\hline
+\multicolumn{4}{|l|}{\PRzFieldDsc{Temat Laboratorium}}		& \multicolumn{1}{|l|}{\PRzFieldDsc{Numer lab.}} \\
+\multicolumn{4}{|c|}{\PRzFieldCnt{#6}}				& \multicolumn{1}{|c|}{\PRzFieldCnt{#7}} \\
+
+\hline
+\multicolumn{5}{|l|}{\PRzFieldDsc{Skład grupy ćwiczeniowej oraz numery indeksów}}\\
+\multicolumn{5}{|c|}{\PRzFieldCnt{#8}}\\
+
+\hline
+\multicolumn{3}{|l|}{\PRzFieldDsc{Uwagi}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Ocena}} \\
+\multicolumn{3}{|c|}{\PRzFieldCnt{\ }}		& \multicolumn{2}{|c|}{\PRzFieldCnt{\ }} \\
+
+\hline
+\end{tabular}
+\end{center}
+}
+\begin{document}
+\PRzHeading{Laboratorium Podstaw Elektroniki}{Informatyka}{--}{I}{I2}{Laboratoria wprowadzające}{1}{Martyna Maciejewska(132273), Michał Bień(132191), Ziemowit Sokołowski(132318)}{}
+
+
+\section{Laboratorium 1}
+\begin{center}
+Odczytanie wartości rezystancji na podstawie kodu paskowego rezystorów.
+\begin{tabular}{|c|c|c|c|}
+\hline
+R&Barwy&Odczyt&Pomiar\\
+\hline 
+R1&brązowy, czarny, brązowy, złoty&$100\Omega\pm 5\%$ & $101.5\Omega$\\
+\hline
+ R2& brązowy, czarny, czerwony, złoty & $1000\Omega\pm 5\%$ & $0.98k\Omega$ \\
+\hline
+ R3& czerwony, czarny, czerwony, złoty & $2000\Omega\pm 5\%$ & $1.972k\Omega$ \\
+\hline
+ R4& pomarańczowy, pomarańczowy, zielony, złoty & $3.3M\Omega\pm 5\%$ & $3.23M\Omega$ \\
+\hline
+ R5& czerwony, czarny, zielony, złoty & $2M\Omega\pm 5\%$ & $1.970M\Omega$ \\
+\hline
+ R6& szary, czerwony, brązowy, złoty & $820\Omega\pm 5\%$ & $0.822k\Omega$ \\
+\hline
+\end{tabular}
+\newline
+\end{center}
+\begin{center}
+Odczyt wartości pojemności kondensatorów na podstawie ich oznaczeń.
+\end{center}
+$$
+\begin{array}{|c|c|c|c|}
+\hline
+ C&Oznaczenie&Odczyt&Pomiar\\
+\hline 
+C1&10\mu F,  250V&10\mu F& 10.61\mu F\\
+\hline
+C2&22\mu F,  35V&22\mu F& 20.939\mu F\\
+\hline
+C3&10nF&10nF& 8.35nF\\
+\hline
+ C4&222&2.2nF& 2.29nF\\
+\hline
+ C5&223&22nF&28.62nF\\
+\hline
+C6&332&3.3nF&3.05nF\\
+\hline
+\end{array}
+$$
+\\
+\\
+\begin{center}
+Pomiar indukcyjności cewek przy pomocy mostka pomiarowego.
+\end{center}
+$$
+\begin{array}{|c|c|}
+\hline
+ L&Pomiar\\
+\hline 
+L1&30.5mH\\
+\hline
+L2&38.55\mu H\\
+\hline
+L3&30.31mH\\
+\hline
+\end{array}
+$$
+\newline
+\newline
+{\bfseries Wnioski:} Wartości odczytane z rezystorów oraz  kondensatorów są zbliżone do wartości rezystancji i pojemności, które uzyskaliśmy w wyniku pomiaru.
+\newline
+\newline
+\section{Laboratorium 2}
+{\bfseries Cel:} Obliczenie wartości rezystancji zastępczych od strony zacisków A B.
+\subsection{Część I}
+\begin{center}
+\begin{circuitikz}[american voltages]
+\draw
+(0,3) to (0,0)
+(0,3) to[R, l=$R_7 \ 1k$](2,3)
+(2,3) to (2,3.5)
+(2,3) to (2,2)
+(2,3.5) to[R, l=$R_7 \ 1k$](4,3.5)
+(2,2) to[R, l=$R_7 \ 1k$](4,2)
+(4,3.5) to (4,3)
+(4,2) to (4,3)
+(4,3) to (4.2,3)
+(4.2,3) to (4.2,7)
+(4.2,3) to (4.2,2)
+(4.2,7) to [R, l=$R_7 \ 1k$](6.2,7)
+(4.2,5.5) to [R, l=$R_2 \ 3k$](6.2,5.5)
+(4.2,4) to [R, l=$R_3 \ 1k$](6.2,4)
+(4.2,2) to [R, l=$R_4 \ 270$](6.2,2)
+(6.2,3) to (6.5,3)
+(6.2,7) to (6.2,2)
+(6.5,2.5) to (6.5,4)
+(6.5,4) to [R, l=$R_8 \ 1$](8.5,4)
+(6.5,2.5) to [R, l=$R_9 \ 100$](8.5,2.5)
+(8.5,2.5) to (8.5, 4)
+(8.5,3) to (9,3)
+(9,3) to (9,0)
+(0,0) to (4,0) 
+node[above] at(4,0){A}
+(9,0) to (5,0) 
+node[above] at(5,0){B}
+  ;
+\end{circuitikz}
+\end{center}
+
+
+\[
+\frac{1}{R_{a}}= \frac{1}{R_{5}} + \frac{1}{R_{6}}  
+\hspace{1.5cm} 
+R_{a}=\frac{R_{5}*R_{6}}{R_{5}+R_{6}}
+\]
+
+\[
+\frac{1}{R_{b}}= \frac{1}{R_{1}} + \frac{1}{R_{2}} + \frac{1}{R_{3}} + \frac{1}{R_{4}}
+\hspace{1cm}
+R_{b}=\frac{R_{1}*R_{2}*R_{3}*R_{4}}{R_{2}*R_{3}*R_{4}+R_{1}*R_{3}*R_{4}+R_{1}*R_{2}*R_{4}+R_{1}*R_{2}*R_{3}}
+\]
+
+\[
+\frac{1}{R_{c}}= \frac{1}{R_{8}} + \frac{1}{R_{9}}  
+\hspace{1.5cm} 
+R_{c}=\frac{R_{8}*R_{9}}{R_{8}+R_{9}}
+\]
+
+\[ R_{z}=R_{7}+R_{a}+R_{b}+R_{c}\]
+
+\[ R_{z}=R_{7}+\frac{R_{5}*R_{6}}{R_{5}+R_{6}}+\frac{R_{1}*R_{2}*R_{3}*R_{4}}{R_{2}*R_{3}*R_{4}+R_{1}*R_{3}*R_{4}+R_{1}*R_{2}*R_{4}+R_{1}*R_{2}*R_{3}}+\frac{R_{8}*R_{9}}{R_{8}+R_{9}}
+\]
+
+\[ R_{z}=1248,27\Omega\]
+\newpage
+\subsection{Część II}
+
+Obwód 1
+
+\begin{center}
+\begin{circuitikz}[american voltages]
+\draw
+(-1,0) to (-1,0.5)
+			node[left] at(-1,0.5){B}
+	  (-1,1.5) to (-1,2)
+	  		node[left] at(-1,1.5){A}
+	  (-1,2) to (2,2) --
+	  (2,2) to [R, l=$R_2 \ 2k$] (4,2) --
+      (4,2) to (4,0) --
+      (4,0) to [R, l=$R_3 \ 2k$] (2,0) --
+      (2,0) to (-1,0) --
+      (1,0) to [R, l=$R_1 \ 1k$] (1,2)
+
+;
+
+\end{circuitikz}
+\end{center}
+
+\[
+R_{a}=R_{2}+R_{3}
+\hspace{1.5cm}
+\frac{1}{R_{z}}= \frac{1}{R_{a}} + \frac{1}{R_{1}}  
+\hspace{1.5cm} 
+R_{z}=\frac{R_{a}*R_{1}}{R_{a}+R_{1}}
+\]
+Obwód 2
+\begin{center}
+\begin{circuitikz}[american voltages]
+\draw
+
+(0,0) to [R, l=$R_1 \ 1k$] (0,2) --
+	(0,2) to (3,2) -- 
+	(3,2) to [R, l=$R_3 \ 1k$] (6,2) --
+	(6,2) to [R, l=$R_5 \ 100$] (6,0) --
+	(6,0) to [R, l=$R_4 \ 2k$] (3,0) --	
+	(3,0) to (0,0) --
+	(2,0) to [R, l=$R_2 \ 1k$] (2,2)
+	(3,0) to (3,-1)
+	(3,-1) to (4,-1)
+	node[right] at(4,-1){A} 
+	(6,0) to (6,-1)
+	(6,-1) to (5,-1)
+	node[left] at(5,-1){B} 
+
+;
+
+\end{circuitikz}
+\end{center}
+
+\[
+\frac{1}{R_{a}}= \frac{1}{R_{1}} + \frac{1}{R_{2}}  
+\hspace{1.5cm} 
+R_{b}=R_{a}+R_{3}+R_{5}
+\hspace{1.5cm}
+\frac{1}{R_{z}}= \frac{1}{R_{b}} + \frac{1}{R_{4}}
+\]
+Obwód 3
+\begin{center}
+\begin{circuitikz}[american voltages]
+\draw
+
+(-1,-1) to (-1,-0.5)
+	node[above] at(-1,-0.5){B}
+	(-1,1) to (-1,0.5)
+	node[below] at(-1, 0.5){A}
+	(-1,1) to (2,1)
+	(2,1) to [R, l=$R_3 \ 100$] (4,1)
+	(4,1) to (5,1)
+	(5,1) to [R, l=$R_2 \ 2k$] (5,-1)
+	(1,-1) to [R, l=$R_1 \ 2k$] (1,1)
+	(1.5,1) to (1.5,2.5) 
+	(4,1) to (4,2.5) 
+	(1.5,2.5) to [R, l=$R_4 \ 1k$] (4,2.5)
+	(5,-1) to (6,-1)
+	(5,1) to (6,1)
+	(-1,-1) to (1,-1)
+	
+;
+
+
+\end{circuitikz}
+\end{center}
+\[R_{z}=R_{1}\]
+
+\newpage
+
+
+Obwód 4
+\begin{center}
+\begin{circuitikz}[american voltages]
+\draw
+
+(0,2) to (0,3)
+	(0,3) to (9,3)
+	(9,3) to (9,2)
+	(9,2) to[R, l=$R_5 \ 100$] (6,2)
+	(6,2) to[R, l=$R_2 \ 2k$] (3,2)
+	(3,2) to[R, l=$R_1 \ 1k$] (0,2)
+	(3,2) to[R, l=$R_3 \ 2k$] (3,-1)
+	(3,-1) to (6,-1)
+	(6,-1) to[R, l=$R_4 \ 1k$] (6,1)
+	(6, 1) to (6, 2)
+	(6,-1) to (7,-1)
+	(6,1) to (7,1)
+	(7,-1) to (7,-0.5)
+	node[right] at(7,-0.5){B}
+	(7,1) to (7,0.5)
+	node[right] at(7,0.5){A}
+
+	
+;
+
+
+\end{circuitikz}
+\end{center}
+\[
+R_{a}=R_{1}+R_{5}
+\hspace{1.5cm}
+\frac{1}{R_{b}}= \frac{1}{R_{a}} + \frac{1}{R_{2}}  
+\hspace{1.5cm}
+R_{c}=R_{b}+R_{3}
+\hspace{1.5cm}
+\frac{1}{R_{z}}= \frac{1}{R_{c}} + \frac{1}{R_{4}}
+\]
+Obwód 5
+\begin{center}
+\begin{circuitikz}[american voltages]
+\draw
+
+(-1,1) to (-1,0.5)
+	node[left] at(-1,0.5){A}
+	(-1,-1) to (-1,-0.5)
+	node[left] at(-1,-0.5){B}
+	(-1,1) to (1.5,1)
+	(1.5,1) to [R, l=$R_3 \ 2k$] (4,1)
+	(4,1) to (5,1)
+	(5,1) to [R, l=$R_2 \ 2k$] (5,-1)
+	(5,-1) to (1,-1)
+	(1,-1) to (-1,-1)
+	(1,-1) to [R, l=$R_1 \ 2k$] (1,1)
+	(1.5,1) to (1.5,3) 
+	(4,1) to (4,3) 
+	(1.5,3) to [R, l=$R_4 \ 1k$] (4,3)
+	(5,-1) to (6,-1)
+	(5,1) to (6,1)
+
+
+	
+;
+
+
+\end{circuitikz}
+\end{center}
+\[
+\frac{1}{R_{a}}= \frac{1}{R_{4}} + \frac{1}{R_{3}}  
+\hspace{1.5cm}
+R_{b}=R_{a}+R_{2}
+\hspace{1.5cm}
+\frac{1}{R_{z}}= \frac{1}{R_{b}} + \frac{1}{R_{1}}
+\]
+Obwód 6
+\begin{center}
+\begin{circuitikz}[american voltages]
+\draw
+  (0,0) to (8,0)
+  (0,0) to (0,2)
+  (0,2) to[R, l=$R_5 \ 1k$] (2,2)
+  (2,2) to (2,1)
+  (2,1) to (4,1)
+  (4,1) to[R, l=$R_2 \ 2k$] (4,3)
+  (4,3) to[R, l=$R_4 \ 2k$] (8,3)
+  (8,3) to (8,0)
+  (2,2) to[R, l=$R_1 \ 100$] (2,4)
+  (4,3) to (4,4)
+  (2,4) to (4,4)
+  (3,4) to[R, l=$R_3 \ 1k$] (3,6)
+  (3,6) to (8,6)
+  (8,6) to (8,5.7)
+  (8,4) to (8,3)
+  node[below] at(8,5.7){A}
+  node[above] at(8,4){B}
+  ;
+  \end{circuitikz}
+\end{center}
+\[
+\frac{1}{R_{a}}= \frac{1}{R_{1}} + \frac{1}{R_{2}}  
+\hspace{1.5cm}
+R_{b}=R_{a}+R_{5}
+\hspace{1.5cm}
+\frac{1}{R_{c}}= \frac{1}{R_{b}} + \frac{1}{R_{4}}
+\hspace{1.5cm}
+R_{z}=R_{c}+R_{3}
+\]
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+Obwód&Obliczenia $R_{z}$ &Pomiar\\
+\hline 
+Obwód 1&$800\Omega$& $784.17\Omega$\\
+\hline
+Obwód 2&$94.6\Omega$& $94.8\Omega$\\
+\hline
+Obwód 3&$2000\Omega$& $1952\Omega$\\
+\hline
+Obwód 4&$730.4\Omega$&$720.5\Omega$\\
+\hline
+Obwód 5&$1142.85\Omega$&$1120.5\Omega$\\
+\hline
+Obwód 6&$1707.7\Omega$&$1680\Omega$\\
+\hline
+\end{tabular}
+\end{center}
+
+{\bfseries Wnioski:} Różnica między pomiarem i odczytem wynika z nieuwzględnionego w obliczeniach oporu przewodów doprowadzających oraz niedokładności rezystorów\(\pm5\%\). 
+\newline
+\newline 
+\section{Laboratorium 3}
+\subsection{Część I}
+
+\begin{center}
+Pomiar napięcia z sekcji DC POWER SUPPLY zestawu laboratoryjnego DF 6911.
+\end{center}
+
+$$
+\begin{array}{|c|c|c|}
+\hline
+U&Pomiar&Odczyt\\
+\hline 
+1[V]&1V& 1.128V\\
+\hline
+3[V]&3V& 3.21V\\
+\hline
+4.5[V]&4.5V& 4.691V\\
+\hline
+11[V]&11V& 11.203V\\
+\hline
+13[V]&13V& 13.18V\\
+\hline
+25[V]&25V& 25.256V\\
+\hline
+28[V]&28V& 28.237V\\
+\hline
+\end{array}
+$$
+
+\subsection{Część II}
+
+\begin{center}
+Testy i obliczenia przeprowadzone dla dzielnika, który dla napięcia wejściowego 15V miał otrzymywać na wyjściu 3.3V
+Wnioskując z prawa Ohma, skorzystaliśmy z faktu, że dzielnik napięć rozkłada napięcie w obwodzie proporcjonalnie do oporu opornika. A więc: 
+\end{center}
+$$R_z = R_1 + R_2$$
+$$I_z = I_1 = I_2$$
+$$U_z = U_1 + U_2$$
+$$R_2 = \frac{U_2}{I_2}$$
+$$\frac{R_1}{R_2} = \frac{U_1}{U_2}$$
+$$\frac{R_1}{R_2} = \frac{U_z-U_2}{U_2}$$
+$$U_2 = \frac{U_z}{\frac{R_1}{R_2}+1}$$
+\begin{center}
+Tak więc ,,skala" dzielnika nie wynika z oporu poszczególnych rezystorów, a stosunku ich oporów. Dla naszych potrzeb stosunek ten wyniósł $\frac{R_1}{R_2} = 3.55$ Podłączyliśmy więc rezystor $R_1 = 3.5k\Omega$ oraz $R_2 = 1k\Omega$
+\end{center}
+
+\begin{center}
+\begin{circuitikz}[american voltages]
+\draw
+(1,2) to (1,0)
+(1,2) to (1.5,2)
+(1.5,2) to[R, l=$R_1 \ 3.5k$](3.5,2)
+(4.5,2) to (4.5,3.5)
+(4.5,3.5) to (5,3.5)
+(7,3.5) to (7.5,3.5)
+node[right] at(5,3.5){U out 3.3V}
+(7.5,3.5) to (7.5,2)
+(3.5,2) to (5,2)
+(7,2) to (8,2)
+(5,2) to [R, l=$R_2 \ 1k$](7,2)
+(8,2) to (8,0)
+(1,0) to (4,0) 
+(4,0)to[V,v=$U in \ 15V$ ] (5,0)
+(8,0) to (5,0) 
+  ;
+\end{circuitikz}
+\end{center}
+
+\subsection{Część III} 
+
+\begin{center}
+Dane pomiarowe dla obwodu II.
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+$R$&Spadek napięcia&Natężenie\\
+\hline 
+$R_1$&$5.15V$& $2.575mA$\\
+\hline
+$R_2$&$3.88V$& $1.967mA$\\
+\hline
+$R_3$&$2.585V$& $0.652mA$\\
+\hline
+$R_4$&$1.64V$& $1.313mA$\\
+\hline
+\end{tabular}
+\end{center}
+
+
+\begin{center}
+\begin{circuitikz}[american voltages]
+\draw
+
+(-1,1) to  (-1,0.5)
+(-1,0.5) to [V,v=$V_1 \ 5V$ ] (-1,-0.5)
+	(-1,-1) to (-1,-0.5)
+	(-1,1) to (0,1)
+	(0,1) to [R, l=$R_1 \ 2100$] (2,1)
+	(-1,-1) to (3,-1)
+	(1,-1) to (-1,-1) 
+	(2,1) to (3,1)
+	(3,1) to (3,-1)
+
+
+	
+;
+
+
+\end{circuitikz}
+\end{center}
+
+\subsection{Część IV}
+
+\begin{center}
+Dane pomiarowe i obliczone wartości dla obwodu 2
+\end{center}
+
+
+$$
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+&R&U obliczone&U pomiaru&I obliczone&I pomiaru\\
+\hline
+R_1&2k\Omega&5V&5.15V&2.5mA&2.631mA\\
+\hline
+R_2&2k\Omega&3.74V&3.88V&1.87mA&1.967mA\\
+\hline
+R_3&2k\Omega&1.26V&1.08V&0.63mA&0.652mA\\
+\hline
+R_4&1k\Omega&1.26V&1.64V&1.26mA&1.313mA\\
+\hline
+R_z&1142.86\Omega&5V&5.15V&3.9mA&3.944mA\\
+\hline
+\end{array}
+$$
+$$R_z = \frac{R_1R_{234}}{R_1+R_{234}} = \frac{R_1(R_2+R_{34})}{R_1+R_2+R_{34}} = \frac{R_1(R_2+\frac{R_3R_4}{R_3+R_4})}{R_1+R_2+\frac{R_3R_4}{R_3+R_4}}$$
+$$I_z = I_1 + I_2 $$
+$$U_z = U_1 = U_{234}$$
+$$ I_2 = I_{34} = I_3+I_4$$
+
+\begin{center}
+\begin{circuitikz}[american voltages]
+\draw
+
+(-1,1) to  (-1,0.5)
+(-1,0.5) to [V,v=$V_1 \ 5V$ ] (-1,-0.5)
+	(-1,-1) to (-1,-0.5)
+	(-1,1) to (1.5,1)
+	(1.5,1) to [R, l=$R_3 \ 2k$] (4,1)
+	(4,1) to (5,1)
+	(5,1) to [R, l=$R_2 \ 2k$] (5,-1)
+	(5,-1) to (1,-1)
+	(1,-1) to (-1,-1)
+	(1,1) to [R, l=$R_1 \ 2k$] (1,-1)
+	(1.5,1) to (1.5,3) 
+	(4,1) to (4,3) 
+	(1.5,3) to [R, l=$R_4 \ 1k$] (4,3)
+	(5,-1) to (6,-1)
+	(5,1) to (6,1)
+
+
+	
+;
+
+
+\end{circuitikz}
+\end{center}
+
+\newpage
+\section{Bibliografia}
+
+
+http://mariusznaumowicz.ddns.net/materialy.html - materiały dostępne dla przedmiotu Podstawy Elektroniki
+\newline
+\newline
+Podstawy teorii obwodów, Osiowski J., Szabatin J., WNT, Warszawa, 1998
+\newpage
+\tableofcontents{}
+\end{document}

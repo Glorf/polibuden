@@ -1,0 +1,272 @@
+\documentclass[polish,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,amsthm}
+\usepackage[english,main=polish]{babel}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{float}
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*}{\section}{}{}
+
+\selectlanguage{polish}
+\title{Lab2}
+\newgeometry{tmargin=3cm, bmargin=3cm, lmargin=2cm, rmargin=2cm}
+
+\newcommand{\PRzFieldDsc}[1]{\sffamily\bfseries\scriptsize #1}
+\newcommand{\PRzFieldCnt}[1]{\textit{#1}}
+\newcommand{\PRzHeading}[8]{
+\begin{center}
+\begin{tabular}{ p{0.32\textwidth} p{0.15\textwidth} p{0.15\textwidth} p{0.12\textwidth} p{0.12\textwidth} }
+
+  &   &   &   &   \\
+\hline
+\multicolumn{5}{|c|}{}\\[-1ex]
+\multicolumn{5}{|c|}{{\LARGE #1}}\\
+\multicolumn{5}{|c|}{}\\[-1ex]
+
+\hline
+\multicolumn{1}{|l|}{\PRzFieldDsc{Kierunek}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Specjalność}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Rok studiów}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Symbol grupy lab.}} \\
+\multicolumn{1}{|c|}{\PRzFieldCnt{#2}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#3}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#4}}		& \multicolumn{2}{|c|}{\PRzFieldCnt{#5}} \\
+
+\hline
+\multicolumn{4}{|l|}{\PRzFieldDsc{Temat Laboratorium}}		& \multicolumn{1}{|l|}{\PRzFieldDsc{Numer lab.}} \\
+\multicolumn{4}{|c|}{\PRzFieldCnt{#6}}				& \multicolumn{1}{|c|}{\PRzFieldCnt{#7}} \\
+
+\hline
+\multicolumn{5}{|l|}{\PRzFieldDsc{Skład grupy ćwiczeniowej oraz numery indeksów}}\\
+\multicolumn{5}{|c|}{\PRzFieldCnt{#8}}\\
+
+\hline
+\multicolumn{3}{|l|}{\PRzFieldDsc{Uwagi}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Ocena}} \\
+\multicolumn{3}{|c|}{\PRzFieldCnt{\ }}		& \multicolumn{2}{|c|}{\PRzFieldCnt{\ }} \\
+
+\hline
+\end{tabular}
+\end{center}
+}
+\begin{document}
+\PRzHeading{Laboratorium Podstaw Elektroniki}{Informatyka}{--}{I}{I2}{Twierdzenie Thevenina}{2}{Martyna Maciejewska(132273), Michał Bień(132191), Ziemowit Sokołowski(132318)}{}
+\section{Cel}
+
+
+Celem laboratorium było zapoznanie się z Twierdzeniem Thevenina, oraz doświadczalne unaocznienie istotnych następstw i efektów tego twierdzenia dla elektroniki. Brzmienie twierdzenia poznaliśmy z materiałów udostępnionych do realizacji ćwiczenia\cite{naum}:
+\begin{quotation}
+Twierdzenie Thevenina można sformułować w następujący sposób, cytując\cite{pe}:
+\begin{quotation}
+Prąd płynący przez odbiornik rezystancyjny R, przyłączony do dwóch zacisków AB dowolnego
+liniowego układu zasilającego prądu stałego jest równy ilorazowi napięcia $U_0$ mierzonego na zaciskach AB w stanie jałowym przez rezystancję R powiększoną o rezystancję zastępczą $R_w$ układu zasilającego mierzoną na zaciskach AB
+\end{quotation}
+Twierdzenie to spotykane jest również pod nazwą twierdzenia o zastępczym źródle napięcia i bywa
+sformułowane następująco:
+\begin{quotation}
+Obwód elektryczny liniowy o dowolnym ukształtowaniu, traktowany jako złożony dwójnik liniowy
+aktywny o zaciskach AB, można zastąpić jednym źródłem o napięciu źródłowym E, równym
+napięciu stanu jałowego $U_0$ na zaciskach AB i o rezystancji wewnętrznej $R_w$, równej rezystancji zastępczej mierzonej na zaciskach AB obwodu.
+\end{quotation}
+\end{quotation}
+Zadaniem laboratoryjnym było obliczenie zadanych prądów w obwodzie wskazanym przez prowadzącego zajęcia (zadanie 2, podpunkt 4): (rysunek 1)
+
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american voltages]
+\draw
+
+(-1,0) to [R, l=$R_4 \ 100\Omega$] (-1,2)
+(1,0) to [R, l=$R_5 \ 510\Omega$] (1,2) 
+(-1,2) to (3,2) 
+(3,2) to [R, l=$R_2 \ 510\Omega$] (6,2) 
+(6,2) to [V,v=$V_1 \ 5V$] (6,0) 
+(6,0) to [R, l=$R_3 \ 100\Omega$] (3,0) 
+(3,0) to (-1,0) --
+(3,0) to [R, l=$R_1 \ 220\Omega$] (3,2)
+
+
+;
+\end{circuitikz}
+\caption{zadany obwód, wraz z naniesionymi oporami}
+\end{figure}
+
+Szukane prądy to $I_{R4}$, $I_{R5}$, oraz $I_{R1}$ 
+
+\pagebreak
+\section{Pomiar}
+\subsection{Dobór elementów rezystancyjnych}
+
+W tablicy 1 spisaliśmy elementy wybrane do zbudowania obwodu na płytce prototypowej. Różnice między wartością znamionową a pomiarem oporu, dokonanym multimetrem RIGOL, wynikają z niedoskonałości elementów oraz środowiska pomiaru i znajdują się w granicach błędu pomiarowego
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ Lp.& R & Kod\hspace{0.1cm} paskowy (KP) & Wartość\hspace{0.1cm} odczytana\hspace{0.1cm} z\hspace{0.1cm} KP & Pomiar\\
+\hline 
+1 & $R_{1}$ & czerwony, czerwony, brązowy, złoty & $220\Omega\pm 5\%$ & $217.87\Omega$\\
+\hline
+2&$R_{2}$& zielony, brązowy, brązowy, złoty & $510\Omega\pm 5\%$ & $498.06\Omega$ \\
+\hline
+3 & $R_{3}$& brązowy, czarny, brązowy, złoty&$100\Omega\pm 5\%$ & $98.84\Omega$\\
+\hline
+4 & $R_{4}$& brązowy, czarny, brązowy, złoty&$100\Omega\pm 5\%$ & $97.32\Omega$\\
+\hline
+5 & $R_{5}$& zielony, brązowy, brązowy, złoty & $510\Omega\pm 5\%$ & $499.88\Omega$ \\
+\hline
+\end{tabular}
+\caption{elementy rezystancyjne wybrane do realizacji obwodu}
+\end{table}
+
+\subsection{Pomiar napięć oraz rezystancji zastępczej}
+Pomiary dokonaliśmy zgodnie z ,,Algorytmem stosowania twierdzenia Thevenina tzw. metodą laboratoryjną''.\cite{naum} Za stabilne źródło prądu stałego w trakcie przeprowadzania pomiarów posłużył zasilacz  stałoprądowy, będący elementem uniwersalnego urządzenia zasilającego NDN DF6911, ustawiony na napięcie $5V$. Na pomiar napięć i rezystancji układu pozwolił multimetr RIGOL Otrzymane wyniki pomiarów zebrane są w tablicy 2.
+\begin{center}
+$U_{th}$ - napięcie\hspace{0.15cm} panujące\hspace{0.15cm} od\hspace{0.15cm} strony\hspace{0.15cm} zacisków\hspace{0.15cm} AB\\
+$R_{th}$ - rezystancja\hspace{0.15cm} zastępcza\hspace{0.15cm} widziana\hspace{0.15cm} od\hspace{0.15cm} strony\hspace{0.15cm} zacisków\hspace{0.15cm} AB
+\end{center}
+
+\begin{table}[H]
+\centering
+$$
+\begin{array}{|c|c|c|}
+\hline
+ Lp.& U_{th} & R_{th}\\
+\hline 
+1 & 1.0523V & 121.908\Omega\\
+\hline
+ 2&0.533V & 61.63\Omega\\
+\hline
+3 & 0.634V & 72.71\Omega\\
+\hline
+\end{array}
+$$
+\caption{Wyniki pomiarów dla twierdzenia Thevenina}
+\end{table}
+\pagebreak
+\section{Obliczenia}
+\subsection{Obliczanie zadanych prądów w oparciu o wyniki pomiarów oraz twierdzenie Thevenina} 
+Głównym zadaniem laboratoryjnym było obliczenie zadanych prądów w gałęzi z rezystorem $R_x$ w oparciu o twierdzenie Thevenina. Korzystając z zależności oraz poznanych wzorów\cite{naum}, a także z pomocniczego rysunku 2, dokonujemy niezbędnych obliczeń.
+
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american voltages]
+\draw
+
+(-1,1) to  (-1,0.5)
+(-1,0.5) to [V,v=$U \ th$ ] (-1,-0.5)
+(-1,-1) to (-1,-0.5)
+(-1,1) to (0,1)
+(0,1) to [R, l=$R \ th$] (2,1)
+(-1,-1) to (3,-1)
+(1,-1) to (-1,-1) 
+(2,1) to (3,1)
+(3,1) to [R, l=$R \ x$](3,-1)
+;
+\end{circuitikz}
+\caption{Rysunek pomocniczy do prowadzonych obliczeń}
+\end{figure}
+$$ I=\frac{U_{th}}{R_{th}+R_{x}}$$
+
+\subsubsection{gałąź $I_{R4}$}
+$$ I_{R4}=\frac{U_{th}}{R_{th}+R_{4}}=\frac{1.0523V}{121.908\Omega+100\Omega}=4.742mA$$
+
+\subsubsection{gałąź $I_{R5}$}
+$$ I_{R5}=\frac{U_{th}}{R_{th}+R_{5}}=\frac{0.533V}{61.63\Omega+510\Omega}=0.932mA$$
+
+\subsubsection{gałąź $I_{R1}$}
+$$ I_{R1}=\frac{U_{th}}{R_{th}+R_{1}}=\frac{0.635V}{72.71\Omega+220\Omega}=2.169mA$$
+
+\subsection{Zestawienie dotychczasowych pomiarów oraz obliczeń}
+Poniższe zestawienie, widoczne w tablicy 3. podsumowuje dotychczasowe działania, tym samym zamykając część zadania opartą na twierdzeniu Thevenina. W kolejnych punktach postaramy się pokazać, że nasze rozumowanie było prawidłowe i doprowadziło do prawidłowych wyników.
+\begin{table}[H]
+$$
+\begin{array}{|c|c|c|c|}
+\hline
+ Lp.& U_{th} & R_{th}& I_{R_{x}}\\
+\hline 
+1 & 1.0523V & 121.908\Omega&4.742mA\\
+\hline
+ 2&0.533V & 61.63\Omega&0.932mA\\
+\hline
+3 & 0.634V & 72.71\Omega&2.169mA\\
+\hline
+\end{array}
+$$
+\caption{Zestawienie wyników pomiarów, oraz opartych na nich obliczeń}
+\end{table}
+\subsection{}
+Analitycznie obliczyć zadane wartości szukanych prądów.
+
+$$I_{1} - \textrm{prąd płynący przez rezystor }R_{1}$$ 
+$$I_{4} - \textrm{prąd płynący przez rezystor }R_{4}$$ 
+$$I_{5} - \textrm{prąd płynący przez rezystor }R_{5}$$ 
+$$R_{z} - \textrm{rezystancja zastępcza }$$ 
+\newline
+$$R_{z}=R_{2}+R_{3}+\frac{R_{1}*R_{4}*R_{5}}{R_{4}*R_{5}+R_{1}*R_{5}+R_{1}*R_{4}}=670.58\Omega$$
+$$I=\frac{U}{R_{z}}=7.456mA$$
+Z pierwszego prawa Kirchhoffa 
+$$I=I_{1}+I_{4}+I_{5}$$
+Z drugiego prawa Kirchhoffa 
+$$U_{1}=U_{4}=U_{5}$$
+$$I_{1}*R_{1}=I_{4}*R_{4}=I_{5}*R_{5}$$
+\newline
+
+$$
+\left\{ \begin{array}{l}
+I=I_{1}+I_{4}+I_{5}\\
+I_{1}*R_{1}=I_{4}*R_{4}\\
+I_{1}*R_{1}=I_{5}*R_{5}
+\end{array} \right.
+$$\newline
+$$
+\left\{ \begin{array}{l}
+I=I_{1}+I_{4}+I_{5}\\
+I_{4}=\frac{R_{1}}{R_{4}}*I_{1}\\
+I_{5}=\frac{R_{1}}{R_{5}}*I_{1}
+\end{array} \right.
+$$\newline
+$$
+\left\{ \begin{array}{l}
+7,456=I_{1}+2,2*I_{1}+0,43*I_{1}\\
+I_{4}=2,2*I_{1}\\
+I_{5}=0,43*I_{1}
+\end{array} \right.
+$$\newline
+$$
+\left\{ \begin{array}{l}
+I_{1}=2.054mA\\
+I_{4}=4.519mA\\
+I_{5}=0.883mA
+\end{array} \right.
+$$
+
+\section{Wnioski}
+Tablica 4. jest zestawieniem wyników, jakie uzyskaliśmy, korzystając z dwóch różnych metod obliczeń: z równania Thevenina, oraz II prawa Kirchhoffa. Wyniki są równe w granicy błędu pomiarowego, wynikającego z oporów przewodników czy tolerowanego błędu elementów rezystancyjnych. Wykonane doświadczenie pozwala nam więc sądzić, że użyte metody obliczeń można uznać za równoważne w liczeniu charakterystyki obwodów stałoprądowych.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+ Lp.& $I_{R_{x}}$ (z tw. Thevenina) & $I_{Rx}$ (z obliczeń) \\
+\hline 
+1 & $4.742mA$ & $4.519mA$\\
+\hline
+ 2&$0.932mA$ & $0.883mA$\\
+\hline
+3 & $2.169mA$ & $2.054mA$\\
+\hline
+\end{tabular}
+
+\caption{Zestawienie wyników uzyskanych na drodze pomiarów i obliczeń}
+\end{table}
+\newpage
+
+\begin{thebibliography}{3}
+\bibitem{naum} http://mariusznaumowicz.ddns.net/materialy.html - materiały dostępne dla przedmiotu Podstawy Elektroniki
+\bibitem{pto}Podstawy teorii obwodów, Osiowski J., Szabatin J., WNT, Warszawa, 1998
+\bibitem{pe}"Podstawy Elektrotechniki", R.Kurdziel, wyd II, WNT Warszawa 1972
+\end{thebibliography}
+
+\newpage
+\tableofcontents{}
+\end{document}

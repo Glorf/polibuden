@@ -1,0 +1,302 @@
+\documentclass[polish,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,amsthm}
+\usepackage[english,main=polish]{babel}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{float}
+\usepackage{etoolbox}
+\usepackage{color}
+\usepgflibrary{arrows}
+\patchcmd{\thebibliography}{\section*}{\section}{}{}
+
+\selectlanguage{polish}
+\title{Lab3}
+\newgeometry{tmargin=3cm, bmargin=3cm, lmargin=2cm, rmargin=2cm}
+
+\newcommand{\PRzFieldDsc}[1]{\sffamily\bfseries\scriptsize #1}
+\newcommand{\PRzFieldCnt}[1]{\textit{#1}}
+\newcommand{\PRzHeading}[8]{
+\begin{center}
+\begin{tabular}{ p{0.32\textwidth} p{0.15\textwidth} p{0.15\textwidth} p{0.12\textwidth} p{0.12\textwidth} }
+
+  &   &   &   &   \\
+\hline
+\multicolumn{5}{|c|}{}\\[-1ex]
+\multicolumn{5}{|c|}{{\LARGE #1}}\\
+\multicolumn{5}{|c|}{}\\[-1ex]
+
+\hline
+\multicolumn{1}{|l|}{\PRzFieldDsc{Kierunek}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Specjalność}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Rok studiów}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Symbol grupy lab.}} \\
+\multicolumn{1}{|c|}{\PRzFieldCnt{#2}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#3}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#4}}		& \multicolumn{2}{|c|}{\PRzFieldCnt{#5}} \\
+
+\hline
+\multicolumn{4}{|l|}{\PRzFieldDsc{Temat Laboratorium}}		& \multicolumn{1}{|l|}{\PRzFieldDsc{Numer lab.}} \\
+\multicolumn{4}{|c|}{\PRzFieldCnt{#6}}				& \multicolumn{1}{|c|}{\PRzFieldCnt{#7}} \\
+
+\hline
+\multicolumn{5}{|l|}{\PRzFieldDsc{Skład grupy ćwiczeniowej oraz numery indeksów}}\\
+\multicolumn{5}{|c|}{\PRzFieldCnt{#8}}\\
+
+\hline
+\multicolumn{3}{|l|}{\PRzFieldDsc{Uwagi}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Ocena}} \\
+\multicolumn{3}{|c|}{\PRzFieldCnt{\ }}		& \multicolumn{2}{|c|}{\PRzFieldCnt{\ }} \\
+
+\hline
+\end{tabular}
+\end{center}
+}
+\begin{document}
+\PRzHeading{Laboratorium Podstaw Elektroniki}{Informatyka}{--}{I}{I2}{Rezonans w obwodach RLC}{3}{Martyna Maciejewska(132273), Michał Bień(132191), Ziemowit Sokołowski(132318)}{}
+\section{Cel}
+
+Celem ćwiczenia było zapoznanie się ze zjawiskiem rezonansu w obwodach RLC. Zjawisko to wynika z wpływu, jaki na elementy reaktancyjne ma częstotliwość pobudzenia. Jak można zaobserwować:
+\begin{quotation}
+Indukcyjności wykazują wzrost wartości reaktancji proporcjonalnie do częstości pobudzenia, podczas gdy elementy pojemnościowe: spadek. Obydwa układy wprowadzają również przesunięcia fazowe pomiędzy przebiegiem napięciowym oraz prądowym.\cite{naum}
+\end{quotation}
+Tak więc, w przypadku obwodu RLC, w którym znajduje się zarówno element indukcyjny (cewka), jak i pojemnościowy (kondensator), powinniśmy być w stanie zaobserwować rezonans tych zjawisk:
+\begin{quotation}
+Ten dualizm w reakcji biernych elementów reaktancyjnych pozwala wysnuć hipotezę, że przy pewnej wybranej częstotliwości pobudzania wartości reaktancji obydwu elementów będą jednakowo wpływały na zachowanie się obwodu jako całości. Ta wybrana charakterystyczna częstotliwość jest w tym przypadku utożsamiona z częstotliwością rezonansową.\cite{naum}
+\end{quotation}
+\section{Doświadczenie}
+\subsection{Przygotowanie układu}
+Aby zbadać interesujące nas zjawisko, posłużyliśmy się obwodem pomiarowym dla rezonansu szeregowego, przygotowanym zgodnie ze schematem z ćwiczenia: 
+
+\begin{center}
+\begin{circuitikz}[american voltages]
+\draw[green]
+(0,2) to (1,2) 
+(2,2) to (3,2)
+(7,2) to (9,2)
+(0,0) to (1,0)
+(2,0) to (9,0)
+
+(1.5,-2) to (3,-2)
+(1.5,-1.5) to (3, -1.5)
+
+(7,-2) to (8.5,-2)
+(7,-1.5) to (8.5,-1.5)
+
+(7,2) to (7,3)
+(5,2) to [*-*] (5,3)
+(3,2) to (3, 3);
+
+\draw[very thick, blue]
+(1,2) to (1,0)
+(1.5,0) to (1.5,-2)
+(2,0) to (1,0)
+(2,2) to (2,0)
+
+(9,2) to (9,-0.5)
+(9,-0.5) to (7,-0.5)
+(7,-0.5) to (7,-2);
+
+\draw[red]
+(8.5,-1.5) to (9,-1.5) 
+(8.5,-2) to (9,-2)
+(3, -1.5) to (3.5, -1.5)  
+(3,-2) to (3.5,-2)
+
+(3.5,-1) to (3.5,-2.5)
+(5.5,-1) to (5.5,-2.5)
+(3.5,-2.5) to (5.5,-2.5)
+(3.5,-1) to (5.5,-1)
+
+(9,-1) to (9,-2.5)
+(11,-1) to (11,-2.5)
+(9,-2.5) to (11,-2.5)
+(9,-1) to (11,-1)
+
+(3.75,-1.25) to (3.75,-2.25)
+(5,-1.25) to (5,-2.25)
+(3.75,-2.25) to (5,-2.25)
+(3.75,-1.25) to (5,-1.25)
+
+(9.25,-1.25) to (9.25,-2.25)
+(10.5,-1.25) to (10.5,-2.25)
+(9.25,-2.25) to (10.5,-2.25)
+(9.25,-1.25) to (10.5,-1.25)
+
+(7.5,0) to [R, l=$R_1 \ 1k$ , *-*, color=red] (7.5,2)
+
+(7,3) -- (6,3) 
+circle [radius = 13pt]node[circle,fill=white,minimum size=10pt]{$\sim$V} 
+(6,3) -- (5,3)
+
+(5,3) -- (4,3)
+circle [radius = 13pt]node[circle,fill=white,minimum size=10pt]{$\sim$V} 
+(4,3) -- (3,3)
+
+(7,2) to [L=$L_1 \ 66mH$, *-*, color=red] (5,2)
+
+(5,2) to [C,l=$CX$,*-*,color=red] (3,2)
+
+(0,0) -- (0,1)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{$\sim$}
+(0,1) -- (0,2);
+
+\node at (0,0) [red]{o};
+\node at (0,2) [red]{o};
+\node at (8.5,-1.5) [red]{o};
+\node at (8.5,-2) [red]{o};
+\node at (3, -1.5) [red]{o};
+\node at (3,-2) [red]{o};
+
+\node at (10.75,-1.3) [red]{o};
+\node at (10.75,-2.25) [red]{o};
+\node at (10.75,-1.7) [red]{o};
+\node at (5.25,-2.25) [red]{o};
+\node at (5.25, -1.3) [red]{o};
+\node at (5.25,-1.7) [red]{o};
+
+\draw[gray, thin, dashed]
+(2.5,-0.25) to (2.5,2.5)
+(2.5,-0.25) to (8,-0.25)
+(8,-0.25) to (8,2.5)
+(2.5,2.5) to (8,2.5);
+
+\node at (2.1, -1.3) {czerw.};
+\node at (7.6,-1.3) {czerw.};
+\node at (2,-1.8) {biały};
+\node at (7.5,-1.8) {biały};
+
+\node at (8.55,2.2) {czerw.};
+\node at (0.5,2.2) {czerw.};
+\node at (8.5,0.2) {biały};
+\node at (0.5,0.2) {biały};
+
+\node at (1.5,0.2) [blue]{BNC};
+\node at (6.5,-0.75) [blue]{BNC};
+
+\node at (4.5,-0.75) {kanał X};
+\node at (10,-0.75) {kanał Y};
+
+\node at (-1.75,1.7) {sinus};
+\node at (-1.75,1.2) {Vpp > 2V};
+\node at (-1.75,0.7) {f = 1..15kHz};
+
+\draw[thick, red]
+(0.5,1.4) to (0.5,1.3)
+(0.5,1.4) to (0.4,1.4)
+(0.3,1.2) to (0.5,1.4)
+(-0.2,0.7) to (-0.4,0.5);
+
+\end{circuitikz}
+\end{center}
+
+Wybrana wartość pojemności $C_x$ w naszym doświadczeniu wynosiła $13.3nF$. Uzyskaliśmy ją łącząc ze sobą równolegle cztery kondensatory o pojemności $3.3nF$. Korzystając z mostka RLC wykonaliśmy pomiar rzeczywistej pojemności takiego układu. Zmierzona pojemność wyniosła $13.26nF$. \\\\
+Jako element rezystancyjny wybraliśmy opornik $1k\Omega$ z oznaczeniem brązowy, czarny, czerwony, złoty.  Dokonaliśmy pomiaru rzeczywistej wartości oporu przy pomocy multimetru RIGOL. Zmieżona wartość rezystancji wyniosła $976.07\Omega$ \\\\
+Zadaną cewkę o indukcyjności $66mH$ otrzymaliśmy łącząc ze sobą szeregowo dwie cewki o indukcyjności $33.7mH$. Korzystając z mostka RLC wykonaliśmy pomiar rzeczywistej indukcyjności takiego układu oraz rezystancji. Zmierzona indukcyjność wyniosła $74.34mH$, a rezystancja $108.14\Omega$.
+\\\\
+Zaistniałe różnice pomiędzy wartościami znamionowymi elementów, a wynikami pomiarów mieszczą się w granicy błędu wynikającego z niedoskonałości materiałów i warunków laboratoryjnych. Jedynie indukcyjność łączonej cewki wydała nam się zastanawiająca. Zgłosiliśmy wątpliwość prowadzącemu i otrzymaliśmy pozwolenie na prowadzenie pomiarów na tak utworzonym zestawie.
+
+\subsection{Obliczenia}
+Korzystając z dostarczonych wyprowadzonych wzorów\cite{naum}, odnaleźliśmy częstotliwość rezonansową obwodu:
+$$f=\frac{1}{2*\pi*\sqrt{LC}}=\frac{1}{2*\pi*\sqrt{13.26*10^{-9}*74*10^{-3}}}=5071.76Hz$$
+
+\subsection{Pomiar}
+Pomiary przeprowadziliśmy utrzymując stałe napięcie wejściowe $5V$ dla piętnastu punktów pomiarowych różniących się częstotliwością (w zakresie od 1 do 15 Hz):
+\newline
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+częstotliwość & vRms1 & vRms2 & napięcie\hspace{0.1cm} na\hspace{0.1cm} kondensatorze\hspace{0.1cm}& napięcie\hspace{0.1cm} na\hspace{0.1cm} cewce\hspace{0.1cm}\\
+\hline 
+1.03kHz & 1.68V & 0.154V & 1.773V & 0.0817V\\
+\hline
+2.01kHz & 1.74V & 0.330V & 1.998V & 0.3397V\\
+\hline
+2.988kHz & 1.72V & 0.600V & 2.46V & 0.917V\\
+\hline
+3.99kHz & 1.71V & 1.12V & 3.306V & 2.212V\\
+\hline
+5.068kHz & 1.69V & 1.43V & 3.597V & 3.763V\\
+\hline
+6.00kHz & 1.74V & 1.13V & 2.27V & 3.426V\\
+\hline
+7.00kHz & 1.71V & 0.822V & 1.434V & 2.915V\\
+\hline
+8.01kHz & 1.78V & 0.635V & 0.982V & 2.585V\\
+\hline
+9.01kHz & 1.74V & 0.529V & 0.708V & 2.368V\\
+\hline
+9.99kHz & 1.76V & 0.445V & 0.544V & 2.236V\\
+\hline
+10.9kHz & 1.77V & 0.388V & 0.442V & 2.109V\\
+\hline
+12.06kHz & 1.71V & 0.338V & 0.3395V & 2.037V\\
+\hline
+12.95kHz & 1.75V & 0.301V & 0.287V & 1.986V\\
+\hline
+14.00kHz & 1.72V & 0.273V & 0.242V & 1.947V\\
+\hline
+15.05kHz & 1.76V & 0.248V & 0.2054V & 1.916V\\
+\hline
+\end{tabular}
+\caption{tabela pomiarów (vRms1 - napięcie na źródle, vRms2 - napięcie na rezystorze)}
+\end{table}
+
+W trakcie pomiarów wykonaliśmy zdjęcia z trzech odczytów oscyloskopu: w częstotliwości rezonansowej, oraz w częstotliwościach ~1Hz poniżej i powyżej rezonansowej:
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{IMG_4807.JPG}
+\caption{Zrzut pomiaru oscyloskopu w częstotliwości poniżej rezonansowej}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{IMG_4806.JPG}
+\caption{Zrzut pomiaru oscyloskopu w częstotliwości rezonansowej}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{IMG_4808.JPG}
+\caption{Zrzut pomiaru oscyloskopu w częstotliwości powyżej rezonansowej}
+\end{figure}
+
+\subsection{Wykres}
+Rysunek 4 w prosty sposób odzwierciedla zależności napięć w funkcji częstotliwości w układzie RLC. Częstotliwość rezonansowa układu jest na nim wyraźnie widoczna.
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{wykres2.png}
+\caption{Wykres napięcia na źródle oraz elementach R, L, C w funkcji częstotliwości pobudzenia}
+\end{figure}
+
+\subsection{Dobroć elementu indukcyjnego}
+{\bf Dobroć} -  wielkość charakteryzująca ilościowo układ rezonansowy. Określa, ile razy amplituda wymuszonych drgań rezonansowych jest większa niż analogiczna amplituda w obszarze częstości nierezonansowych.
+$$Q_{L}=\frac{\omega_{o}*L}{R_{L}}=\frac{2*\pi*f*L}{R_{L}}=\frac{2*\pi*5071.77*0.07434}{112.51}$$
+$$Q_{L}=21.045\frac{Hz*H}{\Omega}$$
+
+\section{Wnioski}
+Zjawisko rezonansu napięć występuje w układzie szeregowym RLC i polega na tym, że przy określonej częstotliwości sygnałów w obwodzie , zwanej częstotliwością rezonansową, napięcie na cewce oraz na kondensatorze są równe co do modułu, wobec czego ich różnica jest równa zero. Zgodnie z dokonanymi pomiarami napięcie na cewce oraz na kondensatorze są do siebie bardzo zbliżone, drobna różnica w pomiarze może wynikać zarówno z niedoskonałości układu doświadczalnego jak i oporów przewodów doprowadzających.
+\newline
+\newline
+W celu zbadania charakterystyki obwodu badamy równanie 
+$$\omega*L=\frac{1}{\omega*C}$$
+Dla częstotliwości mniejszej niż częstotliwość rezonansowa zachodzi nierówność $\omega*L<\frac{1}{\omega*C}$ co oznacza, że obwód ma charakter pojemnościowy, kąt przesunięcia fazowego jest mniejszy od zera, napięcie na zaciskach źródła spóźnia się w fazie w stosunku do natężenia prądu.
+\newline
+\newline
+Dla częstotliwości mniejszej niż częstotliwość rezonansowa zachodzi równość $\omega*L=\frac{1}{\omega*C}$ co oznacza, że zachodzi rezonans napięć, kąt przesunięcia fazowego jest równy zero, napięcie na zaciskach źródła jest zgodne w fazie z natężeniem prądu.
+\newline
+\newline
+Dla częstotliwości większej niż częstotliwość rezonansowa zachodzi nierówność $\omega*L>\frac{1}{\omega*C}$ co oznacza, że obwód ma charakter indukcyjny, kąt przesunięcia fazowego jest większy od zera, więc natężenie prądu spóźnia się w fazie w stosunku do napięcia na zaciskach źródła
+\newline
+\newline
+Badania pokazały, że warunkiem zaistnienia rezonansu fazowego jest brak przesunięcia fazowego między sinusoidalnymi przebiegami prądu i napięci na zaciskach zródła - wartości te mają takie same początkowe kąty fazowe. 
+
+\begin{thebibliography}{3}
+\bibitem{naum} http://mariusznaumowicz.ddns.net/materialy.html - materiały dostępne dla przedmiotu Podstawy Elektroniki
+\bibitem{pto}Podstawy teorii obwodów, Osiowski J., Szabatin J., WNT, Warszawa, 1998
+\bibitem{pe}"Podstawy Elektrotechniki", R.Kurdziel, wyd II, WNT Warszawa 1972
+\end{thebibliography}
+
+\newpage
+\tableofcontents{}
+\end{document}

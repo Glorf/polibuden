@@ -1,0 +1,708 @@
+\documentclass[polish,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,amsthm}
+\usepackage[english,main=polish]{babel}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{float}
+\usepackage{etoolbox}
+\usepackage{pgfplots}
+\patchcmd{\thebibliography}{\section*}{\section}{}{}
+
+\selectlanguage{polish}
+\title{Lab4}
+\newgeometry{tmargin=3cm, bmargin=3cm, lmargin=2cm, rmargin=2cm}
+
+\newcommand{\PRzFieldDsc}[1]{\sffamily\bfseries\scriptsize #1}
+\newcommand{\PRzFieldCnt}[1]{\textit{#1}}
+\newcommand{\PRzHeading}[8]{
+\begin{center}
+\begin{tabular}{ p{0.32\textwidth} p{0.15\textwidth} p{0.15\textwidth} p{0.12\textwidth} p{0.12\textwidth} }
+
+  &   &   &   &   \\
+\hline
+\multicolumn{5}{|c|}{}\\[-1ex]
+\multicolumn{5}{|c|}{{\LARGE #1}}\\
+\multicolumn{5}{|c|}{}\\[-1ex]
+
+\hline
+\multicolumn{1}{|l|}{\PRzFieldDsc{Kierunek}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Specjalność}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Rok studiów}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Symbol grupy lab.}} \\
+\multicolumn{1}{|c|}{\PRzFieldCnt{#2}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#3}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#4}}		& \multicolumn{2}{|c|}{\PRzFieldCnt{#5}} \\
+
+\hline
+\multicolumn{4}{|l|}{\PRzFieldDsc{Temat Laboratorium}}		& \multicolumn{1}{|l|}{\PRzFieldDsc{Numer lab.}} \\
+\multicolumn{4}{|c|}{\PRzFieldCnt{#6}}				& \multicolumn{1}{|c|}{\PRzFieldCnt{#7}} \\
+
+\hline
+\multicolumn{5}{|l|}{\PRzFieldDsc{Skład grupy ćwiczeniowej oraz numery indeksów}}\\
+\multicolumn{5}{|c|}{\PRzFieldCnt{#8}}\\
+
+\hline
+\multicolumn{3}{|l|}{\PRzFieldDsc{Uwagi}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Ocena}} \\
+\multicolumn{3}{|c|}{\PRzFieldCnt{\ }}		& \multicolumn{2}{|c|}{\PRzFieldCnt{\ }} \\
+
+\hline
+\end{tabular}
+\end{center}
+}
+\pgfplotsset{compat=1.14}
+\begin{document}
+\PRzHeading{Laboratorium Podstaw Elektroniki}{Informatyka}{--}{I}{I2}{Diody}{4}{Martyna Maciejewska(132273), Michał Bień(132191), Ziemowit Sokołowski(132318)}{}
+
+{\large Wszystkie odnotowane w zadaniu różnice między wartością znamionową elementu a jego wartością rzeczywistą wynikają z niedoskonałości elementu i mieszczą się w granicy tolerowanego błędu.}
+
+\section{Charakterystyka stałoprądowa dla diody złączowej}
+\subsection{Cel} 
+\begin{quotation} Niniejsze ćwiczenie ma na celu praktyczną weryfikację zasady działania półprzewodnikowego złącza PN. W pierwszej części ćwiczenia złącze jest podłączone do obwodu w sposób pozwalający na przepływ prądu (w tzw. kierunku przewodzenia), następnie połączenie diody zostaje odwrócone i bada się jej zachowanie w stanie braku przewodzenia (w przy tzw. polaryzacji zaporowej).\cite{naum}
+\end{quotation}
+\subsection{Dioda podłączona w kierunku przewodzenia}
+Użyte elementy rezystancyjne: 
+Rezystor oznaczony kolorami brązowy, czarny, czerwony, złoty o rezystancji $1000\Omega$. Zmierzona rezystancja wyniosła $983.8\Omega$. 
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american voltages]
+\draw[green]
+(1,-0.5) to (2,-0.5)
+(5.5,-0.5) to (6.5,-0.5)
+(1,-2.5) to (6.5,-2.5)
+(2,-0.5) to [empty diode, color=red] (4,-0.5)
+(4,-0.5) to (6.5,-0.5);
+
+\draw[red]
+(6.5,-0.5) -- (6.5,-1.5)
+circle [radius = 12pt]node[circle,fill=white,minimum size=10pt]{$V$} 
+(6.5,-1.5) -- (6.5,-2.5)
+(5,-0.5) to [R, l_=$R_1 \ 1k$ , *-*, color=red] (5,-2.5);;
+
+\draw[red]
+(1,-2.5) -- (1,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{}
+(1,-1.5) -- (1,-0.5);
+\node at (1,-2.5) [red]{o};
+\node at (1,-0.5) [red]{o};
+\draw[thick, red]
+(1.5,-1.1) to (1.5,-1.2)
+(1.5,-1.1) to (1.4,-1.1)
+(1.3,-1.3) to (1.5,-1.1)
+(0.8,-1.8) to (0.6,-2);
+
+\node at (2.2,0.2) [gray]{1N4007};
+\node at (1.8,-2) [gray]{$U_z$};
+\node at (3.1,-2) [gray]{$U_{R2}$};
+\node at (3,-1.3) [gray]{$U_d$};
+
+\draw[-latex][red] (1,-1.7) -- (1,-1.3);
+\draw[-latex][gray] (2,-2) -- (2,-1);
+\draw[-latex][gray] (3.5,-2) -- (3.5,-1);
+\draw[-latex][gray] (3.5,-1) -- (2,-1);
+
+\end{circuitikz}
+\caption{Schemat układu doświadczalnego}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c||c|c|}
+\hline
+$U_{z}$ & $U_{R}$ & $U_{d}=U_{z}-U_{R}$ & $I_{d}=\frac{U_{R}}{R}$\\
+\hline 
+0.3V & 48.81mV & 0.25119V & 0.04881mA\\
+\hline
+0.5V & 164.63mV& 0.33537V & 0.016463mA\\
+\hline
+0.6V & 250.44mV & 0.34956V & 0.25044mA\\
+\hline
+0.7V & 333.01mV & 0.36699V & 0.33301mA\\
+\hline
+0.8V & 394.8mV & 0.4052V & 0.3948mA\\
+\hline
+0.9V & 0.5012V & 0.3988V & 0.5012mA\\
+\hline
+1V & 0.6544V & 0.3456V & 0.6544mA\\
+\hline
+1.5V & 1.048V & 0.452V & 1.048mA\\
+\hline
+2V & 1.544V & 0.456V & 1.544mA\\
+\hline
+2.5V & 2.061V & 0.439V & 2.061mA \\
+\hline
+3V & 2.514V & 0.486V & 2.514mA\\
+\hline
+3.5V & 3.041V & 0.459V & 3.041mA\\
+\hline
+4V & 3.563V & 0.437V & 3.563mA\\
+\hline
+4.5V & 4.063V & 0.437V & 4.063mA\\
+\hline
+5V & 4.526V & 0.474V & 4.526mA\\
+\hline
+\end{tabular}
+\caption{Tabela pomiarów}
+\end{table}
+
+\subsection{Dioda podłączona przeciwnie do kierunku przewodzenia}
+Użyte elementy rezystancyjne:
+Rezystor oznaczony kolorami pomarańczowy, czarny, zielony, złoty o rezystancji $3M\Omega$. Zmierzona rezystancja wyniosła $3.002M\Omega$.
+
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american voltages]
+\draw[green]
+(1,-0.5) to (2,-0.5)
+(5.5,-0.5) to (6.5,-0.5)
+(1,-2.5) to (6.5,-2.5)
+(4,-0.5) to [empty diode, color=red] (2,-0.5)
+(4,-0.5) to (6.5,-0.5);
+
+\draw[red]
+(6.5,-0.5) -- (6.5,-1.5)
+circle [radius = 12pt]node[circle,fill=white,minimum size=10pt]{$V$} 
+(6.5,-1.5) -- (6.5,-2.5)
+(5,-0.5) to [R, l_=$R_1 \ 3M$ , *-*, color=red] (5,-2.5);;
+
+\draw[red]
+(1,-2.5) -- (1,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{}
+(1,-1.5) -- (1,-0.5);
+\node at (1,-2.5) [red]{o};
+\node at (1,-0.5) [red]{o};
+\draw[thick, red]
+(1.5,-1.1) to (1.5,-1.2)
+(1.5,-1.1) to (1.4,-1.1)
+(1.3,-1.3) to (1.5,-1.1)
+(0.8,-1.8) to (0.6,-2);
+
+\node at (2.2,0.2) [gray]{1N4007};
+\node at (1.8,-2) [gray]{$U_z$};
+\node at (3.1,-2) [gray]{$U_{R2}$};
+\node at (3,-1.3) [gray]{$U_d$};
+
+\draw[-latex][red] (1,-1.7) -- (1,-1.3);
+\draw[-latex][gray] (2,-2) -- (2,-1);
+\draw[-latex][gray] (3.5,-2) -- (3.5,-1);
+\draw[-latex][gray] (3.5,-1) -- (2,-1);
+
+\end{circuitikz}
+\caption{Schemat układu doświadczalnego}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c||c|c|}
+\hline
+$U_{z}$ & $U_{R}$ & $U_{d}=U_{z}-U_{R}$ & $I_{d}=\frac{U_{R}}{R}$\\
+\hline 
+5V & 3.703mV & 4.996297V & 1.2343nA \\
+\hline
+10V & 4.356mV & 9.995644V & 1.452nA\\
+\hline
+15V & 4.847mV & 14.995153V & 1.6157nA\\
+\hline
+20V & 5.257mV & 19.994743V & 1.7523nA\\
+\hline
+\end{tabular}
+\caption{Tabela pomiarów}
+\end{table}
+
+\subsection{Wnioski}
+	Z doświadczenia łatwo wysnuć można wnioski, które dobrze obrazuje poniższy wykres (Rysunek 3): dioda przewodzi prąd tylko w jednym kierunku (który jest jej kierunkiem przewodzenia). Spadki napięcia na diodzie w kierunku przewodzenia są małe, ale nie pomijalne. Natężenie prądu rośnie proporcjonalnie do wzrostu napięcia.
+	W kierunku przeciwnym do kierunku przewodzenia diody prąd nie płynie: spadek napięcia na tak ustawionej diodzie jest niemal całkowity (rzędu $99.97\%$), płynący w obwodzie prąd jest pomijalnie mały i jego natężenie nie rośnie proporcjonalnie do wzrostu napięcia.
+
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+xlabel={$U_{d} [V]$ },
+ylabel={$I_{d} [mA]$},
+xmin=0,xmax=15,
+ymin=0,ymax=4.6,
+legend pos=north east,
+ymajorgrids=true,grid style=dashed
+]
+
+\addplot[color=red,mark=*]
+coordinates {
+(0.25119, 0.04881)
+(0.33537, 0.016463)
+(0.34956, 0.25044)
+(0.36699, 0.33301)
+(0.4052, 0.3948)
+(0.3988, 0.5012)
+(0.3456, 0.6544)
+(0.452, 1.048)
+(0.456, 1.544)
+(0.439, 2.061)
+(0.486, 2.514)
+(0.459, 3.041)
+(0.437, 3.563)
+(0.437, 4.063)
+(0.474, 4.526)
+};
+
+\addplot[color=blue,mark=square]
+coordinates {
+(4.996297, 0.0000012343)
+(9.995644, 0.000001452)
+(14.995153, 0.0000016157)
+(19.994743, 0.0000017523)
+};
+
+\legend{dioda w kierunku przewodzenia,dioda w kierunku zaporowym}
+\end{axis}
+\end{tikzpicture}
+\caption{Przebieg charakterystyki $I_{d}=f(U_{d})$}
+\end{figure}
+\newpage
+
+\section{Badanie prostownika jednopołówkowego}
+\subsection{Cel}
+\begin{quotation}
+Zastosowanie podstawowej własności złącza PN - przepuszczania prądu płynącego tylko w jednym wyróżnionym kierunku przyczyniło się do rozwoju układów prostownikowych. Zadaniem prostownika jest zamiana przemiennego napięcia wejściowego w napięcie o ustalonym w czasie kierunku przepływu. Wejściowy przebieg prądowy rejestrowany przez amperomierz jest przemienny w czasie:  prąd wejściowy płynie okresami raz w jednym, raz w drugim kierunku względem gałęzi obwodu. Prąd wyjściowy prostownika dzięki zasadzie działania diody złączowej popłynie tylko w jednym kierunku, sprawiając, że wskazania amperomierza A będą  zawsze dodatnie. Opcjonalnie, do układu prostownika można dołożyć pojemność C (tzw. pojemność filtrująca), która będzie doładowywała się w momencie przewodzenia diody D, i podtrzymywała przepływ prądu wyjściowego, gdy dioda D przestanie przewodzić. Podczas bieżącego ćwiczenia zbadany zostanie układ prostownika jednopołówkowego z filtracją napięcia.\cite{naum}
+\end{quotation}
+\subsection{Badanie własności prostownika jednopołówkowego}
+Rezystor oznaczony kolorami brązowy, czarny, czerwony, złoty o rezystancji $10k\Omega$. Zmierzona rezystancja wyniosła $9.875k\Omega$.
+
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american voltages]
+\draw[green]
+(1,-0.5) to (1, 1.5)
+(1, 1.5) to (3, 1.5)
+(3, 1) to (2,1)
+(2,1) to (2,0.5)
+(1,-2.5) to (5.5,-2.5)
+(5.5,-2.5) to (5.5,-2)
+(1,-0.5) to[empty diode, color=red] (3,-0.5)
+(3,-0.5) to (5.5,-0.5)
+(5.5,-0.5) to (5.5,-1.5)
+(3,-2.5) to (3,-3);;
+
+\draw[red]
+(1.75,0.5) to (2.25,0.5)
+(2.75,-3) to (3.25,-3)
+(3,-0.5) to [R, l=$R_1 \ 10k$ , *-*, color=red] (3,-2.5);
+\node at (2,0.25) {GND};
+\node at (3,-3.25) {GND};
+
+\draw[red]
+(3, 1.5) to (3.5,1.5)  
+(3,1) to (3.5,1)
+(3.5,2) to (3.5,0.5)
+(5.5,2) to (5.5,0.5)
+(3.5,0.5) to (5.5,0.5)
+(3.5,2) to (5.5,2)
+(3.75,1.75) to (3.75,0.75)
+(5,1.75) to (5,0.75)
+(3.75,0.75) to (5,0.75)
+(3.75,1.75) to (5,1.75);
+\node at (4.5,2.25) {channel A};
+\node at (3, 1.5) [red]{o};
+\node at (3,1) [red]{o};
+\node at (5.25,0.75) [red]{o};
+\node at (5.25, 1.7) [red]{o};
+\node at (5.25, 1.3) [red]{o};
+
+\draw[red]
+(5.5,-1.5) to (6,-1.5) 
+(5.5,-2) to (6,-2)
+(6,-1) to (6,-2.5)
+(8,-1) to (8,-2.5)
+(6,-2.5) to (8,-2.5)
+(6,-1) to (8,-1)
+(6.25,-1.25) to (6.25,-2.25)
+(7.5,-1.25) to (7.5,-2.25)
+(6.25,-2.25) to (7.5,-2.25)
+(6.25,-1.25) to (7.5,-1.25);
+\node at (7,-0.75) {channel B};
+\node at (5.5,-1.5) [red]{o};
+\node at (5.5,-2) [red]{o};
+\node at (7.75,-1.3) [red]{o};
+\node at (7.75,-2.25) [red]{o};
+\node at (7.75,-1.7) [red]{o};
+
+\draw[red]
+(1,-2.5) -- (1,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{$\sim$}
+(1,-1.5) -- (1,-0.5);
+\node at (1,-2.5) [red]{o};
+\node at (1,-0.5) [red]{o};
+\node at (0.05,-1.8) [green]{Sine};
+\draw[thick, red]
+(1.5,-1.1) to (1.5,-1.2)
+(1.5,-1.1) to (1.4,-1.1)
+(1.3,-1.3) to (1.5,-1.1)
+(0.8,-1.8) to (0.6,-2);
+
+\node at (3,-0.25) [gray]{1N4007};
+
+\end{circuitikz}
+\caption{Układ pomiarowy dla badania własności prostownika jednopołówkowego}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{prostownik.jpg}
+\caption{Oscylogramy dla prostownika jednopołówkowego}
+\end{figure}
+
+Różnica amplitud napięcia między przebiegiem wejściowym oraz wyjściowym wyniosła $1.69V - 0.736V =  0.954V$. Powodem jest działanie prostownika jednopołówkowego, który ,,odcina" prąd płynący w kierunku przeciwnym do kierunku przepływu prądu przez diodę. Zjawisko to możemy zaobserwować w postaci poziomych pasków na oscylogramie 2 (Rysunek 5) 
+
+\subsection{Badanie własności prostownika jednopołówkowego z filtracją}
+
+Kondensatory:w celu uzyskania pojemności $20\mu$F połączono równolegle dwa kondensatory, każdy o pojemności $10\mu$F. Zmierzona pojemność wyniosła $20.46\mu$F. W celu uzyskania pojemności $2.2\mu$F podłączono kondensator o zmierzonej pojemności $2.24\mu$F.
+\newline
+Użyte elementy rezystancyjne: \\
+Rezystor oznaczony kolorami czerwony, czerwony, czerwony, złoty o rezystancji $2.2k\Omega$. Zmierzona rezystancja wyniosła $2.143k\Omega$. \\
+Rezystor oznaczony kolorami czerwony, czerwony, czarny, czarny, złoty o rezystancji $220\Omega$. Zmierzona rezystancja wyniosła $218.88\Omega$.\\
+Częstotliwość prądu w trakcie wykonywania pomiarów wynosiła 504Hz
+
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american voltages]
+\draw[green]
+(0,-0.5) to (0, 1.5)
+(0, 1.5) to (3, 1.5)
+(3, 1) to (2,1)
+(2,1) to (2,0.5)
+(0,-2.5) to (8.5,-2.5)
+(8.5,-2.5) to (8.5,-2)
+(0,-0.5) to[empty diode, color=red] (2,-0.5)
+(2,-0.5) to (8.5,-0.5)
+(8.5,-0.5) to (8.5,-1.5)
+(2,-2.5) to (2,-3);
+
+\draw[red]
+(1.75,0.5) to (2.25,0.5)
+(1.75,-3) to (2.25,-3)
+(2,-0.5) to [R, l=$R_1 \ 10k$ , *-*, color=red] (2,-2.5)
+(4,-0.5) to [C,l=$CF$,*-*,color=red] (4,-2.5)
+(6,-0.5) -- (6,-1.5)
+circle [radius = 13pt]node[circle,fill=white,minimum size=10pt]{$V_{ac}$} 
+(6,-1.5) -- (6,-2.5)
+(7.5,-0.5) -- (7.5,-1.5)
+circle [radius = 13pt]node[circle,fill=white,minimum size=10pt]{$V_{dc}$} 
+(7.5,-1.5) -- (7.5,-2.5);
+\node at (2,0.25) {GND};
+\node at (2,-3.25) {GND};
+
+\draw[red]
+(3, 1.5) to (3.5,1.5)  
+(3,1) to (3.5,1)
+(3.5,2) to (3.5,0.5)
+(5.5,2) to (5.5,0.5)
+(3.5,0.5) to (5.5,0.5)
+(3.5,2) to (5.5,2)
+(3.75,1.75) to (3.75,0.75)
+(5,1.75) to (5,0.75)
+(3.75,0.75) to (5,0.75)
+(3.75,1.75) to (5,1.75);
+\node at (4.5,2.25) {channel A};
+\node at (3, 1.5) [red]{o};
+\node at (3,1) [red]{o};
+\node at (5.25,0.75) [red]{o};
+\node at (5.25, 1.7) [red]{o};
+\node at (5.25, 1.3) [red]{o};
+
+\draw[red]
+(8.5,-1.5) to (9,-1.5) 
+(8.5,-2) to (9,-2)
+(9,-1) to (9,-2.5)
+(11,-1) to (11,-2.5)
+(9,-2.5) to (11,-2.5)
+(9,-1) to (11,-1)
+(9.25,-1.25) to (9.25,-2.25)
+(10.5,-1.25) to (10.5,-2.25)
+(9.25,-2.25) to (10.5,-2.25)
+(9.25,-1.25) to (10.5,-1.25);
+\node at (10,-0.75) {channel B};
+\node at (8.5,-1.5) [red]{o};
+\node at (8.5,-2) [red]{o};
+\node at (10.75,-1.3) [red]{o};
+\node at (10.75,-2.25) [red]{o};
+\node at (10.75,-1.7) [red]{o};
+
+\draw[red]
+(0,-2.5) -- (0,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{$\sim$}
+(0,-1.5) -- (0,-0.5);
+\node at (0,-2.5) [red]{o};
+\node at (0,-0.5) [red]{o};
+\node at (-0.95,-1.8) [green]{Sine};
+\draw[thick, red]
+(0.5,-1.1) to (0.5,-1.2)
+(0.5,-1.1) to (0.4,-1.1)
+(0.3,-1.3) to (0.5,-1.1)
+(-0.2,-1.8) to (-0.4,-2);
+
+\node at (2,-0.25) [gray]{1N4007};
+
+\end{circuitikz}
+\caption{Układ prostownika jednopołówkowego z filtracją}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c||c|c|c|}
+\hline
+R [$\Omega$] & $C_{f}$[$\mu$F] & $U_{R(DC)}$[V] & $U_{R(AC)}$[V]&$ U_{R(pp)}$[V]\\
+\hline 
+$2.2k\Omega$ & $20\mu$F & 1.776V & 22.67mV & 5.36V\\
+\hline
+$220\Omega$ & $20\mu$F & 1.001V & 108.6mV & 4.96V\\
+\hline
+$220\Omega$ & $2.2\mu$F & 0.681V &152.3mV & 5.44V\\
+\hline
+$2.2k\Omega$ & $2.2\mu$F & 1.727V & 194.21mV & 5.68V\\
+\hline
+\end{tabular}
+\caption{Tabela pomiarów dla częstotliwości 504Hz}
+\end{table}
+
+Ze względu na duże tętnienia i małą sprawność energetyczną,
+prostownik jednopołówkowy jest rzadko stosowany. W celu zmniejszenia tętnień oraz
+zwiększenia wydatkowania energii, w obciążeniu prostownika stosuje się
+elementy,   które   magazynują   energię. 
+Wartość napięć stałych jest największa w przypadku obciążęnia $2.2k\Omega$.W przypadku napięć zmiennych wartości największe występują w przypadku kondensatora o pojemności $2.2\mu$F. Najmniejsza wartość  napięcia międzyszczytowego tętnień jest odnotowana dla kondensatora o większej pojemności oraz rezystora o mniejszym oporze. Największa została zmierzona dla kondensatora o mniejszej ojemności oraz rezystora o większym oporze. 
+\\
+\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{filtracja.jpg}
+\caption{Oscylogramy dla prostownika jednopołówkowego z filtracją}
+\end{figure}
+
+Wartość napięcia $U_{R(AC)}$ i $U_{R(DC)}$ zależy od wartości rezystancji R i pojemności $C_f$. Napięcia możemy interpretować odpowiednio jako wartość prądu sinusoidalnie zmiennego, który nie został wyprostowany przez prostownik, oraz wartość napięcia prądu stałego, który został zgromadzony przez kondensator i jest uwalniany w procesie ,,tłumienia".
+\section{Diody świecące}
+\subsection{Cel}
+Ćwiczenie ma na celu zbadanie wpływu wartości napięcia na sposób świecenia diody czerwonej oraz żółtej.
+\subsection{Pomiar}
+Użyte elementy rezystancyjne: 
+Rezystor oznaczony kolorami brązowy, czarny, czerwony, złoty o rezystancji $1000\Omega$. Zmierzona rezystancja wyniosła $983.8\Omega$. 
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american voltages]
+\draw[dashed][green]
+(1,-0.5) to (1,1)
+(3,-0.5) to (3,1)
+(4,-0.5) to (4,1)
+(6,-0.5) to (6,1);
+
+\draw[green]
+(3,-0.5) to (4,-0.5)
+(5.5,-0.5) to (6.5,-0.5)
+(1,-2.5) to (6.5,-2.5)
+(4,-0.5) to [empty diode, color=red](5.5,-0.5)
+(3,-2.5) to (3,-3)
+(1,-0.5) to [empty diode, color=red] (3,-0.5);
+
+\draw[red]
+(2.75,-3) to (3.25,-3)
+(6.5,-2.5) to [R, l_=$R_1 \ 1k$ , *-*, color=red] (6.5,-0.5)
+(1,1) -- (2,1)
+circle [radius = 14pt]node[circle,fill=white,minimum size=10pt]{$mV$} 
+(2,1) -- (3,1)
+(4,1) -- (5,1)
+circle [radius = 14pt]node[circle,fill=white,minimum size=10pt]{$mV$} 
+(5,1) -- (6,1);
+\node at (3,-3.25) {GND};
+
+
+\draw[red]
+(1,-2.5) -- (1,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{}
+(1,-1.5) -- (1,-0.5);
+\node at (1,-2.5) [red]{o};
+\node at (1,-0.5) [red]{o};
+\draw[thick, red]
+(1.5,-1.1) to (1.5,-1.2)
+(1.5,-1.1) to (1.4,-1.1)
+(1.3,-1.3) to (1.5,-1.1)
+(0.8,-1.8) to (0.6,-2);
+
+\node at (2.2,0.2) [gray]{LED1};
+\node at (5.2,0.2) [gray]{LED2};
+
+\node at (2.9,-0.75) {green};
+\node at (5.5,-0.75) {red};
+
+\draw[-latex][red] (1,-1.7) -- (1,-1.3);
+\draw[-latex][red] (2,-1) -- (2.25,-1.25);
+\draw[-latex][red] (2.2,-1) -- (2.45,-1.25);
+\draw[-latex][red] (5,-1) -- (5.25,-1.25);
+\draw[-latex][red] (5.2,-1) -- (5.45,-1.25);
+
+\node at (2,-2) {max 15V};
+
+\end{circuitikz}
+\caption{Układ doświadczalny dla układu diod świecących}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+napięcie & dioda czerwona & dioda zielona\\
+\hline 
+6V & 1.9174V & 1.9173V\\
+\hline
+9.1V & 2.0065V & 1.9553V\\
+\hline
+13.2V & 2.113V & 1.982V\\
+\hline
+\end{tabular}
+\caption{Tabela pomiarów}
+\end{table}
+
+\subsection{Wnioski}
+Kolor diody zależy od materiałów stosowanych w strukturze złącza. Diody o różnych kolorach mają róźne napięcia przewodzenia. Z tego powodu dioda zielona świeci mocniej niż czerwona.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{diody1.jpg}
+\caption{Diody świecące pod napięciem $6V$}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{diody2.jpg}
+\caption{Diody świecące pod napięciem $9.1V$}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{diody3.jpg}
+\caption{Diody świecące pod napięciem $13.2V$}
+\end{figure}
+
+\section{Wyświetlacz LED}
+
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american voltages]
+\draw[thick]
+(0,-0.5) to (7,-0.5)
+(0,-0.5) to (0,10.5)
+(0,10.5) to (7,10.5)
+(7,10.5) to (7,-0.5);
+
+\draw
+(0.5,10.5) to (0.5,11.5)
+(2,10.5) to (2,11.5)
+(5,10.5) to (5,11.5)
+(6.5,10.5) to (6.5,11.5)
+(0.5,-0.5) to (0.5,-1.5)
+(2,-0.5) to (2,-1.5)
+(5,-0.5) to (5,-1.5)
+(6.5,-0.5) to (6.5,-1.5);
+
+\draw[green]
+(0.5,11.5) to (0.5,12)
+(5,11.5) to (5,12)
+(6.5,11.5) to (6.5,12)
+(0.5,-1.5) to (0.5,-2)
+(2,-1.5) to (2,-2)
+(6.5,-1.5) to (6.5,-2)
+(0.5,12) to (9,12)
+(0.5,-2) to (9,-2)
+(8,-3) to (13,-3)
+(13,-3) to (13,5)
+(13,7) to (13,12)
+(9,-2) to (9,12)
+(9,12) to (13,12);
+
+\draw
+(3.5,-0.5) to (3.5,-3)
+(3.5,-3) to (6,-3);
+
+\draw[red]
+(13,5) -- (13,6)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{} 
+(13,6) -- (13,7)
+(6,-3) to [R, l_=$R_1 \ 1k\Omega$ , *-*, color=red] (8,-3);
+
+\fill[black!20!white] (0,-0.5) rectangle (7,10.5);
+
+\fill[red!70!white] (0.5,1) rectangle (1.5,4.5);
+\fill[red!70!white] (5.5,9) rectangle (4.5,5.5);
+\fill[red!70!white] (1.5,4.5) rectangle (4.5,5.5);
+\fill[red!70!white] (1.5,0) rectangle (4.5,1);
+\fill[red!70!white] (1.5,9) rectangle (4.5,10);
+\fill[white](5.5,1) rectangle (4.5,4.5);
+\fill[white](0.5,9) rectangle (1.5,5.5);
+\fill[red!70!white] (6.2,0.5) circle (0.5cm);
+
+\draw[thick] (0.5,1) rectangle (1.5,4.5);
+\draw[thick]  (5.5,1) rectangle (4.5,4.5);
+\draw[thick]  (0.5,9) rectangle (1.5,5.5);
+\draw[thick]  (5.5,9) rectangle (4.5,5.5);
+\draw[thick]  (1.5,4.5) rectangle (4.5,5.5);
+\draw[thick]  (1.5,0) rectangle (4.5,1);
+\draw[thick]  (1.5,9) rectangle (4.5,10);
+\draw[thick] (6.2,0.5) circle (0.5cm);
+
+\node at (13.7,6) {$5V$};
+
+\node at (0.5,11.5) [red]{o};
+\node at (2,11.5) [red]{o};
+\node at (5,11.5)[red]{o};
+\node at (6.5,11.5)[red]{o};
+\node at (0.5,-1.5) [red]{o};
+\node at (2,-1.5) [red]{o};
+\node at (5,-1.5) [red]{o};
+\node at (6.5,-1.5) [red]{o};
+
+\node at (0,11.5) {a};
+\node at (1.5,11.5) {b};
+\node at (4.5,11.5) {c};
+\node at (6,11.5) {d};
+\node at (0,-1.5) {e};
+\node at (1.5,-1.5) {f};
+\node at (4.5,-1.5) {g};
+\node at (6,-1.5) {dp};
+
+\node at (1,3) {e};
+\node at (5,3) {g};
+\node at (1,7.5) {b};
+\node at (5,7.5) {d};
+\node at (3,9.5) {c};
+\node at (3,5) {a};
+\node at (3,0.5) {f};
+\node at (6.2,0.5) {dp};
+
+
+\draw[-latex][red] (13,5.8) -- (13,6.2);
+
+\fill [red] (0,0) node[anchor=north]{}
+  -- (0,0) node[anchor=north]{}
+  -- (0,0) node[anchor=south]{}
+  -- cycle;
+
+
+\end{circuitikz}
+\caption{Schemat podłączenia wyświetlacza LED dla cyfry 2}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{wyswietlacz.jpg}
+\caption{Wyświetlacz LED w działaniu}
+\end{figure}
+
+\newpage
+
+
+\begin{thebibliography}{3}
+\bibitem{naum} http://mariusznaumowicz.ddns.net/materialy.html - materiały dostępne dla przedmiotu Podstawy Elektroniki
+\bibitem{pto}Podstawy teorii obwodów, Osiowski J., Szabatin J., WNT, Warszawa, 1998
+\bibitem{pe}"Podstawy Elektrotechniki", R.Kurdziel, wyd II, WNT Warszawa 1972
+\end{thebibliography}
+
+\newpage
+\tableofcontents{}
+\end{document}
