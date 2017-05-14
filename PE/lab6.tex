@@ -1,0 +1,254 @@
+\documentclass[polish,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,amsthm}
+\usepackage[english,main=polish]{babel}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{float}
+\usepackage{etoolbox}
+\usepackage{pgfplots}
+\patchcmd{\thebibliography}{\section*}{\section}{}{}
+
+\selectlanguage{polish}
+\title{Lab6}
+\newgeometry{tmargin=3cm, bmargin=3cm, lmargin=2cm, rmargin=2cm}
+
+\newcommand{\PRzFieldDsc}[1]{\sffamily\bfseries\scriptsize #1}
+\newcommand{\PRzFieldCnt}[1]{\textit{#1}}
+\newcommand{\PRzHeading}[8]{
+\begin{center}
+\begin{tabular}{ p{0.32\textwidth} p{0.15\textwidth} p{0.15\textwidth} p{0.12\textwidth} p{0.12\textwidth} }
+
+  &   &   &   &   \\
+\hline
+\multicolumn{5}{|c|}{}\\[-1ex]
+\multicolumn{5}{|c|}{{\LARGE #1}}\\
+\multicolumn{5}{|c|}{}\\[-1ex]
+
+\hline
+\multicolumn{1}{|l|}{\PRzFieldDsc{Kierunek}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Specjalność}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Rok studiów}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Symbol grupy lab.}} \\
+\multicolumn{1}{|c|}{\PRzFieldCnt{#2}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#3}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#4}}		& \multicolumn{2}{|c|}{\PRzFieldCnt{#5}} \\
+
+\hline
+\multicolumn{4}{|l|}{\PRzFieldDsc{Temat Laboratorium}}		& \multicolumn{1}{|l|}{\PRzFieldDsc{Numer lab.}} \\
+\multicolumn{4}{|c|}{\PRzFieldCnt{#6}}				& \multicolumn{1}{|c|}{\PRzFieldCnt{#7}} \\
+
+\hline
+\multicolumn{5}{|l|}{\PRzFieldDsc{Skład grupy ćwiczeniowej oraz numery indeksów}}\\
+\multicolumn{5}{|c|}{\PRzFieldCnt{#8}}\\
+
+\hline
+\multicolumn{3}{|l|}{\PRzFieldDsc{}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Ocena}} \\
+\multicolumn{3}{|c|}{\PRzFieldCnt{Dawid Połomka(112765), Paweł Myszkowski(132292) }}		& \multicolumn{2}{|c|}{\PRzFieldCnt{\ }} \\
+
+\hline
+\end{tabular}
+\end{center}
+}
+\pgfplotsset{compat=1.14}
+\begin{document}
+\PRzHeading{Laboratorium Podstaw Elektroniki}{Informatyka}{--}{I}{I2}{Wzmacniacze operacyjne}{6}{Martyna Maciejewska(132273), Michał Bień(132191), Ziemowit Sokołowski(132318),Kacper Maciejewski(132274)}{}
+
+{\large Wszystkie odnotowane w zadaniu różnice między wartością znamionową elementu a jego wartością rzeczywistą wynikają z niedoskonałości elementu i mieszczą się w granicy tolerowanego błędu.}
+
+\section{Konfiguracja nieodwracająca}
+
+\subsection{Cel}
+Zbadanie bezwzględnego wzmocnienia napięciowego wzmacniacza operacyjnego w konfiguracji nieodwracającej.
+
+\subsection{Ćwiczenie}
+
+Użyte elementy rezystancyjne: 
+Rezystor R1 i R2 oznaczone kolorami brązowy, czarny, czerwony, złoty o rezystancji $1000\Omega$. Zmierzona rezystancja R1 wyniosła $983.8\Omega$, a R2 wyniosła $988.4\Omega$.
+Na wyjściu generatora ustawiliśmy przebieg sinusoidalny o częstotliwości 4 kHz. Jako wartość międzyszczytową przebiegu obraliśmy $V_{pp}=1V$.
+\newline
+\newline
+Amplitudy przebiegów wejściowych i wyjściowych:\newline
+$V_{amp} = 1.02V$ \hspace{2cm} (1) wejściowy \newline
+$V_{amp} = 2.04V$ \hspace{2cm} (2) wyjściowy \newline
+
+Szacujemy wzmocnienie wzmacniacza a skali liniowej i decybelowej. 
+
+\begin{center}
+$k_u[\frac{V}{V}]=\frac{U_{wy}}{U_{we}}$ \hspace{2cm}  $k_u[\frac{V}{V}]=\frac{2.04}{1.02}=2$\\
+$k_u[dB]=20log(\frac{U_{wy}}{U_{we}})$ \hspace{1.5cm} $k_u[dB]=20log(\frac{2.04}{1.02})=6.021$\\
+\end{center}
+
+Obliczamy wzmocnienie wzmacniacza korzystając z zależności $k_u=1+ \frac{Z_{f}}{Z_{in}}$
+
+\begin{center}
+
+$1+ \frac{Z_{f}}{Z_{in}}=1 + \frac{1000\Omega}{1000\Omega}=2$ \\
+$k_u=\frac{U_{wy}}{U_{we}}=1+ \frac{Z_{f}}{Z_{in}}$
+\end{center}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{nieodwr.jpg}
+\caption{Przebiegi dla konfiguracji nieodwracającej}
+\end{figure}
+
+\subsection{Wnioski}
+
+Powyższa  zależność  pokazuje,  że  wzmacniacz  operacyjny  w  konfiguracji  nieodwracającej  osiąga bezwzględne wzmocnienie napięciowe, które będzie zawsze co najmniej równe 1$\frac{V}{V}$
+W teori wzmocnienie dla układu tzw. wtórnika napięciowego wynosi 1.
+Taki układ charakteryzuje się bardzo dużą rezystancją wejściową i małą rezystancją wyjściową. Dzięki temu używany jest często jako prosty układ separujący, ponieważ jego dołączenie nie obciąża układu badanego. 
+
+
+\section{Konfiguracja odwracająca}
+\subsection{Cel}
+Zbadanie bezwzględnego wzmocnienia napięciowego wzmacniacza operacyjnego w konfiguracji odwracającej.
+
+\subsection{Ćwiczenie}
+Na wyjściu generatora ustawiliśmy przebieg sinusoidalny o częstotliwości 4 kHz. Jako wartość międzyszczytową przebiegu obraliśmy $V_{pp}=1V$.
+
+Użyte elementy rezystancyjne: 
+
+$Z_{in}$ :
+Rezystor oznaczony kolorami brązowy, czarny, czerwony, złoty o rezystancji $1000\Omega$. Zmierzona rezystancja wyniosła $983.8\Omega$. Rezystor oznaczony kolorami czerwony, czarny, czerwony, złoty o rezystancji $2000\Omega$. Zmierzona rezystancja R1 wyniosła $1993.2\Omega$. 
+
+$Z_{f}$ :
+Rezystor oznaczony kolorami brązowy, czarny, czerwony, złoty o rezystancji $1000\Omega$. Zmierzona rezystancja wyniosła $988.5\Omega$. Rezystor oznaczony kolorami czerwony, czarny, czerwony, złoty o rezystancji $2000\Omega$. Zmierzona rezystancja R1 wyniosła $1982.2\Omega$.Rezystor oznaczony kolorami zielony, czarny, czerwony, złoty o rezystancji $5000\Omega$. Zmierzona rezystancja R1 wyniosła $5082.2\Omega$.
+
+\begin{center}
+$k_U[\frac{V}{V}]=\frac{U_{wy}}{U_{we}}$\\
+$k_U[dB]=20log(\frac{U_{wy}}{U_{we}})$
+\end{center}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c||c|c|c|c|c|}
+\hline
+$Z_{in}$ &nr przełącznika & $Z_{f}$ & nr przełącznika & $k_{u}$ teoretyczne & $U_{we}$ & $U_{wy}$ & $k_{u}$ $[\frac{V}{V}]$ & $k_{u}$ $[dB]$\\
+\hline 
+$1k\Omega$ & 1 & $2k\Omega$ & 1 & 2 & $1.01V$ & $1.96V$ & 1.94 & 2.88  \\
+\hline
+$1k\Omega$ & 1 & $1k\Omega$ & 2 & 1 & $1.01V$ & $1.01V$ & 1 & 0  \\
+\hline
+$1k\Omega$ & 1 & $5k\Omega$ & 3 & 5 & $1.01V$ & $5.16V$ & 5.11 & 7.08 \\
+\hline
+$2k\Omega$ & 2 & $1k\Omega$ & 2 & 0.5 & $1.04V$ & $0.485V$ & 0.46 & -3.37 \\
+\hline
+\end{tabular}
+\caption{Tabela pomiarów}
+\end{table}
+
+Różnice między $k_u$ teoretycznym a otrzymanym wynikają z faktu obrania wartości napięcia wyjściowego nieznacznie różniących się od zakładanych, a także z niedoskonałości elementów układu, mieszczących się w dopuszczalnej granicy błędu.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{odwr1.jpg}
+\caption{Przebieg 1 dla konfiguracji odwracającej}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{odwr2.jpg}
+\caption{Przebieg 2 dla konfiguracji odwracającej}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{odwr3.jpg}
+\caption{Przebieg 3 dla konfiguracji odwracającej}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{odwr4.jpg}
+\caption{Przebieg 4 dla konfiguracji odwracającej}
+\end{figure}
+
+\subsection{Wnioski}
+Przesunięcie fazowe jest to różnica pomiędzy fazami dwóch fal. W tym przypadku wynosi ona 180 stopni, co świadczy o tym, że fale są w przeciwfazie. Fakt ten jest wynikiem tego, że układ pracuje w konfiguracji odwracającej.
+
+\section{Blok integratora}
+
+\subsection{Cel}
+Analiza sytuacji, gdy w roli impedancji $Z_{in}$ występuje rezystor R, a w roli $Z_{f}$ kondensator C.
+
+\subsection{Ćwiczenie}
+Na wyjściu generatora ustawiliśmy przebieg sinusoidalny o częstotliwości 4 kHz. Jako wartość międzyszczytową przebiegu obraliśmy $V_{pp}=1V$.
+
+Użyte elementy rezystancyjne i pojemnościowe:
+
+Rezystor oznaczony kolorami brązowy, czarny, czerwony, złoty o rezystancji $1000\Omega$. Zmierzona rezystancja wyniosła $983.8\Omega$. Rezystor oznaczony kolorami czerwony, czarny, czerwony, złoty o rezystancji $2000\Omega$. Zmierzona rezystancja R1 wyniosła $1993.2\Omega$. 
+Kondensator o pojemności 10nF. Zmierzona pojemność wyniosła 9.9nF.
+
+$$U_{out}(t) = -\frac{1}{RC} \int{u_{in}(t)dt} = -\frac{1}{T_i} \int{u_{in}(t)dt}$$
+$$\frac{1}{RC} = \frac{1}{T_i}$$
+
+Zmierzone wartości:
+\begin{enumerate}
+\item $V_{amp}=7.12V$ i fall-time=$113\mu$s
+\item $V_{amp}=3.84V$ i fall-time=$117\mu$s
+\end{enumerate}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c||c|c|}
+\hline
+R &nr przełącznika & C & nr przełącznika & $\frac{1}{T_{i}}$ teoretyczne &  $\frac{1}{T_{i}}$ obliczone\\
+\hline 
+$1k\Omega$ & 1 & 10nF & 4 & $10^5$  &  $1.023 * 10^5$ \\
+\hline
+$2k\Omega$ & 2 & 10nF & 4 & $5 * 10^4$  &   $4.897 * 10^4$\\
+\hline
+\end{tabular}
+\caption{Tabela pomiarów}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{calk1.jpg}
+\caption{Przebieg 1 dla układu całkującego}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{calk2.jpg}
+\caption{Przebieg 2 dla układu całkującego}
+\end{figure}
+
+\subsection{Wnioski}
+Układ staje się integratorem czasu ciągłego o stałej całkowania
+$T_{i}$ uzależnionej od iloczynu elementów R, C.
+Wzmocnienie integratora zależy od częstotliwości sygnału.
+
+\section{Blok różniczkujący}
+\subsection{Cel}
+Analiza sytuacji, gdy w roli impedancji$Z_{in}$ występuje pojemność C, a w roli $Z_{f}$ rezystor R.
+
+\subsection{Ćwiczenie}
+Na wyjściu generatora ustawiliśmy przebieg sinusoidalny o częstotliwości 1 kHz. Jako wartość międzyszczytową przebiegu obraliśmy $V_{pp}=1V$.
+
+pojemność $C_{1} = 100nF$ i rezystor $R_{6} = 5k\Omega$ to gorsze dobranie danych ($T_d = 5 * 10^{-4}$)
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{rozngorszy.jpg}
+\caption{Przebieg różniczkujący dla gorzej dobranych parametrów pracy}
+\end{figure}
+pojemność $C_{1} = 100nF$ i rezystor $R_{7} = 1k\Omega$ to lepsze dobranie danych ($T_d = 10^{-4}$)
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{roznlepszy.jpg}
+\caption{Przebieg różniczkujący dla lepiej dobranych parametrów pracy}
+\end{figure}
+
+Zniekształcenia przebiegu wyjściowego w pobliżu przełączeń poziomów wejściowego przebiegu prostokątnego tłumaczyć można czasem reakcji procesu ładowania i rozładowywania kondensatora w układzie na zmianę tendencji prądowej.
+
+\begin{thebibliography}{3}
+\bibitem{naum} http://mariusznaumowicz.ddns.net/materialy.html - materiały dostępne dla przedmiotu Podstawy Elektroniki
+\bibitem{BS170} https://www.onsemi.com/pub/Collateral/BS170-D.PDF - dokumentacja układu BS170
+\bibitem{pto}Podstawy teorii obwodów, Osiowski J., Szabatin J., WNT, Warszawa, 1998
+\bibitem{pe}"Podstawy Elektrotechniki", R.Kurdziel, wyd II, WNT Warszawa 1972
+\end{thebibliography}
+
+\newpage
+\tableofcontents{}
+\end{document}
+

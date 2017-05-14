@@ -1,0 +1,1286 @@
+\documentclass[polish,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,amsthm}
+\usepackage[english,main=polish]{babel}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{float}
+\usepackage{etoolbox}
+\usepackage{pgfplots}
+\patchcmd{\thebibliography}{\section*}{\section}{}{}
+
+\selectlanguage{polish}
+\title{Lab4}
+\newgeometry{tmargin=3cm, bmargin=3cm, lmargin=2cm, rmargin=2cm}
+
+\newcommand{\PRzFieldDsc}[1]{\sffamily\bfseries\scriptsize #1}
+\newcommand{\PRzFieldCnt}[1]{\textit{#1}}
+\newcommand{\PRzHeading}[8]{
+\begin{center}
+\begin{tabular}{ p{0.32\textwidth} p{0.15\textwidth} p{0.15\textwidth} p{0.12\textwidth} p{0.12\textwidth} }
+
+  &   &   &   &   \\
+\hline
+\multicolumn{5}{|c|}{}\\[-1ex]
+\multicolumn{5}{|c|}{{\LARGE #1}}\\
+\multicolumn{5}{|c|}{}\\[-1ex]
+
+\hline
+\multicolumn{1}{|l|}{\PRzFieldDsc{Kierunek}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Specjalność}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Rok studiów}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Symbol grupy lab.}} \\
+\multicolumn{1}{|c|}{\PRzFieldCnt{#2}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#3}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#4}}		& \multicolumn{2}{|c|}{\PRzFieldCnt{#5}} \\
+
+\hline
+\multicolumn{4}{|l|}{\PRzFieldDsc{Temat Laboratorium}}		& \multicolumn{1}{|l|}{\PRzFieldDsc{Numer lab.}} \\
+\multicolumn{4}{|c|}{\PRzFieldCnt{#6}}				& \multicolumn{1}{|c|}{\PRzFieldCnt{#7}} \\
+
+\hline
+\multicolumn{5}{|l|}{\PRzFieldDsc{Skład grupy ćwiczeniowej oraz numery indeksów}}\\
+\multicolumn{5}{|c|}{\PRzFieldCnt{#8}}\\
+
+\hline
+\multicolumn{3}{|l|}{\PRzFieldDsc{Uwagi}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Ocena}} \\
+\multicolumn{3}{|c|}{\PRzFieldCnt{\ }}		& \multicolumn{2}{|c|}{\PRzFieldCnt{\ }} \\
+
+\hline
+\end{tabular}
+\end{center}
+}
+\pgfplotsset{compat=1.14}
+\begin{document}
+\PRzHeading{Laboratorium Podstaw Elektroniki}{Informatyka}{--}{I}{I2}{Tranzystor MOS}{5}{Martyna Maciejewska(132273), Michał Bień(132191), Ziemowit Sokołowski(132318)}{}
+
+{\large Wszystkie odnotowane w zadaniu różnice między wartością znamionową elementu a jego wartością rzeczywistą wynikają z niedoskonałości elementu i mieszczą się w granicy tolerowanego błędu.}
+
+
+\section{Charakterystyka bramkowa nMOS}
+\subsection{Cel} 
+Celem ćwiczenia jest wyznaczenie empirycznej zależności pomiędzy sygnałem sterującym a sterowanym dla tranzystora nMOS
+\subsection{Schemat}
+
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american voltages]
+\draw[green]
+(3,-0.5) to (4,-0.5)
+(5.5,-0.5) to (6.5,-0.5)
+(1,-2.5) to (7,-2.5)
+(4,-0.5) to (6,-0.5)
+(1,-0.5) to (1,1)
+(3,1) to (3.25,1)
+(3.75,1) to (4,1)
+(7,-2.5) to (7,-1)
+(6,1) to (7,1)
+(7,1) to (7,0)
+(3,-2.5) to (3,-3);
+
+\draw[red]
+(5,-0.5) -- (5,-1.5)
+circle [radius = 12pt]node[circle,fill=white,minimum size=10pt]{$V$} 
+(5,-1.5) -- (5,-2.5)
+(1,1) -- (2,1)
+circle [radius = 13pt]node[circle,fill=white,minimum size=10pt]{$mA$} 
+(2,1) -- (3,1)
+(4,1) to [R, l=$R_1 \ 1k$ , *-*, color=red] (6,1)
+(2.75,-3) to (3.25,-3);
+\node at (3,-3.25) {GND};
+
+\draw[red]
+(1,-2.5) -- (1,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{}
+(1,-1.5) -- (1,-0.5);
+\node at (1,-2.5) [red]{o};
+\node at (1,-0.5) [red]{o};
+\draw[thick, red]
+(1.5,-1.1) to (1.5,-1.2)
+(1.5,-1.1) to (1.4,-1.1)
+(1.3,-1.3) to (1.5,-1.1)
+(0.8,-1.8) to (0.6,-2);
+\draw[-latex][red] (1,-1.7) -- (1,-1.3);
+
+\draw[red]
+(3,-2.5) -- (3,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{}
+(3,-1.5) -- (3,-0.5);
+\node at (3,-2.5) [red]{o};
+\node at (3,-0.5) [red]{o};
+\draw[thick, red]
+(3.5,-1.1) to (3.5,-1.2)
+(3.5,-1.1) to (3.4,-1.1)
+(3.3,-1.3) to (3.5,-1.1)
+(2.8,-1.8) to (2.6,-2);
+\draw[-latex][red] (3,-1.7) -- (3,-1.3);
+
+\draw[color=red]
+(7,-0.25) node[nigfete] (nmos5) {}
+(7,-0.75) to (7.3,-0.75)
+(7.25,-0.25) to (7.35,-0.25)
+(7.3,-0.25) to (7.3,0.25)
+(7,0.25) to (7.3,0.25);
+\draw[-latex][red] (7.3,-0.75) -- (7.3,-0.25);
+
+\node at (8.4,0) [gray]{Q1 BS170};
+\node at (7.2,0.8) [pink]{D};
+\node at (5.95,-0.2) [pink]{G};
+\node at (7.2,-1.8) [pink]{S};
+\node at (3.5,0.8) [pink]{Id};
+\node at (6.5,-1.5) [pink]{U GS};
+\node at (0.5,-0.75) [pink]{5V};
+\node at (2.5,-2.25) [pink]{0..5V};
+\draw[-latex][pink] (6,-2.25) -- (6,-0.75);
+\draw[-latex][pink] (3.25,1) -- (3.75,1);
+
+\end{circuitikz}
+\caption{Układ do badania charakterystyki bramkowej tranzystora nMOS}
+\end{figure}
+
+\subsection{Tabela pomiarów}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+$U_{GS}$ napięcie ustawione & $I_{D}  $ & $U_{GS}$ napięcie zmierzone \\
+\hline 
+0.5V & 0.00008mA &0.673V \\
+\hline
+1V & 0.00009mA & 1.133V \\
+\hline
+1.5V & 0.00093mA & 1.6498V\\
+\hline
+1.8V & 0.10107mA & 1.9362V\\
+\hline
+2.0V & 0.8124mA & 2.1562V\\
+\hline
+2.1V & 1.7457mA & 2.2704V\\
+\hline
+2.2V & 4.031mA & 2.3372V\\
+\hline
+2.4V & 5.0607mA & 2.5321V\\
+\hline
+2.8V & 5.0848mA & 2.8821V\\
+\hline
+3.0V & 5.0813mA & 3.237V\\
+\hline
+3.5V & 5.098mA & 3.580V\\
+\hline
+4.1V & 5.0976mA & 4.129V\\
+\hline
+4.5V & 5.105mA & 4.512V\\
+\hline
+5V & 5.1052mA & 5.061V\\
+\hline
+
+\end{tabular}
+\caption{Tabela pomiarów dla schematu 1.6}
+\end{table}
+
+\subsection{Wykres}
+
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+xlabel={$U_{GS} [V]$ },
+ylabel={$I_{D} [mA]$},
+xmin=0,xmax=6,
+ymin=0,ymax=6,
+legend pos=north west,
+ymajorgrids=true,grid style=dashed
+]
+
+\addplot[color=red,mark=*]
+coordinates {
+(0.673, 0.00008)
+(1.133, 0.00009)
+(1.6498, 0.00093)
+(1.9362, 0.10107)
+(2.1562, 0.8124)
+(2.2704, 1.7457)
+(2.3372, 4.031)
+(2.5321, 5.0607)
+(2.8821, 5.0848)
+(3.237, 5.0813)
+(3.580, 5.098)
+(4.129, 5.0976)
+(4.512, 5.105)
+(5.061, 5.1052)
+};
+
+\legend{$U_{th}=2.0V$}
+\end{axis}
+\end{tikzpicture}
+\caption{Przebieg charakterystyki $I_{D}=f(U_{GS})$ dla rezystora nMOS; $U_{th}$ wartość odczytana z noty katalogowej tranzystora}
+\end{figure}
+
+\subsection{Wnioski}
+Wartość napięcia bramki, przy której lawinowo wzrasta przepływ prądu wynosi  2.1V (znamionowo 2.0V). Aby tranzystor nMOS zaczął przewodzić prąd, napięcie $U_{GS}$ musi być co do wartości większe od napięcia progowego $U_{th}$ Napięcie progowe układu BS170 wynosi 2.0V\cite{BS170} Odnotowaliśmy doświadczalnie największy wzrost natężenia prądu, gdy napięcie $U_{GS}$ przekraczało 2.1V
+
+
+\section{Charakterystyka bramkowa pMOS}
+\subsection{Cel} 
+Wykazanie dualizmu między tranzystorem nMOS i pMOS.
+\subsection{Schemat}
+
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american voltages]
+\draw[green]
+(2,-0.5) to (4,-0.5)
+(5.5,-0.5) to (6.5,-0.5)
+(0,-2.5) to (4.5,-2.5)
+(4.5,-2.5) to (4.5,-4)
+(6.5,-4) to (7,-4)
+(4,-0.5) to (6,-0.5)
+(0,-0.5) to (0,1)
+(3,1) to (4,1)
+(7,-2.5) to (7,-1)
+(6,1) to (7,1)
+(7,1) to (7,0)
+(0,1) to (7,1)
+(2,-2.5) to (2,-3);
+
+\draw[red]
+(4,-0.5) -- (4,-1.5)
+circle [radius = 12pt]node[circle,fill=white,minimum size=10pt]{$V$} 
+(4,-1.5) -- (4,-2.5)
+(4.5,-4) -- (5.5,-4)
+circle [radius = 13pt]node[circle,fill=white,minimum size=10pt]{$mA$} 
+(5.5,-4) -- (6.5,-4)
+(7,-4) to [R, l_=$R_7 \ 1k$ , *-*, color=red] (7,-2)
+(1.75,-3) to (2.25,-3);
+\node at (2,-3.25) {GND};
+
+\draw[red]
+(0,-2.5) -- (0,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{}
+(0,-1.5) -- (0,-0.5);
+\node at (0,-2.5) [red]{o};
+\node at (0,-0.5) [red]{o};
+\draw[thick, red]
+(0.5,-1.1) to (0.5,-1.2)
+(0.5,-1.1) to (0.4,-1.1)
+(0.3,-1.3) to (0.5,-1.1)
+(-0.2,-1.8) to (-0.4,-2);
+\draw[-latex][red] (0,-1.7) -- (0,-1.3);
+
+\draw[red]
+(2,-2.5) -- (2,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{}
+(2,-1.5) -- (2,-0.5);
+\node at (2,-2.5) [red]{o};
+\node at (2,-0.5) [red]{o};
+\draw[thick, red]
+(2.5,-1.1) to (2.5,-1.2)
+(2.5,-1.1) to (2.4,-1.1)
+(2.3,-1.3) to (2.5,-1.1)
+(1.8,-1.8) to (1.6,-2);
+\draw[-latex][red] (2,-1.7) -- (2,-1.3);
+
+\draw[color=red]
+(7,-0.75) node[pigfete] (pmos5) {}
+(7,-1.25) to (7.3,-1.25)
+(7.25,-0.75) to (7.35,-0.75)
+(7.3,-0.75) to (7.3,-0.25)
+(7,-0.25) to (7.3,-0.25);
+\draw[-latex][red] (7.3,-1.25) -- (7.3,-0.75);
+
+\node at (8,0) [gray]{Q4 BS250};
+\node at (7.2,0.8) [pink]{S};
+\node at (5.95,-0.2) [pink]{G};
+\node at (7.2,-1.8) [pink]{D};
+\node at (7.4,-3.8) [pink]{Id};
+\node at (-1.5,-1) [pink]{Uss};
+\node at (6,0.5) [pink]{U GS};
+\node at (5.5,-1.5) [pink]{U1};
+\node at (0.5,-0.75) [pink]{5V};
+\node at (2.5,-2.25) [pink]{0..5V};
+\draw[-latex][pink] (-1,-2) -- (-1,0.5);
+\draw[-latex][pink] (6.75,0.75) -- (6.75,-0.25);
+\draw[-latex][pink] (5,-2.25) -- (5,-0.75);
+
+\end{circuitikz}
+\caption{Układ do badania charakterystyki bramkowej tranzystora pMOS}
+\end{figure}
+
+\subsection{Tabela pomiarów}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+$U_{1}$ napięcie ustawione & $I_{D}  $ & $U_{1}$ napięcie zmierzone & $U_{GS}=-(U_{SS}-U_{1})$\\
+\hline 
+0.5V & 5.0623mA &0.614V & -4.386V \\
+\hline
+1V & 5.0455mA & 1.130V &  -3.870V\\
+\hline
+1.4V & 4.967mA & 1.6075V &  -3.3925V\\
+\hline
+1.5V & 4.715mA & 1.644V &  -3.356V\\
+\hline
+1.6V & 2.5735mA & 1.736V &  -3.264V\\
+\hline
+1.7V & 1.189mA & 1.898V &  -3.102V\\
+\hline
+1.8V & 0.4357mA & 2.008V &  -2.992V\\
+\hline
+2.0V & 0.0406mA & 2.190V &  -2.810V\\
+\hline
+2.5V & 0.00023mA & 2.641V &  -2.359V\\
+\hline
+3.0V & 0.00008mA & 3.135V &  -1.865V\\
+\hline
+4.0V & 0,00006mA & 4.202V &  -0,795V\\
+\hline
+5.0V & 0,00006mA & 5.169V &  0,169V\\
+\hline
+
+\end{tabular}
+\caption{Tabela pomiarów dla schematu 1.7}
+\end{table}
+
+\subsection{Wykres}
+
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+xlabel={$U_{GS} [V]$ },
+ylabel={$I_{D} [mA]$},
+xmin=-5,xmax=0.2,
+ymin=0,ymax=6,
+legend pos=north east,
+ymajorgrids=true,grid style=dashed
+]
+
+\addplot[color=red,mark=*]
+coordinates {
+(-4.386, 5.0623)
+(-3.870, 5.0455)
+(-3.3925, 4.967)
+(-3.356, 4.715)
+(-3.264, 2.574)
+(-3.102, 1.189)
+(-2.992, 0.4357)
+(-2.810, 0.0406)
+(-2.359, 0.00023)
+(-1.865, 0.00008)
+(-0.795, 0.00006)
+(0.169, 0.00006)
+};
+
+\legend{$U_{th} \approx -3V$}
+\end{axis}
+\end{tikzpicture}
+\caption{Przebieg charakterystyki $I_{D}=f(U_{GS})$ dla rezystora pMOS; wartość $U_{th}$ zapisana w nocie katalogowej wynosi od -1 do -3.5V }
+\end{figure}
+\subsection{Wnioski}
+
+Działanie tranzystora pMOS jest dualne względem tranzystora nMOS  wynika to wprost z odwrotnych własności polaryzowania złącz
+półprzewodnikowych PN. 
+Wartość napięcia bramki, przy której lawinowo spada przepływ prądu wynosi  -3.1V (znamionowo między -1V a -3.5V).
+
+
+\section{Charakterystyka drenowa nMOS}
+\subsection{Cel} 
+Przeanalizować zależność pomiędzy wartością  prądu  Drenu
+$I_{D}$ tranzystora a wartością napięcia  $U_{DS}$ przyłożonego pomiędzy Dren a Źródło. 
+\subsection{Schemat}
+
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american voltages]
+\draw[green]
+(3,-0.5) to (4,-0.5)
+(5.5,-0.5) to (6.5,-0.5)
+(1,-2.5) to (7,-2.5)
+(4,-0.5) to (6,-0.5)
+(1,-0.5) to (1,1)
+(3.75,1) to (4,1)
+(3,1) to (3.25,1)
+(7,-2.5) to (7,-1)
+(6,1) to (7,1)
+(7,1) to (7,0)
+(7,1) to (9,1)
+(7,-2.5) to (9,-2.5)
+(9,-0.5) to (9,1);
+
+\draw[red]
+(9,-0.5) -- (9,-1.5)
+circle [radius = 12pt]node[circle,fill=white,minimum size=10pt]{$V$} 
+(9,-1.5) -- (9,-2.5)
+(1,1) -- (2,1)
+circle [radius = 13pt]node[circle,fill=white,minimum size=10pt]{$mA$} 
+(2,1) -- (3,1)
+(4,1) to [R, l=$R_2 \ 1k$ , *-*, color=red] (6,1);
+
+\draw[red]
+(1,-2.5) -- (1,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{}
+(1,-1.5) -- (1,-0.5);
+\node at (1,-2.5) [red]{o};
+\node at (1,-0.5) [red]{o};
+\draw[thick, red]
+(1.5,-1.1) to (1.5,-1.2)
+(1.5,-1.1) to (1.4,-1.1)
+(1.3,-1.3) to (1.5,-1.1)
+(0.8,-1.8) to (0.6,-2);
+\draw[-latex][red] (1,-1.7) -- (1,-1.3);
+
+\draw[red]
+(3,-2.5) -- (3,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{}
+(3,-1.5) -- (3,-0.5);
+\node at (3,-2.5) [red]{o};
+\node at (3,-0.5) [red]{o};
+\draw[thick, red]
+(3.5,-1.1) to (3.5,-1.2)
+(3.5,-1.1) to (3.4,-1.1)
+(3.3,-1.3) to (3.5,-1.1)
+(2.8,-1.8) to (2.6,-2);
+\draw[-latex][red] (3,-1.7) -- (3,-1.3);
+
+\draw[color=red]
+(7,-0.25) node[nigfete] (nmos5) {}
+(7,-0.75) to (7.3,-0.75)
+(7.25,-0.25) to (7.35,-0.25)
+(7.3,-0.25) to (7.3,0.25)
+(7,0.25) to (7.3,0.25);
+\draw[-latex][red] (7.3,-0.75) -- (7.3,-0.25);
+
+\node at (5.75,0.4) [gray]{Q2 BS170};
+\node at (7.2,0.8) [pink]{D};
+\node at (5.95,-0.2) [pink]{G};
+\node at (7.2,-1.8) [pink]{S};
+\node at (3.5,0.75) [pink]{Id};
+\node at (8.1,-1) [pink]{U DS};
+\node at (1.75,-0.75) [pink]{0..10V};
+\node at (2.5,-2.25) [pink]{5V};
+\draw[-latex][pink] (7.5,-2) -- (7.5,0.5);
+\draw[-latex][pink] (3.25,1) -- (3.75,1);
+
+\end{circuitikz}
+\caption{Układ do badania charakterystyki drenowej tranzystora nMOS}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american voltages]
+\draw[green]
+(3,-0.5) to (3.5,-0.5)
+(5.5,-0.5) to (6.5,-0.5)
+(1,-2.5) to (7,-2.5)
+(1,-0.5) to (1,1)
+(3.75,1) to (4,1)
+(3,1) to (3.25,1)
+(7,-2.5) to (7,-1)
+(6,1) to (7,1)
+(7,1) to (7,0)
+(7,1) to (9,1)
+(7,-2.5) to (9,-2.5)
+(9,-0.5) to (9,1);
+
+\draw[red]
+(9,-0.5) -- (9,-1.5)
+circle [radius = 12pt]node[circle,fill=white,minimum size=10pt]{$V$} 
+(9,-1.5) -- (9,-2.5)
+(1,1) -- (2,1)
+circle [radius = 13pt]node[circle,fill=white,minimum size=10pt]{$mA$} 
+(2,1) -- (3,1)
+(4,1) to [R, l=$R_3 \ 1k$ , *-*, color=red] (6,1)
+(3.5,-0.5) to [R, l=$R_4 \ 1k$ , *-*, color=red] (5.5,-0.5)
+(5.75,-0.5) to [R, l_=$R_5 \ 1k$ , *-*, color=red] (5.75,-2.5);
+
+\draw[red]
+(1,-2.5) -- (1,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{}
+(1,-1.5) -- (1,-0.5);
+\node at (1,-2.5) [red]{o};
+\node at (1,-0.5) [red]{o};
+\draw[thick, red]
+(1.5,-1.1) to (1.5,-1.2)
+(1.5,-1.1) to (1.4,-1.1)
+(1.3,-1.3) to (1.5,-1.1)
+(0.8,-1.8) to (0.6,-2);
+\draw[-latex][red] (1,-1.7) -- (1,-1.3);
+
+\draw[red]
+(3,-2.5) -- (3,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{}
+(3,-1.5) -- (3,-0.5);
+\node at (3,-2.5) [red]{o};
+\node at (3,-0.5) [red]{o};
+\draw[thick, red]
+(3.5,-1.1) to (3.5,-1.2)
+(3.5,-1.1) to (3.4,-1.1)
+(3.3,-1.3) to (3.5,-1.1)
+(2.8,-1.8) to (2.6,-2);
+\draw[-latex][red] (3,-1.7) -- (3,-1.3);
+
+\draw[color=red]
+(7,-0.25) node[nigfete] (nmos5) {}
+(7,-0.75) to (7.3,-0.75)
+(7.25,-0.25) to (7.35,-0.25)
+(7.3,-0.25) to (7.3,0.25)
+(7,0.25) to (7.3,0.25);
+\draw[-latex][red] (7.3,-0.75) -- (7.3,-0.25);
+
+\node at (5.75,0.4) [gray]{Q3 BS170};
+\node at (7.2,0.8) [pink]{D};
+\node at (5.95,-0.2) [pink]{G};
+\node at (7.2,-1.8) [pink]{S};
+\node at (3.5,0.75) [pink]{Id};
+\node at (8.1,-1) [pink]{U DS};
+\node at (1.75,-0.75) [pink]{0..10V};
+\node at (2.5,-2.25) [pink]{5V};
+\draw[-latex][pink] (7.5,-2) -- (7.5,0.5);
+\draw[-latex][pink] (3.25,1) -- (3.75,1);
+
+\end{circuitikz}
+\caption{Układ do badania charakterystyki drenowej nMOS dla obnizonego napiecia bramki}
+\end{figure}
+
+\subsection{Tabela pomiarów}
+Zmierzone napięcie $U_{GS}$ wyniosło 5.048V
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+napięcie ustawione & $I_{D}  $ & $U_{DS}$ \\
+\hline 
+1V & 1.1302mA & 3.829mV \\
+\hline
+2V & 2.1841mA & 6.735mV \\
+\hline
+3V & 3.2588mA & 10.101mV\\
+\hline
+4V & 4.239mA & 13.103mV\\
+\hline
+5V & 5.2423mA & 15.987mV\\
+\hline
+6V & 6.303mA & 18.960mV\\
+\hline
+7V & 7.2873mA & 22.055mV\\
+\hline
+8V & 8.2957mA & 24.851mV\\
+\hline
+9V & 9.3264mA & 28.136mV\\
+\hline
+10V & 10.3095mA & 30.954mV\\
+\hline
+
+
+\end{tabular}
+\caption{Tabela pomiarów dla schematu 1.8}
+\end{table}
+
+Zmierzone napięcie $U_{GS}$ wyniosło 5.0505V
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+napięcie ustawione & $I_{D}  $ & $U_{DS}$ \\
+\hline 
+1V & 1.12161mA & 2.665mV \\
+\hline
+2.1V & 2.3247mA & 5.325mV \\
+\hline
+3V & 3.1972mA & 7.382mV\\
+\hline
+4V & 4.2174mA & 9.771mV\\
+\hline
+5.1V & 5.3074mA & 12.015mV\\
+\hline
+6V & 6.2512mA & 14.263mV\\
+\hline
+6.9V & 7.2092mA & 16.833mV\\
+\hline
+8V & 8.306mA & 19.016mV\\
+\hline
+9V & 9.2912mA & 21.401mV\\
+\hline
+10V & 10.2999mA & 23.907mV\\
+\hline
+
+
+\end{tabular}
+\caption{Tabela pomiarów dla schematu 1.9}
+\end{table}
+
+\subsection{Wykres}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+xlabel={$U_{DS} [mV]$ },
+ylabel={$I_{D} [mA]$},
+xmin=0,xmax=31,
+ymin=0,ymax=11,
+legend pos=north west,
+ymajorgrids=true,grid style=dashed
+]
+
+\addplot[color=red,mark=*]
+coordinates {
+(3.829, 1.1302)
+(6.735, 2.1841)
+(10.101, 3.2588)
+(13.103, 4.239)
+(15.987, 5.2423)
+(18.96, 6.303)
+(22.055, 7.2873)
+(24.851, 8.2957)
+(28.136, 9.3264)
+(30.954, 10.3264)
+};
+
+\addplot[color=blue,mark=*]
+coordinates {
+(2.665, 1.12161)
+(5.325, 2.3247)
+(7.382, 3.1972)
+(9.771, 4.2174)
+(12.015, 5.3074)
+(14.263, 6.2512)
+(16.833, 7.2092)
+(19.016, 8.306)
+(21.401, 9.2912)
+(23.907, 10.2999)
+};
+
+\legend{$U_{GS}=5.048V$,$U_{GS}=5.0505V$}
+\end{axis}
+\end{tikzpicture}
+\caption{Przebieg charakterystyki $I_{D}=f(U_{DS})$ dla rezystora nMOS}
+\end{figure}
+
+\subsection{Wnioski}
+W zależności od napięcia Bramki $U_{GS}$ zmienia kształt wykresu, dla większej wartości $U_{GS}$ wykres "sięga wyżej", dla tego samego $U_{DS}$ osiąga większą wartość $I_{D}$
+
+\section{Charakterystyka drenowa pMOS}
+\subsection{Cel} 
+Konfrontacja charakterystyki drenowej tranzystora pMOS z charakterystyką drenową tranzystorem nMOS zmierzoną w poprzednim punkcie.
+\subsection{Schemat}
+
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american voltages]
+\draw[green]
+(3,-0.5) to (4,-0.5)
+(5.5,-0.5) to (6.5,-0.5)
+(1,-2.5) to (4,-2.5)
+(6,-2.5) to (6,-4)
+(6,-4) to (7,-4)
+(4,-0.5) to (6,-0.5)
+(1,-0.5) to (1,1)
+(1,1) to (9,1)
+(7,-2.5) to (7,-1)
+(6,1) to (7,1)
+(7,1) to (7,0)
+(7,1) to (9,1)
+(7,-4) to (9,-4)
+(9,-4) to (9,-2)
+(9,0) to (9,1)
+(3,-2.5) to (3,-3);
+
+\draw[red]
+(9,0) -- (9,-1)
+circle [radius = 12pt]node[circle,fill=white,minimum size=10pt]{$V$} 
+(9,-1) -- (9,-2)
+(4,-2.5) -- (5,-2.5)
+circle [radius = 13pt]node[circle,fill=white,minimum size=10pt]{$mA$} 
+(5,-2.5) -- (6,-2.5)
+(7,-2) to [R, l=$R_6 \ 1k$ , *-*, color=red] (7,-4)
+(2.75,-3) to (3.25,-3);
+\node at (3,-3.25) {GND};
+
+\draw[red]
+(1,-2.5) -- (1,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{}
+(1,-1.5) -- (1,-0.5);
+\node at (1,-2.5) [red]{o};
+\node at (1,-0.5) [red]{o};
+\draw[thick, red]
+(1.5,-1.1) to (1.5,-1.2)
+(1.5,-1.1) to (1.4,-1.1)
+(1.3,-1.3) to (1.5,-1.1)
+(0.8,-1.8) to (0.6,-2);
+\draw[-latex][red] (1,-1.7) -- (1,-1.3);
+
+\draw[red]
+(3,-2.5) -- (3,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{}
+(3,-1.5) -- (3,-0.5);
+\node at (3,-2.5) [red]{o};
+\node at (3,-0.5) [red]{o};
+\draw[thick, red]
+(3.5,-1.1) to (3.5,-1.2)
+(3.5,-1.1) to (3.4,-1.1)
+(3.3,-1.3) to (3.5,-1.1)
+(2.8,-1.8) to (2.6,-2);
+\draw[-latex][red] (3,-1.7) -- (3,-1.3);
+
+\draw[color=red]
+(7,-0.75) node[pigfete] (pmos5) {}
+(7,-1.25) to (7.3,-1.25)
+(7.25,-0.75) to (7.35,-0.75)
+(7.3,-0.75) to (7.3,-0.25)
+(7,-0.25) to (7.3,-0.25);
+\draw[-latex][red] (7.3,-1.25) -- (7.3,-0.75);
+
+\node at (6,0.25) [gray]{Q5 BS250};
+\node at (7.2,0.8) [pink]{S};
+\node at (5.75,-0.3) [pink]{G};
+\node at (7.2,-1.8) [pink]{D};
+\node at (7.4,-3.8) [pink]{Id};
+\node at (-0.5,-1) [pink]{Usd};
+\node at (1.75,-0.75) [pink]{0..10V};
+\node at (2.5,-2.25) [pink]{5V};
+\draw[-latex][pink] (0,-2.5) -- (0,1);
+
+\end{circuitikz}
+\caption{Układ do badania charakterystyki drenowej tranzystora pMOS}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american voltages]
+\draw[green]
+(1,-0.5) to (1.5,-0.5)
+(3.5,-0.5) to (4,-0.5)
+(5.5,-0.5) to (6.5,-0.5)
+(-1,-2.5) to (4,-2.5)
+(6,-2.5) to (6,-4)
+(6,-4) to (7,-4)
+(4,-0.5) to (6,-0.5)
+(-1,-0.5) to (-1,1)
+(-1,1) to (9,1)
+(7,-2.5) to (7,-1)
+(6,1) to (7,1)
+(7,1) to (7,0)
+(7,1) to (9,1)
+(7,-4) to (9,-4)
+(9,-4) to (9,-2)
+(9,0) to (9,1)
+(1,-2.5) to (1,-3);
+
+\draw[red]
+(9,0) -- (9,-1)
+circle [radius = 12pt]node[circle,fill=white,minimum size=10pt]{$V$} 
+(9,-1) -- (9,-2)
+(4,-2.5) -- (5,-2.5)
+circle [radius = 13pt]node[circle,fill=white,minimum size=10pt]{$mA$} 
+(5,-2.5) -- (6,-2.5)
+(7,-2) to [R, l=$R_8 \ 1k$ , *-*, color=red] (7,-4)
+(1.5,-0.5) to [R, l=$R_9 \ 1k$ , *-*, color=red] (3.5,-0.5)
+(3.75,-0.5) to [R, l=$R_{10} \ 1k$ , *-*, color=red] (3.75,-2.5)
+(0.75,-3) to (1.25,-3);
+\node at (1,-3.25) {GND};
+
+\draw[red]
+(-1,-2.5) -- (-1,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{}
+(-1,-1.5) -- (-1,-0.5);
+\node at (-1,-2.5) [red]{o};
+\node at (-1,-0.5) [red]{o};
+\draw[thick, red]
+(-0.5,-1.1) to (-0.5,-1.2)
+(-0.5,-1.1) to (-0.6,-1.1)
+(-0.7,-1.3) to (-0.5,-1.1)
+(-1.2,-1.8) to (-1.4,-2);
+\draw[-latex][red] (-1,-1.7) -- (-1,-1.3);
+
+\draw[red]
+(1,-2.5) -- (1,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{}
+(1,-1.5) -- (1,-0.5);
+\node at (1,-2.5) [red]{o};
+\node at (1,-0.5) [red]{o};
+\draw[thick, red]
+(1.5,-1.1) to (1.5,-1.2)
+(1.5,-1.1) to (1.4,-1.1)
+(1.3,-1.3) to (1.5,-1.1)
+(0.8,-1.8) to (0.6,-2);
+\draw[-latex][red] (1,-1.7) -- (1,-1.3);
+
+\draw[color=red]
+(7,-0.75) node[pigfete] (pmos5) {}
+(7,-1.25) to (7.3,-1.25)
+(7.25,-0.75) to (7.35,-0.75)
+(7.3,-0.75) to (7.3,-0.25)
+(7,-0.25) to (7.3,-0.25);
+\draw[-latex][red] (7.3,-1.25) -- (7.3,-0.75);
+
+\node at (6,0.25) [gray]{Q5 BS250};
+\node at (7.2,0.8) [pink]{S};
+\node at (5.75,-0.3) [pink]{G};
+\node at (7.2,-1.8) [pink]{D};
+\node at (7.4,-3.8) [pink]{Id};
+\node at (-2.5,-1) [pink]{Usd};
+\node at (-0.25,-0.75) [pink]{0..10V};
+\node at (0.5,-2.25) [pink]{5V};
+\draw[-latex][pink] (-2,-2.5) -- (-2,1);
+
+\end{circuitikz}
+\caption{Układ do badania charakterystyki drenowej dla obnizonego napiecia bramki pMOS}
+\end{figure}
+\subsection{Tabela pomiarów}
+Zmierzone napięcie $U_{GS}$ wyniosło -5.049V
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+$U_{SD}$ napięcie ustawione & $I_{D}  $ & $U_{DS}$ napięcie zmierzone \\
+\hline 
+1V & 0.00001mA & -1.202V \\
+\hline
+2V & 0.00008mA & -2.271V \\
+\hline
+3.1V & 0.00008mA & -3.420V\\
+\hline
+4.1V & 0.00008mA & -4.172V\\
+\hline
+5V & 0.00008mA & -5.249V\\
+\hline
+6V & 0.00008mA & -6.207V\\
+\hline
+7V & 0.00011mA & -7.144V\\
+\hline
+8.1V & 1.803mA & -8.170V\\
+\hline
+9V & 9.132mA & -9.140V\\
+\hline
+10V & 10.4223mA & -10.103V\\
+\hline
+
+
+\end{tabular}
+\caption{Tabela pomiarów dla schematu 1.10}
+\end{table}
+
+Zmierzone napięcie $U_{GS}$ wyniosło 2.539V
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+$U_{SD}$ napięcie ustawione & $I_{D}  $ & $U_{DS}$ napięcie zmierzone \\
+\hline 
+1V & 0.513mA & -1.241V \\
+\hline
+2V & 1.562mA & -2.184V \\
+\hline
+3V & 2.5127mA & -3.161V\\
+\hline
+4V & 3.674mA & -4.189V\\
+\hline
+5V & 5.060mA & -5.208V\\
+\hline
+6V & 6.148mA & -6.194V\\
+\hline
+7V & 7.162mA & -7.158V\\
+\hline
+8V & 8.233mA & -8.168V\\
+\hline
+9V & 9.231mA & -9.226V\\
+\hline
+10V & 10.330mA & -10.186V\\
+\hline
+
+
+\end{tabular}
+\caption{Tabela pomiarów dla schematu 1.11}
+\end{table}
+
+\subsection{Wykres}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+xlabel={$U_{DS} [V]$ },
+ylabel={$I_{D} [mA]$},
+xmin=-10.2,xmax=0,
+ymin=0,ymax=10.5,
+legend pos=north east,
+ymajorgrids=true,grid style=dashed
+]
+
+\addplot[color=red,mark=*]
+coordinates {
+(-1.202, 0.00001)
+(-2.271, 0.00008)
+(-3.420, 0.00008)
+(-4.172, 0.00008)
+(-5.249, 0.00008)
+(-6.207, 0.00008)
+(-7.144, 0.00011)
+(-8.170, 1.803)
+(-9.140, 9.132)
+(-10.103, 10.4223)
+};
+
+\addplot[color=blue,mark=*]
+coordinates {
+(-1.241, 0.513)
+(-2.184, 1.562)
+(-3.161, 2.5127)
+(-4.189, 3.674)
+(-5.208, 5.060)
+(-6.194, 6.148)
+(-7.158, 7.162)
+(-8.168, 8.233)
+(-9.226, 9.231)
+(-10.186, 10.330)
+};
+
+\legend{$U_{GS}=-5.049V$,$U_{GS}=2.539V$}
+\end{axis}
+\end{tikzpicture}
+\caption{Przebieg charakterystyki $I_{D}=f(U_{DS})$ dla rezystora pMOS}
+\end{figure}
+
+\subsection{Wnioski}
+Nieprawidłowe pomiary mogą wynkać z uszkodzonego tranzystora.
+Tranzystor pMOS zachowuje się dualnie względem tranzystora nMOS. Na powyższym wykresie zobrazowane są dwa tryby jego pracy: liniowy, oraz odcięcia. Tryb pracy tranzystora zależny jest od jego napięcia zasilania.
+
+\section{Tranzystor nMOS jako przełącznik}
+\subsection{Cel} 
+Unaocznienie możliwości wykorzystania tranzystora nMOS jako przełącznika napięcia
+\subsection{Schematy}
+
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american voltages]
+\draw[green]
+(6.5,1) to (6.5,0)
+(-1.5,1) to(-1.5,-0.25) 
+(0,-1.25) to (0,-1)
+(-1.5,1) to (6.5,1)
+(-1.5,-1.25) to (0,-1.25)
+(-0.5,-3.25) to (1,-3.25)
+(1,-3.25) to (1,-2.5)
+(6.5,0) to (6.5,-0.5)
+(1,-1.5) to (1,-2.5)
+(1,0) to (1.5,0)
+(3,0) to (4,0)
+(5.5,0) to (6.5,0)
+(1,-2.5) to (6.5,-2.5)
+(3.5,0) to [empty diode, color=red] (1.5,0);
+
+\draw[red]
+(4,0) to [R, l_=$R_{11} \ 1k$ , *-*, color=red] (6,0)
+(-0.5,-1.25) to [R, l_=$R_{12} \ 1M$ , *-*, color=red] (-0.5,-3.25);
+
+\draw[red]
+(6.5,-2.5) -- (6.5,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{}
+(6.5,-1.5) -- (6.5,-0.5);
+\node at (6.5,-2.5) [red]{o};
+\node at (6.5,-0.5) [red]{o};
+\draw[thick, red]
+(7,-1.1) to (7,-1.2)
+(7,-1.1) to (6.9,-1.1)
+(6.8,-1.3) to (7,-1.1)
+(6.3,-1.8) to (6.1,-2);
+\draw[-latex][red] (6.5,-1.7) -- (6.5,-1.3);
+
+\draw[-latex][red] (2.25,0.5) -- (2,0.75);
+\draw[-latex][red] (2.45,0.5) -- (2.2,0.75);'
+
+\draw[color=red]
+(1,-0.75) node[nigfete] (nmos5) {}
+(1,-1.25) to (1.3,-1.25)
+(1.25,-0.75) to (1.35,-0.75)
+(1.3,-0.75) to (1.3,-0.25)
+(1,-0.25) to (1.3,-0.25);
+\draw[-latex][red] (1.3,-1.25) -- (1.3,-0.75);
+
+\node at (-1.5,-0.25) [green]{*};
+\node at (-1.5,-1.25) [green]{*};
+
+\node at (-1.5,-0.75) [pink]{A-A};
+\node at (7.25,-2) [pink]{10V};
+\node at (2.5,-0.75) [gray]{LED 1};
+\node at (-0.25,0) [gray]{Q7 BS170};
+
+\end{circuitikz}
+\caption{Schemat układu do badania tranzystora nMOS w roli przełacznika}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american voltages]
+\draw[green]
+(6.5,1) to (6.5,0)
+(-3,1) to(-3,-0.25) 
+(0,-1.25) to (0,-1)
+(-3,1) to (6.5,1)
+(-3,-1.25) to (0,-1.25)
+(-2,-3.25) to (1,-3.25)
+(1,-3.25) to (1,-2.5)
+(6.5,0) to (6.5,-0.5)
+(1,-1.5) to (1,-2.5)
+(1,0) to (1.5,0)
+(3,0) to (4,0)
+(5.5,0) to (6.5,0)
+(1,-2.5) to (6.5,-2.5)
+(3.5,0) to [empty diode, color=red] (1.5,0);
+
+\draw[red]
+(4,0) to [R, l_=$R_{13} \ 1k$ , *-*, color=red] (6,0)
+(-0.75,-1.25) to [R, l=$R_{14} \ 47k$ , *-*, color=red] (-0.75,-3.25)
+(-2,-1.25) to [C, l_=$C_1 \ 100uF$, *-*, color=red] (-2,-3.25);
+
+\draw[red]
+(6.5,-2.5) -- (6.5,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{}
+(6.5,-1.5) -- (6.5,-0.5);
+\node at (6.5,-2.5) [red]{o};
+\node at (6.5,-0.5) [red]{o};
+\draw[thick, red]
+(7,-1.1) to (7,-1.2)
+(7,-1.1) to (6.9,-1.1)
+(6.8,-1.3) to (7,-1.1)
+(6.3,-1.8) to (6.1,-2);
+\draw[-latex][red] (6.5,-1.7) -- (6.5,-1.3);
+
+\draw[-latex][red] (2.25,0.5) -- (2,0.75);
+\draw[-latex][red] (2.45,0.5) -- (2.2,0.75);'
+
+\draw[color=red]
+(1,-0.75) node[nigfete] (nmos5) {}
+(1,-1.25) to (1.3,-1.25)
+(1.25,-0.75) to (1.35,-0.75)
+(1.3,-0.75) to (1.3,-0.25)
+(1,-0.25) to (1.3,-0.25);
+\draw[-latex][red] (1.3,-1.25) -- (1.3,-0.75);
+
+\node at (-3,-0.25) [green]{*};
+\node at (-3,-1.25) [green]{*};
+
+\node at (-3,-0.75) [pink]{A-A};
+\node at (7.25,-2) [pink]{10V};
+\node at (2.5,-0.75) [gray]{LED 2};
+\node at (-0.75,-0.25) [gray]{Q8 BS170};
+
+\end{circuitikz}
+\caption{Model układu z opóznieniem wyłaczenia}
+\end{figure}
+
+\subsection{Wnioski}
+Układy działały zgodnie z przewidywaniami, o czym poświadczyć mogą poniższe zdjęcia dokumentujące funkcjonowanie układu przełącznika z opóźnieniem.
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{opozn1.jpg}
+\caption{Układ przed zwarciem obwodu A-A: dioda nie świeci}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{opozn2.jpg}
+\caption{Układ w momencie zwarcia obwodu A-A: dioda świeci mocno}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{opozn3.jpg}
+\caption{Układ chwilę po ponownym rozwarciu obwodu A-A: dioda świeci coraz słabiej, aż w końcu gaśnie}
+\end{figure}
+
+
+\section{Czas załączania tranzystora}
+\subsection{Cel} 
+Poznawanie zjawisk związanych z opóźnieniami powodowanymi czasem załączania tranzystora. Zbadanie i wyznaczenie tego czasu.
+\subsection{Schemat}
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american voltages]
+\draw[green]
+(-4,-1.25) to (-4, 3.5)
+(-4, 3.5) to (-1, 3.5)
+(-1, 3) to (-2,3)
+(-2,2.5) to (-2,3)
+(4.5, 3) to (3.5,3)
+(3.5,2.5) to (3.5,3)
+(-4,-3.25) to (-4,-3.75);
+
+\draw[red]
+(-2.25,2.5) to (-1.75,2.5)
+(3.25,2.5) to (3.75,2.5)
+(-3.75,-3.75) to (-4.25,-3.75);
+\node at (-2,2.25) {GND};
+\node at (3.5,2.25) {GND};
+\node at (-4,-4) {GND};
+
+\draw[red]
+(-1, 3.5) to (-0.5,3.5)  
+(-1,3) to (-0.5,3)
+(-0.5,4) to (-0.5,2.5)
+(1.5,4) to (1.5,2.5)
+(-0.5,2.5) to (1.5,2.5)
+(-0.5,4) to (1.5,4)
+(-0.25,3.75) to (-0.25,2.75)
+(1,3.75) to (1,2.75)
+(-0.25,2.75) to (1,2.75)
+(-0.25,3.75) to (1,3.75);
+\node at (-1, 3.5) [red]{o};
+\node at (-1,3) [red]{o};
+\node at (1.25,2.75) [red]{o};
+\node at (1.25, 3.7) [red]{o};
+\node at (1.25, 3.3) [red]{o};
+
+\draw[red]
+(4.5,3.5) to (5,3.5) 
+(4.5,3) to (5,3)
+(5,4) to (5,2.5)
+(7,4) to (7,2.5)
+(5,2.5) to (7,2.5)
+(5,4) to (7,4)
+(5.25,3.75) to (5.25,2.75)
+(6.5,3.75) to (6.5,2.75)
+(5.25,2.75) to (6.5,2.75)
+(5.25,3.75) to (6.5,3.75);
+\node at (4.5,3.5) [red]{o};
+\node at (4.5,3) [red]{o};
+\node at (6.75,2.75) [red]{o};
+\node at (6.75,3.7) [red]{o};
+\node at (6.75,3.3) [red]{o};
+
+\draw[red]
+(-4,-3.25) -- (-4,-2.25)
+circle [radius = 10pt]node[circle,fill=white,minimum size=8pt]{}
+(-4,-2.25) -- (-4,-1.25)
+(-5.15,-2.2) to (-5.05,-2.2)
+(-5.05,-2.2) to (-5.05,-2.3)
+(-5.05,-2.3) to (-4.95,-2.3)
+(-4.95,-2.3) to (-4.95,-2.2)
+(-4.95,-2.2) to (-4.85,-2.2)
+(-4.85,-2.2) to (-4.85,-2.3)
+(-4.85,-2.3) to (-4.75,-2.3);
+\node at (-7,-1.3) [gray]{*z niewiadoych przyczyn};
+\node at (-7,-1.6) [gray]{symbol ten nie może być};
+\node at (-7,-1.9) [gray]{umieszczony w środku okręgu};
+\node at (-4,-3.25) [red]{o};
+\node at (-4,-1.25) [red]{o};
+
+\draw[thick, red]
+(-3.5,-1.85) to (-3.5,-1.95)
+(-3.5,-1.85) to (-3.6,-1.85)
+(-3.7,-2.05) to (-3.5,-1.85)
+(-4.2,-2.55) to (-4.4,-2.75);
+
+\draw[green]
+(-4,-1.25) to (-1,-1.25)
+(-4,-3.25) to (-1,-3.25)
+(1,0) to (1,1.5)
+(1,1.5) to (2,1.5)
+(2,1.5) to (2,3.5)
+(2,3.5) to (4.5,3.5)
+(0,-1.25) to (0,-1)
+(-3,-1.25) to (0,-1.25)
+(-2,-3.25) to (1,-3.25)
+(1,-3.25) to (1,-2.5)
+(6.5,0) to (6.5,-0.5)
+(1,-1.5) to (1,-2.5)
+(1,0) to (1.5,0)
+(3,0) to (4,0)
+(5.5,0) to (6.5,0)
+(1,-2.5) to (6.5,-2.5)
+(3.5,0) to [empty diode, color=red] (1.5,0);
+
+\draw[red]
+(4,0) to [R, l_=$R_{15} \ 1k$ , *-*, color=red] (6,0)
+(-0.5,-1.25) to [R, l_=$R_{16} \ 1M$ , *-*, color=red] (-0.5,-3.25);
+
+\draw[red]
+(6.5,-2.5) -- (6.5,-1.5)
+circle [radius = 10pt]node[circle,fill=white,minimum size=16pt]{}
+(6.5,-1.5) -- (6.5,-0.5);
+\node at (6.5,-2.5) [red]{o};
+\node at (6.5,-0.5) [red]{o};
+\draw[thick, red]
+(7,-1.1) to (7,-1.2)
+(7,-1.1) to (6.9,-1.1)
+(6.8,-1.3) to (7,-1.1)
+(6.3,-1.8) to (6.1,-2);
+\draw[-latex][red] (6.5,-1.7) -- (6.5,-1.3);
+
+\draw[-latex][red] (2.25,0.5) -- (2,0.75);
+\draw[-latex][red] (2.45,0.5) -- (2.2,0.75);'
+
+\draw[color=red]
+(1,-0.75) node[nigfete] (nmos5) {}
+(1,-1.25) to (1.3,-1.25)
+(1.25,-0.75) to (1.35,-0.75)
+(1.3,-0.75) to (1.3,-0.25)
+(1,-0.25) to (1.3,-0.25);
+\draw[-latex][red] (1.3,-1.25) -- (1.3,-0.75);
+
+\node at (4,3.25) [pink]{masa};
+\node at (-3.25,-3.5) [pink]{masa};
+\node at (-1.5,3.25) [pink]{masa};
+\node at (-1.5,3.75) [pink]{syg.};
+\node at (4,3.75) [pink]{syg.};
+\node at (-3.25,-0.95) [pink]{syg.};
+\node at (2.5,3.75) [pink]{BNC};
+\node at (-4.5,0) [pink]{BNC};
+\node at (-3,-2.5) [pink]{BNC};
+\node at (7.25,-2) [pink]{10V};
+\node at (2.5,-0.75) [gray]{LED 3};
+\node at (-0.75,-0.25) [gray]{Q9 BS170};
+
+\end{circuitikz}
+\caption{Obwód do pomiaru czasu przełączenia}
+\end{figure}
+
+\subsection{Wnioski}
+W pierwszej części zadania sprawdziliśmy, jak zmiana czasu załączenia tranzystora wpływa na sposób świecenia diody. Rzeczywiście, zgodnie ze wzorem $P = \frac{U^2}{R}\sigma$, moc w układzie rośnie proporcjonalnie do wypełnienia przebiegu ($\sigma$), co można zaobserwować na poniższych zdjęciach:
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{zal1.jpg}
+\caption{Oscylogram: małe wypełnienie}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{zal2.jpg}
+\caption{Dioda świeci słabo przy małym wypełnieniu}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{zal3.jpg}
+\caption{Oscylogram: duże wypełnienie}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{zal4.jpg}
+\caption{Światło diody jest silne przy dużym wypełnieniu}
+\end{figure}
+
+Druga część doświadczenia polegała na wyznaczeniu czasu przełączania tranzystora przy wykorzystaniu oscyloskopu. Należało także wyznaczyć maksymalną stabilną częstotliwość pracy układu tranzystora i diody LED.
+Wpierw wykonaliśmy oscylogram z przebiegu wyłączania tranzystora:
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{opoz.jpg}
+\caption{Oscylogram z przebiegu wyłączania tranzystora}
+\end{figure}
+Na wykresie widać wyraźnie przesunięcie między momentem załączenia wysokiego sygnału, a momentem wyłączenie tranzystora. Okno to wynosi w sumie ok. 55ns. Tak więc, korzystając ze wzoru\cite{naum} możemy stwierdzić, że maksymalna stabilna częstotliwość pracy układu wynosi:
+$$f_{max} = \frac{1}{t_d} = \frac{1}{55*10^{-9}} \approx 18.181MHz$$
+
+
+\begin{thebibliography}{3}
+\bibitem{naum} http://mariusznaumowicz.ddns.net/materialy.html - materiały dostępne dla przedmiotu Podstawy Elektroniki
+\bibitem{BS170} https://www.onsemi.com/pub/Collateral/BS170-D.PDF - dokumentacja układu BS170
+\bibitem{pto}Podstawy teorii obwodów, Osiowski J., Szabatin J., WNT, Warszawa, 1998
+\bibitem{pe}"Podstawy Elektrotechniki", R.Kurdziel, wyd II, WNT Warszawa 1972
+\end{thebibliography}
+
+\newpage
+\tableofcontents{}
+\end{document}
