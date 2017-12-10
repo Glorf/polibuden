@@ -1,0 +1,230 @@
+\documentclass[polish,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,amsthm}
+\usepackage[english,main=polish]{babel}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{etoolbox}
+\usepackage{pgfplots}
+\usepackage{gensymb}
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\patchcmd{\thebibliography}{\section*}{\section}{}{}
+
+\selectlanguage{polish}
+\title{FizLab3}
+
+\newcommand{\PRzFieldDsc}[1]{\sffamily\bfseries\scriptsize #1}
+\newcommand{\PRzFieldCnt}[1]{\textit{#1}}
+\newcommand{\PRzHeading}[8]{
+\begin{center}
+\begin{tabular}{ p{0.32\textwidth} p{0.15\textwidth} p{0.15\textwidth} p{0.12\textwidth} p{0.12\textwidth} }
+
+  &   &   &   &   \\
+\hline
+\multicolumn{5}{|c|}{}\\[-1ex]
+\multicolumn{5}{|c|}{{\LARGE #1}}\\
+\multicolumn{5}{|c|}{}\\[-1ex]
+
+\hline
+\multicolumn{1}{|l|}{\PRzFieldDsc{Kierunek}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Specjalność}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Rok studiów}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Symbol grupy lab.}} \\
+\multicolumn{1}{|c|}{\PRzFieldCnt{#2}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#3}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#4}}		& \multicolumn{2}{|c|}{\PRzFieldCnt{#5}} \\
+
+\hline
+\multicolumn{4}{|l|}{\PRzFieldDsc{Temat Laboratorium}}		& \multicolumn{1}{|l|}{\PRzFieldDsc{Numer lab.}} \\
+\multicolumn{4}{|c|}{\PRzFieldCnt{#6}}				& \multicolumn{1}{|c|}{\PRzFieldCnt{#7}} \\
+
+\hline
+\multicolumn{5}{|l|}{\PRzFieldDsc{Skład grupy ćwiczeniowej oraz numery indeksów}}\\
+\multicolumn{5}{|c|}{\PRzFieldCnt{#8}}\\
+
+\hline
+\multicolumn{3}{|l|}{\PRzFieldDsc{Uwagi}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Ocena}} \\
+\multicolumn{3}{|c|}{\PRzFieldCnt{\ }}		& \multicolumn{2}{|c|}{\PRzFieldCnt{\ }} \\
+
+\hline
+\end{tabular}
+\end{center}
+}
+\pgfplotsset{compat=1.14}
+\begin{document}
+\PRzHeading{Laboratorium Fizyczne}{Informatyka}{--}{II}{1}{ Wyznaczanie pojemności kondensatora za pomocą drgań relaksacyjnych }{201}{Michał Bień(132191), Wojciech Taisner(132330)}{}
+
+\section{Wstęp Teoretyczny}
+\begin{quotation}\cite{szuba}
+Jeśli do obwodu RC podłączymy neonówkę równolegle do kondensatora, to wystąpią okresowe, niesymetryczne wzrosty i spadki napięcia na kondensatorze nazywane \emph{drganiami relaksacyjnymi}. \\
+Jeżeli do neonówki przykładamy małe napięcie, prąd przez nią nie płynie ze względu na małe przewodnictwo gazu. Po przekroczeniu wartości $U_z$ (napięcie zapłonu) następuje jonizacja lawinowa gazu, widoczne jest jego świecenie i przez neonówkę płynie prąd. Rozpoczęta jonizacja lawinowa trwa dalej przy nieco niższych napięciach - ustaje, gdy napięcie spada poniżej wartości $U_g$ (napięcie gaśnięcia). \\
+Opisane właściwości neonówki wykorzystujemy do uzyskania drgań relaksacyjnych. Kondensator C ładuje się ze źródła prądu stałego przez opornik R. Napięcie na okładkach kondensatora rośnie wykładniczo, zgodnie z równaniem: $$ U_c = \epsilon (1-e^{-\frac{t}{RC}})$$ Gdy napięcie osiągnie wartość $U_z$, zapala się neonówka N. Ponieważ opór palącej się neonówki jest bardzo mały, następuje szybkie rozładowanie kondensatora do napięcia $U_g$. Po zgaśnięciu neonówki rozpoczyna się kolejne ładowanie kondensatora i następne jego rozładowanie. Opisane procesy powtarzają się cyklicznie.
+\end{quotation}
+W większości przypadków możemy przyjąć, że okres drgań relaksacyjnych jest równy czasowi ładowania kondensatora od napięcia gaśnięcia $U_g$, do napięcia zapłonu $U_z$.
+Po zastosowaniu powyższego równania i przekształceniu go, otrzymujemy zależność: $$T=RC ln\frac{\epsilon-U_z}{\epsilon-U_g}$$ Wyrażenie $ln\frac{\epsilon-U_z}{\epsilon-U_g}$ jest wielkością stałą dla określonego napięcia i określonego typu neonówki. Jeśli oznaczymy je symbolem K, to równanie uzyska pozstać $$T=RCK$$ Jest to podstawowy wzór, z którego skorzystamy, by wpierw zbadać stałą K obwodu, a następnie na tej podstawie oszacować pojemność mierzonych kondensatorów.
+
+
+\section{Tabela wyników}
+\subsection{Pomiary i obliczanie wartości K}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+R [$M\Omega$] & C [$\mu F$] & $T_1$ [s/10] & $T_2$ [s/10] & $T_{sr}$ [s] & K\\
+\hline 
+1&	0,7& 2,76&	2,79&	0,2775&  	0,396428571 \\
+1&	0,8& 2,95&	2,81&	0,288&  	0,36\\
+1&	0,9& 3,15&	3,27&	0,321&  	0,356666667 \\
+1&	1	&3,49&	3,34&	0,3415& 	0,3415\\
+1&	1,1	&3,57&	3,49&	0,353&  	0,320909091 \\
+2&	0,7	&4,06&	4,43&	0,4245& 	0,303214286 \\
+2&	0,8	&4,93&	5,16&	0,5045& 	0,3153125 \\
+2&	0,9	&5,43&	5,63&	0,553&  	0,307222222 \\
+2&	1	&6,21&	6,41&	0,631&  	0,3155 \\
+2&	1,1	&6,69&	6,81&	0,675& 	    0,306818182 \\
+3&	0,7	&5,94&	6,49&	0,6215& 	0,295952381 \\
+3&	0,8	&7,48&	8,08&	0,778&  	0,324166667 \\
+3&	0,9	&8,31&	8,4&	0,8355& 	0,309444444 \\
+3&	1	&9,24&	10& 	0,962&  	0,320666667 \\
+3&	1,1	&10,22&	10,69& 	1,0455& 	0,316818182 \\
+4&	0,7	&9,15&	8,53& 	0,884&  	0,315714286 \\
+4&	0,8	&9,63&	10,69& 	1,016&  	0,3175 \\
+4&	0,9	&11,21&	10,92& 	1,1065& 	0,307361111 \\
+4&	1	&12,13&	12,35& 	1,224&  	0,306 \\
+4&	1,1	&12,76&	13,15& 	1,2955& 	0,294431818 \\
+5&	0,7	&11,54&	11,55& 	1,1545& 	0,329857143 \\
+5&	0,8	&12,96&	13,11& 	1,3035& 	0,325875 \\
+5&	0,9	&14,68&	14,69& 	1,4685& 	0,326333333 \\
+5&	1	&16,17&	16,32& 	1,6245& 	0,3249 \\
+5&	1,1	&17,07&	17,42& 	1,7245& 	0,313545455 \\
+\hline
+\end{tabular}
+\end{table}
+
+Z wyników pomiarów obliczamy wartość średnią i odchylenie standardowe
+$$K_{sr} = 0,322086 $$
+$$\Delta K = 0,021717 $$
+
+\subsection{Pomiary wartości $C_1$}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+R [$M\Omega$] & $T_1$ [s/10] & $T_2$ [s/10] & $T_3$ [s/10] & $T_4$ [s/10] & $T_{sr}$ [s] & C [$\mu F$] \\
+\hline
+1&	6,85&	7,11&	7,61&	7,09&	0,7165&	2,224564456 \\
+2&	13,5&	14,11&	13,9&	13,94&	1,38625&	2,151990563 \\
+3&	20,54&	20,74&	20,26&	20,54&	2,052&	2,123659578 \\
+4&	27,03&	27,27&	26,76&	26,76&	2,6955&	2,092223828 \\
+5&	33,91&	34,03&	33,91&	34,22&	3,40175&	2,112327184 \\
+
+\hline
+\end{tabular}
+\end{table}
+Wartość pojemności obliczamy korzystając z $K_{sr}$
+Wartość średnia:
+$$C_1 = 2,140953[\mu F]$$
+
+\subsection{Pomiary wartości $C_2$}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+R [$M\Omega$] & $T_1$ [s/10] & $T_2$ [s/10] & $T_3$ [s/10] & $T_4$ [s/10] & $T_{sr}$ [s] & C [$\mu F$] \\
+\hline
+1&	3,87&	3,78&	4,38&	4,6& 	0,41575&	1,290806242 \\
+2&	8,58&	8,59&	8,39&	8,66&	0,8555&	1,328063428 \\
+3&	12,71&	13,08&	12,71&	12,96&	1,2865&	1,331426924 \\
+4&	16,74&	17& 	16,88&	16,98&	1,69&	1,311763409 \\
+5&	21& 	20,77&	21,35&	20,95&	2,10175&	1,305088163 \\
+
+\hline
+\end{tabular}
+\end{table}
+Wartość pojemności obliczamy korzystając z $K_{sr}$
+Wartość średnia:
+$$C_2 = 1,31343[\mu F]$$
+
+\subsection{Pomiary wartości $C_3$}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+R [$M\Omega$] & $T_1$ [s/10] & $T_2$ [s/10] & $T_3$ [s/10] & $T_4$ [s/10] & $T_{sr}$ [s] & C [$\mu F$] \\
+\hline
+1&	3,78&	3,6&	3,16&	3,52&	0,3515&	1,091325061 \\
+2&	6,11&	6,53&	6,5&	6,02&	0,629&	0,976448739 \\
+3&	9,68&	9,76&	9,83&	9,78&	0,97625&	1,010342429 \\
+4&	12,84&	12,92&	12,55&	12,05&	1,259&	0,97722493 \\
+5&	16,11&	16,52&	15,87&	16,05&	1,61375&	1,002063054 \\
+
+\hline
+\end{tabular}
+\end{table}
+Wartość pojemności obliczamy korzystając z $K_{sr}$
+Wartość średnia:
+$$C_3 = 1,011481[\mu F]$$
+
+\subsection{Pomiary wartości $C_4$}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+R [$M\Omega$] & $T_1$ [s/10] & $T_2$ [s/10] & $T_3$ [s/10] & $T_4$ [s/10] & $T_{sr}$ [s] & C [$\mu F$] \\
+\hline
+1&	2,47&	2,65&	2,61&	2,78&	0,26275	&0,815777126 \\
+2&	4,04&	4,51&	4,51&	4,51&	0,43925	&0,681884115 \\
+3&	6,66&	6,75&	6,67&	6,67&	0,66875&	0,692103968 \\
+4&	8,73&	8,93&	8,66&	8,66&	0,8745&	0,67877935 \\
+5&	10,68&	11,1&	10,76&	10,76&	1,0825&	0,672181723 \\
+
+\hline
+\end{tabular}
+\end{table}
+Wartość pojemności obliczamy korzystając z $K_{sr}$
+Wartość średnia:
+$$C_4 = 0,708145[\mu F]$$
+
+
+
+\section{Obliczenia}
+W obliczeniach wykorzystaliśmy następujące wzór:
+$$T=RCK$$
+Przekształcając powyższy wzór możemy obliczyć pojemność kondensatora:
+$$C=\frac{T}{RK} = \frac{T}{R}*K^{-1}$$
+Wyznaczenie błędu pojemności - metodą różniczki logarytmicznej
+$$\Delta C = |-1*\frac{\Delta k}{k}|*C$$
+Przykładowe obliczenia:
+$$C_{1.1} = \frac{T_{sr}}{R*K_{sr}} = \frac{0,7165}{1*10^6*0,322086} = 2,144354 [\mu F]$$
+$$\Delta C_1 = |-1*\frac{\Delta K}{K_{sr}}| * C_1 = \frac{0,021717}{0,322086}*2,140953 = 0,144354 [\mu F]$$
+Przykładowe zaokrąglanie:
+$$\Delta C_1 = 0,144354 [\mu F]$$
+$$\Delta C_1 = 0,14 [\mu F]$$
+$$(0,2 - 0,14)/0,14 = 0,06/0,14 = 0,428571... > 0,1$$
+$$C_1 = 2,14[\mu F]$$
+$$C_1 = 2,14 \pm 0,14[\mu F]$$
+Rachunek jednostek:
+$$C=\frac{T}{RK}$$
+$$C=\frac{[s]}{[\Omega]} = \frac{[A]*[s]}{[V]} = \frac{[C]}{[V]} = [F]$$
+Obliczone wartości pojemności i ich błędy:
+$$C_1 = 2,140953[\mu F]$$
+$$\Delta C_1 = 0,144354 [\mu F]$$
+$$C_2 = 1,31343[\mu F]$$
+$$\Delta C_2 = 0,088558 [\mu F]$$
+$$C_3 = 1,011481[\mu F]$$
+$$\Delta C_3 = 0,068199 [\mu F]$$
+$$C_4 = 0,708145[\mu F]$$
+$$\Delta C_4 = 0,047747 [\mu F]$$
+Po zaokrągleniu:
+$$C_1 = 2,14 \pm 0,14[\mu F]$$
+$$C_2 = 1,31 \pm 0,09[\mu F]$$
+$$C_3 = 1,01 \pm 0,07[\mu F]$$
+$$C_4 = 0,71 \pm 0,05[\mu F]$$
+\section{Wnioski}
+Przeprowadzając doświadczenie dowiedliśmy, iż jest możliwe doświadczalne wyznaczenie przybliżonej pojemności nieznanego nam kondensatora, jeżeli dysponujemy układem RC zaopatrzonym w neonówkę, której okresy mrugnięć możemy mierzyć. Niezbędne jest jednak wcześniejsze wyznaczenie stałej K dla tego układu.
+
+\begin{thebibliography}{1}
+\bibitem{szuba} Szuba S. - "Ćwiczenia laboratoryjne z fizyki"
+\end{thebibliography}
+\end{document}
+

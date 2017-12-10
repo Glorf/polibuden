@@ -1,0 +1,421 @@
+\documentclass[polish,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,amsthm}
+\usepackage[english,main=polish]{babel}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{etoolbox}
+\usepackage{pgfplots}
+\usepackage{gensymb}
+\usepackage{adjustbox}
+\patchcmd{\thebibliography}{\section*}{\section}{}{}
+
+\selectlanguage{polish}
+\title{FizLab1}
+
+\newcommand{\PRzFieldDsc}[1]{\sffamily\bfseries\scriptsize #1}
+\newcommand{\PRzFieldCnt}[1]{\textit{#1}}
+\newcommand{\PRzHeading}[8]{
+\begin{center}
+\begin{tabular}{ p{0.32\textwidth} p{0.15\textwidth} p{0.15\textwidth} p{0.12\textwidth} p{0.12\textwidth} }
+
+  &   &   &   &   \\
+\hline
+\multicolumn{5}{|c|}{}\\[-1ex]
+\multicolumn{5}{|c|}{{\LARGE #1}}\\
+\multicolumn{5}{|c|}{}\\[-1ex]
+
+\hline
+\multicolumn{1}{|l|}{\PRzFieldDsc{Kierunek}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Specjalność}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Rok studiów}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Symbol grupy lab.}} \\
+\multicolumn{1}{|c|}{\PRzFieldCnt{#2}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#3}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#4}}		& \multicolumn{2}{|c|}{\PRzFieldCnt{#5}} \\
+
+\hline
+\multicolumn{4}{|l|}{\PRzFieldDsc{Temat Laboratorium}}		& \multicolumn{1}{|l|}{\PRzFieldDsc{Numer lab.}} \\
+\multicolumn{4}{|c|}{\PRzFieldCnt{#6}}				& \multicolumn{1}{|c|}{\PRzFieldCnt{#7}} \\
+
+\hline
+\multicolumn{5}{|l|}{\PRzFieldDsc{Skład grupy ćwiczeniowej oraz numery indeksów}}\\
+\multicolumn{5}{|c|}{\PRzFieldCnt{#8}}\\
+
+\hline
+\multicolumn{3}{|l|}{\PRzFieldDsc{Uwagi}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Ocena}} \\
+\multicolumn{3}{|c|}{\PRzFieldCnt{\ }}		& \multicolumn{2}{|c|}{\PRzFieldCnt{\ }} \\
+
+\hline
+\end{tabular}
+\end{center}
+}
+\pgfplotsset{compat=1.14}
+\begin{document}
+\PRzHeading{Laboratorium Fizyczne}{Informatyka}{--}{II}{1}{Wyznaczanie prędkości dźwięku w powietrzu
+metodą przesunięcia fazowego }{101}{Michał Bień(132191), Wojciech Taisner(132330)}{}
+
+\section{Wstęp Teoretyczny}
+Celem doświadczenia było wyznaczenie prędkości dźwięku w powietrzu metodą przesunięcia fazowego. Związek ten został opisany równaniem:
+
+$$ v= \lambda f $$
+
+Częstotliwość jest mierzona bezpośrednio miernikiem, a długość fali wyznaczamy przeprowadzając doświadczenie.
+\newline
+Na jednym końcu ławy ustawiamy głośnik podłączony do generatora fal elektrycznych pełniacego funkcję źródła. Do ich odbioru używamy ruchomego mikrofonu przesuwanego wzdłuż ławy. Podłaćzamy głosnik i mikrofon do oscyloskopu, na którego ekranie otrzymujemy obraz w postaci tzw. figur Lissajous, które są wynikiem nałożenia się na siebie dwóch ruchów harmonicznych. Korzystając z tego, że w tym wypadku częstotliwości obu drgań są równe, o kształcie figur decyduje tylko różnica faz głośnika i mikrofonu. Kształt figury Lissajous jest periodyczną funkcją różnicy faz, stąd będzie on taki sam dla wszystkich położeń mikrofonu różniących się o całkowitą wielokrotność długości fali.
+Tę ostatnią właściwość wykorzystujemy do pomiaru długości fali dźwiękowej. W tym celu wyznaczamy odległość między sąsiednimi położeniami mikrofonu, przy których otrzymujemy ten sam kształt figury Lissajous. Wybraliśmy moment, w którym figura Lissajous jest linią prostą przechyloną w lewo.
+
+\subsection{Prędkość fali w powietrzu}
+Ogólne wyrażenie określające prędkosć rozchodzenia się fal podłużnych w ośrodku ciągłym ma postać:
+
+$$ v = \sqrt{\frac{E}{\rho}}$$
+
+Po przekształceniach otrzymujemy wzór na prędkość dźwięku w zależności od rodzaju gazu i temperatury:
+
+$$ v = \sqrt{\frac{\kappa RT}{\mu}}$$
+
+\section{Tabela wyników}
+\subsection{Częstotliwość: 3.050 kHz (dla linii wychylonej w górę)}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|}
+\hline
+$\Delta [cm]$:\\
+\hline 
+13.1 \\
+13.0 \\
+12.9 \\
+12.5 \\
+13.1 \\
+\hline
+\end{tabular}
+\caption{Tabela różnic}
+\end{table}
+
+$$\lambda = 12.92 cm$$
+$$v(f) = \lambda f = 394.06 \frac{m}{s}$$
+
+\subsection{Częstotliwość: 3.563 kHz (dla linii wychylonej w górę)}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|}
+\hline
+$\Delta [cm]$:\\
+\hline 
+10.2 \\
+11.0 \\
+10.0 \\
+10.8 \\
+10.5 \\
+10.0 \\
+\hline
+\end{tabular}
+\caption{Tabela różnic}
+\end{table}
+
+$$\lambda = 10.42 cm$$
+$$v(f) = \lambda f = 371.15 \frac{m}{s}$$
+
+\subsection{Częstotliwość: 4.100 kHz (dla linii wychylonej w górę)}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|}
+\hline
+$\Delta [cm]$:\\
+\hline 
+8.7 \\
+9.0 \\
+9.5 \\
+8.5 \\
+7.9 \\
+9.7 \\
+10.1 \\
+\hline
+\end{tabular}
+\caption{Tabela różnic}
+\end{table}
+
+$$\lambda = 9.06 cm$$
+$$v(f) = \lambda f = 371.34 \frac{m}{s}$$
+
+\subsection{Częstotliwość: 4.628 kHz (dla linii wychylonej w górę)}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|}
+\hline
+$\Delta [cm]$:\\
+\hline 
+8.0 \\
+7.9 \\
+7.6 \\
+7.3 \\
+7.6 \\
+8.1 \\
+8.1 \\
+7.0 \\
+8.5 \\
+\hline
+\end{tabular}
+\caption{Tabela różnic}
+\end{table}
+
+$$\lambda = 7.79 cm$$
+$$v(f) = \lambda f = 360.47 \frac{m}{s}$$
+
+\subsection{Częstotliwość: 5.099 kHz (dla linii wychylonej w górę)}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|}
+\hline
+$\Delta [cm]$:\\
+\hline 
+6.6 \\
+7.3 \\
+6.6 \\
+7.1 \\
+7.3 \\
+7.3 \\
+7.4 \\
+7.0 \\
+7.7 \\
+7.0 \\
+\hline
+\end{tabular}
+\caption{Tabela różnic}
+\end{table}
+
+$$\lambda = 7.13 cm$$
+$$v(f) = \lambda f = 363.56 \frac{m}{s}$$
+
+\subsection{Częstotliwość: 5.659 kHz (dla linii wychylonej w górę)}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|}
+\hline
+$\Delta [cm]$:\\
+\hline 
+6.4 \\
+6.1 \\
+6.7 \\
+6.3 \\
+6.3 \\
+6.0 \\
+5.9 \\
+6.6 \\
+6.9 \\
+6.7 \\
+6.2 \\
+\hline
+\end{tabular}
+\caption{Tabela różnic}
+\end{table}
+
+$$\lambda = 6.37 cm$$
+$$v(f) = \lambda f = 360.63 \frac{m}{s}$$
+
+\subsection{Częstotliwość: 6.197 kHz (dla linii wychylonej w górę)}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|}
+\hline
+$\Delta [cm]$:\\
+\hline 
+5.7 \\
+5.6 \\
+5.7 \\
+5.7 \\
+5.9 \\
+6.0 \\
+5.4 \\
+5.7 \\
+6.0 \\
+5.3 \\
+6.4 \\
+6.5 \\
+6.2 \\
+6.3 \\
+\hline
+\end{tabular}
+\caption{Tabela różnic}
+\end{table}
+
+$$\lambda = 5.89 cm$$
+$$v(f) = \lambda f = 367.47 \frac{m}{s}$$
+
+\subsection{Częstotliwość: 6.658 kHz (dla linii wychylonej w górę)}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|}
+\hline
+$\Delta [cm]$:\\
+\hline 
+5.5 \\
+5.2 \\
+5.2 \\
+5.1 \\
+5.3 \\
+5.9 \\
+5.1 \\
+5.3 \\
+5.5 \\
+4.8 \\
+\hline
+\end{tabular}
+\caption{Tabela różnic}
+\end{table}
+
+$$\lambda = 5.29 cm$$
+$$v(f) = \lambda f = 352.21 \frac{m}{s}$$
+
+\subsection{Częstotliwość: 7.000 kHz (dla linii wychylonej w górę)}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|}
+\hline
+$\Delta [cm]$:\\
+\hline 
+5.5 \\
+5.0 \\
+5.0 \\
+5.2 \\
+4.7 \\
+5.1 \\
+5.4 \\
+5.7 \\
+\hline
+\end{tabular}
+\caption{Tabela różnic}
+\end{table}
+
+$$\lambda = 5.20 cm$$
+$$v(f) = \lambda f = 364.00 \frac{m}{s}$$
+
+\subsection{Częstotliwość: 7.499 kHz (dla linii wychylonej w górę)}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|}
+\hline
+$\Delta [cm]$:\\
+\hline 
+4.2 \\
+4.6 \\
+4.8 \\
+4.4 \\
+4.9 \\
+4.9 \\
+4.6 \\
+4.9 \\
+4.4 \\
+5.0 \\
+5.5 \\
+3.8 \\
+5.2 \\
+\hline
+\end{tabular}
+\caption{Tabela różnic}
+\end{table}
+
+$$\lambda = 4.71 cm$$
+$$v(f) = \lambda f = 353.03 \frac{m}{s}$$
+
+
+\subsection{Średnia prędkość dźwięku}
+
+$$v_{sr} = 362.407 \frac{m}{s}$$
+
+\newpage
+\section{Obliczenia}
+
+\subsection{Obliczanie teoretycznej prędkości dźwięku z temperatury w powietrzu}
+Zanotowaliśmy dwie temperatury powietrza
+$$t_{początkowa} = 21,4 \degree C$$
+$$t_{końcowa} = 23,4 \degree C$$
+Za błąd pomairu przyjęliśmy dokłądność termometra tak więc:
+$$\Delta t = 0,1 \degree C$$
+Ze wzoru:
+$$ v = \sqrt{\frac{\kappa RT}{\mu}}$$
+Obliczamy wartości prędkości w powietrzu:
+$$ v_{1} = 344,02 m/s$$ 
+$$\Delta v_{1} = 0,21 m/s$$
+$$ v_{2} = 345,19 m/s$$
+$$\Delta v_{2} = 0,21 m/s$$
+Przyjmujemy wartość średnią:
+$$v_{śr} = 344,61  m/s$$
+$$\Delta v_{śr} = 0,30 m/s$$
+\newpage
+ \subsection{Obliczanie prędkości dźwięku z pomiarów przesunięcia fazowego  powietrzu}
+ \subsubsection{Obliczanie średniej prędkości dźwięku}
+ Z obliczonych dla każdej częstotliwości prędkości średnich, obliczamy średnią prędkość:
+$$v_{śr} = 365,53 m/s $$
+
+\subsubsection{Obliczanie wartości błędu}
+Na początek obliczamy dla każdej serii błąd prosty pomiaru uwględniając odchylenie standardowe serii, błąd urządzenia i błąd mierzącego.
+\newline
+Przyjmujemy następujące wartości błędów:
+\newline
+Błąd urządzenia: $0,1 cm$
+\newline
+Błąd mierzącego: $0,1 cm$
+\begin{table}[H]
+\begin{adjustbox}{center}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+\hline
+Pomiar:&1&2&3&4&5&6&7&8&9&10\\
+\hline 
+Średnia [cm] &	12,92	&	10,42	&	9,06	&	7,79	&	7,13	&	6,37	&	5,89	&	5,29	&	5,20	&	4,71\\
+Odchylenie standardowe [cm] &	0,22	&	0,38	&	0,70	&	0,43	&	0,33	&	0,30	&	0,35	&	0,28	&	0,30	&	0,43\\
+Błąd całkowity [cm] &	0,24	&	0,39	&	0,71	&	0,44	&	0,34	&	0,32	&	0,36	&	0,29	&	0,31	&	0,43\\
+\hline
+\end{tabular}
+\end{adjustbox}
+\caption{Tabela średnich długości fal i błędów}
+\end{table}
+Dla odpowiednich długości fal i częstotliwości obliczamy prędkości i ich błędy złożone
+
+\begin{table}[H]
+\begin{adjustbox}{center}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+\hline
+Pomiar:&1&2&3&4&5&6&7&8&9&10\\
+\hline 
+Prędkość średnia [m/s]&	394,06	&	371,15	&	371,34	&	360,47	&	363,56	&	360,63	&	364,74	&	352,21	&	364,00	&	353,03\\
+Błąd [m/s]&	7,23	&	14,01	&	29,09	&	20,40	&	17,27	&	17,86	&	22,41	&	19,48	&	21,76	&	32,59\\
+\hline
+\end{tabular}
+\end{adjustbox}
+\caption{Tabela średnich prędkości i błędów}
+\end{table}
+
+Obliczamy średni błąd:
+$$ \Delta v_{śr} = 67,42 m/s $$
+
+
+\subsubsection{Podsumowanie}
+Ostateczny wynik po zaokrągleniu wyniósł:
+$$ v_{śr} = 370 \pm 70  m/s$$
+\newpage
+
+\section{Wnioski}
+ 
+Prędkość którą otrzymaliśmy w wyniku doświadczenia wynosi $ v_{D} = 370 \pm 70  m/s$, a w wyniku obliczeń teoretycznych $v_{T} = 344,6 \pm 0,3 m/s$ 
+\newline
+Mimo usunięcia błędów grubych, błąd nadal jest duży, ale wartość teoretyczna mieści się w zakresie błędu pomiaru. Zasadniczy wpływ na wartość błędu miały niedoskonałości układu, w tym urządzeń pomiarowych i mierzących.
+\newline
+Finalnie udało nam się uzyskać zadowalający wynik, który, mimo tego że jest obarczony błędem, nie odbiega znacząco do wyznaczonej teoretycznej wartości. 
+
+
+\begin{thebibliography}{3}
+\bibitem{szuba} Szuba S. - "Ćwiczenia laboratoryjne z fizyki"
+\end{thebibliography}
+
+\newpage
+\tableofcontents{}
+\end{document}
+

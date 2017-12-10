@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Wed Nov 15 16:38:13 2017
+Quartus II 32-bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
+Revision Name : Cwiczenie3_4
+Top-level Entity Name : Cwiczenie3_4
+Family : Cyclone II
+Total logic elements : 38
+    Total combinational functions : 38
+    Dedicated logic registers : 9
+Total registers : 9
+Total pins : 11
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

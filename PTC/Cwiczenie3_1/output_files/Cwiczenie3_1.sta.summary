@@ -1,0 +1,165 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow Model Setup '7493:inst1|16'
+Slack : -0.078
+TNS   : -0.078
+
+Type  : Slow Model Setup '7493:inst|16'
+Slack : -0.047
+TNS   : -0.047
+
+Type  : Slow Model Setup '7493:inst|13'
+Slack : 1.144
+TNS   : 0.000
+
+Type  : Slow Model Setup 'iSW[0]'
+Slack : 2.677
+TNS   : 0.000
+
+Type  : Slow Model Hold '7493:inst|16'
+Slack : -3.191
+TNS   : -3.191
+
+Type  : Slow Model Hold 'iSW[0]'
+Slack : -2.407
+TNS   : -2.407
+
+Type  : Slow Model Hold '7493:inst|13'
+Slack : -0.874
+TNS   : -0.874
+
+Type  : Slow Model Hold '7493:inst1|16'
+Slack : 0.391
+TNS   : 0.000
+
+Type  : Slow Model Recovery '7493:inst|13'
+Slack : -4.724
+TNS   : -4.724
+
+Type  : Slow Model Recovery 'iSW[0]'
+Slack : -3.364
+TNS   : -3.364
+
+Type  : Slow Model Recovery '7493:inst|16'
+Slack : -2.580
+TNS   : -7.740
+
+Type  : Slow Model Recovery '7493:inst1|16'
+Slack : -2.195
+TNS   : -6.585
+
+Type  : Slow Model Removal '7493:inst1|16'
+Slack : -1.149
+TNS   : -3.447
+
+Type  : Slow Model Removal '7493:inst|16'
+Slack : -0.764
+TNS   : -2.292
+
+Type  : Slow Model Removal 'iSW[0]'
+Slack : 0.020
+TNS   : 0.000
+
+Type  : Slow Model Removal '7493:inst|13'
+Slack : 1.380
+TNS   : 0.000
+
+Type  : Slow Model Minimum Pulse Width 'iSW[0]'
+Slack : -1.222
+TNS   : -2.222
+
+Type  : Slow Model Minimum Pulse Width '7493:inst1|16'
+Slack : -0.500
+TNS   : -3.000
+
+Type  : Slow Model Minimum Pulse Width '7493:inst|16'
+Slack : -0.500
+TNS   : -3.000
+
+Type  : Slow Model Minimum Pulse Width '7493:inst|13'
+Slack : -0.500
+TNS   : -1.000
+
+Type  : Fast Model Setup '7493:inst1|16'
+Slack : 0.503
+TNS   : 0.000
+
+Type  : Fast Model Setup '7493:inst|16'
+Slack : 0.511
+TNS   : 0.000
+
+Type  : Fast Model Setup '7493:inst|13'
+Slack : 0.859
+TNS   : 0.000
+
+Type  : Fast Model Setup 'iSW[0]'
+Slack : 1.655
+TNS   : 0.000
+
+Type  : Fast Model Hold '7493:inst|16'
+Slack : -1.916
+TNS   : -1.916
+
+Type  : Fast Model Hold 'iSW[0]'
+Slack : -1.275
+TNS   : -1.275
+
+Type  : Fast Model Hold '7493:inst|13'
+Slack : -0.479
+TNS   : -0.479
+
+Type  : Fast Model Hold '7493:inst1|16'
+Slack : 0.215
+TNS   : 0.000
+
+Type  : Fast Model Recovery '7493:inst|13'
+Slack : -2.075
+TNS   : -2.075
+
+Type  : Fast Model Recovery 'iSW[0]'
+Slack : -1.352
+TNS   : -1.352
+
+Type  : Fast Model Recovery '7493:inst|16'
+Slack : -0.711
+TNS   : -2.133
+
+Type  : Fast Model Recovery '7493:inst1|16'
+Slack : -0.554
+TNS   : -1.662
+
+Type  : Fast Model Removal '7493:inst1|16'
+Slack : -0.940
+TNS   : -2.820
+
+Type  : Fast Model Removal '7493:inst|16'
+Slack : -0.783
+TNS   : -2.349
+
+Type  : Fast Model Removal 'iSW[0]'
+Slack : -0.142
+TNS   : -0.142
+
+Type  : Fast Model Removal '7493:inst|13'
+Slack : 0.581
+TNS   : 0.000
+
+Type  : Fast Model Minimum Pulse Width 'iSW[0]'
+Slack : -1.222
+TNS   : -2.222
+
+Type  : Fast Model Minimum Pulse Width '7493:inst1|16'
+Slack : -0.500
+TNS   : -3.000
+
+Type  : Fast Model Minimum Pulse Width '7493:inst|16'
+Slack : -0.500
+TNS   : -3.000
+
+Type  : Fast Model Minimum Pulse Width '7493:inst|13'
+Slack : -0.500
+TNS   : -1.000
+
+------------------------------------------------------------

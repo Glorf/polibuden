@@ -1,0 +1,38 @@
+\documentclass[a4paper]{article}
+\usepackage[polish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\author{}
+\title{PTC - 1}
+\date{}
+\begin{document}
+\maketitle
+\begin{enumerate}
+\item Korzystając z notacji uzupełnieniowej (dodatnie(znak moduł), ujemne(znak U2)) wyznacz używając 5 bitów sumę trzech liczb: -16, -16, 8. Jeśli kolejność dodawania ma wpływ na wynik to wybierz właściwą i uzasadnij.
+\item Odjąć liczby -13 i 18 korzystając z notacji uzupełnieniowej liczb ujemnych oraz notacji znak moduł liczb dodatnich. Wykonać obliczenia na 6 bitach i sprawdzić poprawność wyniku.
+\item Oblicz sumy dwóch par liczb: 12 i -9 oraz -1 i -14. Zarówno składniki jak i wynik proszę zapisać na 5 bitach. Proszę sprawdzić czy wynik jest poprawny.
+\item Używajac dla liczb dodatnich reprezentację binarną znak-moduł, dla liczb ujemnych reprezentację znak-U2 (uzupełnienie do 2) dodać nastepujące pary liczb: 40 i -120, 15 i -8 (wartości zapisano dziesiętnie), określić słownie niezbędną liczbę bitów używanych reprezentacji.
+\item Proszę wykonać dodawanie w kodzie BCD liczb, które w kodzie dziesiętnym mają wartości 8257 i 1749.
+\item Metodą McCluskey'a dokonać optymalizacji funkcji $$F_3 = \sum (0,8,10,12,14,15,22) + d(7,20,26)$$
+\item Metodą Quine--McCluskey dokonać optymalizacji funkcji (e oznacza najstarszy bit) $$ f(e,d,c,b,a) = \sum (2,3,7,8,10,11,27)+d(5,19,24) $$ wynik optymalizacji proszę zapisać w sposób pozwalający na jej realizację funkcji wyłącznie za pomocą bramek NAND
+\item Zminimalizować postać funkcji 5 zmiennych metodą McCluskeya $$ F_3 = \sum (0,2,7,8,10,15,23,31)+d(13,29) $$ Zmienne abcde, a ma wagę 1
+\item Metodą Quine--McCluskey dokonać optyamlizacji funkcji (e oznacza najstarszy bit): $$f(e,d,c,b,a)=\sum (2,3,5,7,8,11,21,27) + d(10,19,24)$$ Wynik optymalizacji proszę zapisać w sposób pozwalający na jej realizację funkcji wyłącznie za pomocą bramek NAND.
+\item Dla licznika asynchronicznego proszę dokonać wyboru sygnałów zegarowych na wejściach przerzutników D tworzących licznik modulo 5 liczący w kodzie 0,1,2,3,4 (nie podano stanów przejściowych). Licznik rozpoczyna pracę od asynchronicznego wprowadzenia przerzutników w stan 0. Proszę uzasadnić poprawność wyboru. Dobór sygnałów zegarowych ma na celu minimalizację funkcji wejściowych przerzutników. Proszę przedstawić funkcje wejść za pomocą wyrażenia typu: $$J_1 = \sum (1,3) + d(0,7,2,5)$$
+\item Dla licznika asynchronicznego proszę dokonać wyboru sygnałów zegarowych na wejściach przerzutników JK tworzących licznik modulo 6 liczący w kodzie 7,6,5,4,3,2 (nie podano stanów przejściowych). Licznik rozpoczyna pracę od asynchronicznego wprowadzenia przerzutników w stan 1. Proszę uzasadnić poprawność wyboru. Dobór sygnałów zegarowych ma na celu minimalizację funkcji wejściowych przerzutników. Proszę przedstawić funkcje wejść za pomocą wyrażenia typu: $$J_1 = \sum (1,3) +d(0,7,2,5) $$
+\item Dla asynchronicznego licznika modulo 7 w kodzie 0,1,2,3,4,5,6 (projekt metodą syntezy)
+\begin{enumerate}
+\item Proszę wyznaczyć sygnały zegarowe pozwalające na uproszczenie funkcji wejść przerzutników
+\item Proszę wyznaczyć funkcje wejść przerzutników D
+\end{enumerate}
+\item Wyznaczyć funkcje wzbudzeń przerzutników JK w synchronicznym liczniku liczącym w kodzie 0,4,2,1,6. Licznik wprowadzamy w stan początkowy za pomocą asynchronicznego resetu.
+\item Prosze opisać w punktach metodę minimalizacji łącznej kilku funkcji tych samych wejść
+\item Dla metody łącznej minimalizacji wielu funkcji tych samych zmiennych określić grupy wykorzystywanych implikantów i sposób ich wykorzystania
+\item Dokonać optymalizacji łącznej funkcji $F_1$ i $F_2$. Optymalizacja łączna minimalizuje liczbę implikantów użytych do implementacji wielu funkcji (dzięki wykorzystaniu implikantów wspólnych). $$F_1 = \sum (3,5)+d(7) $$ $$F_2 = \sum (0,5) +d(2) $$
+\end{enumerate}
+\end{document}
+

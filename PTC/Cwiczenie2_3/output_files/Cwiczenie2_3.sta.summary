@@ -1,0 +1,53 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow Model Setup 'iSW[0]'
+Slack : -0.324
+TNS   : -0.648
+
+Type  : Slow Model Setup 'inst2'
+Slack : 0.226
+TNS   : 0.000
+
+Type  : Slow Model Hold 'iSW[0]'
+Slack : -2.806
+TNS   : -5.205
+
+Type  : Slow Model Hold 'inst2'
+Slack : 0.391
+TNS   : 0.000
+
+Type  : Slow Model Minimum Pulse Width 'iSW[0]'
+Slack : -1.222
+TNS   : -3.222
+
+Type  : Slow Model Minimum Pulse Width 'inst2'
+Slack : -0.500
+TNS   : -2.000
+
+Type  : Fast Model Setup 'iSW[0]'
+Slack : -0.108
+TNS   : -0.216
+
+Type  : Fast Model Setup 'inst2'
+Slack : 0.629
+TNS   : 0.000
+
+Type  : Fast Model Hold 'iSW[0]'
+Slack : -1.480
+TNS   : -2.818
+
+Type  : Fast Model Hold 'inst2'
+Slack : 0.215
+TNS   : 0.000
+
+Type  : Fast Model Minimum Pulse Width 'iSW[0]'
+Slack : -1.222
+TNS   : -3.222
+
+Type  : Fast Model Minimum Pulse Width 'inst2'
+Slack : -0.500
+TNS   : -2.000
+
+------------------------------------------------------------

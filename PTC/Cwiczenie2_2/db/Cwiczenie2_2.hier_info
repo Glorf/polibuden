@@ -1,0 +1,14 @@
+|Cwiczenie2_2
+oLEDG[0] <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+oLEDG[1] <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+oLEDG[2] <= inst.DB_MAX_OUTPUT_PORT_TYPE
+iSW[0] => inst1.CLK
+iSW[0] => inst.CLK
+iSW[0] => inst2.CLK
+iSW[1] => inst2.IN0
+iSW[1] => inst1.IN0
+iSW[2] => inst2.ACLR
+iSW[2] => inst.ACLR
+iSW[2] => inst1.ACLR
+
+

@@ -1,0 +1,175 @@
+\documentclass[polish,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,amsthm}
+\usepackage[english,main=polish]{babel}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{etoolbox}
+\usepackage{pgfplots}
+\usepackage{gensymb}
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\patchcmd{\thebibliography}{\section*}{\section}{}{}
+
+\selectlanguage{polish}
+\title{FizLab2}
+
+\newcommand{\PRzFieldDsc}[1]{\sffamily\bfseries\scriptsize #1}
+\newcommand{\PRzFieldCnt}[1]{\textit{#1}}
+\newcommand{\PRzHeading}[8]{
+\begin{center}
+\begin{tabular}{ p{0.32\textwidth} p{0.15\textwidth} p{0.15\textwidth} p{0.12\textwidth} p{0.12\textwidth} }
+
+  &   &   &   &   \\
+\hline
+\multicolumn{5}{|c|}{}\\[-1ex]
+\multicolumn{5}{|c|}{{\LARGE #1}}\\
+\multicolumn{5}{|c|}{}\\[-1ex]
+
+\hline
+\multicolumn{1}{|l|}{\PRzFieldDsc{Kierunek}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Specjalność}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Rok studiów}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Symbol grupy lab.}} \\
+\multicolumn{1}{|c|}{\PRzFieldCnt{#2}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#3}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#4}}		& \multicolumn{2}{|c|}{\PRzFieldCnt{#5}} \\
+
+\hline
+\multicolumn{4}{|l|}{\PRzFieldDsc{Temat Laboratorium}}		& \multicolumn{1}{|l|}{\PRzFieldDsc{Numer lab.}} \\
+\multicolumn{4}{|c|}{\PRzFieldCnt{#6}}				& \multicolumn{1}{|c|}{\PRzFieldCnt{#7}} \\
+
+\hline
+\multicolumn{5}{|l|}{\PRzFieldDsc{Skład grupy ćwiczeniowej oraz numery indeksów}}\\
+\multicolumn{5}{|c|}{\PRzFieldCnt{#8}}\\
+
+\hline
+\multicolumn{3}{|l|}{\PRzFieldDsc{Uwagi}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Ocena}} \\
+\multicolumn{3}{|c|}{\PRzFieldCnt{\ }}		& \multicolumn{2}{|c|}{\PRzFieldCnt{\ }} \\
+
+\hline
+\end{tabular}
+\end{center}
+}
+\pgfplotsset{compat=1.14}
+\begin{document}
+\PRzHeading{Laboratorium Fizyczne}{Informatyka}{--}{II}{1}{Wyznaczanie przyspieszenia ziemskiego
+za pomocą wahadła rewersyjnego}{102}{Michał Bień(132191), Wojciech Taisner(132330)}{}
+
+\section{Wstęp Teoretyczny}
+\begin{quotation}\cite{szuba}
+Wahadła fizyczne i matematyczne wykonują rych drgający pod wpływem siły ciężkości. W zakresie niedużych amplitud ruch ten jest ruchem harmonicznym, jego okres zależy od właściwości danego wahadła i od przyspieszenia ziemskiego.
+\emph{Wahadłem fizycznym} jest każde ciało sztywne mogące się wahać wokół osi poziomej. Po wychyleniu z położenia równowagi na ciało działa moment ciężkości $mg\sin \phi$. Po zastosowaniu do tej sytuacji II zasady dynamiki otrzymamy równanie:
+$$ -mgL\sin \phi = I \frac{d^2 \phi}{dt^2} $$
+\end{quotation}
+Znając ogólne równania ruchu harmonicznego, możemy wyprowadzić równanie określające okres drgań wahadła fizycznego:
+$$ T_f = 2\pi \sqrt[]{\frac{I}{D}} $$
+Gdzie $D=mgL$ nazywa się momentem kierującym
+
+\begin{quotation}\cite{szuba}
+Specjalną postacią wahadła fizycznego, ułatwiającą wyznaczenie długości zredukowanej, jest \emph{wahadło rewersyjne}. Punktem zawieszenia i jednocześnie osią wahań może być jedno z ostrzy: A lub B, a położenie środka masy i moment bezwładności zależą od położenia soczewek $S_1$ i $S_2$. Manipulując położeniem soczewki, możemy doprowadzić do równości obu okresów wahań i tylko wtedy odległość między ostrzami jest długością zredukowaną.
+\end{quotation}
+Jeśli znamy długość zredukowaną wahadła fizycznego, to jego okres drgań możemy wyznaczyć za pomocą równania dla wahadła matematycznego
+$$T_f = 2\pi\sqrt[]{\frac{l_r}{g}}$$
+Stąd mierząc okresy drgań wahadła fizycznego rewersyjnego, znając jego długość zredukowaną, możemy wyznaczyć przyspieszenie ziemskie, przekształcając wzór do postaci:
+$$ g = \frac{4\pi^2l_r}{T_f^2} $$
+\section{Tabela wyników}
+
+\subsection{Pomiar Ta}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Położenie x [cm] & Pomiar 1 & Pomiar 2 & Średnia dla jednego okresu\\
+\hline 
+20 &	19,753 &	19,756 &	1,97545 \\
+25 &	19,523 &	19,535 &	1,9529 \\
+30 &	19,339 &	19,349 &	1,9344 \\
+35 &	19,186 &	19,193 &	1,91895 \\
+40 &	19,079 &	19,059 &	1,9069 \\
+45 &	19,01 &	19,009 &	1,90095 \\
+50 &	18,968 &	18,966 &	1,8967 \\
+55 &	18,948 &	18,947 &	1,89475 \\
+60 &	18,959 &	18,96 &	1,89595 \\
+65 &	19,006 &	19,009 &	1,90075 \\
+70 &	19,067 &	19,068 &	1,90675 \\
+75 &	19,159 &	19,155 &	1,9157 \\
+80 &	19,267 &	19,257 &	1,9262 \\
+85 &	19,379 &	19,359 &	1,9369 \\
+90 &	19,519 &	19,516 &	1,95175 \\
+95 &	19,677 &	19,679 &	1,9678 \\
+
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Pomiar Tb}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Położenie x [cm] & Pomiar 1 & Pomiar 2 & Średnia dla jednego okresu\\
+\hline 
+90 &	22,153 &	22,179 &	2,2166\\
+85 &	20,4 &	20,389	 & 2,03945\\
+80 &	19,317 &	19,335 &	1,9326\\
+75 &	18,672 &	18,669 &	1,86705\\
+70 &	18,283 &	18,286 &	1,82845\\
+65 &	18,115 &	18,119 &	1,8117\\
+60 &	18,102 &	18,107 &	1,81045\\
+55 &	18,185 &	18,186 &	1,81855\\
+50 &	18,326 &	18,32 &	1,8323\\
+45 &	18,538 &	18,548 &	1,8543\\
+40 &	18,809 &	18,819 &	1,8814\\
+35 &	19,096 &	19,083 &	1,90895\\
+30 &	19,387 &	19,408 &	1,93975\\
+25 &	19,745 &	19,749 &	1,9747\\
+20 &	20,083 &	20,088 &	2,00855\\
+15 &	20,449 &	20,449 &	2,0449\\
+
+\hline
+\end{tabular}
+\end{table}
+\newpage
+
+\section{Obliczenia}
+Wyniki z pomiarów umieściliśmy na wykresie
+\newline
+\includegraphics[width=\textwidth]{fiz2_wykres.PNG}
+Nastepnie odczytaliśmy punkty przecięcia, określiliśmy błąd i określiliśmy okresy:
+\newline
+$$P_{1} = 1,930  \Delta P_{1} = 0,005 [s] $$
+$$P_{2} = 1,925  \Delta P_{2} = 0,005 [s] $$
+\newline
+Do obliczeń wykorzystaliśmy wzór:
+$$ g = \frac{4\pi^2l_r}{T_f^2} $$
+Przykładowe obliczenia:
+$$l_r = 92 [cm] = 0,92 [m]$$
+$$T_1 = 1,930 [s]$$
+$$ g_1 = \frac{4\pi^2*0,92}{1,93^2} $$
+$$g_{1} = 9,750636 [m/s^2]$$
+$$g = T_f^{-2} * 4\pi^2l_r$$
+$$\Delta g_1 = |-2 * \frac{\Delta T_1}{T_1} |*g_1 $$
+$$\Delta g_1 = 0,050521 [m/s^{2}]$$
+Rachunek jednostek:
+$$ g = \frac{4\pi^2l_r}{T_f^2} = \frac{m}{s^2}$$
+
+
+Dokonalismy obliczeń przyspieszenia ziemskiego i wartości błędów:
+$$g_{1} = 9,750636  \Delta g_{1} = 0,050521 [m/s^{2}]$$
+$$g_{2} = 9,801354  \Delta g_{2} = 0,050921 [m/s^{2}]$$
+$$g_{śr} = 9,775995  \Delta g_{śr} = 0,050719 [m/s^{2}]$$
+Zaokrąglając:
+$$g_{śr} = 9,776 \pm 0,051 [m/s^{2}]$$
+
+\section{Wnioski}
+Wyznaczona w wyniku doświadczenia wartość przyspieszenia ziemskiego jest zbliżona do wartości tabelarycznej. 
+\newline
+Wpływ na wynik doświadczenia miały przede wszsytkim niepewności pomiaru wynikające z niedoskonałości urządzenia pomiarowego i czynników niezlaeżnych - oporu powietrza i tarcia na łożysku wahadła.
+\newline
+Finalnie udało nam się uzyskać zadowalający wynik, który mieści się w granicy błędu pomiarowego.
+
+\begin{thebibliography}{1}
+\bibitem{szuba} Szuba S. - "Ćwiczenia laboratoryjne z fizyki"
+\end{thebibliography}
+\end{document}
+
