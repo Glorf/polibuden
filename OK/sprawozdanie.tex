@@ -1,0 +1,115 @@
+\documentclass[a4paper]{article}
+\usepackage[polish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{etoolbox}
+\usepackage{todonotes}
+\date{}
+\patchcmd{\thebibliography}{\section*}{\section}{}{}
+
+\title{Podejście do rozwiązania problemu CVRPTW z wykorzystaniem metaheurystyki typu GRASP}
+\author{Michał Bień (132191, michal1.bien@gmail.com),\\ Krzysztof Bończyk (132194, bon.krzysztof@gmail.com)}
+
+\begin{document}
+\maketitle
+
+\section{Wprowadzenie}
+Problem marszrutyzacji z zyskami i oknami czasowymi (dalej określany jako CVRPTW), należy do klasy problemów NP-trudnych. W jego instancjach\cite{cvrptw} definiowane są punkty (nazywane dalej klientami), określane przez szereg wartości:\\
+\begin{itemize}
+\item n -- numer klienta
+\item x -- położenie klienta w osi x
+\item y -- położenie klienta w osi y
+\item q -- waga przedmiotu do odebrania
+\item e -- minimalny czas przyjazdu ciężarówki
+\item l -- maksymalny czas przyjazdu ciężarówki
+\item d -- czas obsługi (postoju u klienta)
+\end{itemize}
+Ciężarówki wyruszają z i kończą kurs w magazynie, który oznaczony jest indeksem $n = 0$. Magazyn ma zdefiniowaną tylko wartość $l$, która jest maksymalnym czasem, do którego wszystkie ciężarówki muszą do niego wrócić. Każda ciężarówka ma pojemność zdefiniowaną przez wartość $Q$, będącą stałą dla całej instancji. Ponadto instancje udostępniają wartość $V$, będącą maksymalną ilością ciężarówek; wartość tę na potrzeby zadania\cite{drozd} ignorujemy. Rozwiązanie problemu polega na podaniu najkrótszej trasy, wykorzystującej najmniej ciężarówek, która pozwoli na odwiedzenie wszystkich klientów i powrót do bazy w wyznaczonym czasie.
+
+\section{Podejście do rozwiązania}
+Ze względu na naturę zadania, możliwe są dwa niezależne podejścia optymalizacyjne: minimalizacja łącznej ilości ciężarówek na trasach, oraz minimalizacja łącznego czasu przejazdów wszystkich ciężarówek. W naszym podejściu rozważaliśmy tylko ten drugi scenariusz.
+
+\subsection{Rozwiązanie metaheurystyczne}
+Zastosowane przez nas rozwiązanie problemu opiera się na wykorzystaniu heurystyki zachłannej, na której bazie operuje metaheurystyka losująca. Dzięki takiemu podejściu nie ma potrzeby wykonywania żadnego rodzaju całościowej analizy instancji, która byłaby wysoce złożona czasowo. Heurystyka jest szybka, ale za to uruchamiana wiele razy z różnymi, losowanymi przez metaheurystykę, ograniczeniami, jest w stanie poprawić swój wynik.
+
+\subsection{Zastosowana heurystyka}
+Struktura rozwiązania opiera się na numerowanej liście wierzchołków tworzących graf pełny, którego wierzchołkami są poszczególni klienci. Heurystyka zachłanna symuluje podróż ciężarówki, ruszając z magazynu i tworząc w każdym kroku listę potencjalnych następników klienta. Eliminuje przy tym niemożliwych następników. Możliwi następnicy, przy założeniu że po ich odwiedzeniu ciężarówka musi jeszcze odwiedzić magazyn, identyfikowani są przy wykorzystaniu wzorów:
+$$\sum q_n + q_{next} <= Q$$
+$$\sum t_n + droga(n, next) <= l_{n+1}$$
+$$droga(n, next) + droga(next, magazyn) + d_n <= l_{magazyn} - \sum t_n$$
+Gdzie $\sum q_n$ to całkowity dotychczasowy ładunek ciężarówki na aktualnej trasie, $\sum t_n$ to jej całkowity dotychczasowy czas przejazdu, a next to testowany następny klient. Jeżeli klient spełnia warunki, dopisywany jest do listy możliwych wierzchołków. Następnie lista jest sortowana rosnąco według wartości współczynnika $w = 2*droga(n, n+1) - d$. Pierwszy element z listy jest wartością lokalnie najlepszą, wybieraną przez algorytm zachłanny. Jeżeli ciężarówka nie może już odwiedzić żadnego klienta, wraca do magazynu, skąd jest wysyłana kolejna.
+
+\subsection{Zastosowana metaheurystyka}
+Zastosowane podejście typu GRASP jest metaheurystyką parametryzowaną wartościami makr METASET oraz TIMESET. Metaheurystyka wykorzystuje heurystykę zachłanną do momentu sortowania tablicy możliwych następników. Następnie z listy losowany jest element o indeksie z przedziału <0, min(list.size(), METASET)-1> i jest on wybierany jako kolejny klient do odwiedzenia. Dzięki temu możliwe jest wybranie rozwiązania lokalnie gorszego, ale potencjalnie globalnie polepszającego rozwiązanie. W pierwszym przebiegu metaheurystyki uruchamiana jest ,,zwyczajna" heurystyka, a jej wynik zachowywany jako wynik najlepszy. Następnie algorytm zachłanny z losowaniem jest wykonywany cyklicznie, przez ilość sekund zdefiniowaną w makrze TIMESET. Każdy wynik jest porównywany z najlepszym. Jeżeli wynik okazuje się być lepszy od najlepszego, stare rozwiązanie jest usuwane i podmieniane na nowe.\\
+Losowanie odbywa się przy pomocy standardowego wywołania rand(), inicjowanego ziarnem w postaci wartości czasu (unix time stamp) na początku działania programu.
+
+\subsection{Zabiegi optymalizacyjne}
+W celu przyspieszenia działania heurystyki postanowiliśmy wyeliminować powtarzalność obliczeń związanych z wyznaczaniem odległości między punktami. W tym celu stworzyliśmy tablicę dwuwymiarową o wielkości $n^2$ (gdzie n jest liczbą klientów), przechowującą długości krawędzi między wierzchołkami. Jeśli długość nie znajduje się jeszcze w tablicy, przy pierwszym zapytaniu jest liczona i zapisywana. W kolejnych wywołaniach wykorzystywana jest wartość z tablicy. W efekcie przy dłuższych czasach działania metaheurystyki zauważyć można znaczący wzrost prędkości działania heurystyki, spowodowany zapełnianiem się listy zapamiętanych odległości.
+\begin{center}
+\includegraphics[width=100mm]{GRASP_wykres_IterS_od_Timeset.png}
+\end{center}
+\section{Analiza złożoności i czasu działania}
+Zastosowana heurystyka przechodzi przez każdy wierzchołek grafu (klienta), tworząc dla niego listę następników (sprawdzając wszystkich potencjalnych następników). Można więc łatwo wnioskować że złożoność obliczeniowa wynosi w tym przypadku $O(n^2)$, niezależnie od rozkładu danych. Określenie czasu działania rozwiązania uznaliśmy za niemiarodajne, ze względu na jego specyfikę - program działa tak długo, jak mu na to pozwolimy. Jako wyznacznik prędkości działania stosujemy w pomiarach liczbę wykonanych iteracji na sekundę.
+
+%\todo{Tutaj dać wykresy prędkości od czasu METASET, które potwierdzą tezę o tym że tablica pomaga}
+
+\section{Strojenie}
+\subsection{Metoda pomiaru}
+Makro TIMESET dobiera się w zależności od potrzeb. Jeśli mamy dość czasu, możemy je zwiększyć, a razem z nim szansę na poprawę wyniku. Z treści zadania wynika, że czas działania programu nie może przekroczyć 5 minut, więc tę wartość przyjęliśmy za wartość TIMESET.\\
+Makro METASET było testowane na instancji typu RC zawierającej 200 klientów przy rosnącej wartości TIMESET (od 10 do 120). Rozważaliśmy wartości METASET 2,3,4 oraz 5. Najlepiej zachowywała się wartość 4, co widać na poniższych wykresach.
+
+\subsection{Wykresy}
+Poniższe wykresy prezentują dane, które zostały wykorzystane do wyboru najlepszej wartości METASET. Przedstawiają procentową poprawę wyniku działania metaheurystyki losującej w stosunku do bazowej heurystyki  (oś Y) w zależności od TIMESET (oś X).\\
+Średnie popraw uzyskanych wyników wynoszą odpowiednio:\\
+Dla METASET = 2  	--	12.42096 \%\\
+Dla METASET = 3 	--	16.37727 \%\\	
+Dla METASET = 4 	--	19.96116 \%\\	
+Dla METASET = 5 	--	19.78177 \%\\
+
+\begin{center}
+\includegraphics[width=73mm]{GRASP_wykres_nRand___2.png}
+\includegraphics[width=73mm]{GRASP_wykres_nRand___3.png}
+\includegraphics[width=73mm]{GRASP_wykres_nRand___4.png}
+\includegraphics[width=73mm]{GRASP_wykres_nRand___5.png}
+\end{center}
+
+\newpage
+\section{Analiza efektywności rozwiązania}
+\subsection{Metoda pomiaru}
+Zależność prędkość działania programu od ilości punktów została zbadana za pomocą  pętli for o kroku 10. Wczytywane było narastająco linie zawierające informacje o klientach. \\
+\\
+Jakość rozwiązania została zbadana jako stosunek wyniku uzyskanego przez nasz program do Lower Bound, za które przyjeliśmy długość drogi w rozwiązaniu, w którym każdy klient jest odwiedzony przez inną ciężarówkę. Testy przeprowadziliśmy narastająco na instacji RC21010, dla różnych wartości TIMESET.
+
+%\todo{Napisać jak i co i kiedy mierzyliśmy, daj tu funkcje np na przyrost efektywności, a jak jakieś inne dodasz to też naklep}
+
+\subsection{Wykresy}
+Poniższy wykres prezentuje szybkość działania programu. Widać na nim jak bardzo jest ona zależna od ilości klientów. Z uwagi na tak duże różnice w pomiarach konieczne było zastosowanie wykresu logarytmicznego.
+\begin{center}
+\includegraphics[width=\textwidth]{czas.png}
+\end{center}
+\newpage
+Wykresy przedstawiają o ile procent wynik uzyskany w skutek działania programu jest lepszy od Lower Bound (oś Y) dla odpowiedniej ilości wczytanych z instancji klientów (oś X). Można zauważyć, że im większa jest wartość TIMESET, tym poprawa wyniku jest większa.
+\begin{center}
+\includegraphics[width=73mm]{efekt_1.png}
+\includegraphics[width=73mm]{efekt_5.png}
+\includegraphics[width=73mm]{efekt_10.png}
+\includegraphics[width=73mm]{efekt_30.png}
+\end{center}
+
+%\todo{Czyli jak wyszło; WYKRESY efektywności od czasu pomiarów dla różnych METASET i rozmiarów instancji}
+
+\section{Podsumowanie}
+Heurystyka zachłanna działa szybko, nie daje jednak dobrych wyników, zwłaszcza w instancjach, które nie są skupione wokół jednego punktu. Metaheurystyka typu GRASP daje szansę na poprawę tej sytuacji kosztem czasu. Jej zaletą jest to, że możemy bardzo łatwo dostosować długość działania programu do naszych potrzeb. Jednak z uwagi na losowość algorytmu, nie daje nam to żadnej gwarancji na poprawę wyniku. Znamienna jest nieznaczna korelacja między czasem działania algorytmu, a jakością uzyskanych rozwiązań. Być może lepszym byłby algorytm, który stale, przy każdej iteracji, dążyłby do poprawy swojego wyniku w sposób celowy. Przykładem takiego rozwiązania jest algorytm mrówkowy\cite{dorigo} (Ant Colony Optimization), który oprócz do rozszerzenia elementów probabilistycznych wykorzystuje wiedzę z poprzednich przejść przez graf.
+
+\begin{thebibliography}{3}
+\bibitem{cvrptw} http://neo.lcc.uma.es/vrp/vrp-instances/capacitated-vrp-with-time-windows-instances/ - instancje - prof. Marius M. Solomon
+\bibitem{drozd} http://www.cs.put.poznan.pl/mdrozdowski/dyd/ok/index.html - definicja zadania, instancje oraz sprawdzarka - prof. dr. hab. inż. Maciej Drozdowski
+\bibitem{dorigo} Marco Dorigo, Gianni Di Caro - The Ant Colony Optimization Meta-Heuristic
+\end{thebibliography}
+\pagebreak
+\tableofcontents
+\end{document}
