@@ -1,0 +1,230 @@
+\documentclass[a4paper]{article}
+\usepackage[polish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{etoolbox}
+\usepackage{todonotes}
+\date{}
+\patchcmd{\thebibliography}{\section*}{\section}{}{}
+
+\title{Podejście do rozwiązania problemu CVRPTW z wykorzystaniem metaheurystyki Ant Colony Optimization}
+\author{Michał Bień (132191, michal.bien@student.put.poznan.pl),\\ Krzysztof Bończyk (132194, krzysztof.bonczyk@student.put.poznan.pl)}
+
+\begin{document}
+\maketitle
+
+\section{Wprowadzenie}
+Problem marszrutyzacji z zyskami i oknami czasowymi (dalej określany jako CVRPTW), należy do klasy problemów NP-trudnych. W jego instancjach\cite{cvrptw} definiowane są punkty (nazywane dalej klientami), określane przez szereg wartości:\\
+\begin{itemize}
+\item n -- numer klienta
+\item x -- położenie klienta w osi x
+\item y -- położenie klienta w osi y
+\item q -- waga przedmiotu do odebrania
+\item e -- minimalny czas przyjazdu ciężarówki
+\item l -- maksymalny czas przyjazdu ciężarówki
+\item d -- czas obsługi (postoju u klienta)
+\end{itemize}
+Ciężarówki wyruszają z i kończą kurs w magazynie, który oznaczony jest indeksem $n = 0$. Magazyn ma zdefiniowaną tylko wartość $l$, która jest maksymalnym czasem, do którego wszystkie ciężarówki muszą do niego wrócić. Każda ciężarówka ma pojemność zdefiniowaną przez wartość $Q$, będącą stałą dla całej instancji. Ponadto instancje udostępniają wartość $V$, będącą maksymalną liczbą ciężarówek; wartość tę na potrzeby zadania\cite{drozd} ignorujemy. Rozwiązanie problemu polega na podaniu najkrótszej trasy, wykorzystującej najmniej ciężarówek, która pozwoli na odwiedzenie wszystkich klientów i powrót do bazy w wyznaczonym czasie.
+
+\section{Podejście do rozwiązania}
+Ze względu na naturę zadania, możliwe są dwa niezależne podejścia optymalizacyjne: minimalizacja łącznej liczby ciężarówek na trasach, oraz minimalizacja łącznego czasu przejazdów wszystkich ciężarówek. W naszym podejściu rozważaliśmy tylko ten drugi scenariusz.
+
+\subsection{Rozwiązanie}
+Do rozwiązywania problemu przystąpiliśmy z wykorzystaniem algorytmu mrówkowego (Ant Colony Optimization), rozwijającego ideę zastosowanego przez nas uprzednio algorytmu typu GRASP\cite{poprzednie}. Algorytm mrówkowy został opracowany przez Marco Dorigo\cite{dorigo} i swoje działanie opiera na niedeterministycznych przejściach przez graf ze zmiennym prawdopodobieństwem wyboru ścieżki. Wraz z kolejnymi przejściami, pewne ścieżki stają się preferowane, podczas gdy inne tracą na znaczeniu. W taki sposób wybierana jest jedna, najlepsza droga. Algorytm działa tak długo, aż czas jego działania zbliży się do wartości TIMESET na długość czasu mniejszą, niż czas wykonania poprzedniej iteracji. Zwracany jest najlepszy uzyskany wynik.
+
+\subsection{Parametry metaheurystyki}
+Algorytm mrówkowy przyjmuje pięć parametrów, które należy odpowiednio nastroić:
+\begin{itemize}
+\item $F_0$ będące całkowitą ilością feromonu na każdej ścieżce na początku algorytmu
+\item $\alpha$ będące wykładnikiem wpływu feromonu na prawdopodobieństwo wybrania danej ścieżki
+\item $\beta$ będące wykładnikiem wpływu nieatrakcyjności ścieżki (duża odległość i czas oczekiwania) na prawdopodobieństwo jej wybrania
+\item $\rho$ będące współczynnikiem ilości feromonu odparowującego ze wszystkich wierzchołków po każdym przejściu algorytmu.
+\item TIMESET będące maksymalnym czasem dozwolonym, po jakim algorytm powinien się zatrzymać
+\end{itemize}
+
+\subsection{Schemat algorytmu}
+Struktura rozwiązania opiera się na numerowanej liście wierzchołków tworzących graf pełny. Wierzchołkami grafu są poszczególni klienci. 
+\subsubsection{Faza podróży mrówki}
+Metaheurystyka symuluje podróż ciężarówki, ruszając z magazynu i tworząc w każdym kroku listę potencjalnych następników klienta. Eliminuje przy tym niemożliwych następników. Możliwi następnicy, przy założeniu że po ich odwiedzeniu ciężarówka musi jeszcze odwiedzić magazyn, identyfikowani są przy wykorzystaniu wzorów:
+$$\sum q_n + q_{next} <= Q$$
+$$\sum t_n + droga(n, next) <= l_{n+1}$$
+$$droga(n, next) + droga(next, magazyn) + d_n <= l_{magazyn} - \sum t_n$$
+Gdzie $\sum q_n$ to całkowity dotychczasowy ładunek ciężarówki na aktualnej trasie, $\sum t_n$ to jej całkowity dotychczasowy czas przejazdu, a next to testowany następny klient. Jeżeli klient spełnia warunki, dopisywany jest do listy możliwych wierzchołków. Wierzchołek otrzymuje ocenę atrakcyjności, która jest również dodawana do sumy całkowitej atrakcyjności wszystkich wierzchołków możliwych do wybrania, a definiowana jest według wzoru:
+$$ a = f^\alpha * (\frac{1}{2*droga(n, next) + max(0, \sum t_n - d_{n+1})})^\beta $$
+gdzie f jest ilością feromonu na ścieżce.\\
+Lista wierzchołków sortowana jest malejąco według wartości atrakcyjności (a). Następnie, korzystając z jednostajnego rozkładu liczb rzeczywistych (dostarczanego przez bibliotekę standardową i inicjowanego ziarnem - czasem na początku działania programu), losujemy liczbę rzeczywistą z zakresu $<0, \sum a>$ Liczba jest porównywana z sumą współczynników atrakcyjności sprawdzonego już podzbioru, definiowaną jako $$ A_x = \sum_{i=0}^x a_i $$
+Jeżeli wartość ta jest mniejsza od wylosowanej liczby, A jest powiększane o współczynnik atrakcyjności klienta, i rozpatrywany jest kolejny klient. Jeżeli wartość jest równa lub większa - wierzchołek jest wybierany. W ten sposób uzyskujemy pożądany ważony rozkład prawdopodobieństwa wyboru wierzchołków, unikając przy tym powtarzających się losowań czy niejednoznacznych wyborów.\\
+Gdy lista potencjalnych następników okazuje się pusta, ciężarówka wraca do magazynu. W zależności od tego, czy pozostały jeszcze wierzchołki do odwiedzenia, z magazynu wysyłana jest kolejna ciężarówka lub algorytm wchodzi w fazę obliczania feromonu.
+\subsubsection{Faza obliczania feromonu}
+Gdy mrówka zakończy swoją podróż, aktualizowane są dane dotyczące feromonów. Wpierw następuje odparowanie feromonu. Proces ten następuje po przejściu każdej mrówki i jest niezależny od jakości znalezionej przez nią ścieżki. Ilość feromonu na każdej krawędzi grafu po odparowaniu definujemy jako: $$f_{n+1} = (1-\rho)*f_n $$
+Mrówka, aby wskazać swoim następczyniom atrakcyjność wybranej przez siebie drogi, pozostawia na niej feromon. Korzystając z listy wierzchołków, będącej rozwiązaniem wypracowanym przez mrówkę, uzyskujemy listę wszystkich krawędzi przejścia. Wartość feromonu na każdej z tych krawędzi zostaje powiększona o wartość: $$ L = \frac{1}{\sum t} $$ Gdzie $\sum t$ jest całkowitym czasem przejścia wypracowanym przez mrówkę. A więc im krótsza jest trasa, tym więcej feromonu mrówka zostawia na każdej przebytej w trasie ścieżce. W ten sposób zwiększane jest prawdopodobieństwo wyboru korzystniejszej ścieżki przez kolejną mrówkę, która rusza z magazynu bez wiedzy o wynikach poprzednich, mając jednak do dyspozycji zaktualizowany ślad feromonowy.
+
+\subsection{Zabiegi optymalizacyjne}
+W celu przyspieszenia działania algorytmu wykorzystaliśmy - podobnie jak w poprzednim rozwiązaniu\cite{poprzednie} - tablicę przechowująca obliczone długości ścieżek. Biorąc jednak pod uwagę, że długość ścieżek w obu kierunkach jest taka sama, połowa tablicy pozostawała niewykorzystana. Inspirując się rozwiązaniem zaproponowanym przez dr. inż. M. Radoma\cite{radom}, przystosowaliśmy więc jej część górnotrójkątną do przechowywania długości ścieżek, a dolnotrójkątną do przechowywania wartości feromonu: dostęp do feromonu i długości ścieżki realizowany jest w następujący sposób: 
+$$ d_{ij} = T[i][j] : i > j $$
+$$ f_{ij} = T[j][i] : j > i $$
+Strukturę tę najlepiej ukazuje poniższy rysunek:
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=70mm]{sdanych.png}
+\end{center}
+\caption{Schemat reprezentacji danych w tablicy (pochodzi z wykładów dr. inż. Radoma)\cite{radom}}
+\end{figure}
+\newpage
+\section{Analiza złożoności i czasu działania}
+\subsection{Teoretyczna}
+Mrówka przechodzi przez każdy wierzchołek grafu, tworząc dla niego listę następników (sprawdzając wszystkich potencjalnych następników). Można więc łatwo wnioskować że złożoność obliczeniowa każdego przebiegu wynosi $O(n^2)$. Ze względu na konieczność wykonywania obliczeń dla każdego potencjalnego następnika, prędkość działania algorytmu w jednej iteracji jest zależna od układu instancji. Przypadkiem najlepszym jest sytuacja, gdy z każdego wierzchołka istnieje tylko jeden potencjalny następnik. Przypadkiem najgorszym - gdy przez większość czasu działania algorytmu z każdego wierzchołka wybrać można dowolny następny wierzchołek.\\ Jako wyznacznik prędkości działania stosujemy w pomiarach liczbę wykonanych iteracji na sekundę.
+\subsection{Zbadana}
+Poniższy wykres prezentuje zależność szybkości, czyli iteracji na sekundę (oś Y), od ilości klientów (oś X).\\
+Widać na nim, że wykonuje mniej iteracji niż program wykorzystujący metaheurystykę GRASP. Wynika to z konieczności obliczania za każdym razem prawdopodobieństwa dla każdego z potencjalnych następników. 
+\begin{center}
+\includegraphics[width=146mm]{szybkosc.png}
+\end{center}
+
+\section{Strojenie}
+Na początku wartości parametrów były w różnym stopniu zmieniane, aby sprawdzić jaki zakres dla każdego parametru należy zbadać. Następnie, na instancji typu RC zawierającej 1000 klientów, była mierzona w procentach poprawa wyniku w stosunku do wyniku uzyskanego z heurystyki wykorzystywanej do poprzedniego rozwiązania problemu\cite{poprzednie} (oś Y) dla różnych czasów działania (oś X). Na tej podstawie określiliśmy dla jakich wartości parametrów nasz program najszybciej poprawia wynik. Z uwagi na niedeterminizm algorytmu, pomiary dla każdej wartości parametrów zostały wykonane 3 razy. Wartości średnie, mediany, oraz kwartyle zostały wyliczone z wszystkich 3 serii pomiarów dla danej wartości i parametru.
+
+\subsection{$F_0$}
+Za najlepszą wartość $F_0$ uznaliśmy 0.8, gdyż mimo niedużych różnic w wynikach uzyskało nieco lepszą średnią niż inne wartości.\\
+Pozostałe parametry przy pomiarach:
+$$\alpha=4, ~ \beta=1.5, ~ \rho=0.1$$
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+wartość $F_0$ & średnia & mediana & kwartyl 1 & kwartyl 2 & kwartyl 3 & kwartyl 4 \\
+\hline
+0.6 & 12.3312 & 18.5691 & 5.4856 & 18.5691 & 19.7982 & 21.3549 \\
+\hline
+0.7 & 12.4358 & 18.5691 & 6.4786 & 18.5691 & 19.7982 & 21.3549 \\
+\hline
+0.8 & 12.4815 &	18.5691 & 6.4786 & 18.5691 & 19.7982 & 21.3549 \\
+\hline
+0.9 & 11.8853 & 18.0928 & 5.4856 & 18.0928 & 19.7982 & 21.3549 \\
+\hline
+\end{tabular}
+
+\includegraphics[width=73mm]{INIT0_6.png}
+\includegraphics[width=73mm]{INIT0_7.png}
+\includegraphics[width=73mm]{INIT0_8.png}
+\includegraphics[width=73mm]{INIT0_9.png}
+\end{center}
+
+\subsection{$\alpha$}
+Za najlepszą wartość $\alpha$ uznaliśmy 4.\\
+Pozostałe parametry przy pomiarach:
+$$F_0=0.5, ~ \beta=1.5, ~ \rho=0.1$$
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+wartość $\alpha$ & średnia & mediana & kwartyl 1 & kwartyl 2 & kwartyl 3 & kwartyl 4 \\
+\hline
+3 & 8.3922 & 11.2887 & 5.7386 & 11.2887 & 13.8786 & 14.6329 \\
+\hline
+4 & 8.9704 & 13.3354 & 7.2736 & 13.3354 & 14.9045 & 16.8060 \\
+\hline
+4.5 & 8.2368 & 12.4248 & 5.3132 & 12.4248 & 16.4678 & 17.7797 \\
+\hline
+5 & 3.7250 & 6.6697 & 1.8304 & 6.6697 & 7.7084 & 9.2925 \\
+\hline
+\end{tabular}
+
+\includegraphics[width=73mm]{ALPHA3.png}
+\includegraphics[width=73mm]{ALPHA4.png}
+\includegraphics[width=73mm]{ALPHA4_5.png}
+\includegraphics[width=73mm]{ALPHA5.png}
+\end{center}
+
+\subsection{$\beta$}
+Za najlepszą wartość $\beta$ uznaliśmy 1.5. Uzyskało niższą średnią niż wartość 2, co wynikało ze słabych wyników dla krótkich czasów. Jednak przy dłuższym działaniu programu następował dużo szybszy wzrost, co widać na kwartylach.\\
+Pozostałe parametry przy pomiarach:
+$$F_0=0.5, ~ \alpha=4, ~ \rho=0.1$$
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+wartość $\beta$ & średnia & mediana & kwartyl 1 & kwartyl 2 & kwartyl 3 & kwartyl 4 \\
+\hline
+1 & 8.1513 & 11.6716 & 6.4258 & 11.6716 & 12.7882 & 15.2760 \\
+\hline
+1.5 & 9.2702 & 17.4087 & 2.5817 & 17.4087 & 19.2118 & 19.7982 \\
+\hline
+2 & 10.4851 & 13.6622 & 10.0171 & 13.6622 & 14.9045 & 16.8060 \\
+\hline
+2.5 & 3.6942 & 8.0701 & -0.6680 & 8.0701 & 11.1528 & 15.6167 \\
+\hline
+\end{tabular}
+
+\includegraphics[width=73mm]{BETA1.png}
+\includegraphics[width=73mm]{BETA1_5.png}
+\includegraphics[width=73mm]{BETA2.png}
+\includegraphics[width=73mm]{BETA2_5.png}
+\end{center}
+
+\subsection{$\rho$}
+Za najlepszą wartość $\rho$ uznaliśmy 0.1.\\
+Pozostałe parametry przy pomiarach:
+$$F_0=0.5, ~ \alpha=4, ~ \beta=1$$
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+wartość $\rho$ & średnia & mediana & kwartyl 1 & kwartyl 2 & kwartyl 3 & kwartyl 4 \\
+\hline
+0.1 & 6.8399 & 8.2624 & 5.5646 & 8.2624 & 8.8476 & 11.8339 \\
+\hline
+0.2 & 6.0984 & 6.6517 & 4.5705 & 6.6517 & 8.0018 & 9.2862 \\
+\hline
+0.3 & 3.1546 & 3.9456 & 3.3315 & 3.9456 & 5.1433 & 6.5839 \\
+\hline
+0.4 & 2.9063 & 3.9718 & 2.9092 & 3.9718 & 4.4333 & 5.9685 \\
+\hline
+\end{tabular}
+
+\includegraphics[width=73mm]{RO0_1.png}
+\includegraphics[width=73mm]{RO0_2.png}
+\includegraphics[width=73mm]{RO0_3.png}
+\includegraphics[width=73mm]{RO0_4.png}
+\end{center}
+
+\section{Analiza efektywności rozwiązania}
+\subsection{Metoda pomiaru}
+Zależność prędkość działania programu od ilości punktów została zbadana za pomocą  pętli for o kroku 10. Wczytywane było narastająco linie zawierające informacje o klientach.\\
+\\
+Jakość rozwiązania została zbadana jako stosunek wyniku uzyskanego przez nasz program do \textbf{Lower Bound}, za które przyjęliśmy łączną długość drogi w rozwiązaniu, w którym każdy klient jest odwiedzony przez inną ciężarówkę, czyli długość drogi od magazynu do klienta i z powrotem, czas oczekiwania na początek okna czasowego, oraz czas obsługi. Testy przeprowadziliśmy narastająco na instacji RC21010, dla różnych wartości TIMESET.
+
+\subsection{Wykresy}
+Wykresy przedstawiają zależność poprawy wyniku względem Lower Bound (oś Y) od ilości klientów (oś X) dla różnych wartości TIMESET.\\
+Widać na nich, że algorytm ACO w dużo bardziej przewidywalny niż GRASP sposób poprawia swoje wyniki w czasie (jeśli otrzyma ilość czasu odpowiednią do ilości klientów). Przy krótkim działaniu widać dużo większy rozrzut i losowość, jednak przy nieco dłuższym działaniu programu poprawa stabilizuje się.
+\begin{center}
+\includegraphics[width=73mm]{EFF1.png}
+\includegraphics[width=73mm]{EFF5.png}
+\includegraphics[width=73mm]{EFF10.png}
+\includegraphics[width=73mm]{EFF30.png}
+\\
+Poprawa procentowa względem LB dla pełnej instancji (1000 klientów), oraz TIMESET=300:\\
+\begin{tabular}{|c|c|}
+\hline
+ACO & GRASP \\
+\hline
+92.73032 & 91.88574 \\
+\hline
+92.70460 & 91.88525 \\
+ \hline
+92.70460 & 92.07841 \\
+ \hline
+\end{tabular}
+\end{center}
+\section{Podsumowanie}
+Metaheurystyka Ant Colony Optimalization jest zdecydowanie lepszym rozwiązaniem niż GRASP. Przewiduje pewną losowość, jednak ze względu na zmienne prawdopodobieństwo wyboru wierzchołków gwarantuje ciągłą poprawę, czego brakowało naszemu poprzedniemu rozwiązaniu. Nie daje jednak raczej szans na szybką poprawę wyniku przy krótkich uruchomieniach. Nadaje się więc idealnie do dłuższych obliczeń, w których GRASP zawodził, zwracając wciąż te same rozwiązania.
+
+\begin{thebibliography}{5}
+\bibitem{cvrptw} http://neo.lcc.uma.es/vrp/vrp-instances/capacitated-vrp-with-time-windows-instances/ - instancje - prof. Marius M. Solomon
+\bibitem{drozd} http://www.cs.put.poznan.pl/mdrozdowski/dyd/ok/index.html - definicja zadania, instancje oraz sprawdzarka - prof. dr. hab. inż. Maciej Drozdowski
+\bibitem{dorigo} Marco Dorigo, Gianni Di Caro - The Ant Colony Optimization Meta-Heuristic
+\bibitem{radom} http://www.cs.put.poznan.pl/mradom/resources/labs/OptKomb/CI\_wyklad\_ewoluc\_4.pdf - slajdy z wykładu OK - dr. inż. Marcin Radom
+\bibitem{poprzednie} Podejście do rozwiązania problemu CVRPTW z wykorzystaniem metaheurystyki typu GRASP - Michał Bień, Krzysztof Bończyk
+\end{thebibliography}
+\pagebreak
+\end{document}

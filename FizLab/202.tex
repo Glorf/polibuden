@@ -1,0 +1,304 @@
+\documentclass[polish,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,amsthm}
+\usepackage[english,main=polish]{babel}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{etoolbox}
+\usepackage{pgfplots}
+\usepackage{gensymb}
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\patchcmd{\thebibliography}{\section*}{\section}{}{}
+
+\selectlanguage{polish}
+\title{FizLab4}
+
+\newcommand{\PRzFieldDsc}[1]{\sffamily\bfseries\scriptsize #1}
+\newcommand{\PRzFieldCnt}[1]{\textit{#1}}
+\newcommand{\PRzHeading}[8]{
+\begin{center}
+\begin{tabular}{ p{0.32\textwidth} p{0.15\textwidth} p{0.15\textwidth} p{0.12\textwidth} p{0.12\textwidth} }
+
+  &   &   &   &   \\
+\hline
+\multicolumn{5}{|c|}{}\\[-1ex]
+\multicolumn{5}{|c|}{{\LARGE #1}}\\
+\multicolumn{5}{|c|}{}\\[-1ex]
+
+\hline
+\multicolumn{1}{|l|}{\PRzFieldDsc{Kierunek}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Specjalność}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Rok studiów}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Symbol grupy lab.}} \\
+\multicolumn{1}{|c|}{\PRzFieldCnt{#2}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#3}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#4}}		& \multicolumn{2}{|c|}{\PRzFieldCnt{#5}} \\
+
+\hline
+\multicolumn{4}{|l|}{\PRzFieldDsc{Temat Laboratorium}}		& \multicolumn{1}{|l|}{\PRzFieldDsc{Numer lab.}} \\
+\multicolumn{4}{|c|}{\PRzFieldCnt{#6}}				& \multicolumn{1}{|c|}{\PRzFieldCnt{#7}} \\
+
+\hline
+\multicolumn{5}{|l|}{\PRzFieldDsc{Skład grupy ćwiczeniowej oraz numery indeksów}}\\
+\multicolumn{5}{|c|}{\PRzFieldCnt{#8}}\\
+
+\hline
+\multicolumn{3}{|l|}{\PRzFieldDsc{Uwagi}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Ocena}} \\
+\multicolumn{3}{|c|}{\PRzFieldCnt{\ }}		& \multicolumn{2}{|c|}{\PRzFieldCnt{\ }} \\
+
+\hline
+\end{tabular}
+\end{center}
+}
+\pgfplotsset{compat=1.14}
+\begin{document}
+\PRzHeading{Laboratorium Fizyczne}{Informatyka}{--}{II}{1}{ Badanie transformatora }{202}{Michał Bień(132191), Wojciech Taisner(132330)}{}
+
+\section{Wstęp Teoretyczny}
+\begin{quotation}\cite{lapsa}
+Transformator jest urządzeniem powszechnie wykorzystywanym w energetyce, elektrotechnice, elektronice, spawalnictwie itd. Służy on do zamiany napięcia i natężenia prądu przemiennego na inne napięcie i natężenie prądu bez zmiany częstotliwości prądu. Przykładowo transformatory umożliwiają zamianę wysokiego napięcia stosowanego w energetycznych liniach przesyłowych (np. 400000V) na znacznie niższe wykorzystywane w domowych urządzeniach. Transformatory w zależności od zastosowania mają różnorodną budowę, a teoria związana z ich działaniem jest bardzo złożona.\\
+Transformator składa się z ferromagnetycznego rdzenia i co najmniej dwóch uzwojeń (cewek)  nawiniętych na niego. Uzwojenia  pierwotne  (zasilające)  i  wtórne  (odbiorcze)  stanowią  obwody elektryczne transformatora, natomiast rdzeń transformatora jest jego obwodem magnetycznym.
+Zasada działania transformatora opiera się na zjawisku indukcji elektromagnetycznej. Rozróżniamy trzy podstawowe stany pracy transformatora: stan jałowy, stan zwarcia oraz stan obciążenia.
+\end{quotation}
+\subsection{Stan jałowy (stan nieobciążony) transformatora}
+O stanie jałowym transformatora mówimy w sytuacji, gdy uzwojenie pierwotne podłączone jest do źródła prądu przemiennego, natomiast uzwojenie wtórne jest rozwarte. Mając informację o ilości zwojów w uzwojeniu wtórnym i pierwotnym, bądź wartości napięć po obu stronach, możemy wyliczyć przekładnię transformatora:
+$$K=\frac{U_1}{U_2}=\frac{n_1}{n_2}$$
+\subsection{Stan zwarcia transformatora}
+O stanie zwarcia transformatora (stanie maksymalnego obciążenia) mówimy w przypadku, gdy uzwojenie pierwotne jest połączone ze źródłem prądu przemiennego, a uzwojenie wtórne jest zwarte. Korzystając z zasady zachowania energii, możemy stwierdzić że w takiej sytuacji:
+$$U_1I_1 = U_2I_2$$
+Skąd wyprowadzić można wzór na przekładnię transformatora:
+$$\frac{1}{K}=\frac{I_1}{I_2}=\frac{n_2}{n_1}$$
+\subsection{Sprawność transformatora}
+Sprawność transformatora to stosunek mocy oddanej $P_2$ do mocy pobranej ze źródła $P_1$. Chcąc wyrazić ją w procentach, korzystamy ze wzoru:
+$$ \eta = \frac{P_2}{P_1}100\% = \frac{U_2I_2}{U_1I_1}100\% $$
+\section{Tabela wyników}
+\subsection{Badanie transformatora w stanie jałowym}
+\subsubsection{Uzwojenie $n_1 = 400, n_2 = 600$}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Uustaw[V] &  U1 [V] &  U2 [V] &  $K[\frac{U_1}{U_2}]$ \\
+\hline
+1 &  1,119 &  1,541 &  0,726151849 \\
+2 &  2,238 &  3,108 &  0,72007722 \\
+3 &  3,351 &  4,67 &  0,717558887 \\
+4 &  4,45 &  6,25 &  0,712 \\
+5 &  5,57 &  7,86 &  0,708651399 \\
+6 &  6,68 &  9,46 &  0,706131078 \\
+7 &  7,8 &  11,06 &  0,705244123 \\
+8 &  8,92 &  12,7 &  0,702362205 \\
+9 &  10,06 &  14,33 &  0,702023726 \\
+10 &  11,16 &  15,91 &  0,701445632 \\
+\hline
+\end{tabular}
+\end{table}
+
+$$K_{sr} = 0,710164612$$
+$$K_{teoretyczne} = \frac{n_1}{n_2} = 0,666666667$$
+$$\Delta K = 0,011363$$
+
+\subsubsection{Uzwojenie $n_1 = 400, n_2 = 400$}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Uustaw[V] &  U1 [V] &  U2 [V] &  $K[\frac{U_1}{U_2}]$ \\
+\hline
+1 &  1,123 &  1,03 &  1,090291262 \\
+2 &  2,238 &  2,074 &  1,079074253 \\
+3 &  3,359 &  3,132 &  1,07247765 \\
+4 &  4,46 &  4,17 &  1,069544365 \\
+5 &  5,58 &  5,24 &  1,064885496 \\
+6 &  6,69 &  6,31 &  1,06022187 \\
+7 &  7,82 &  7,38 &  1,059620596 \\
+8 &  8,93 &  8,47 &  1,054309327 \\
+9 &  10,06 &  9,55 &  1,053403141 \\
+10 &  11,18 &  10,64 &  1,05075188 \\
+\hline
+\end{tabular}
+\end{table}
+
+$$K_{sr} = 1,065457984$$
+$$K_{teoretyczne} = \frac{n_1}{n_2} = 1$$
+$$\Delta K = 0,017047$$
+
+\subsubsection{Uzwojenie $n_1 = 400, n_2 = 200$}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Uustaw[V] &  U1 [V] &  U2 [V] &  $K[\frac{U_1}{U_2}]$ \\
+\hline
+1 &  1,124 &  0,58 &  1,937931034 \\
+2 &  2,24 &  1,032 &  2,170542636 \\
+3 &  3,361 &  1,562 &  2,151728553 \\
+4 &  4,46 &  2,091 &  2,132950741 \\
+5 &  5,58 &  2,625 &  2,125714286 \\
+6 &  6,7 &  3,159 &  2,120924343 \\
+7 &  7,82 &  3,695 &  2,116373478 \\
+8 &  8,93 &  4,21 &  2,121140143 \\
+9 &  10,06 &  4,75 &  2,117894737 \\
+10 &  11,17 &  5,29 &  2,111531191 \\
+\hline
+\end{tabular}
+\end{table}
+
+$$K_{sr} = 2,110673114$$
+$$K_{teoretyczne} = \frac{n_1}{n_2} = 2$$
+$$\Delta K = 0,03371$$
+
+\subsection{Badanie transformatora w stanie zwarcia}
+\subsubsection{Uzwojenie $n_1 = 400, n_2 = 600$}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+Uustaw [V] &  I1 [A] &  I2 [A]  \\
+\hline
+1 &  0,048 &  0,029  \\
+2 &  0,097 &  0,059 \\
+3 &  0,147 &  0,09 8 \\
+4 &  0,196 &  0,12  \\
+5 &  0,245 &  0,151  \\
+6 &  0,293 &  0,182  \\
+7 &  0,343 &  0,212  \\
+8 &  0,391 &  0,243  \\
+9 &  0,44 &  0,274  \\
+10 &  0,488 &  0,305 \\
+\hline
+\end{tabular}
+\end{table}
+
+%$$K_{sr} = 0,616167728$$
+%$$K_{teoretyczne} = 0,666666667$$
+
+\subsubsection{Uzwojenie $n_1 = 400, n_2 = 400$}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+Uustaw [V] &  I1 [A] &  I2 [A]  \\
+\hline
+1 &  0,048 &  0,043  \\
+2 &  0,096 &  0,088  \\
+3 &  0,145 &  0,134  \\
+4 &  0,193 &  0,179  \\
+5 &  0,241 &  0,224  \\
+6 &  0,29 &  0,27 \\
+7 &  0,338 &  0,315 \\
+8 &  0,386 &  0,361  \\
+9 &  0,433 &  0,405  \\
+10 &  0,481 &  0,451  \\
+\hline
+\end{tabular}
+\end{table}
+
+%$$K_{sr} = 0,926474477$$
+%$$K_{teoretyczne} = 1$$
+
+\subsubsection{Uzwojenie $n_1 = 400, n_2 = 200$}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+Uustaw [V] &  I1 [A] &  I2 [A]  \\
+\hline
+1 &  0,044 &  0,082  \\
+2 &  0,09 &  0,166  \\
+3 &  0,13 &  0,25 \\
+4 &  0,18 &  0,334  \\
+5 &  0,225 &  0,418 \\
+6 &  0,269 &  0,502  \\
+7 &  0,314 &  0,586  \\
+8 &  0,358 &  0,669 \\
+9 &  0,402 &  0,752 \\
+10 &  0,446 &  0,838  \\
+\hline
+\end{tabular}
+\end{table}
+
+%$$K_{sr} = 1,869518972$$
+%$$K_{teoretyczne} = 2$$
+
+\subsection{Badanie transformatora w stanie obciążonym}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+R [$\Omega$] &  U1[V] &  I1[A] &  U2[V] &  I2[A] &  P1[W] &  P2[W] &  $\eta$ [\%] \\
+\hline
+1 &  4,41 &  0,172 &  0,358 &  0,318 &  0,75852 &  0,113844 &  15,00870115 \\
+2 &  4,41 &  0,154 &  0,698 &  0,285 &  0,67914 &  0,19893 &  29,29145684 \\
+3 &  4,4 &  0,14 &  0,917 &  0,258 &  0,616 &  0,236586 &  38,40681818 \\
+4 &  4,41 &  0,132 &  1,035 &  0,241 &  0,58212 &  0,249435 &  42,84941249 \\
+5 &  4,41 &  0,123 &  1,145 &  0,225 &  0,54243 &  0,257625 &  47,4946076 \\
+6 &  4,41 &  0,111 &  1,3 &  0,2 &  0,48951 &  0,26 &  53,11433883 \\
+8 &  4,41 &  0,094 &  1,472 &  0,169 &  0,41454 &  0,248768 &  60,01061417 \\
+10 &  4,42 &  0,083 &  1,582 &  0,146 &  0,36686 &  0,230972 &  62,95916698 \\
+12 &  4,42 &  0,076 &  1,653 &  0,132 &  0,33592 &  0,218196 &  64,95475113 \\
+14 &  4,42 &  0,068 &  1,715 &  0,116 &  0,30056 &  0,19894 &  66,18977908 \\
+16 &  4,43 &  0,063 &  1,763 &  0,105 &  0,27909 &  0,185115 &  66,32806622 \\
+18 &  4,44 &  0,058 &  1,799 &  0,096 &  0,25752 &  0,172704 &  67,06430568 \\
+22 &  4,44 &  0,051 &  1,859 &  0,08 &  0,22644 &  0,14872 &  65,67744215 \\
+26 &  4,44 &  0,045 &  1,898 &  0,069 &  0,1998 &  0,130962 &  65,54654655 \\
+30 &  4,44 &  0,041 &  1,926 &  0,06 &  0,18204 &  0,11556 &  63,48055372 \\
+34 &  4,45 &  0,039 &  1,947 &  0,053 &  0,17355 &  0,103191 &  59,45894555 \\
+$\infty$ &  4,46 &  0,022 &  2,094 &  0 &  - &  - &  - \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\section{Obliczenia}
+Do oblicznia błędów pomiaru użyliśmy parmetrów dla miernika MASTECH MY70/74
+\newline
+Dla pomiarów napięcia AC dokładność pomiaru wynosi 0,8\%
+\newline
+Dla pomiarów natężenia AC dokładność pomiaru wynosi 1,8\%
+\subsection{Oblicznaie wartości błędu przekładni transformatora}
+Dany jest wzór
+$$K = \frac{U_1}{U_2} = \frac{n_1}{n_2}$$
+Z tego wynika:
+$$K_{teoretyczne} = \frac{n_1}{n_2}$$
+$$K = U_{1}^{1}*U_{2}^{-1}$$
+$$\Delta K = K*(|1*\frac{\Delta U_1}{U_1}|+|-1*\frac{\Delta U_2}{U_2}|) $$
+Przykład:
+$$ \Delta K_1 = 0,726152 * (|1*\frac{0,008952 V}{1,119 V}|+|-1*\frac{0,012328 V}{1,541 V}|) = 0,011618 $$
+\subsection{Zaokrąglanie wyników}
+Przekładnia transformatora:
+\subsubsection{Uzwojenie $n_1 = 400, n_2 = 600$}
+$$K_{sr} = 0,710164612$$
+$$\Delta K = 0,011363$$
+$$\Delta K = 0,011$$
+$$Przykład:(0,02-0,011)/0,011 = 0,(81)>0,1$$
+$$K_{sr}=0,710\pm0,11$$
+\subsubsection{Uzwojenie $n_1 = 400, n_2 = 400$}
+$$K_{sr} = 1,065457984$$
+$$\Delta K = 0,017047$$
+$$\Delta K = 0,017$$
+$$K_{sr} = 1,065\pm0,017$$
+\subsubsection{Uzwojenie $n_1 = 400, n_2 = 200$}
+$$K_{sr} = 2,110673114$$
+$$\Delta K = 0,03371$$
+$$\Delta K = 0,04$$
+$$K_{sr} = 2,11\pm 0,04$$
+
+\section{Wykresy}
+\subsection{Wykres $U_2 = f(U_1)$ - badanie transformatora w stanie jałowym}
+\includegraphics[width=\textwidth]{w1.PNG}
+\subsection{Wykres $I_2 = f(I_1)$ - badanie transformatora w stanie zwarcia}
+\includegraphics[width=\textwidth]{w2.PNG}
+\subsection{Wykres $U_2 = f(I_2)$ - badanie transformatora w stanie obciążenia}
+\includegraphics[width=\textwidth]{w3.PNG}
+\subsection{Wykres $\mu = f(I_2)$ - badanie transformatora w stanie obciążenia}
+\includegraphics[width=\textwidth]{w4.PNG}
+\section{Wnioski}
+Otrzymane, w wyniku przeprowadzenie doświadczenia, wartości przekładni transformatora są zbliżone do wyzanczonych wartości teoretycznych. \newline
+W stanie obciążenia, w obwodzie wtórnym, wzrost natężenia skutkuje spadkiem napięcia, a co za tym idzie, spadkiem sprawności.\newline
+Zaobserwowane wyniki zgadzają się z przedstawionymi zależnościami teoretycznymi. \newline
+Błedy wynikają z niezerowej rezystancji w uzwojeniu, i niedokłądności źródła prądu i przyrządów pomiarowych.
+
+\begin{thebibliography}{1}
+\bibitem{lapsa} Łapsa K. - "Badanie transformatora"
+\end{thebibliography}
+\end{document}
+

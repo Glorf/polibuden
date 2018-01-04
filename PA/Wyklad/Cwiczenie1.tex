@@ -1,0 +1,138 @@
+\documentclass[a4paper]{article}
+\usepackage[polish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\author{}
+\title{PA - 1. kolos in blanco}
+\date{}
+\begin{document}
+\maketitle
+\section{Definicje charakterystyk}
+\begin{itemize}
+\item \textbf{Transmitancją operatorową} \\\\\\\\
+\item \textbf{Charakterystyką czasową} \\\\
+\item \textbf{Charakterystyką (odpowiedzią) impulsową g(t) układu} \\\\\\\\\\
+\item \textbf{Charakterystyką (odpowiedzią) skokową h(t) układu} \\\\\\\\\\\\\\
+\item \textbf{Transmitancją widmową układu} \\\\\\\\\\\\\\\\\\\\
+\end{itemize}
+\section{Podstawowe charakterystyki układów sterowanie}
+\begin{itemize}
+\item \textbf{Charakterystyką amplitudowo-fazową układu} \\\\\\\\\pagebreak
+\item \textbf{Charakterystyką amplitudową układu} \\\\\\\\
+\item \textbf{Charakterystyką fazową układu} \\\\\\\\
+\item \textbf{Logarytmiczną charakterystyką amplitudową} \\\\\\\\
+\item \textbf{Logarytmiczną charakterystyką fazową} \\\\\\\\
+\end{itemize}
+
+\section{Charakterystyka podstawowych członów układów sterowania}
+\subsection{Człon bezinercyjny}
+\begin{itemize}
+\item \emph{Transmitancja: }
+\item \emph{Przykład: }
+\item \emph {Oznaczenie: } \\\\\\\\\\
+\item \emph{Charakterystyka skokowa: } \\\\\\\\\\
+\item \emph{Charakterystyka amplitudowo-fazowa: } \\\\\\\\\\
+\end{itemize}
+\subsection{Człon inercyjny pierwszego rzędu}
+\begin{itemize}
+\item \emph{Transmitancja: }
+\item \emph{Przykład: }
+\item \emph {Oznaczenie: } \\\\\\\\\\
+\item \emph{Charakterystyka skokowa: } \\\\\\\\\\
+\item \emph{Charakterystyka amplitudowo-fazowa: } \\\\\\\\\\
+\end{itemize}
+\subsection{Człon inercyjny drugiego rzędu}
+\begin{itemize}
+\item \emph{Transmitancja: }
+\item \emph{Przykład: }
+\item \emph {Oznaczenie: } \\\\\\\\\\
+\item \emph{Charakterystyka skokowa: } \\\\\\\\\\
+\item \emph{Charakterystyka amplitudowo-fazowa: } \\\\\\\\\\
+\end{itemize}
+\subsection{Obiekt różniczkujący idealny}
+\begin{itemize}
+\item \emph{Transmitancja: }
+\item \emph{Przykład: }
+\item \emph {Oznaczenie: } \\\\\\\\\\
+\item \emph{Charakterystyka skokowa: } \\\\\\\\\\
+\item \emph{Charakterystyka amplitudowo-fazowa: } \\\\\\\\\\
+\item \emph{Charakterystyka fazowa: } \\\\\\\\\\
+\end{itemize}
+\subsection{Obiekt różniczkujący rzeczywisty}
+\begin{itemize}
+\item \emph{Transmitancja: }
+\item \emph{Przykład: }
+\item \emph {Oznaczenie: } \\\\\\\\\\
+\item \emph{Charakterystyka skokowa: } \\\\\\\\\\
+\item \emph{Charakterystyka amplitudowo-fazowa: } \\\\\\\\\\
+\end{itemize}
+\subsection{Obiekt całkujący idealny}
+\begin{itemize}
+\item \emph{Transmitancja: }
+\item \emph{Przykład: }
+\item \emph {Oznaczenie: } \\\\\\\\\\
+\item \emph{Charakterystyka skokowa: } \\\\\\\\\\
+\item \emph{Charakterystyka amplitudowo-fazowa: } \\\\\\\\\\
+\item \emph{Logarytmiczna charakterystyka fazowa: } \\\\\\\\\\
+\end{itemize}
+\subsection{Obiekt całkujący rzeczywisty}
+\begin{itemize}
+\item \emph{Transmitancja: }
+\item \emph{Przykład: }
+\item \emph {Oznaczenie: } \\\\\\\\\\
+\item \emph{Charakterystyka skokowa: } \\\\\\\\\\
+\item \emph{Charakterystyka amplitudowo-fazowa: } \\\\\\\\\\
+\item \emph{Logarytmiczna charakterystyka fazowa: } \\\\\\\\\\
+\end{itemize}
+\subsection{Człon oscylacyjny}
+\begin{itemize}
+\item \emph{Transmitancja: } 
+\item \emph{Przykład: }  
+\item \emph {Oznaczenie: } \\\\\\\\\\
+\item \emph{Charakterystyka skokowa: } \\\\\\\\\\
+\item \emph{Charakterystyka amplitudowo-fazowa: } \\\\\\\\\\
+\end{itemize}
+\subsection{Obiekt opóźniający}
+\begin{itemize}
+\item \emph{Transmitancja: } 
+\item \emph{Przykład: } 
+\item \emph {Oznaczenie: } \\\\\\\\\\
+\item \emph{Charakterystyka skokowa: } \\\\\\\\\\
+\item \emph{Charakterystyka amplitudowo-fazowa: } \\\\\\\\\\
+\item \emph{Charakterystyka fazowa: } \\\\\\\\\\
+\end{itemize}
+\iffalse
+\section{Jakość regulacji}
+\begin{itemize}
+\item \textbf{Uchyb regulacji (uchyb statyczny)} to granica, do której dąży składowa wymuszona $e_w(t)$ sygnału uchybu $e(t)$ dla $ t \rightarrow \infty$
+$$ e_u = \lim_{t \rightarrow \infty} e_w(t) = \lim_{t \rightarrow \infty } e(t) $$
+Z twierdzenia granicznego wynika że:
+$$ \lim_{t \rightarrow \infty} e_w(t) = \lim_{s \rightarrow 0}sE(s) \textbf{  gdzie  } E(s) = X(s)G_e(s) \textbf{  stąd  } e_u = \lim_{s \rightarrow 0}sX(s)G_e(s)$$
+gdzie $G_e(s)$ to transmitancja uchybowa, $X(s)$ transformata Laplace'a sygnału wymuszenia, $E(s)$ transformata Laplace'a uchybu
+\item \textbf{Układ regulacji statycznej} to układ automatycznej regulacji, którego uchyb w stanie ustalonym, przy wymuszeniu skokowym, jest różny od zera i proporcjonalny do amplitusy wymuszenia
+\item \textbf{Układ astatyczny l-tego rzędu} to układ automatycznej regulacji, którego uchyb w stanie ustalonym jest równy zeru dla wszystkich sygnałów wejściowych, których pochodne, począwszy od l-tej, są równe zeru dla $t \rightarrow \infty $
+\item \textbf{Układ z pełnym sprzężeniem zwrotnym} jest:
+\begin{itemize}
+\item \textbf{Układem statycznym} jeśli jego transmitancja w stanie otwartym nie ma biegunów zerowych (w układzie nie występują człony całkujące) 
+\item \textbf{Układem astatycznym l-tego rzędu} jeśli jego transmitancja w stanie otwartym ma l-krotny biegun zerowy
+\end{itemize}
+\pagebreak
+\item \textbf{Przeregulowanie} to wyrażony w procentach stosunek drugiej amplitudy uchybu do pierwszej:
+$$ \kappa \frac{e_{p_2}}{e_{p_1}}100\% = \frac{y_{max}-y_{ust}}{y_{ust}} $$
+jako że pierwsza amplituda odpowiedzi wynosi $y_{ust}$
+\item \textbf{Czas regulacji} to czas jaki upłynął od momentu wystąpienia skokowej zmiany wartości zadanej (lub zakłócenia) do ustalenia się wahań uchybu $e(t)$ od $2$ do $5\%$ pierwszej amplitudy $e_{p_0}$ wokół wartości uchybu ustalonego.
+\item \textbf{Zapasem stabilności amplitudy L [dB]} nazywamy wartość $\Delta k$, o jaką musi wzrosnąć wzmocnienie układu otwartego przy niezmienionej fazie, aby układ zamknięty znalazł się na granicy stabilności.
+$$ L = 20 \log \Delta k$$
+\item \textbf{Zapasem stabilności fazy} nazywamy wartość, o jaką musi wzrosnąć faza układu otwartego przy niezmienionym wzmocnieniu, aby układ znalazł się na granicy stabilności.
+\section{Zadanie}
+Zmierz stabilność układu regulacji o transmitancji układu otwartego równej:
+$$ G(s) = \frac{2s+1}{s^3+3s^2+2s+1}$$
+\end{itemize}
+\fi
+\end{document}
+
