@@ -1,0 +1,234 @@
+Simulator report for Cwiczenie5_2
+Sat Dec 16 13:33:47 2017
+Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Simulator Summary
+  3. Simulator Settings
+  4. Simulation Waveforms
+  5. Coverage Summary
+  6. Complete 1/0-Value Coverage
+  7. Missing 1-Value Coverage
+  8. Missing 0-Value Coverage
+  9. Simulator INI Usage
+ 10. Simulator Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------+
+; Simulator Summary                          ;
++-----------------------------+--------------+
+; Type                        ; Value        ;
++-----------------------------+--------------+
+; Simulation Start Time       ; 0 ps         ;
+; Simulation End Time         ; 1.0 us       ;
+; Simulation Netlist Size     ; 62 nodes     ;
+; Simulation Coverage         ;      66.13 % ;
+; Total Number of Transitions ; 2736         ;
+; Simulation Breakpoints      ; 0            ;
+; Family                      ; Cyclone II   ;
+; Device                      ; EP2C70F896C6 ;
++-----------------------------+--------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Simulator Settings                                                                                                                                                          ;
++--------------------------------------------------------------------------------------------+----------------------------------------------------------------+---------------+
+; Option                                                                                     ; Setting                                                        ; Default Value ;
++--------------------------------------------------------------------------------------------+----------------------------------------------------------------+---------------+
+; Simulation mode                                                                            ; Timing                                                         ; Timing        ;
+; Start time                                                                                 ; 0 ns                                                           ; 0 ns          ;
+; Simulation results format                                                                  ; VWF                                                            ;               ;
+; Vector input source                                                                        ; C:/Users/Developer/Documents/Quartus/Cwiczenie5_2/Waveform.vwf ;               ;
+; Add pins automatically to simulation output waveforms                                      ; On                                                             ; On            ;
+; Check outputs                                                                              ; Off                                                            ; Off           ;
+; Report simulation coverage                                                                 ; On                                                             ; On            ;
+; Display complete 1/0 value coverage report                                                 ; On                                                             ; On            ;
+; Display missing 1-value coverage report                                                    ; On                                                             ; On            ;
+; Display missing 0-value coverage report                                                    ; On                                                             ; On            ;
+; Detect setup and hold time violations                                                      ; Off                                                            ; Off           ;
+; Detect glitches                                                                            ; Off                                                            ; Off           ;
+; Disable timing delays in Timing Simulation                                                 ; Off                                                            ; Off           ;
+; Generate Signal Activity File                                                              ; Off                                                            ; Off           ;
+; Generate VCD File for PowerPlay Power Analyzer                                             ; Off                                                            ; Off           ;
+; Group bus channels in simulation results                                                   ; Off                                                            ; Off           ;
+; Preserve fewer signal transitions to reduce memory requirements                            ; On                                                             ; On            ;
+; Trigger vector comparison with the specified mode                                          ; INPUT_EDGE                                                     ; INPUT_EDGE    ;
+; Disable setup and hold time violations detection in input registers of bi-directional pins ; Off                                                            ; Off           ;
+; Overwrite Waveform Inputs With Simulation Outputs                                          ; Off                                                            ;               ;
+; Perform Glitch Filtering in Timing Simulation                                              ; Auto                                                           ; Auto          ;
++--------------------------------------------------------------------------------------------+----------------------------------------------------------------+---------------+
+
+
++----------------------+
+; Simulation Waveforms ;
++----------------------+
+Waveform report data cannot be output to ASCII.
+Please use Quartus II 32-bit to view the waveform report data.
+
+
++--------------------------------------------------------------------+
+; Coverage Summary                                                   ;
++-----------------------------------------------------+--------------+
+; Type                                                ; Value        ;
++-----------------------------------------------------+--------------+
+; Total coverage as a percentage                      ;      66.13 % ;
+; Total nodes checked                                 ; 62           ;
+; Total output ports checked                          ; 62           ;
+; Total output ports with complete 1/0-value coverage ; 41           ;
+; Total output ports with no 1/0-value coverage       ; 9            ;
+; Total output ports with no 1-value coverage         ; 17           ;
+; Total output ports with no 0-value coverage         ; 13           ;
++-----------------------------------------------------+--------------+
+
+
+The following table displays output ports that toggle between 1 and 0 during simulation.
++--------------------------------------------------------------------------------------------------------------------------------------+
+; Complete 1/0-Value Coverage                                                                                                          ;
++---------------------------------------------------------+---------------------------------------------------------+------------------+
+; Node Name                                               ; Output Port Name                                        ; Output Port Type ;
++---------------------------------------------------------+---------------------------------------------------------+------------------+
+; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM3|cout~0 ; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM3|cout~0 ; combout          ;
+; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM3|cout~2 ; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM3|cout~2 ; combout          ;
+; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM5|cout~0 ; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM5|cout~0 ; combout          ;
+; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM5|cout~1 ; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM5|cout~1 ; combout          ;
+; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM6|cout~0 ; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM6|cout~0 ; combout          ;
+; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM7|s      ; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM7|s      ; combout          ;
+; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM6|s      ; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM6|s      ; combout          ;
+; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM5|s      ; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM5|s      ; combout          ;
+; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM4|s      ; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM4|s      ; combout          ;
+; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM3|s~0    ; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM3|s~0    ; combout          ;
+; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM3|s      ; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM3|s      ; combout          ;
+; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM2|s      ; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM2|s      ; combout          ;
+; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM1|s      ; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM1|s      ; combout          ;
+; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM0|s~0    ; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM0|s~0    ; combout          ;
+; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM7|cout~0 ; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM7|cout~0 ; combout          ;
+; |Cwiczenie5_2|rejestr8bit:R0|mydff:dff6|q~1             ; |Cwiczenie5_2|rejestr8bit:R0|mydff:dff6|q~1             ; combout          ;
+; |Cwiczenie5_2|rejestr8bit:R0|mydff:dff5|q~1             ; |Cwiczenie5_2|rejestr8bit:R0|mydff:dff5|q~1             ; combout          ;
+; |Cwiczenie5_2|rejestr8bit:R0|mydff:dff4|q~1             ; |Cwiczenie5_2|rejestr8bit:R0|mydff:dff4|q~1             ; combout          ;
+; |Cwiczenie5_2|rejestr8bit:R0|mydff:dff3|q~1             ; |Cwiczenie5_2|rejestr8bit:R0|mydff:dff3|q~1             ; combout          ;
+; |Cwiczenie5_2|rejestr8bit:R0|mydff:dff2|q~1             ; |Cwiczenie5_2|rejestr8bit:R0|mydff:dff2|q~1             ; combout          ;
+; |Cwiczenie5_2|rejestr8bit:R0|mydff:dff1|q~1             ; |Cwiczenie5_2|rejestr8bit:R0|mydff:dff1|q~1             ; combout          ;
+; |Cwiczenie5_2|rejestr8bit:R0|mydff:dff0|q~1             ; |Cwiczenie5_2|rejestr8bit:R0|mydff:dff0|q~1             ; combout          ;
+; |Cwiczenie5_2|rejestr8bit:R0|mydff:dff7|q~1             ; |Cwiczenie5_2|rejestr8bit:R0|mydff:dff7|q~1             ; combout          ;
+; |Cwiczenie5_2|sum[7]                                    ; |Cwiczenie5_2|sum[7]                                    ; padio            ;
+; |Cwiczenie5_2|sum[6]                                    ; |Cwiczenie5_2|sum[6]                                    ; padio            ;
+; |Cwiczenie5_2|sum[5]                                    ; |Cwiczenie5_2|sum[5]                                    ; padio            ;
+; |Cwiczenie5_2|sum[4]                                    ; |Cwiczenie5_2|sum[4]                                    ; padio            ;
+; |Cwiczenie5_2|sum[3]                                    ; |Cwiczenie5_2|sum[3]                                    ; padio            ;
+; |Cwiczenie5_2|sum[2]                                    ; |Cwiczenie5_2|sum[2]                                    ; padio            ;
+; |Cwiczenie5_2|sum[1]                                    ; |Cwiczenie5_2|sum[1]                                    ; padio            ;
+; |Cwiczenie5_2|sum[0]                                    ; |Cwiczenie5_2|sum[0]                                    ; padio            ;
+; |Cwiczenie5_2|sout                                      ; |Cwiczenie5_2|sout                                      ; padio            ;
+; |Cwiczenie5_2|clk                                       ; |Cwiczenie5_2|clk~corein                                ; combout          ;
+; |Cwiczenie5_2|a[6]                                      ; |Cwiczenie5_2|a[6]~corein                               ; combout          ;
+; |Cwiczenie5_2|a[5]                                      ; |Cwiczenie5_2|a[5]~corein                               ; combout          ;
+; |Cwiczenie5_2|a[4]                                      ; |Cwiczenie5_2|a[4]~corein                               ; combout          ;
+; |Cwiczenie5_2|a[3]                                      ; |Cwiczenie5_2|a[3]~corein                               ; combout          ;
+; |Cwiczenie5_2|a[2]                                      ; |Cwiczenie5_2|a[2]~corein                               ; combout          ;
+; |Cwiczenie5_2|a[1]                                      ; |Cwiczenie5_2|a[1]~corein                               ; combout          ;
+; |Cwiczenie5_2|a[0]                                      ; |Cwiczenie5_2|a[0]~corein                               ; combout          ;
+; |Cwiczenie5_2|clk~clkctrl                               ; |Cwiczenie5_2|clk~clkctrl                               ; outclk           ;
++---------------------------------------------------------+---------------------------------------------------------+------------------+
+
+
+The following table displays output ports that do not toggle to 1 during simulation.
++--------------------------------------------------------------------------------------------------------------------------------------+
+; Missing 1-Value Coverage                                                                                                             ;
++---------------------------------------------------------+---------------------------------------------------------+------------------+
+; Node Name                                               ; Output Port Name                                        ; Output Port Type ;
++---------------------------------------------------------+---------------------------------------------------------+------------------+
+; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM0|cout~0 ; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM0|cout~0 ; combout          ;
+; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM1|cout~0 ; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM1|cout~0 ; combout          ;
+; |Cwiczenie5_2|rejestr8bit:R1|mydff:dff6|q~1             ; |Cwiczenie5_2|rejestr8bit:R1|mydff:dff6|q~1             ; combout          ;
+; |Cwiczenie5_2|rejestr8bit:R1|mydff:dff5|q~1             ; |Cwiczenie5_2|rejestr8bit:R1|mydff:dff5|q~1             ; combout          ;
+; |Cwiczenie5_2|rejestr8bit:R1|mydff:dff4|q~1             ; |Cwiczenie5_2|rejestr8bit:R1|mydff:dff4|q~1             ; combout          ;
+; |Cwiczenie5_2|rejestr8bit:R1|mydff:dff1|q~1             ; |Cwiczenie5_2|rejestr8bit:R1|mydff:dff1|q~1             ; combout          ;
+; |Cwiczenie5_2|rejestr8bit:R1|mydff:dff0|q~1             ; |Cwiczenie5_2|rejestr8bit:R1|mydff:dff0|q~1             ; combout          ;
+; |Cwiczenie5_2|rejestr8bit:R1|mydff:dff7|q~1             ; |Cwiczenie5_2|rejestr8bit:R1|mydff:dff7|q~1             ; combout          ;
+; |Cwiczenie5_2|cin                                       ; |Cwiczenie5_2|cin~corein                                ; combout          ;
+; |Cwiczenie5_2|b[6]                                      ; |Cwiczenie5_2|b[6]~corein                               ; combout          ;
+; |Cwiczenie5_2|b[5]                                      ; |Cwiczenie5_2|b[5]~corein                               ; combout          ;
+; |Cwiczenie5_2|b[4]                                      ; |Cwiczenie5_2|b[4]~corein                               ; combout          ;
+; |Cwiczenie5_2|b[3]                                      ; |Cwiczenie5_2|b[3]~corein                               ; combout          ;
+; |Cwiczenie5_2|b[2]                                      ; |Cwiczenie5_2|b[2]~corein                               ; combout          ;
+; |Cwiczenie5_2|b[1]                                      ; |Cwiczenie5_2|b[1]~corein                               ; combout          ;
+; |Cwiczenie5_2|b[0]                                      ; |Cwiczenie5_2|b[0]~corein                               ; combout          ;
+; |Cwiczenie5_2|b[7]                                      ; |Cwiczenie5_2|b[7]~corein                               ; combout          ;
++---------------------------------------------------------+---------------------------------------------------------+------------------+
+
+
+The following table displays output ports that do not toggle to 0 during simulation.
++--------------------------------------------------------------------------------------------------------------------------------------+
+; Missing 0-Value Coverage                                                                                                             ;
++---------------------------------------------------------+---------------------------------------------------------+------------------+
+; Node Name                                               ; Output Port Name                                        ; Output Port Type ;
++---------------------------------------------------------+---------------------------------------------------------+------------------+
+; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM3|cout~1 ; |Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM3|cout~1 ; combout          ;
+; |Cwiczenie5_2|rejestr8bit:R1|mydff:dff3|q~1             ; |Cwiczenie5_2|rejestr8bit:R1|mydff:dff3|q~1             ; combout          ;
+; |Cwiczenie5_2|rejestr8bit:R1|mydff:dff2|q~1             ; |Cwiczenie5_2|rejestr8bit:R1|mydff:dff2|q~1             ; combout          ;
+; |Cwiczenie5_2|cin                                       ; |Cwiczenie5_2|cin~corein                                ; combout          ;
+; |Cwiczenie5_2|b[6]                                      ; |Cwiczenie5_2|b[6]~corein                               ; combout          ;
+; |Cwiczenie5_2|b[5]                                      ; |Cwiczenie5_2|b[5]~corein                               ; combout          ;
+; |Cwiczenie5_2|b[4]                                      ; |Cwiczenie5_2|b[4]~corein                               ; combout          ;
+; |Cwiczenie5_2|b[3]                                      ; |Cwiczenie5_2|b[3]~corein                               ; combout          ;
+; |Cwiczenie5_2|b[2]                                      ; |Cwiczenie5_2|b[2]~corein                               ; combout          ;
+; |Cwiczenie5_2|b[1]                                      ; |Cwiczenie5_2|b[1]~corein                               ; combout          ;
+; |Cwiczenie5_2|b[0]                                      ; |Cwiczenie5_2|b[0]~corein                               ; combout          ;
+; |Cwiczenie5_2|b[7]                                      ; |Cwiczenie5_2|b[7]~corein                               ; combout          ;
+; |Cwiczenie5_2|a[7]                                      ; |Cwiczenie5_2|a[7]~corein                               ; combout          ;
++---------------------------------------------------------+---------------------------------------------------------+------------------+
+
+
++---------------------+
+; Simulator INI Usage ;
++--------+------------+
+; Option ; Usage      ;
++--------+------------+
+
+
++--------------------+
+; Simulator Messages ;
++--------------------+
+Info: *******************************************************************
+Info: Running Quartus II 32-bit Simulator
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Sat Dec 16 13:33:46 2017
+Info: Command: quartus_sim --simulation_results_format=VWF Cwiczenie5_2 -c Cwiczenie5_2
+Info (324025): Using vector source file "C:/Users/Developer/Documents/Quartus/Cwiczenie5_2/Waveform.vwf"
+Info (310003): Option to preserve fewer signal transitions to reduce memory requirements is enabled
+    Info (310004): Simulation has been partitioned into sub-simulations according to the maximum transition count determined by the engine. Transitions from memory will be flushed out to disk at the end of each sub-simulation to reduce memory requirements.
+Info (310002): Simulation partitioned into 1 sub-simulations
+Info (328053): Simulation coverage is      66.13 %
+Info (328052): Number of transitions in simulation is 2736
+Info (324045): Vector file Cwiczenie5_2.sim.vwf is saved in VWF text format. You can compress it into CVWF format in order to reduce file size. For more details please refer to the Quartus II Help.
+Info: Quartus II 32-bit Simulator was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 335 megabytes
+    Info: Processing ended: Sat Dec 16 13:33:47 2017
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
+
+

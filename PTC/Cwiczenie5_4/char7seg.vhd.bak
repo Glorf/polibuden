@@ -1,0 +1,28 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity char7seg is
+	port(
+		Code: in std_logic_vector(2 downto 0);
+		Display: out std_logic_vector(0 to 6));
+end char7seg;
+
+architecture strukturalna of char7seg is
+
+constant Spacja: std_logic_vector(2 downto 0):="000";
+constant LiteraB: std_logic_vector(2 downto 0):="001";
+constant LiteraC: std_logic_vector(2 downto 0):="010";
+constant LiteraE: std_logic_vector(2 downto 0):="011";
+constant LiteraF: std_logic_vector(2 downto 0):="100";
+constant LiteraG: std_logic_vector(2 downto 0):="101";
+
+begin
+	with Code select
+		Display <=  "1111111" when Spacja,
+						"1100000" when LiteraB,
+						"0110001" when LiteraC,
+						"0110000" when LiteraE,
+						"0111000" when LiteraF,
+						"0100000" when LiteraG,
+						"1111111" when others;
+end strukturalna;

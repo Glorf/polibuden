@@ -1,0 +1,354 @@
+|Cwiczenie5_2
+a[7] => rejestr8bit:R0.r[7]
+a[6] => rejestr8bit:R0.r[6]
+a[5] => rejestr8bit:R0.r[5]
+a[4] => rejestr8bit:R0.r[4]
+a[3] => rejestr8bit:R0.r[3]
+a[2] => rejestr8bit:R0.r[2]
+a[1] => rejestr8bit:R0.r[1]
+a[0] => rejestr8bit:R0.r[0]
+b[7] => rejestr8bit:R1.r[7]
+b[6] => rejestr8bit:R1.r[6]
+b[5] => rejestr8bit:R1.r[5]
+b[4] => rejestr8bit:R1.r[4]
+b[3] => rejestr8bit:R1.r[3]
+b[2] => rejestr8bit:R1.r[2]
+b[1] => rejestr8bit:R1.r[1]
+b[0] => rejestr8bit:R1.r[0]
+cin => sumator8bit:SUMUJ.cin
+clk => rejestr8bit:R0.clk
+clk => rejestr8bit:R1.clk
+sum[7] <= sumator8bit:SUMUJ.sout[7]
+sum[6] <= sumator8bit:SUMUJ.sout[6]
+sum[5] <= sumator8bit:SUMUJ.sout[5]
+sum[4] <= sumator8bit:SUMUJ.sout[4]
+sum[3] <= sumator8bit:SUMUJ.sout[3]
+sum[2] <= sumator8bit:SUMUJ.sout[2]
+sum[1] <= sumator8bit:SUMUJ.sout[1]
+sum[0] <= sumator8bit:SUMUJ.sout[0]
+sout <= sumator8bit:SUMUJ.cout
+
+
+|Cwiczenie5_2|rejestr8bit:R0
+clk => mydff:dff0.clk
+clk => mydff:dff1.clk
+clk => mydff:dff2.clk
+clk => mydff:dff3.clk
+clk => mydff:dff4.clk
+clk => mydff:dff5.clk
+clk => mydff:dff6.clk
+clk => mydff:dff7.clk
+r[7] => mydff:dff7.d
+r[6] => mydff:dff6.d
+r[5] => mydff:dff5.d
+r[4] => mydff:dff4.d
+r[3] => mydff:dff3.d
+r[2] => mydff:dff2.d
+r[1] => mydff:dff1.d
+r[0] => mydff:dff0.d
+q[7] <= mydff:dff7.q
+q[6] <= mydff:dff6.q
+q[5] <= mydff:dff5.q
+q[4] <= mydff:dff4.q
+q[3] <= mydff:dff3.q
+q[2] <= mydff:dff2.q
+q[1] <= mydff:dff1.q
+q[0] <= mydff:dff0.q
+
+
+|Cwiczenie5_2|rejestr8bit:R0|mydff:dff0
+d => s1.IN0
+d => r1.IN0
+clk => s1.IN1
+clk => r1.IN1
+q <> q
+
+
+|Cwiczenie5_2|rejestr8bit:R0|mydff:dff1
+d => s1.IN0
+d => r1.IN0
+clk => s1.IN1
+clk => r1.IN1
+q <> q
+
+
+|Cwiczenie5_2|rejestr8bit:R0|mydff:dff2
+d => s1.IN0
+d => r1.IN0
+clk => s1.IN1
+clk => r1.IN1
+q <> q
+
+
+|Cwiczenie5_2|rejestr8bit:R0|mydff:dff3
+d => s1.IN0
+d => r1.IN0
+clk => s1.IN1
+clk => r1.IN1
+q <> q
+
+
+|Cwiczenie5_2|rejestr8bit:R0|mydff:dff4
+d => s1.IN0
+d => r1.IN0
+clk => s1.IN1
+clk => r1.IN1
+q <> q
+
+
+|Cwiczenie5_2|rejestr8bit:R0|mydff:dff5
+d => s1.IN0
+d => r1.IN0
+clk => s1.IN1
+clk => r1.IN1
+q <> q
+
+
+|Cwiczenie5_2|rejestr8bit:R0|mydff:dff6
+d => s1.IN0
+d => r1.IN0
+clk => s1.IN1
+clk => r1.IN1
+q <> q
+
+
+|Cwiczenie5_2|rejestr8bit:R0|mydff:dff7
+d => s1.IN0
+d => r1.IN0
+clk => s1.IN1
+clk => r1.IN1
+q <> q
+
+
+|Cwiczenie5_2|rejestr8bit:R1
+clk => mydff:dff0.clk
+clk => mydff:dff1.clk
+clk => mydff:dff2.clk
+clk => mydff:dff3.clk
+clk => mydff:dff4.clk
+clk => mydff:dff5.clk
+clk => mydff:dff6.clk
+clk => mydff:dff7.clk
+r[7] => mydff:dff7.d
+r[6] => mydff:dff6.d
+r[5] => mydff:dff5.d
+r[4] => mydff:dff4.d
+r[3] => mydff:dff3.d
+r[2] => mydff:dff2.d
+r[1] => mydff:dff1.d
+r[0] => mydff:dff0.d
+q[7] <= mydff:dff7.q
+q[6] <= mydff:dff6.q
+q[5] <= mydff:dff5.q
+q[4] <= mydff:dff4.q
+q[3] <= mydff:dff3.q
+q[2] <= mydff:dff2.q
+q[1] <= mydff:dff1.q
+q[0] <= mydff:dff0.q
+
+
+|Cwiczenie5_2|rejestr8bit:R1|mydff:dff0
+d => s1.IN0
+d => r1.IN0
+clk => s1.IN1
+clk => r1.IN1
+q <> q
+
+
+|Cwiczenie5_2|rejestr8bit:R1|mydff:dff1
+d => s1.IN0
+d => r1.IN0
+clk => s1.IN1
+clk => r1.IN1
+q <> q
+
+
+|Cwiczenie5_2|rejestr8bit:R1|mydff:dff2
+d => s1.IN0
+d => r1.IN0
+clk => s1.IN1
+clk => r1.IN1
+q <> q
+
+
+|Cwiczenie5_2|rejestr8bit:R1|mydff:dff3
+d => s1.IN0
+d => r1.IN0
+clk => s1.IN1
+clk => r1.IN1
+q <> q
+
+
+|Cwiczenie5_2|rejestr8bit:R1|mydff:dff4
+d => s1.IN0
+d => r1.IN0
+clk => s1.IN1
+clk => r1.IN1
+q <> q
+
+
+|Cwiczenie5_2|rejestr8bit:R1|mydff:dff5
+d => s1.IN0
+d => r1.IN0
+clk => s1.IN1
+clk => r1.IN1
+q <> q
+
+
+|Cwiczenie5_2|rejestr8bit:R1|mydff:dff6
+d => s1.IN0
+d => r1.IN0
+clk => s1.IN1
+clk => r1.IN1
+q <> q
+
+
+|Cwiczenie5_2|rejestr8bit:R1|mydff:dff7
+d => s1.IN0
+d => r1.IN0
+clk => s1.IN1
+clk => r1.IN1
+q <> q
+
+
+|Cwiczenie5_2|sumator8bit:SUMUJ
+in1[7] => sumator1bit:SUM7.a
+in1[6] => sumator1bit:SUM6.a
+in1[5] => sumator1bit:SUM5.a
+in1[4] => sumator1bit:SUM4.a
+in1[3] => sumator1bit:SUM3.a
+in1[2] => sumator1bit:SUM2.a
+in1[1] => sumator1bit:SUM1.a
+in1[0] => sumator1bit:SUM0.a
+in2[7] => sumator1bit:SUM7.b
+in2[6] => sumator1bit:SUM6.b
+in2[5] => sumator1bit:SUM5.b
+in2[4] => sumator1bit:SUM4.b
+in2[3] => sumator1bit:SUM3.b
+in2[2] => sumator1bit:SUM2.b
+in2[1] => sumator1bit:SUM1.b
+in2[0] => sumator1bit:SUM0.b
+cin => sumator1bit:SUM0.cin
+sout[7] <= sumator1bit:SUM7.s
+sout[6] <= sumator1bit:SUM6.s
+sout[5] <= sumator1bit:SUM5.s
+sout[4] <= sumator1bit:SUM4.s
+sout[3] <= sumator1bit:SUM3.s
+sout[2] <= sumator1bit:SUM2.s
+sout[1] <= sumator1bit:SUM1.s
+sout[0] <= sumator1bit:SUM0.s
+cout <= sumator1bit:SUM7.cout
+
+
+|Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM0
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM1
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM2
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM3
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM4
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM5
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM6
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_2|sumator8bit:SUMUJ|sumator1bit:SUM7
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+

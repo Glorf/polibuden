@@ -1,0 +1,27 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity sumator4bit is
+	Port(
+		sin: in std_logic_vector(0 to 7);
+		cin, clk: in std_logic;
+		sout: out std_logic_vector(0 to 3);
+		cout: out std_logic
+	);
+end sumator4bit;
+
+architecture sumatory of sumator4bit is
+component sumator1bit
+	Port(
+		a,b,cin,clk: in std_logic;
+		s, cout: out std_logic
+	);
+end component;
+signal C01, C12, C23: std_logic;
+begin
+	SUM0: sumator1bit port map(sin(0), sin(1), cin, clk, sout(0), C01);
+	SUM1: sumator1bit port map(sin(2), sin(3), C01, clk, sout(1), C12);
+	SUM2: sumator1bit port map(sin(4), sin(5), C12, clk, sout(2), C23);
+	SUM3: sumator1bit port map(sin(6), sin(7), C23, clk, sout(3), cout);
+end sumatory;
+		

@@ -1,0 +1,2006 @@
+TimeQuest Timing Analyzer report for Cwiczenie5_4
+Wed Jan 03 16:25:11 2018
+Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. TimeQuest Timing Analyzer Summary
+  3. Parallel Compilation
+  4. SDC File List
+  5. Clocks
+  6. Slow Model Fmax Summary
+  7. Slow Model Setup Summary
+  8. Slow Model Hold Summary
+  9. Slow Model Recovery Summary
+ 10. Slow Model Removal Summary
+ 11. Slow Model Minimum Pulse Width Summary
+ 12. Slow Model Setup: 'zegar'
+ 13. Slow Model Hold: 'zegar'
+ 14. Slow Model Minimum Pulse Width: 'zegar'
+ 15. Setup Times
+ 16. Hold Times
+ 17. Clock to Output Times
+ 18. Minimum Clock to Output Times
+ 19. Propagation Delay
+ 20. Minimum Propagation Delay
+ 21. Fast Model Setup Summary
+ 22. Fast Model Hold Summary
+ 23. Fast Model Recovery Summary
+ 24. Fast Model Removal Summary
+ 25. Fast Model Minimum Pulse Width Summary
+ 26. Fast Model Setup: 'zegar'
+ 27. Fast Model Hold: 'zegar'
+ 28. Fast Model Minimum Pulse Width: 'zegar'
+ 29. Setup Times
+ 30. Hold Times
+ 31. Clock to Output Times
+ 32. Minimum Clock to Output Times
+ 33. Propagation Delay
+ 34. Minimum Propagation Delay
+ 35. Multicorner Timing Analysis Summary
+ 36. Setup Times
+ 37. Hold Times
+ 38. Clock to Output Times
+ 39. Minimum Clock to Output Times
+ 40. Progagation Delay
+ 41. Minimum Progagation Delay
+ 42. Setup Transfers
+ 43. Hold Transfers
+ 44. Report TCCS
+ 45. Report RSKM
+ 46. Unconstrained Paths
+ 47. TimeQuest Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------------------+
+; TimeQuest Timing Analyzer Summary                                                      ;
++--------------------+-------------------------------------------------------------------+
+; Quartus II Version ; Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition ;
+; Revision Name      ; Cwiczenie5_4                                                      ;
+; Device Family      ; Cyclone II                                                        ;
+; Device Name        ; EP2C70F896C6                                                      ;
+; Timing Models      ; Final                                                             ;
+; Delay Model        ; Combined                                                          ;
+; Rise/Fall Delays   ; Unavailable                                                       ;
++--------------------+-------------------------------------------------------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++------------------------------------------------------+
+; SDC File List                                        ;
++------------------+--------+--------------------------+
+; SDC File Path    ; Status ; Read at                  ;
++------------------+--------+--------------------------+
+; Cwiczenie5_4.sdc ; OK     ; Wed Jan 03 16:25:10 2018 ;
++------------------+--------+--------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                              ;
++------------+------+--------+-----------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+--------------+
+; Clock Name ; Type ; Period ; Frequency ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets      ;
++------------+------+--------+-----------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+--------------+
+; zegar      ; Base ; 12.000 ; 83.33 MHz ; 0.000 ; 6.000 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { CLOCK_50 } ;
++------------+------+--------+-----------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+--------------+
+
+
++-------------------------------------------------+
+; Slow Model Fmax Summary                         ;
++-----------+-----------------+------------+------+
+; Fmax      ; Restricted Fmax ; Clock Name ; Note ;
++-----------+-----------------+------------+------+
+; 93.69 MHz ; 93.69 MHz       ; zegar      ;      ;
++-----------+-----------------+------------+------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
++-------------------------------+
+; Slow Model Setup Summary      ;
++-------+-------+---------------+
+; Clock ; Slack ; End Point TNS ;
++-------+-------+---------------+
+; zegar ; 1.327 ; 0.000         ;
++-------+-------+---------------+
+
+
++-------------------------------+
+; Slow Model Hold Summary       ;
++-------+-------+---------------+
+; Clock ; Slack ; End Point TNS ;
++-------+-------+---------------+
+; zegar ; 0.391 ; 0.000         ;
++-------+-------+---------------+
+
+
+-------------------------------
+; Slow Model Recovery Summary ;
+-------------------------------
+No paths to report.
+
+
+------------------------------
+; Slow Model Removal Summary ;
+------------------------------
+No paths to report.
+
+
++----------------------------------------+
+; Slow Model Minimum Pulse Width Summary ;
++-------+-------+------------------------+
+; Clock ; Slack ; End Point TNS          ;
++-------+-------+------------------------+
+; zegar ; 5.000 ; 0.000                  ;
++-------+-------+------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow Model Setup: 'zegar'                                                                                                                              ;
++-------+----------------------------------------------------------------+---------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                                                      ; To Node ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+----------------------------------------------------------------+---------+--------------+-------------+--------------+------------+------------+
+; 1.327 ; iSW[2]                                                         ; HEX6[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.673      ;
+; 1.339 ; iSW[7]                                                         ; HEX7[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.661      ;
+; 1.346 ; iSW[2]                                                         ; HEX6[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.654      ;
+; 1.354 ; iSW[5]                                                         ; HEX7[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.646      ;
+; 1.357 ; iSW[4]                                                         ; HEX7[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.643      ;
+; 1.361 ; iSW[2]                                                         ; HEX6[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.639      ;
+; 1.369 ; iSW[7]                                                         ; HEX7[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.631      ;
+; 1.374 ; iSW[7]                                                         ; HEX7[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.626      ;
+; 1.418 ; iSW[1]                                                         ; HEX6[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.582      ;
+; 1.418 ; iSW[0]                                                         ; HEX6[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.582      ;
+; 1.423 ; iSW[1]                                                         ; HEX6[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.577      ;
+; 1.431 ; iSW[0]                                                         ; HEX6[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.569      ;
+; 1.433 ; iSW[6]                                                         ; HEX7[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.567      ;
+; 1.450 ; iSW[1]                                                         ; HEX6[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.550      ;
+; 1.454 ; iSW[0]                                                         ; HEX6[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.546      ;
+; 1.463 ; iSW[3]                                                         ; HEX6[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.537      ;
+; 1.469 ; iSW[0]                                                         ; HEX6[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.531      ;
+; 1.481 ; iSW[3]                                                         ; HEX6[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.519      ;
+; 1.490 ; iSW[8]                                                         ; HEX3[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.510      ;
+; 1.490 ; iSW[2]                                                         ; HEX6[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.510      ;
+; 1.492 ; iSW[2]                                                         ; HEX6[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.508      ;
+; 1.520 ; iSW[7]                                                         ; HEX7[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.480      ;
+; 1.520 ; iSW[7]                                                         ; HEX7[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.480      ;
+; 1.525 ; iSW[1]                                                         ; HEX6[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.475      ;
+; 1.528 ; iSW[7]                                                         ; HEX7[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.472      ;
+; 1.528 ; iSW[2]                                                         ; HEX6[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.472      ;
+; 1.538 ; iSW[1]                                                         ; HEX6[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.462      ;
+; 1.541 ; iSW[1]                                                         ; HEX6[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.459      ;
+; 1.544 ; iSW[7]                                                         ; HEX7[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.456      ;
+; 1.560 ; iSW[3]                                                         ; HEX6[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.440      ;
+; 1.565 ; iSW[3]                                                         ; HEX6[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.435      ;
+; 1.588 ; iSW[6]                                                         ; HEX7[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.412      ;
+; 1.590 ; iSW[6]                                                         ; HEX7[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.410      ;
+; 1.595 ; iSW[6]                                                         ; HEX7[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.405      ;
+; 1.602 ; iSW[11]                                                        ; HEX3[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.398      ;
+; 1.604 ; iSW[6]                                                         ; HEX7[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.396      ;
+; 1.647 ; iSW[2]                                                         ; HEX6[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.353      ;
+; 1.648 ; iSW[5]                                                         ; HEX7[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.352      ;
+; 1.654 ; iSW[5]                                                         ; HEX7[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.346      ;
+; 1.661 ; iSW[5]                                                         ; HEX7[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.339      ;
+; 1.666 ; iSW[4]                                                         ; HEX7[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.334      ;
+; 1.667 ; iSW[9]                                                         ; HEX3[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.333      ;
+; 1.669 ; iSW[0]                                                         ; HEX6[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.331      ;
+; 1.670 ; iSW[5]                                                         ; HEX7[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.330      ;
+; 1.673 ; iSW[0]                                                         ; HEX6[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.327      ;
+; 1.675 ; iSW[5]                                                         ; HEX7[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.325      ;
+; 1.676 ; iSW[4]                                                         ; HEX7[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.324      ;
+; 1.683 ; iSW[1]                                                         ; HEX6[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.317      ;
+; 1.687 ; iSW[4]                                                         ; HEX7[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.313      ;
+; 1.704 ; iSW[8]                                                         ; HEX3[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.296      ;
+; 1.707 ; iSW[4]                                                         ; HEX7[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.293      ;
+; 1.709 ; iSW[5]                                                         ; HEX7[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.291      ;
+; 1.724 ; iSW[12]                                                        ; HEX4[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.276      ;
+; 1.732 ; iSW[8]                                                         ; HEX3[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.268      ;
+; 1.735 ; iSW[6]                                                         ; HEX7[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.265      ;
+; 1.735 ; iSW[6]                                                         ; HEX7[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.265      ;
+; 1.742 ; iSW[12]                                                        ; HEX4[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.258      ;
+; 1.742 ; iSW[10]                                                        ; HEX3[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.258      ;
+; 1.753 ; iSW[12]                                                        ; HEX4[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.247      ;
+; 1.753 ; iSW[0]                                                         ; HEX6[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.247      ;
+; 1.768 ; iSW[12]                                                        ; HEX4[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.232      ;
+; 1.770 ; iSW[3]                                                         ; HEX6[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.230      ;
+; 1.780 ; iSW[3]                                                         ; HEX6[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.220      ;
+; 1.788 ; iSW[8]                                                         ; HEX3[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.212      ;
+; 1.804 ; iSW[4]                                                         ; HEX7[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.196      ;
+; 1.808 ; iSW[8]                                                         ; HEX3[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.192      ;
+; 1.815 ; iSW[8]                                                         ; HEX3[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.185      ;
+; 1.830 ; iSW[4]                                                         ; HEX7[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.170      ;
+; 1.864 ; iSW[11]                                                        ; HEX3[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.136      ;
+; 1.886 ; iSW[11]                                                        ; HEX3[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.114      ;
+; 1.886 ; iSW[11]                                                        ; HEX3[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.114      ;
+; 1.888 ; iSW[11]                                                        ; HEX3[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.112      ;
+; 1.916 ; iSW[11]                                                        ; HEX3[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.084      ;
+; 1.919 ; iSW[12]                                                        ; HEX4[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.081      ;
+; 1.967 ; iSW[9]                                                         ; HEX3[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.033      ;
+; 1.974 ; iSW[3]                                                         ; HEX6[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.026      ;
+; 1.987 ; iSW[9]                                                         ; HEX3[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.013      ;
+; 1.987 ; iSW[9]                                                         ; HEX3[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.013      ;
+; 1.988 ; iSW[9]                                                         ; HEX3[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 8.012      ;
+; 2.009 ; iSW[8]                                                         ; HEX3[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 7.991      ;
+; 2.010 ; iSW[13]                                                        ; HEX4[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 7.990      ;
+; 2.014 ; iSW[9]                                                         ; HEX3[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 7.986      ;
+; 2.027 ; iSW[13]                                                        ; HEX4[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 7.973      ;
+; 2.040 ; iSW[13]                                                        ; HEX4[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 7.960      ;
+; 2.041 ; iSW[10]                                                        ; HEX3[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 7.959      ;
+; 2.048 ; iSW[13]                                                        ; HEX4[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 7.952      ;
+; 2.067 ; iSW[10]                                                        ; HEX3[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 7.933      ;
+; 2.084 ; iSW[10]                                                        ; HEX3[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 7.916      ;
+; 2.105 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; HEX1[5] ; zegar        ; zegar       ; 12.000       ; -2.885     ; 6.010      ;
+; 2.126 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; HEX1[3] ; zegar        ; zegar       ; 12.000       ; -2.885     ; 5.989      ;
+; 2.147 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; HEX1[2] ; zegar        ; zegar       ; 12.000       ; -2.885     ; 5.968      ;
+; 2.153 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; HEX1[5] ; zegar        ; zegar       ; 12.000       ; -2.885     ; 5.962      ;
+; 2.161 ; iSW[11]                                                        ; HEX3[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 7.839      ;
+; 2.163 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; HEX1[3] ; zegar        ; zegar       ; 12.000       ; -2.885     ; 5.952      ;
+; 2.177 ; iSW[13]                                                        ; HEX4[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 7.823      ;
+; 2.180 ; iSW[12]                                                        ; HEX4[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 7.820      ;
+; 2.181 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; HEX1[2] ; zegar        ; zegar       ; 12.000       ; -2.885     ; 5.934      ;
+; 2.185 ; iSW[12]                                                        ; HEX4[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 7.815      ;
+; 2.192 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; HEX1[1] ; zegar        ; zegar       ; 12.000       ; -2.885     ; 5.923      ;
+; 2.196 ; iSW[10]                                                        ; HEX3[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 7.804      ;
++-------+----------------------------------------------------------------+---------+--------------+-------------+--------------+------------+------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow Model Hold: 'zegar'                                                                                                                                                                                      ;
++-------+----------------------------------------------------------------+----------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                                                      ; To Node                                                        ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+----------------------------------------------------------------+----------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 0.391 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff0|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff0|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 0.657      ;
+; 0.730 ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff0|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 0.998      ;
+; 1.015 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff0|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff0|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.283      ;
+; 1.106 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.001      ; 1.373      ;
+; 1.119 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff7|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.001      ; 1.386      ;
+; 1.154 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 1.420      ;
+; 1.213 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff0|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff0|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.481      ;
+; 1.282 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 1.548      ;
+; 1.286 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff6|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.001      ; 1.553      ;
+; 1.391 ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.659      ;
+; 1.424 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 1.690      ;
+; 1.492 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff1|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.760      ;
+; 1.503 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.771      ;
+; 1.518 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 1.784      ;
+; 1.532 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.001      ; 1.799      ;
+; 1.549 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 1.815      ;
+; 1.636 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.001      ; 1.903      ;
+; 1.660 ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.928      ;
+; 1.670 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff1|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.938      ;
+; 1.670 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 1.936      ;
+; 1.684 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff6|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.001      ; 1.951      ;
+; 1.709 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 1.975      ;
+; 1.717 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 1.983      ;
+; 1.773 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.004      ; 2.043      ;
+; 1.798 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.059      ; 2.123      ;
+; 1.811 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.001      ; 2.078      ;
+; 1.857 ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 2.125      ;
+; 1.877 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff7|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.059      ; 2.202      ;
+; 1.890 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.004      ; 2.160      ;
+; 1.917 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 2.183      ;
+; 1.932 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.001      ; 2.199      ;
+; 1.953 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 2.219      ;
+; 1.966 ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.059      ; 2.291      ;
+; 2.005 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff6|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.059      ; 2.330      ;
+; 2.029 ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.059      ; 2.354      ;
+; 2.034 ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 2.302      ;
+; 2.046 ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.059      ; 2.371      ;
+; 2.065 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.001      ; 2.332      ;
+; 2.094 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 2.360      ;
+; 2.109 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 2.375      ;
+; 2.132 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 2.400      ;
+; 2.157 ; iSW[11]                                                        ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 2.824      ; 4.247      ;
+; 2.170 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff1|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 2.438      ;
+; 2.175 ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.059      ; 2.500      ;
+; 2.201 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.061      ; 2.528      ;
+; 2.229 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.059      ; 2.554      ;
+; 2.313 ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.059      ; 2.638      ;
+; 2.338 ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.059      ; 2.663      ;
+; 2.338 ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 2.606      ;
+; 2.345 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff1|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 2.613      ;
+; 2.346 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 2.612      ;
+; 2.347 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 2.613      ;
+; 2.351 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff7|shortdff ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ; zegar        ; zegar       ; 0.000        ; 0.048      ; 2.502      ;
+; 2.364 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff0|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 2.632      ;
+; 2.377 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.061      ; 2.704      ;
+; 2.409 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff6|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.059      ; 2.734      ;
+; 2.423 ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 2.691      ;
+; 2.465 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.001      ; 2.732      ;
+; 2.516 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.004      ; 2.786      ;
+; 2.624 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 2.890      ;
+; 2.629 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.059      ; 2.954      ;
+; 2.630 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.061      ; 2.957      ;
+; 2.665 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ; zegar        ; zegar       ; 0.000        ; 0.047      ; 2.815      ;
+; 2.668 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 2.991      ;
+; 2.746 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 3.012      ;
+; 2.757 ; iSW[13]                                                        ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 2.826      ; 4.849      ;
+; 2.774 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff0|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 3.042      ;
+; 2.778 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ; zegar        ; zegar       ; 0.000        ; 0.047      ; 2.928      ;
+; 2.797 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff1|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 3.065      ;
+; 2.813 ; iSW[12]                                                        ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 2.824      ; 4.903      ;
+; 2.845 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 3.168      ;
+; 2.872 ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.059      ; 3.197      ;
+; 2.913 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff6|shortdff ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ; zegar        ; zegar       ; 0.000        ; 0.048      ; 3.064      ;
+; 2.929 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.061      ; 3.256      ;
+; 2.972 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff1|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 3.240      ;
+; 3.020 ; iSW[10]                                                        ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 2.824      ; 5.110      ;
+; 3.030 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.061      ; 3.357      ;
+; 3.031 ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.059      ; 3.356      ;
+; 3.097 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 3.420      ;
+; 3.106 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.061      ; 3.433      ;
+; 3.107 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff7|shortdff ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ; zegar        ; zegar       ; 0.000        ; 0.106      ; 3.316      ;
+; 3.108 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 3.431      ;
+; 3.161 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ; zegar        ; zegar       ; 0.000        ; 0.048      ; 3.312      ;
+; 3.251 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 3.517      ;
+; 3.276 ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ; zegar        ; zegar       ; 0.000        ; 0.106      ; 3.485      ;
+; 3.285 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 3.608      ;
+; 3.289 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.059      ; 3.614      ;
+; 3.290 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff0|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 3.558      ;
+; 3.317 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff0|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 3.583      ;
+; 3.338 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ; zegar        ; zegar       ; 0.000        ; 0.047      ; 3.488      ;
+; 3.358 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.061      ; 3.685      ;
+; 3.401 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff0|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 3.669      ;
+; 3.466 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.059      ; 3.791      ;
+; 3.497 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 3.820      ;
+; 3.504 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 3.827      ;
+; 3.537 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 3.860      ;
+; 3.579 ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ; zegar        ; zegar       ; 0.000        ; 0.106      ; 3.788      ;
+; 3.638 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff6|shortdff ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ; zegar        ; zegar       ; 0.000        ; 0.106      ; 3.847      ;
+; 3.673 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.061      ; 4.000      ;
+; 3.681 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 4.004      ;
++-------+----------------------------------------------------------------+----------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow Model Minimum Pulse Width: 'zegar'                                                                                                        ;
++-------+--------------+----------------+------------------+-------+------------+----------------------------------------------------------------+
+; Slack ; Actual Width ; Required Width ; Type             ; Clock ; Clock Edge ; Target                                                         ;
++-------+--------------+----------------+------------------+-------+------------+----------------------------------------------------------------+
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff0|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff0|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff1|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff1|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff2|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff2|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff3|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff3|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff4|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff4|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff5|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff5|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff6|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff6|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff7|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff7|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff0|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff0|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff1|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff1|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff2|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff2|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff3|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff3|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff4|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff4|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff5|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff5|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff6|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff6|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff7|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff7|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff0|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff0|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; CLOCK_50|combout                                               ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; CLOCK_50|combout                                               ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; CLOCK_50~clkctrl|inclk[0]                                      ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; CLOCK_50~clkctrl|inclk[0]                                      ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; CLOCK_50~clkctrl|outclk                                        ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; CLOCK_50~clkctrl|outclk                                        ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; oLEDR[0]|outclk                                                ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; oLEDR[0]|outclk                                                ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|addsubreg|shortdff|clk                                ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|addsubreg|shortdff|clk                                ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|ainreg|dff0|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|ainreg|dff0|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|ainreg|dff1|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|ainreg|dff1|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|ainreg|dff2|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|ainreg|dff2|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|ainreg|dff3|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|ainreg|dff3|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|ainreg|dff4|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|ainreg|dff4|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|ainreg|dff5|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|ainreg|dff5|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|ainreg|dff6|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|ainreg|dff6|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|ainreg|dff7|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|ainreg|dff7|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|binreg|dff0|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|binreg|dff0|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|binreg|dff1|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|binreg|dff1|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|binreg|dff2|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|binreg|dff2|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|binreg|dff3|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|binreg|dff3|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|binreg|dff4|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|binreg|dff4|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|binreg|dff5|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|binreg|dff5|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|binreg|dff6|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|binreg|dff6|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|binreg|dff7|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|binreg|dff7|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|outreg|dff0|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|outreg|dff0|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|outreg|dff1|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|outreg|dff1|shortdff|clk                              ;
++-------+--------------+----------------+------------------+-------+------------+----------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------+
+; Setup Times                                                           ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; iSW[*]    ; zegar      ; 5.416 ; 5.416 ; Rise       ; zegar           ;
+;  iSW[0]   ; zegar      ; 5.327 ; 5.327 ; Rise       ; zegar           ;
+;  iSW[1]   ; zegar      ; 5.398 ; 5.398 ; Rise       ; zegar           ;
+;  iSW[2]   ; zegar      ; 5.349 ; 5.349 ; Rise       ; zegar           ;
+;  iSW[3]   ; zegar      ; 4.932 ; 4.932 ; Rise       ; zegar           ;
+;  iSW[4]   ; zegar      ; 4.870 ; 4.870 ; Rise       ; zegar           ;
+;  iSW[5]   ; zegar      ; 4.856 ; 4.856 ; Rise       ; zegar           ;
+;  iSW[6]   ; zegar      ; 5.064 ; 5.064 ; Rise       ; zegar           ;
+;  iSW[7]   ; zegar      ; 4.913 ; 4.913 ; Rise       ; zegar           ;
+;  iSW[8]   ; zegar      ; 5.416 ; 5.416 ; Rise       ; zegar           ;
+;  iSW[9]   ; zegar      ; 5.263 ; 5.263 ; Rise       ; zegar           ;
+;  iSW[10]  ; zegar      ; 2.250 ; 2.250 ; Rise       ; zegar           ;
+;  iSW[11]  ; zegar      ; 1.387 ; 1.387 ; Rise       ; zegar           ;
+;  iSW[12]  ; zegar      ; 2.043 ; 2.043 ; Rise       ; zegar           ;
+;  iSW[13]  ; zegar      ; 1.987 ; 1.987 ; Rise       ; zegar           ;
+;  iSW[14]  ; zegar      ; 4.487 ; 4.487 ; Rise       ; zegar           ;
+;  iSW[15]  ; zegar      ; 4.379 ; 4.379 ; Rise       ; zegar           ;
+;  iSW[16]  ; zegar      ; 4.365 ; 4.365 ; Rise       ; zegar           ;
+;  iSW[17]  ; zegar      ; 4.482 ; 4.482 ; Rise       ; zegar           ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++-------------------------------------------------------------------------+
+; Hold Times                                                              ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; iSW[*]    ; zegar      ; -1.157 ; -1.157 ; Rise       ; zegar           ;
+;  iSW[0]   ; zegar      ; -5.097 ; -5.097 ; Rise       ; zegar           ;
+;  iSW[1]   ; zegar      ; -5.168 ; -5.168 ; Rise       ; zegar           ;
+;  iSW[2]   ; zegar      ; -5.119 ; -5.119 ; Rise       ; zegar           ;
+;  iSW[3]   ; zegar      ; -4.702 ; -4.702 ; Rise       ; zegar           ;
+;  iSW[4]   ; zegar      ; -4.640 ; -4.640 ; Rise       ; zegar           ;
+;  iSW[5]   ; zegar      ; -4.626 ; -4.626 ; Rise       ; zegar           ;
+;  iSW[6]   ; zegar      ; -4.834 ; -4.834 ; Rise       ; zegar           ;
+;  iSW[7]   ; zegar      ; -4.683 ; -4.683 ; Rise       ; zegar           ;
+;  iSW[8]   ; zegar      ; -5.186 ; -5.186 ; Rise       ; zegar           ;
+;  iSW[9]   ; zegar      ; -5.033 ; -5.033 ; Rise       ; zegar           ;
+;  iSW[10]  ; zegar      ; -2.020 ; -2.020 ; Rise       ; zegar           ;
+;  iSW[11]  ; zegar      ; -1.157 ; -1.157 ; Rise       ; zegar           ;
+;  iSW[12]  ; zegar      ; -1.813 ; -1.813 ; Rise       ; zegar           ;
+;  iSW[13]  ; zegar      ; -1.757 ; -1.757 ; Rise       ; zegar           ;
+;  iSW[14]  ; zegar      ; -4.257 ; -4.257 ; Rise       ; zegar           ;
+;  iSW[15]  ; zegar      ; -4.149 ; -4.149 ; Rise       ; zegar           ;
+;  iSW[16]  ; zegar      ; -4.135 ; -4.135 ; Rise       ; zegar           ;
+;  iSW[17]  ; zegar      ; -4.252 ; -4.252 ; Rise       ; zegar           ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++-----------------------------------------------------------------------+
+; Clock to Output Times                                                 ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; HEX0[*]   ; zegar      ; 8.651 ; 8.651 ; Rise       ; zegar           ;
+;  HEX0[0]  ; zegar      ; 8.041 ; 8.041 ; Rise       ; zegar           ;
+;  HEX0[1]  ; zegar      ; 7.747 ; 7.747 ; Rise       ; zegar           ;
+;  HEX0[2]  ; zegar      ; 8.651 ; 8.651 ; Rise       ; zegar           ;
+;  HEX0[3]  ; zegar      ; 8.243 ; 8.243 ; Rise       ; zegar           ;
+;  HEX0[4]  ; zegar      ; 8.265 ; 8.265 ; Rise       ; zegar           ;
+;  HEX0[5]  ; zegar      ; 7.965 ; 7.965 ; Rise       ; zegar           ;
+;  HEX0[6]  ; zegar      ; 8.181 ; 8.181 ; Rise       ; zegar           ;
+; HEX1[*]   ; zegar      ; 8.895 ; 8.895 ; Rise       ; zegar           ;
+;  HEX1[0]  ; zegar      ; 8.565 ; 8.565 ; Rise       ; zegar           ;
+;  HEX1[1]  ; zegar      ; 8.808 ; 8.808 ; Rise       ; zegar           ;
+;  HEX1[2]  ; zegar      ; 8.853 ; 8.853 ; Rise       ; zegar           ;
+;  HEX1[3]  ; zegar      ; 8.874 ; 8.874 ; Rise       ; zegar           ;
+;  HEX1[4]  ; zegar      ; 8.600 ; 8.600 ; Rise       ; zegar           ;
+;  HEX1[5]  ; zegar      ; 8.895 ; 8.895 ; Rise       ; zegar           ;
+;  HEX1[6]  ; zegar      ; 8.667 ; 8.667 ; Rise       ; zegar           ;
+; oLEDR[*]  ; zegar      ; 6.210 ; 6.210 ; Rise       ; zegar           ;
+;  oLEDR[0] ; zegar      ; 6.210 ; 6.210 ; Rise       ; zegar           ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++-----------------------------------------------------------------------+
+; Minimum Clock to Output Times                                         ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; HEX0[*]   ; zegar      ; 7.467 ; 7.467 ; Rise       ; zegar           ;
+;  HEX0[0]  ; zegar      ; 7.764 ; 7.764 ; Rise       ; zegar           ;
+;  HEX0[1]  ; zegar      ; 7.467 ; 7.467 ; Rise       ; zegar           ;
+;  HEX0[2]  ; zegar      ; 8.372 ; 8.372 ; Rise       ; zegar           ;
+;  HEX0[3]  ; zegar      ; 7.963 ; 7.963 ; Rise       ; zegar           ;
+;  HEX0[4]  ; zegar      ; 7.985 ; 7.985 ; Rise       ; zegar           ;
+;  HEX0[5]  ; zegar      ; 7.698 ; 7.698 ; Rise       ; zegar           ;
+;  HEX0[6]  ; zegar      ; 7.901 ; 7.901 ; Rise       ; zegar           ;
+; HEX1[*]   ; zegar      ; 8.108 ; 8.108 ; Rise       ; zegar           ;
+;  HEX1[0]  ; zegar      ; 8.108 ; 8.108 ; Rise       ; zegar           ;
+;  HEX1[1]  ; zegar      ; 8.654 ; 8.654 ; Rise       ; zegar           ;
+;  HEX1[2]  ; zegar      ; 8.694 ; 8.694 ; Rise       ; zegar           ;
+;  HEX1[3]  ; zegar      ; 8.715 ; 8.715 ; Rise       ; zegar           ;
+;  HEX1[4]  ; zegar      ; 8.468 ; 8.468 ; Rise       ; zegar           ;
+;  HEX1[5]  ; zegar      ; 8.741 ; 8.741 ; Rise       ; zegar           ;
+;  HEX1[6]  ; zegar      ; 8.509 ; 8.509 ; Rise       ; zegar           ;
+; oLEDR[*]  ; zegar      ; 6.210 ; 6.210 ; Rise       ; zegar           ;
+;  oLEDR[0] ; zegar      ; 6.210 ; 6.210 ; Rise       ; zegar           ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++----------------------------------------------------------+
+; Propagation Delay                                        ;
++------------+-------------+-------+-------+-------+-------+
+; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
++------------+-------------+-------+-------+-------+-------+
+; iSW[0]     ; HEX6[0]     ; 8.531 ; 8.531 ; 8.531 ; 8.531 ;
+; iSW[0]     ; HEX6[1]     ; 8.247 ; 8.247 ; 8.247 ; 8.247 ;
+; iSW[0]     ; HEX6[2]     ;       ; 8.331 ; 8.331 ;       ;
+; iSW[0]     ; HEX6[3]     ; 8.327 ; 8.327 ; 8.327 ; 8.327 ;
+; iSW[0]     ; HEX6[4]     ; 8.546 ;       ;       ; 8.546 ;
+; iSW[0]     ; HEX6[5]     ; 8.582 ;       ;       ; 8.582 ;
+; iSW[0]     ; HEX6[6]     ; 8.569 ; 8.569 ; 8.569 ; 8.569 ;
+; iSW[1]     ; HEX6[0]     ; 8.550 ; 8.550 ; 8.550 ; 8.550 ;
+; iSW[1]     ; HEX6[1]     ; 8.317 ; 8.317 ; 8.317 ; 8.317 ;
+; iSW[1]     ; HEX6[2]     ; 8.582 ;       ;       ; 8.582 ;
+; iSW[1]     ; HEX6[3]     ; 8.577 ; 8.577 ; 8.577 ; 8.577 ;
+; iSW[1]     ; HEX6[4]     ;       ; 8.459 ; 8.459 ;       ;
+; iSW[1]     ; HEX6[5]     ; 8.475 ; 8.475 ; 8.475 ; 8.475 ;
+; iSW[1]     ; HEX6[6]     ; 8.462 ; 8.462 ; 8.462 ; 8.462 ;
+; iSW[2]     ; HEX6[0]     ; 8.472 ; 8.472 ; 8.472 ; 8.472 ;
+; iSW[2]     ; HEX6[1]     ; 8.353 ;       ;       ; 8.353 ;
+; iSW[2]     ; HEX6[2]     ; 8.510 ; 8.510 ; 8.510 ; 8.510 ;
+; iSW[2]     ; HEX6[3]     ; 8.508 ; 8.508 ; 8.508 ; 8.508 ;
+; iSW[2]     ; HEX6[4]     ; 8.639 ; 8.639 ; 8.639 ; 8.639 ;
+; iSW[2]     ; HEX6[5]     ; 8.654 ; 8.654 ; 8.654 ; 8.654 ;
+; iSW[2]     ; HEX6[6]     ; 8.673 ; 8.673 ; 8.673 ; 8.673 ;
+; iSW[3]     ; HEX6[0]     ; 8.220 ; 8.220 ; 8.220 ; 8.220 ;
+; iSW[3]     ; HEX6[1]     ; 8.026 ; 8.026 ; 8.026 ; 8.026 ;
+; iSW[3]     ; HEX6[2]     ; 8.440 ; 8.440 ; 8.440 ; 8.440 ;
+; iSW[3]     ; HEX6[3]     ; 8.435 ; 8.435 ; 8.435 ; 8.435 ;
+; iSW[3]     ; HEX6[4]     ;       ; 8.230 ; 8.230 ;       ;
+; iSW[3]     ; HEX6[5]     ; 8.519 ; 8.519 ; 8.519 ; 8.519 ;
+; iSW[3]     ; HEX6[6]     ; 8.537 ; 8.537 ; 8.537 ; 8.537 ;
+; iSW[4]     ; HEX7[0]     ; 8.293 ; 8.293 ; 8.293 ; 8.293 ;
+; iSW[4]     ; HEX7[1]     ; 8.196 ; 8.196 ; 8.196 ; 8.196 ;
+; iSW[4]     ; HEX7[2]     ;       ; 8.170 ; 8.170 ;       ;
+; iSW[4]     ; HEX7[3]     ; 8.324 ; 8.324 ; 8.324 ; 8.324 ;
+; iSW[4]     ; HEX7[4]     ; 8.313 ;       ;       ; 8.313 ;
+; iSW[4]     ; HEX7[5]     ; 8.643 ;       ;       ; 8.643 ;
+; iSW[4]     ; HEX7[6]     ; 8.334 ; 8.334 ; 8.334 ; 8.334 ;
+; iSW[5]     ; HEX7[0]     ; 8.291 ; 8.291 ; 8.291 ; 8.291 ;
+; iSW[5]     ; HEX7[1]     ; 8.330 ; 8.330 ; 8.330 ; 8.330 ;
+; iSW[5]     ; HEX7[2]     ; 8.325 ;       ;       ; 8.325 ;
+; iSW[5]     ; HEX7[3]     ; 8.346 ; 8.346 ; 8.346 ; 8.346 ;
+; iSW[5]     ; HEX7[4]     ;       ; 8.339 ; 8.339 ;       ;
+; iSW[5]     ; HEX7[5]     ; 8.646 ; 8.646 ; 8.646 ; 8.646 ;
+; iSW[5]     ; HEX7[6]     ; 8.352 ; 8.352 ; 8.352 ; 8.352 ;
+; iSW[6]     ; HEX7[0]     ; 8.396 ; 8.396 ; 8.396 ; 8.396 ;
+; iSW[6]     ; HEX7[1]     ; 8.265 ;       ;       ; 8.265 ;
+; iSW[6]     ; HEX7[2]     ; 8.265 ; 8.265 ; 8.265 ; 8.265 ;
+; iSW[6]     ; HEX7[3]     ; 8.405 ; 8.405 ; 8.405 ; 8.405 ;
+; iSW[6]     ; HEX7[4]     ; 8.412 ; 8.412 ; 8.412 ; 8.412 ;
+; iSW[6]     ; HEX7[5]     ; 8.567 ; 8.567 ; 8.567 ; 8.567 ;
+; iSW[6]     ; HEX7[6]     ; 8.410 ; 8.410 ; 8.410 ; 8.410 ;
+; iSW[7]     ; HEX7[0]     ; 8.456 ; 8.456 ; 8.456 ; 8.456 ;
+; iSW[7]     ; HEX7[1]     ; 8.480 ; 8.480 ; 8.480 ; 8.480 ;
+; iSW[7]     ; HEX7[2]     ; 8.480 ; 8.480 ; 8.480 ; 8.480 ;
+; iSW[7]     ; HEX7[3]     ; 8.626 ; 8.626 ; 8.626 ; 8.626 ;
+; iSW[7]     ; HEX7[4]     ;       ; 8.472 ; 8.472 ;       ;
+; iSW[7]     ; HEX7[5]     ; 8.661 ; 8.661 ; 8.661 ; 8.661 ;
+; iSW[7]     ; HEX7[6]     ; 8.631 ; 8.631 ; 8.631 ; 8.631 ;
+; iSW[8]     ; HEX3[0]     ; 7.991 ; 7.991 ; 7.991 ; 7.991 ;
+; iSW[8]     ; HEX3[1]     ; 8.268 ; 8.268 ; 8.268 ; 8.268 ;
+; iSW[8]     ; HEX3[2]     ;       ; 8.212 ; 8.212 ;       ;
+; iSW[8]     ; HEX3[3]     ; 8.296 ; 8.296 ; 8.296 ; 8.296 ;
+; iSW[8]     ; HEX3[4]     ; 8.510 ;       ;       ; 8.510 ;
+; iSW[8]     ; HEX3[5]     ; 8.192 ;       ;       ; 8.192 ;
+; iSW[8]     ; HEX3[6]     ; 8.185 ; 8.185 ; 8.185 ; 8.185 ;
+; iSW[9]     ; HEX3[0]     ; 7.710 ; 7.710 ; 7.710 ; 7.710 ;
+; iSW[9]     ; HEX3[1]     ; 7.986 ; 7.986 ; 7.986 ; 7.986 ;
+; iSW[9]     ; HEX3[2]     ; 8.033 ;       ;       ; 8.033 ;
+; iSW[9]     ; HEX3[3]     ; 8.013 ; 8.013 ; 8.013 ; 8.013 ;
+; iSW[9]     ; HEX3[4]     ;       ; 8.333 ; 8.333 ;       ;
+; iSW[9]     ; HEX3[5]     ; 8.012 ; 8.012 ; 8.012 ; 8.012 ;
+; iSW[9]     ; HEX3[6]     ; 8.013 ; 8.013 ; 8.013 ; 8.013 ;
+; iSW[10]    ; HEX3[0]     ; 7.498 ; 7.498 ; 7.498 ; 7.498 ;
+; iSW[10]    ; HEX3[1]     ; 7.776 ;       ;       ; 7.776 ;
+; iSW[10]    ; HEX3[2]     ; 7.959 ; 7.959 ; 7.959 ; 7.959 ;
+; iSW[10]    ; HEX3[3]     ; 7.804 ; 7.804 ; 7.804 ; 7.804 ;
+; iSW[10]    ; HEX3[4]     ; 8.258 ; 8.258 ; 8.258 ; 8.258 ;
+; iSW[10]    ; HEX3[5]     ; 7.916 ; 7.916 ; 7.916 ; 7.916 ;
+; iSW[10]    ; HEX3[6]     ; 7.933 ; 7.933 ; 7.933 ; 7.933 ;
+; iSW[11]    ; HEX3[0]     ; 7.839 ; 7.839 ; 7.839 ; 7.839 ;
+; iSW[11]    ; HEX3[1]     ; 8.114 ; 8.114 ; 8.114 ; 8.114 ;
+; iSW[11]    ; HEX3[2]     ; 8.136 ; 8.136 ; 8.136 ; 8.136 ;
+; iSW[11]    ; HEX3[3]     ; 8.114 ; 8.114 ; 8.114 ; 8.114 ;
+; iSW[11]    ; HEX3[4]     ;       ; 8.398 ; 8.398 ;       ;
+; iSW[11]    ; HEX3[5]     ; 8.084 ; 8.084 ; 8.084 ; 8.084 ;
+; iSW[11]    ; HEX3[6]     ; 8.112 ; 8.112 ; 8.112 ; 8.112 ;
+; iSW[12]    ; HEX4[0]     ; 7.815 ; 7.815 ; 7.815 ; 7.815 ;
+; iSW[12]    ; HEX4[1]     ; 7.820 ; 7.820 ; 7.820 ; 7.820 ;
+; iSW[12]    ; HEX4[2]     ;       ; 8.081 ; 8.081 ;       ;
+; iSW[12]    ; HEX4[3]     ; 8.232 ; 8.232 ; 8.232 ; 8.232 ;
+; iSW[12]    ; HEX4[4]     ; 8.247 ;       ;       ; 8.247 ;
+; iSW[12]    ; HEX4[5]     ; 8.276 ;       ;       ; 8.276 ;
+; iSW[12]    ; HEX4[6]     ; 8.258 ; 8.258 ; 8.258 ; 8.258 ;
+; iSW[13]    ; HEX4[0]     ; 7.666 ; 7.666 ; 7.666 ; 7.666 ;
+; iSW[13]    ; HEX4[1]     ; 7.672 ; 7.672 ; 7.672 ; 7.672 ;
+; iSW[13]    ; HEX4[2]     ; 7.823 ;       ;       ; 7.823 ;
+; iSW[13]    ; HEX4[3]     ; 7.952 ; 7.952 ; 7.952 ; 7.952 ;
+; iSW[13]    ; HEX4[4]     ;       ; 7.960 ; 7.960 ;       ;
+; iSW[13]    ; HEX4[5]     ; 7.990 ; 7.990 ; 7.990 ; 7.990 ;
+; iSW[13]    ; HEX4[6]     ; 7.973 ; 7.973 ; 7.973 ; 7.973 ;
+; iSW[14]    ; HEX4[0]     ; 5.773 ; 5.773 ; 5.773 ; 5.773 ;
+; iSW[14]    ; HEX4[1]     ; 5.782 ;       ;       ; 5.782 ;
+; iSW[14]    ; HEX4[2]     ; 5.930 ; 5.930 ; 5.930 ; 5.930 ;
+; iSW[14]    ; HEX4[3]     ; 6.059 ; 6.059 ; 6.059 ; 6.059 ;
+; iSW[14]    ; HEX4[4]     ; 6.070 ; 6.070 ; 6.070 ; 6.070 ;
+; iSW[14]    ; HEX4[5]     ; 6.094 ; 6.094 ; 6.094 ; 6.094 ;
+; iSW[14]    ; HEX4[6]     ; 6.078 ; 6.078 ; 6.078 ; 6.078 ;
+; iSW[15]    ; HEX4[0]     ; 5.754 ; 5.754 ; 5.754 ; 5.754 ;
+; iSW[15]    ; HEX4[1]     ; 5.755 ; 5.755 ; 5.755 ; 5.755 ;
+; iSW[15]    ; HEX4[2]     ; 5.765 ; 5.765 ; 5.765 ; 5.765 ;
+; iSW[15]    ; HEX4[3]     ; 5.897 ; 5.897 ; 5.897 ; 5.897 ;
+; iSW[15]    ; HEX4[4]     ;       ; 5.908 ; 5.908 ;       ;
+; iSW[15]    ; HEX4[5]     ; 5.937 ; 5.937 ; 5.937 ; 5.937 ;
+; iSW[15]    ; HEX4[6]     ; 5.919 ; 5.919 ; 5.919 ; 5.919 ;
++------------+-------------+-------+-------+-------+-------+
+
+
++----------------------------------------------------------+
+; Minimum Propagation Delay                                ;
++------------+-------------+-------+-------+-------+-------+
+; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
++------------+-------------+-------+-------+-------+-------+
+; iSW[0]     ; HEX6[0]     ; 8.531 ; 8.531 ; 8.531 ; 8.531 ;
+; iSW[0]     ; HEX6[1]     ; 8.247 ; 8.247 ; 8.247 ; 8.247 ;
+; iSW[0]     ; HEX6[2]     ;       ; 8.331 ; 8.331 ;       ;
+; iSW[0]     ; HEX6[3]     ; 8.327 ; 8.327 ; 8.327 ; 8.327 ;
+; iSW[0]     ; HEX6[4]     ; 8.546 ;       ;       ; 8.546 ;
+; iSW[0]     ; HEX6[5]     ; 8.582 ;       ;       ; 8.582 ;
+; iSW[0]     ; HEX6[6]     ; 8.569 ; 8.569 ; 8.569 ; 8.569 ;
+; iSW[1]     ; HEX6[0]     ; 8.550 ; 8.550 ; 8.550 ; 8.550 ;
+; iSW[1]     ; HEX6[1]     ; 8.317 ; 8.317 ; 8.317 ; 8.317 ;
+; iSW[1]     ; HEX6[2]     ; 8.582 ;       ;       ; 8.582 ;
+; iSW[1]     ; HEX6[3]     ; 8.577 ; 8.577 ; 8.577 ; 8.577 ;
+; iSW[1]     ; HEX6[4]     ;       ; 8.459 ; 8.459 ;       ;
+; iSW[1]     ; HEX6[5]     ; 8.475 ; 8.475 ; 8.475 ; 8.475 ;
+; iSW[1]     ; HEX6[6]     ; 8.462 ; 8.462 ; 8.462 ; 8.462 ;
+; iSW[2]     ; HEX6[0]     ; 8.472 ; 8.472 ; 8.472 ; 8.472 ;
+; iSW[2]     ; HEX6[1]     ; 8.353 ;       ;       ; 8.353 ;
+; iSW[2]     ; HEX6[2]     ; 8.510 ; 8.510 ; 8.510 ; 8.510 ;
+; iSW[2]     ; HEX6[3]     ; 8.508 ; 8.508 ; 8.508 ; 8.508 ;
+; iSW[2]     ; HEX6[4]     ; 8.639 ; 8.639 ; 8.639 ; 8.639 ;
+; iSW[2]     ; HEX6[5]     ; 8.654 ; 8.654 ; 8.654 ; 8.654 ;
+; iSW[2]     ; HEX6[6]     ; 8.673 ; 8.673 ; 8.673 ; 8.673 ;
+; iSW[3]     ; HEX6[0]     ; 8.220 ; 8.220 ; 8.220 ; 8.220 ;
+; iSW[3]     ; HEX6[1]     ; 8.026 ; 8.026 ; 8.026 ; 8.026 ;
+; iSW[3]     ; HEX6[2]     ; 8.440 ; 8.440 ; 8.440 ; 8.440 ;
+; iSW[3]     ; HEX6[3]     ; 8.435 ; 8.435 ; 8.435 ; 8.435 ;
+; iSW[3]     ; HEX6[4]     ;       ; 8.230 ; 8.230 ;       ;
+; iSW[3]     ; HEX6[5]     ; 8.519 ; 8.519 ; 8.519 ; 8.519 ;
+; iSW[3]     ; HEX6[6]     ; 8.537 ; 8.537 ; 8.537 ; 8.537 ;
+; iSW[4]     ; HEX7[0]     ; 8.293 ; 8.293 ; 8.293 ; 8.293 ;
+; iSW[4]     ; HEX7[1]     ; 8.196 ; 8.196 ; 8.196 ; 8.196 ;
+; iSW[4]     ; HEX7[2]     ;       ; 8.170 ; 8.170 ;       ;
+; iSW[4]     ; HEX7[3]     ; 8.324 ; 8.324 ; 8.324 ; 8.324 ;
+; iSW[4]     ; HEX7[4]     ; 8.313 ;       ;       ; 8.313 ;
+; iSW[4]     ; HEX7[5]     ; 8.643 ;       ;       ; 8.643 ;
+; iSW[4]     ; HEX7[6]     ; 8.334 ; 8.334 ; 8.334 ; 8.334 ;
+; iSW[5]     ; HEX7[0]     ; 8.291 ; 8.291 ; 8.291 ; 8.291 ;
+; iSW[5]     ; HEX7[1]     ; 8.330 ; 8.330 ; 8.330 ; 8.330 ;
+; iSW[5]     ; HEX7[2]     ; 8.325 ;       ;       ; 8.325 ;
+; iSW[5]     ; HEX7[3]     ; 8.346 ; 8.346 ; 8.346 ; 8.346 ;
+; iSW[5]     ; HEX7[4]     ;       ; 8.339 ; 8.339 ;       ;
+; iSW[5]     ; HEX7[5]     ; 8.646 ; 8.646 ; 8.646 ; 8.646 ;
+; iSW[5]     ; HEX7[6]     ; 8.352 ; 8.352 ; 8.352 ; 8.352 ;
+; iSW[6]     ; HEX7[0]     ; 8.396 ; 8.396 ; 8.396 ; 8.396 ;
+; iSW[6]     ; HEX7[1]     ; 8.265 ;       ;       ; 8.265 ;
+; iSW[6]     ; HEX7[2]     ; 8.265 ; 8.265 ; 8.265 ; 8.265 ;
+; iSW[6]     ; HEX7[3]     ; 8.405 ; 8.405 ; 8.405 ; 8.405 ;
+; iSW[6]     ; HEX7[4]     ; 8.412 ; 8.412 ; 8.412 ; 8.412 ;
+; iSW[6]     ; HEX7[5]     ; 8.567 ; 8.567 ; 8.567 ; 8.567 ;
+; iSW[6]     ; HEX7[6]     ; 8.410 ; 8.410 ; 8.410 ; 8.410 ;
+; iSW[7]     ; HEX7[0]     ; 8.456 ; 8.456 ; 8.456 ; 8.456 ;
+; iSW[7]     ; HEX7[1]     ; 8.480 ; 8.480 ; 8.480 ; 8.480 ;
+; iSW[7]     ; HEX7[2]     ; 8.480 ; 8.480 ; 8.480 ; 8.480 ;
+; iSW[7]     ; HEX7[3]     ; 8.626 ; 8.626 ; 8.626 ; 8.626 ;
+; iSW[7]     ; HEX7[4]     ;       ; 8.472 ; 8.472 ;       ;
+; iSW[7]     ; HEX7[5]     ; 8.661 ; 8.661 ; 8.661 ; 8.661 ;
+; iSW[7]     ; HEX7[6]     ; 8.631 ; 8.631 ; 8.631 ; 8.631 ;
+; iSW[8]     ; HEX3[0]     ; 7.991 ; 7.991 ; 7.991 ; 7.991 ;
+; iSW[8]     ; HEX3[1]     ; 8.268 ; 8.268 ; 8.268 ; 8.268 ;
+; iSW[8]     ; HEX3[2]     ;       ; 8.212 ; 8.212 ;       ;
+; iSW[8]     ; HEX3[3]     ; 8.296 ; 8.296 ; 8.296 ; 8.296 ;
+; iSW[8]     ; HEX3[4]     ; 8.510 ;       ;       ; 8.510 ;
+; iSW[8]     ; HEX3[5]     ; 8.192 ;       ;       ; 8.192 ;
+; iSW[8]     ; HEX3[6]     ; 8.185 ; 8.185 ; 8.185 ; 8.185 ;
+; iSW[9]     ; HEX3[0]     ; 7.710 ; 7.710 ; 7.710 ; 7.710 ;
+; iSW[9]     ; HEX3[1]     ; 7.986 ; 7.986 ; 7.986 ; 7.986 ;
+; iSW[9]     ; HEX3[2]     ; 8.033 ;       ;       ; 8.033 ;
+; iSW[9]     ; HEX3[3]     ; 8.013 ; 8.013 ; 8.013 ; 8.013 ;
+; iSW[9]     ; HEX3[4]     ;       ; 8.333 ; 8.333 ;       ;
+; iSW[9]     ; HEX3[5]     ; 8.012 ; 8.012 ; 8.012 ; 8.012 ;
+; iSW[9]     ; HEX3[6]     ; 8.013 ; 8.013 ; 8.013 ; 8.013 ;
+; iSW[10]    ; HEX3[0]     ; 7.498 ; 7.498 ; 7.498 ; 7.498 ;
+; iSW[10]    ; HEX3[1]     ; 7.776 ;       ;       ; 7.776 ;
+; iSW[10]    ; HEX3[2]     ; 7.959 ; 7.959 ; 7.959 ; 7.959 ;
+; iSW[10]    ; HEX3[3]     ; 7.804 ; 7.804 ; 7.804 ; 7.804 ;
+; iSW[10]    ; HEX3[4]     ; 8.258 ; 8.258 ; 8.258 ; 8.258 ;
+; iSW[10]    ; HEX3[5]     ; 7.916 ; 7.916 ; 7.916 ; 7.916 ;
+; iSW[10]    ; HEX3[6]     ; 7.933 ; 7.933 ; 7.933 ; 7.933 ;
+; iSW[11]    ; HEX3[0]     ; 7.839 ; 7.839 ; 7.839 ; 7.839 ;
+; iSW[11]    ; HEX3[1]     ; 8.114 ; 8.114 ; 8.114 ; 8.114 ;
+; iSW[11]    ; HEX3[2]     ; 8.136 ; 8.136 ; 8.136 ; 8.136 ;
+; iSW[11]    ; HEX3[3]     ; 8.114 ; 8.114 ; 8.114 ; 8.114 ;
+; iSW[11]    ; HEX3[4]     ;       ; 8.398 ; 8.398 ;       ;
+; iSW[11]    ; HEX3[5]     ; 8.084 ; 8.084 ; 8.084 ; 8.084 ;
+; iSW[11]    ; HEX3[6]     ; 8.112 ; 8.112 ; 8.112 ; 8.112 ;
+; iSW[12]    ; HEX4[0]     ; 7.815 ; 7.815 ; 7.815 ; 7.815 ;
+; iSW[12]    ; HEX4[1]     ; 7.820 ; 7.820 ; 7.820 ; 7.820 ;
+; iSW[12]    ; HEX4[2]     ;       ; 8.081 ; 8.081 ;       ;
+; iSW[12]    ; HEX4[3]     ; 8.232 ; 8.232 ; 8.232 ; 8.232 ;
+; iSW[12]    ; HEX4[4]     ; 8.247 ;       ;       ; 8.247 ;
+; iSW[12]    ; HEX4[5]     ; 8.276 ;       ;       ; 8.276 ;
+; iSW[12]    ; HEX4[6]     ; 8.258 ; 8.258 ; 8.258 ; 8.258 ;
+; iSW[13]    ; HEX4[0]     ; 7.666 ; 7.666 ; 7.666 ; 7.666 ;
+; iSW[13]    ; HEX4[1]     ; 7.672 ; 7.672 ; 7.672 ; 7.672 ;
+; iSW[13]    ; HEX4[2]     ; 7.823 ;       ;       ; 7.823 ;
+; iSW[13]    ; HEX4[3]     ; 7.952 ; 7.952 ; 7.952 ; 7.952 ;
+; iSW[13]    ; HEX4[4]     ;       ; 7.960 ; 7.960 ;       ;
+; iSW[13]    ; HEX4[5]     ; 7.990 ; 7.990 ; 7.990 ; 7.990 ;
+; iSW[13]    ; HEX4[6]     ; 7.973 ; 7.973 ; 7.973 ; 7.973 ;
+; iSW[14]    ; HEX4[0]     ; 5.773 ; 5.773 ; 5.773 ; 5.773 ;
+; iSW[14]    ; HEX4[1]     ; 5.782 ;       ;       ; 5.782 ;
+; iSW[14]    ; HEX4[2]     ; 5.930 ; 5.930 ; 5.930 ; 5.930 ;
+; iSW[14]    ; HEX4[3]     ; 6.059 ; 6.059 ; 6.059 ; 6.059 ;
+; iSW[14]    ; HEX4[4]     ; 6.070 ; 6.070 ; 6.070 ; 6.070 ;
+; iSW[14]    ; HEX4[5]     ; 6.094 ; 6.094 ; 6.094 ; 6.094 ;
+; iSW[14]    ; HEX4[6]     ; 6.078 ; 6.078 ; 6.078 ; 6.078 ;
+; iSW[15]    ; HEX4[0]     ; 5.754 ; 5.754 ; 5.754 ; 5.754 ;
+; iSW[15]    ; HEX4[1]     ; 5.755 ; 5.755 ; 5.755 ; 5.755 ;
+; iSW[15]    ; HEX4[2]     ; 5.765 ; 5.765 ; 5.765 ; 5.765 ;
+; iSW[15]    ; HEX4[3]     ; 5.897 ; 5.897 ; 5.897 ; 5.897 ;
+; iSW[15]    ; HEX4[4]     ;       ; 5.908 ; 5.908 ;       ;
+; iSW[15]    ; HEX4[5]     ; 5.937 ; 5.937 ; 5.937 ; 5.937 ;
+; iSW[15]    ; HEX4[6]     ; 5.919 ; 5.919 ; 5.919 ; 5.919 ;
++------------+-------------+-------+-------+-------+-------+
+
+
++-------------------------------+
+; Fast Model Setup Summary      ;
++-------+-------+---------------+
+; Clock ; Slack ; End Point TNS ;
++-------+-------+---------------+
+; zegar ; 5.402 ; 0.000         ;
++-------+-------+---------------+
+
+
++-------------------------------+
+; Fast Model Hold Summary       ;
++-------+-------+---------------+
+; Clock ; Slack ; End Point TNS ;
++-------+-------+---------------+
+; zegar ; 0.215 ; 0.000         ;
++-------+-------+---------------+
+
+
+-------------------------------
+; Fast Model Recovery Summary ;
+-------------------------------
+No paths to report.
+
+
+------------------------------
+; Fast Model Removal Summary ;
+------------------------------
+No paths to report.
+
+
++----------------------------------------+
+; Fast Model Minimum Pulse Width Summary ;
++-------+-------+------------------------+
+; Clock ; Slack ; End Point TNS          ;
++-------+-------+------------------------+
+; zegar ; 5.000 ; 0.000                  ;
++-------+-------+------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fast Model Setup: 'zegar'                                                                                                                              ;
++-------+----------------------------------------------------------------+---------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                                                      ; To Node ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+----------------------------------------------------------------+---------+--------------+-------------+--------------+------------+------------+
+; 5.402 ; iSW[7]                                                         ; HEX7[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.598      ;
+; 5.414 ; iSW[2]                                                         ; HEX6[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.586      ;
+; 5.420 ; iSW[2]                                                         ; HEX6[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.580      ;
+; 5.422 ; iSW[7]                                                         ; HEX7[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.578      ;
+; 5.424 ; iSW[4]                                                         ; HEX7[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.576      ;
+; 5.429 ; iSW[5]                                                         ; HEX7[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.571      ;
+; 5.430 ; iSW[2]                                                         ; HEX6[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.570      ;
+; 5.431 ; iSW[7]                                                         ; HEX7[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.569      ;
+; 5.455 ; iSW[6]                                                         ; HEX7[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.545      ;
+; 5.456 ; iSW[3]                                                         ; HEX6[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.544      ;
+; 5.463 ; iSW[3]                                                         ; HEX6[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.537      ;
+; 5.478 ; iSW[0]                                                         ; HEX6[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.522      ;
+; 5.481 ; iSW[1]                                                         ; HEX6[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.519      ;
+; 5.483 ; iSW[1]                                                         ; HEX6[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.517      ;
+; 5.484 ; iSW[0]                                                         ; HEX6[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.516      ;
+; 5.491 ; iSW[1]                                                         ; HEX6[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.509      ;
+; 5.492 ; iSW[0]                                                         ; HEX6[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.508      ;
+; 5.506 ; iSW[6]                                                         ; HEX7[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.494      ;
+; 5.509 ; iSW[0]                                                         ; HEX6[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.491      ;
+; 5.511 ; iSW[12]                                                        ; HEX4[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.489      ;
+; 5.512 ; iSW[3]                                                         ; HEX6[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.488      ;
+; 5.513 ; iSW[6]                                                         ; HEX7[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.487      ;
+; 5.513 ; iSW[2]                                                         ; HEX6[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.487      ;
+; 5.515 ; iSW[2]                                                         ; HEX6[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.485      ;
+; 5.520 ; iSW[3]                                                         ; HEX6[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.480      ;
+; 5.526 ; iSW[8]                                                         ; HEX3[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.474      ;
+; 5.526 ; iSW[1]                                                         ; HEX6[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.474      ;
+; 5.526 ; iSW[2]                                                         ; HEX6[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.474      ;
+; 5.529 ; iSW[1]                                                         ; HEX6[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.471      ;
+; 5.530 ; iSW[12]                                                        ; HEX4[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.470      ;
+; 5.530 ; iSW[7]                                                         ; HEX7[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.470      ;
+; 5.532 ; iSW[1]                                                         ; HEX6[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.468      ;
+; 5.538 ; iSW[7]                                                         ; HEX7[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.462      ;
+; 5.543 ; iSW[7]                                                         ; HEX7[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.457      ;
+; 5.548 ; iSW[12]                                                        ; HEX4[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.452      ;
+; 5.548 ; iSW[7]                                                         ; HEX7[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.452      ;
+; 5.551 ; iSW[12]                                                        ; HEX4[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.449      ;
+; 5.555 ; iSW[11]                                                        ; HEX3[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.445      ;
+; 5.557 ; iSW[6]                                                         ; HEX7[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.443      ;
+; 5.575 ; iSW[6]                                                         ; HEX7[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.425      ;
+; 5.576 ; iSW[2]                                                         ; HEX6[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.424      ;
+; 5.582 ; iSW[5]                                                         ; HEX7[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.418      ;
+; 5.582 ; iSW[4]                                                         ; HEX7[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.418      ;
+; 5.582 ; iSW[5]                                                         ; HEX7[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.418      ;
+; 5.585 ; iSW[3]                                                         ; HEX6[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.415      ;
+; 5.591 ; iSW[4]                                                         ; HEX7[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.409      ;
+; 5.594 ; iSW[5]                                                         ; HEX7[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.406      ;
+; 5.595 ; iSW[0]                                                         ; HEX6[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.405      ;
+; 5.596 ; iSW[0]                                                         ; HEX6[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.404      ;
+; 5.598 ; iSW[4]                                                         ; HEX7[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.402      ;
+; 5.600 ; iSW[5]                                                         ; HEX7[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.400      ;
+; 5.602 ; iSW[3]                                                         ; HEX6[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.398      ;
+; 5.605 ; iSW[5]                                                         ; HEX7[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.395      ;
+; 5.611 ; iSW[12]                                                        ; HEX4[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.389      ;
+; 5.611 ; iSW[9]                                                         ; HEX3[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.389      ;
+; 5.611 ; iSW[1]                                                         ; HEX6[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.389      ;
+; 5.613 ; iSW[5]                                                         ; HEX7[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.387      ;
+; 5.617 ; iSW[4]                                                         ; HEX7[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.383      ;
+; 5.623 ; iSW[6]                                                         ; HEX7[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.377      ;
+; 5.625 ; iSW[6]                                                         ; HEX7[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.375      ;
+; 5.628 ; iSW[10]                                                        ; HEX3[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.372      ;
+; 5.644 ; iSW[0]                                                         ; HEX6[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.356      ;
+; 5.655 ; iSW[8]                                                         ; HEX3[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.345      ;
+; 5.657 ; iSW[8]                                                         ; HEX3[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.343      ;
+; 5.663 ; iSW[8]                                                         ; HEX3[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.337      ;
+; 5.666 ; iSW[4]                                                         ; HEX7[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.334      ;
+; 5.668 ; iSW[4]                                                         ; HEX7[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.332      ;
+; 5.670 ; iSW[13]                                                        ; HEX4[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.330      ;
+; 5.682 ; iSW[13]                                                        ; HEX4[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.318      ;
+; 5.683 ; iSW[8]                                                         ; HEX3[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.317      ;
+; 5.686 ; iSW[11]                                                        ; HEX3[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.314      ;
+; 5.687 ; iSW[8]                                                         ; HEX3[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.313      ;
+; 5.699 ; iSW[13]                                                        ; HEX4[4] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.301      ;
+; 5.701 ; iSW[13]                                                        ; HEX4[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.299      ;
+; 5.706 ; iSW[11]                                                        ; HEX3[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.294      ;
+; 5.709 ; iSW[11]                                                        ; HEX3[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.291      ;
+; 5.711 ; iSW[11]                                                        ; HEX3[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.289      ;
+; 5.712 ; iSW[11]                                                        ; HEX3[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.288      ;
+; 5.715 ; iSW[3]                                                         ; HEX6[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.285      ;
+; 5.741 ; iSW[12]                                                        ; HEX4[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.259      ;
+; 5.743 ; iSW[12]                                                        ; HEX4[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.257      ;
+; 5.748 ; iSW[9]                                                         ; HEX3[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.252      ;
+; 5.758 ; iSW[10]                                                        ; HEX3[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.242      ;
+; 5.759 ; iSW[9]                                                         ; HEX3[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.241      ;
+; 5.761 ; iSW[9]                                                         ; HEX3[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.239      ;
+; 5.765 ; iSW[13]                                                        ; HEX4[2] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.235      ;
+; 5.768 ; iSW[9]                                                         ; HEX3[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.232      ;
+; 5.772 ; iSW[9]                                                         ; HEX3[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.228      ;
+; 5.784 ; iSW[10]                                                        ; HEX3[5] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.216      ;
+; 5.790 ; iSW[10]                                                        ; HEX3[6] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.210      ;
+; 5.794 ; iSW[8]                                                         ; HEX3[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.206      ;
+; 5.826 ; iSW[13]                                                        ; HEX4[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.174      ;
+; 5.827 ; iSW[13]                                                        ; HEX4[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.173      ;
+; 5.844 ; iSW[11]                                                        ; HEX3[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.156      ;
+; 5.869 ; iSW[10]                                                        ; HEX3[3] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.131      ;
+; 5.871 ; iSW[10]                                                        ; HEX3[1] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.129      ;
+; 5.900 ; iSW[9]                                                         ; HEX3[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 4.100      ;
+; 6.011 ; iSW[10]                                                        ; HEX3[0] ; zegar        ; zegar       ; 12.000       ; 0.000      ; 3.989      ;
+; 6.085 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; HEX1[5] ; zegar        ; zegar       ; 12.000       ; -1.799     ; 3.116      ;
+; 6.085 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; HEX1[5] ; zegar        ; zegar       ; 12.000       ; -1.799     ; 3.116      ;
++-------+----------------------------------------------------------------+---------+--------------+-------------+--------------+------------+------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fast Model Hold: 'zegar'                                                                                                                                                                                      ;
++-------+----------------------------------------------------------------+----------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                                                      ; To Node                                                        ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+----------------------------------------------------------------+----------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 0.215 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff0|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff0|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 0.367      ;
+; 0.336 ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff0|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 0.490      ;
+; 0.452 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff0|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff0|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 0.606      ;
+; 0.512 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 0.666      ;
+; 0.518 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 0.670      ;
+; 0.520 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff7|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 0.674      ;
+; 0.547 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff0|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff0|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 0.701      ;
+; 0.568 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 0.720      ;
+; 0.591 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff6|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 0.745      ;
+; 0.641 ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 0.795      ;
+; 0.661 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 0.813      ;
+; 0.669 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff1|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 0.823      ;
+; 0.678 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 0.832      ;
+; 0.686 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 0.838      ;
+; 0.698 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 0.852      ;
+; 0.701 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 0.853      ;
+; 0.715 ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 0.869      ;
+; 0.736 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 0.888      ;
+; 0.743 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 0.897      ;
+; 0.750 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff1|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 0.904      ;
+; 0.751 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 0.903      ;
+; 0.754 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 0.906      ;
+; 0.759 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff6|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 0.913      ;
+; 0.810 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.003      ; 0.965      ;
+; 0.816 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 1.025      ;
+; 0.822 ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 0.976      ;
+; 0.835 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 0.989      ;
+; 0.839 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 0.991      ;
+; 0.852 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.003      ; 1.007      ;
+; 0.860 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff7|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 1.069      ;
+; 0.862 ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 1.071      ;
+; 0.866 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.020      ;
+; 0.881 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 1.033      ;
+; 0.906 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff6|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 1.115      ;
+; 0.906 ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 1.115      ;
+; 0.908 ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.062      ;
+; 0.919 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 1.071      ;
+; 0.926 ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 1.135      ;
+; 0.927 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.081      ;
+; 0.931 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 1.083      ;
+; 0.948 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.102      ;
+; 0.953 ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 1.162      ;
+; 0.961 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff1|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.115      ;
+; 0.992 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.058      ; 1.202      ;
+; 0.999 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 1.208      ;
+; 1.007 ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.161      ;
+; 1.023 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 1.175      ;
+; 1.026 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 1.178      ;
+; 1.026 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff0|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.180      ;
+; 1.035 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff1|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.189      ;
+; 1.036 ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 1.245      ;
+; 1.048 ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 1.257      ;
+; 1.060 ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.214      ;
+; 1.074 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff6|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 1.283      ;
+; 1.080 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.058      ; 1.290      ;
+; 1.095 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.249      ;
+; 1.120 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.003      ; 1.275      ;
+; 1.143 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 1.295      ;
+; 1.167 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 1.376      ;
+; 1.176 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.058      ; 1.386      ;
+; 1.187 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff7|shortdff ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ; zegar        ; zegar       ; 0.000        ; -0.026     ; 1.224      ;
+; 1.191 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 1.343      ;
+; 1.196 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.055      ; 1.403      ;
+; 1.201 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff0|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.355      ;
+; 1.233 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff1|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.387      ;
+; 1.288 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.055      ; 1.495      ;
+; 1.306 ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 1.515      ;
+; 1.307 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff1|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.461      ;
+; 1.309 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.058      ; 1.519      ;
+; 1.332 ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 1.541      ;
+; 1.336 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ; zegar        ; zegar       ; 0.000        ; -0.028     ; 1.371      ;
+; 1.344 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff4|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.058      ; 1.554      ;
+; 1.353 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ; zegar        ; zegar       ; 0.000        ; -0.028     ; 1.388      ;
+; 1.380 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.055      ; 1.587      ;
+; 1.381 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.055      ; 1.588      ;
+; 1.401 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.058      ; 1.611      ;
+; 1.410 ; iSW[11]                                                        ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 1.741      ; 2.303      ;
+; 1.415 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 1.567      ;
+; 1.426 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff6|shortdff ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ; zegar        ; zegar       ; 0.000        ; -0.026     ; 1.463      ;
+; 1.429 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff0|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.583      ;
+; 1.436 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff0|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 1.588      ;
+; 1.452 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 1.661      ;
+; 1.473 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff0|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.627      ;
+; 1.473 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.055      ; 1.680      ;
+; 1.493 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.058      ; 1.703      ;
+; 1.527 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff7|shortdff ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ; zegar        ; zegar       ; 0.000        ; 0.029      ; 1.619      ;
+; 1.530 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.055      ; 1.737      ;
+; 1.533 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ; zegar        ; zegar       ; 0.000        ; -0.026     ; 1.570      ;
+; 1.544 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 1.753      ;
+; 1.548 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.055      ; 1.755      ;
+; 1.565 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.055      ; 1.772      ;
+; 1.573 ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ; zegar        ; zegar       ; 0.000        ; 0.029      ; 1.665      ;
+; 1.586 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ; zegar        ; zegar       ; 0.000        ; -0.028     ; 1.621      ;
+; 1.604 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff0|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.002      ; 1.758      ;
+; 1.611 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff0|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.000      ; 1.763      ;
+; 1.622 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 0.055      ; 1.829      ;
+; 1.624 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.058      ; 1.834      ;
+; 1.636 ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.057      ; 1.845      ;
+; 1.661 ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff3|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 0.058      ; 1.871      ;
+; 1.714 ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.055      ; 1.921      ;
++-------+----------------------------------------------------------------+----------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fast Model Minimum Pulse Width: 'zegar'                                                                                                        ;
++-------+--------------+----------------+------------------+-------+------------+----------------------------------------------------------------+
+; Slack ; Actual Width ; Required Width ; Type             ; Clock ; Clock Edge ; Target                                                         ;
++-------+--------------+----------------+------------------+-------+------------+----------------------------------------------------------------+
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|mydff:addsubreg|shortdff               ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|mydff:overflowreg|shortdff             ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|mydff:selreg|shortdff                  ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff0|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff0|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff1|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff1|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff2|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff2|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff3|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff3|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff4|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff4|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff5|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff5|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff6|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff6|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff7|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:ainreg|mydff:dff7|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff0|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff0|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff1|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff1|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff2|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff2|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff3|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff3|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff4|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff4|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff5|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff5|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff6|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff6|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff7|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:binreg|mydff:dff7|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff0|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff0|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff1|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff2|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff3|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff4|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff5|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff6|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ;
+; 5.000 ; 6.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtractor8bit:sumtract|rejestr8bit:outreg|mydff:dff7|shortdff ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; CLOCK_50|combout                                               ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; CLOCK_50|combout                                               ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; CLOCK_50~clkctrl|inclk[0]                                      ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; CLOCK_50~clkctrl|inclk[0]                                      ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; CLOCK_50~clkctrl|outclk                                        ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; CLOCK_50~clkctrl|outclk                                        ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; oLEDR[0]|outclk                                                ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; oLEDR[0]|outclk                                                ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|addsubreg|shortdff|clk                                ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|addsubreg|shortdff|clk                                ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|ainreg|dff0|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|ainreg|dff0|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|ainreg|dff1|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|ainreg|dff1|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|ainreg|dff2|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|ainreg|dff2|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|ainreg|dff3|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|ainreg|dff3|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|ainreg|dff4|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|ainreg|dff4|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|ainreg|dff5|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|ainreg|dff5|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|ainreg|dff6|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|ainreg|dff6|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|ainreg|dff7|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|ainreg|dff7|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|binreg|dff0|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|binreg|dff0|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|binreg|dff1|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|binreg|dff1|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|binreg|dff2|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|binreg|dff2|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|binreg|dff3|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|binreg|dff3|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|binreg|dff4|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|binreg|dff4|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|binreg|dff5|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|binreg|dff5|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|binreg|dff6|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|binreg|dff6|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|binreg|dff7|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|binreg|dff7|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|outreg|dff0|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|outreg|dff0|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sumtract|outreg|dff1|shortdff|clk                              ;
+; 6.000 ; 6.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sumtract|outreg|dff1|shortdff|clk                              ;
++-------+--------------+----------------+------------------+-------+------------+----------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------+
+; Setup Times                                                           ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; iSW[*]    ; zegar      ; 2.949 ; 2.949 ; Rise       ; zegar           ;
+;  iSW[0]   ; zegar      ; 2.889 ; 2.889 ; Rise       ; zegar           ;
+;  iSW[1]   ; zegar      ; 2.931 ; 2.931 ; Rise       ; zegar           ;
+;  iSW[2]   ; zegar      ; 2.919 ; 2.919 ; Rise       ; zegar           ;
+;  iSW[3]   ; zegar      ; 2.689 ; 2.689 ; Rise       ; zegar           ;
+;  iSW[4]   ; zegar      ; 2.627 ; 2.627 ; Rise       ; zegar           ;
+;  iSW[5]   ; zegar      ; 2.617 ; 2.617 ; Rise       ; zegar           ;
+;  iSW[6]   ; zegar      ; 2.708 ; 2.708 ; Rise       ; zegar           ;
+;  iSW[7]   ; zegar      ; 2.662 ; 2.662 ; Rise       ; zegar           ;
+;  iSW[8]   ; zegar      ; 2.949 ; 2.949 ; Rise       ; zegar           ;
+;  iSW[9]   ; zegar      ; 2.858 ; 2.858 ; Rise       ; zegar           ;
+;  iSW[10]  ; zegar      ; 0.981 ; 0.981 ; Rise       ; zegar           ;
+;  iSW[11]  ; zegar      ; 0.530 ; 0.530 ; Rise       ; zegar           ;
+;  iSW[12]  ; zegar      ; 0.947 ; 0.947 ; Rise       ; zegar           ;
+;  iSW[13]  ; zegar      ; 0.906 ; 0.906 ; Rise       ; zegar           ;
+;  iSW[14]  ; zegar      ; 2.473 ; 2.473 ; Rise       ; zegar           ;
+;  iSW[15]  ; zegar      ; 2.406 ; 2.406 ; Rise       ; zegar           ;
+;  iSW[16]  ; zegar      ; 2.396 ; 2.396 ; Rise       ; zegar           ;
+;  iSW[17]  ; zegar      ; 2.476 ; 2.476 ; Rise       ; zegar           ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++-------------------------------------------------------------------------+
+; Hold Times                                                              ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; iSW[*]    ; zegar      ; -0.410 ; -0.410 ; Rise       ; zegar           ;
+;  iSW[0]   ; zegar      ; -2.769 ; -2.769 ; Rise       ; zegar           ;
+;  iSW[1]   ; zegar      ; -2.811 ; -2.811 ; Rise       ; zegar           ;
+;  iSW[2]   ; zegar      ; -2.799 ; -2.799 ; Rise       ; zegar           ;
+;  iSW[3]   ; zegar      ; -2.569 ; -2.569 ; Rise       ; zegar           ;
+;  iSW[4]   ; zegar      ; -2.507 ; -2.507 ; Rise       ; zegar           ;
+;  iSW[5]   ; zegar      ; -2.497 ; -2.497 ; Rise       ; zegar           ;
+;  iSW[6]   ; zegar      ; -2.588 ; -2.588 ; Rise       ; zegar           ;
+;  iSW[7]   ; zegar      ; -2.542 ; -2.542 ; Rise       ; zegar           ;
+;  iSW[8]   ; zegar      ; -2.829 ; -2.829 ; Rise       ; zegar           ;
+;  iSW[9]   ; zegar      ; -2.738 ; -2.738 ; Rise       ; zegar           ;
+;  iSW[10]  ; zegar      ; -0.861 ; -0.861 ; Rise       ; zegar           ;
+;  iSW[11]  ; zegar      ; -0.410 ; -0.410 ; Rise       ; zegar           ;
+;  iSW[12]  ; zegar      ; -0.827 ; -0.827 ; Rise       ; zegar           ;
+;  iSW[13]  ; zegar      ; -0.786 ; -0.786 ; Rise       ; zegar           ;
+;  iSW[14]  ; zegar      ; -2.353 ; -2.353 ; Rise       ; zegar           ;
+;  iSW[15]  ; zegar      ; -2.286 ; -2.286 ; Rise       ; zegar           ;
+;  iSW[16]  ; zegar      ; -2.276 ; -2.276 ; Rise       ; zegar           ;
+;  iSW[17]  ; zegar      ; -2.356 ; -2.356 ; Rise       ; zegar           ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++-----------------------------------------------------------------------+
+; Clock to Output Times                                                 ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; HEX0[*]   ; zegar      ; 4.767 ; 4.767 ; Rise       ; zegar           ;
+;  HEX0[0]  ; zegar      ; 4.454 ; 4.454 ; Rise       ; zegar           ;
+;  HEX0[1]  ; zegar      ; 4.320 ; 4.320 ; Rise       ; zegar           ;
+;  HEX0[2]  ; zegar      ; 4.767 ; 4.767 ; Rise       ; zegar           ;
+;  HEX0[3]  ; zegar      ; 4.533 ; 4.533 ; Rise       ; zegar           ;
+;  HEX0[4]  ; zegar      ; 4.563 ; 4.563 ; Rise       ; zegar           ;
+;  HEX0[5]  ; zegar      ; 4.417 ; 4.417 ; Rise       ; zegar           ;
+;  HEX0[6]  ; zegar      ; 4.542 ; 4.542 ; Rise       ; zegar           ;
+; HEX1[*]   ; zegar      ; 4.915 ; 4.915 ; Rise       ; zegar           ;
+;  HEX1[0]  ; zegar      ; 4.735 ; 4.735 ; Rise       ; zegar           ;
+;  HEX1[1]  ; zegar      ; 4.863 ; 4.863 ; Rise       ; zegar           ;
+;  HEX1[2]  ; zegar      ; 4.908 ; 4.908 ; Rise       ; zegar           ;
+;  HEX1[3]  ; zegar      ; 4.905 ; 4.905 ; Rise       ; zegar           ;
+;  HEX1[4]  ; zegar      ; 4.774 ; 4.774 ; Rise       ; zegar           ;
+;  HEX1[5]  ; zegar      ; 4.915 ; 4.915 ; Rise       ; zegar           ;
+;  HEX1[6]  ; zegar      ; 4.793 ; 4.793 ; Rise       ; zegar           ;
+; oLEDR[*]  ; zegar      ; 3.576 ; 3.576 ; Rise       ; zegar           ;
+;  oLEDR[0] ; zegar      ; 3.576 ; 3.576 ; Rise       ; zegar           ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++-----------------------------------------------------------------------+
+; Minimum Clock to Output Times                                         ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; HEX0[*]   ; zegar      ; 4.202 ; 4.202 ; Rise       ; zegar           ;
+;  HEX0[0]  ; zegar      ; 4.336 ; 4.336 ; Rise       ; zegar           ;
+;  HEX0[1]  ; zegar      ; 4.202 ; 4.202 ; Rise       ; zegar           ;
+;  HEX0[2]  ; zegar      ; 4.647 ; 4.647 ; Rise       ; zegar           ;
+;  HEX0[3]  ; zegar      ; 4.415 ; 4.415 ; Rise       ; zegar           ;
+;  HEX0[4]  ; zegar      ; 4.445 ; 4.445 ; Rise       ; zegar           ;
+;  HEX0[5]  ; zegar      ; 4.303 ; 4.303 ; Rise       ; zegar           ;
+;  HEX0[6]  ; zegar      ; 4.427 ; 4.427 ; Rise       ; zegar           ;
+; HEX1[*]   ; zegar      ; 4.535 ; 4.535 ; Rise       ; zegar           ;
+;  HEX1[0]  ; zegar      ; 4.535 ; 4.535 ; Rise       ; zegar           ;
+;  HEX1[1]  ; zegar      ; 4.798 ; 4.798 ; Rise       ; zegar           ;
+;  HEX1[2]  ; zegar      ; 4.837 ; 4.837 ; Rise       ; zegar           ;
+;  HEX1[3]  ; zegar      ; 4.837 ; 4.837 ; Rise       ; zegar           ;
+;  HEX1[4]  ; zegar      ; 4.707 ; 4.707 ; Rise       ; zegar           ;
+;  HEX1[5]  ; zegar      ; 4.854 ; 4.854 ; Rise       ; zegar           ;
+;  HEX1[6]  ; zegar      ; 4.732 ; 4.732 ; Rise       ; zegar           ;
+; oLEDR[*]  ; zegar      ; 3.576 ; 3.576 ; Rise       ; zegar           ;
+;  oLEDR[0] ; zegar      ; 3.576 ; 3.576 ; Rise       ; zegar           ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++----------------------------------------------------------+
+; Propagation Delay                                        ;
++------------+-------------+-------+-------+-------+-------+
+; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
++------------+-------------+-------+-------+-------+-------+
+; iSW[0]     ; HEX6[0]     ; 4.491 ; 4.491 ; 4.491 ; 4.491 ;
+; iSW[0]     ; HEX6[1]     ; 4.356 ; 4.356 ; 4.356 ; 4.356 ;
+; iSW[0]     ; HEX6[2]     ;       ; 4.405 ; 4.405 ;       ;
+; iSW[0]     ; HEX6[3]     ; 4.404 ; 4.404 ; 4.404 ; 4.404 ;
+; iSW[0]     ; HEX6[4]     ; 4.508 ;       ;       ; 4.508 ;
+; iSW[0]     ; HEX6[5]     ; 4.522 ;       ;       ; 4.522 ;
+; iSW[0]     ; HEX6[6]     ; 4.516 ; 4.516 ; 4.516 ; 4.516 ;
+; iSW[1]     ; HEX6[0]     ; 4.519 ; 4.519 ; 4.519 ; 4.519 ;
+; iSW[1]     ; HEX6[1]     ; 4.389 ; 4.389 ; 4.389 ; 4.389 ;
+; iSW[1]     ; HEX6[2]     ; 4.517 ;       ;       ; 4.517 ;
+; iSW[1]     ; HEX6[3]     ; 4.509 ; 4.509 ; 4.509 ; 4.509 ;
+; iSW[1]     ; HEX6[4]     ;       ; 4.471 ; 4.471 ;       ;
+; iSW[1]     ; HEX6[5]     ; 4.474 ; 4.474 ; 4.474 ; 4.474 ;
+; iSW[1]     ; HEX6[6]     ; 4.468 ; 4.468 ; 4.468 ; 4.468 ;
+; iSW[2]     ; HEX6[0]     ; 4.474 ; 4.474 ; 4.474 ; 4.474 ;
+; iSW[2]     ; HEX6[1]     ; 4.424 ;       ;       ; 4.424 ;
+; iSW[2]     ; HEX6[2]     ; 4.487 ; 4.487 ; 4.487 ; 4.487 ;
+; iSW[2]     ; HEX6[3]     ; 4.485 ; 4.485 ; 4.485 ; 4.485 ;
+; iSW[2]     ; HEX6[4]     ; 4.570 ; 4.570 ; 4.570 ; 4.570 ;
+; iSW[2]     ; HEX6[5]     ; 4.586 ; 4.586 ; 4.586 ; 4.586 ;
+; iSW[2]     ; HEX6[6]     ; 4.580 ; 4.580 ; 4.580 ; 4.580 ;
+; iSW[3]     ; HEX6[0]     ; 4.398 ; 4.398 ; 4.398 ; 4.398 ;
+; iSW[3]     ; HEX6[1]     ; 4.285 ; 4.285 ; 4.285 ; 4.285 ;
+; iSW[3]     ; HEX6[2]     ; 4.488 ; 4.488 ; 4.488 ; 4.488 ;
+; iSW[3]     ; HEX6[3]     ; 4.480 ; 4.480 ; 4.480 ; 4.480 ;
+; iSW[3]     ; HEX6[4]     ;       ; 4.415 ; 4.415 ;       ;
+; iSW[3]     ; HEX6[5]     ; 4.544 ; 4.544 ; 4.544 ; 4.544 ;
+; iSW[3]     ; HEX6[6]     ; 4.537 ; 4.537 ; 4.537 ; 4.537 ;
+; iSW[4]     ; HEX7[0]     ; 4.383 ; 4.383 ; 4.383 ; 4.383 ;
+; iSW[4]     ; HEX7[1]     ; 4.332 ; 4.332 ; 4.332 ; 4.332 ;
+; iSW[4]     ; HEX7[2]     ;       ; 4.334 ; 4.334 ;       ;
+; iSW[4]     ; HEX7[3]     ; 4.409 ; 4.409 ; 4.409 ; 4.409 ;
+; iSW[4]     ; HEX7[4]     ; 4.402 ;       ;       ; 4.402 ;
+; iSW[4]     ; HEX7[5]     ; 4.576 ;       ;       ; 4.576 ;
+; iSW[4]     ; HEX7[6]     ; 4.418 ; 4.418 ; 4.418 ; 4.418 ;
+; iSW[5]     ; HEX7[0]     ; 4.387 ; 4.387 ; 4.387 ; 4.387 ;
+; iSW[5]     ; HEX7[1]     ; 4.400 ; 4.400 ; 4.400 ; 4.400 ;
+; iSW[5]     ; HEX7[2]     ; 4.395 ;       ;       ; 4.395 ;
+; iSW[5]     ; HEX7[3]     ; 4.418 ; 4.418 ; 4.418 ; 4.418 ;
+; iSW[5]     ; HEX7[4]     ;       ; 4.406 ; 4.406 ;       ;
+; iSW[5]     ; HEX7[5]     ; 4.571 ; 4.571 ; 4.571 ; 4.571 ;
+; iSW[5]     ; HEX7[6]     ; 4.418 ; 4.418 ; 4.418 ; 4.418 ;
+; iSW[6]     ; HEX7[0]     ; 4.425 ; 4.425 ; 4.425 ; 4.425 ;
+; iSW[6]     ; HEX7[1]     ; 4.375 ;       ;       ; 4.375 ;
+; iSW[6]     ; HEX7[2]     ; 4.377 ; 4.377 ; 4.377 ; 4.377 ;
+; iSW[6]     ; HEX7[3]     ; 4.487 ; 4.487 ; 4.487 ; 4.487 ;
+; iSW[6]     ; HEX7[4]     ; 4.443 ; 4.443 ; 4.443 ; 4.443 ;
+; iSW[6]     ; HEX7[5]     ; 4.545 ; 4.545 ; 4.545 ; 4.545 ;
+; iSW[6]     ; HEX7[6]     ; 4.494 ; 4.494 ; 4.494 ; 4.494 ;
+; iSW[7]     ; HEX7[0]     ; 4.452 ; 4.452 ; 4.452 ; 4.452 ;
+; iSW[7]     ; HEX7[1]     ; 4.457 ; 4.457 ; 4.457 ; 4.457 ;
+; iSW[7]     ; HEX7[2]     ; 4.462 ; 4.462 ; 4.462 ; 4.462 ;
+; iSW[7]     ; HEX7[3]     ; 4.569 ; 4.569 ; 4.569 ; 4.569 ;
+; iSW[7]     ; HEX7[4]     ;       ; 4.470 ; 4.470 ;       ;
+; iSW[7]     ; HEX7[5]     ; 4.598 ; 4.598 ; 4.598 ; 4.598 ;
+; iSW[7]     ; HEX7[6]     ; 4.578 ; 4.578 ; 4.578 ; 4.578 ;
+; iSW[8]     ; HEX3[0]     ; 4.206 ; 4.206 ; 4.206 ; 4.206 ;
+; iSW[8]     ; HEX3[1]     ; 4.343 ; 4.343 ; 4.343 ; 4.343 ;
+; iSW[8]     ; HEX3[2]     ;       ; 4.337 ; 4.337 ;       ;
+; iSW[8]     ; HEX3[3]     ; 4.345 ; 4.345 ; 4.345 ; 4.345 ;
+; iSW[8]     ; HEX3[4]     ; 4.474 ;       ;       ; 4.474 ;
+; iSW[8]     ; HEX3[5]     ; 4.317 ;       ;       ; 4.317 ;
+; iSW[8]     ; HEX3[6]     ; 4.313 ; 4.313 ; 4.313 ; 4.313 ;
+; iSW[9]     ; HEX3[0]     ; 4.100 ; 4.100 ; 4.100 ; 4.100 ;
+; iSW[9]     ; HEX3[1]     ; 4.239 ; 4.239 ; 4.239 ; 4.239 ;
+; iSW[9]     ; HEX3[2]     ; 4.252 ;       ;       ; 4.252 ;
+; iSW[9]     ; HEX3[3]     ; 4.241 ; 4.241 ; 4.241 ; 4.241 ;
+; iSW[9]     ; HEX3[4]     ;       ; 4.389 ; 4.389 ;       ;
+; iSW[9]     ; HEX3[5]     ; 4.228 ; 4.228 ; 4.228 ; 4.228 ;
+; iSW[9]     ; HEX3[6]     ; 4.232 ; 4.232 ; 4.232 ; 4.232 ;
+; iSW[10]    ; HEX3[0]     ; 3.989 ; 3.989 ; 3.989 ; 3.989 ;
+; iSW[10]    ; HEX3[1]     ; 4.129 ;       ;       ; 4.129 ;
+; iSW[10]    ; HEX3[2]     ; 4.242 ; 4.242 ; 4.242 ; 4.242 ;
+; iSW[10]    ; HEX3[3]     ; 4.131 ; 4.131 ; 4.131 ; 4.131 ;
+; iSW[10]    ; HEX3[4]     ; 4.372 ; 4.372 ; 4.372 ; 4.372 ;
+; iSW[10]    ; HEX3[5]     ; 4.216 ; 4.216 ; 4.216 ; 4.216 ;
+; iSW[10]    ; HEX3[6]     ; 4.210 ; 4.210 ; 4.210 ; 4.210 ;
+; iSW[11]    ; HEX3[0]     ; 4.156 ; 4.156 ; 4.156 ; 4.156 ;
+; iSW[11]    ; HEX3[1]     ; 4.291 ; 4.291 ; 4.291 ; 4.291 ;
+; iSW[11]    ; HEX3[2]     ; 4.314 ; 4.314 ; 4.314 ; 4.314 ;
+; iSW[11]    ; HEX3[3]     ; 4.294 ; 4.294 ; 4.294 ; 4.294 ;
+; iSW[11]    ; HEX3[4]     ;       ; 4.445 ; 4.445 ;       ;
+; iSW[11]    ; HEX3[5]     ; 4.289 ; 4.289 ; 4.289 ; 4.289 ;
+; iSW[11]    ; HEX3[6]     ; 4.288 ; 4.288 ; 4.288 ; 4.288 ;
+; iSW[12]    ; HEX4[0]     ; 4.259 ; 4.259 ; 4.259 ; 4.259 ;
+; iSW[12]    ; HEX4[1]     ; 4.257 ; 4.257 ; 4.257 ; 4.257 ;
+; iSW[12]    ; HEX4[2]     ;       ; 4.389 ; 4.389 ;       ;
+; iSW[12]    ; HEX4[3]     ; 4.449 ; 4.449 ; 4.449 ; 4.449 ;
+; iSW[12]    ; HEX4[4]     ; 4.452 ;       ;       ; 4.452 ;
+; iSW[12]    ; HEX4[5]     ; 4.489 ;       ;       ; 4.489 ;
+; iSW[12]    ; HEX4[6]     ; 4.470 ; 4.470 ; 4.470 ; 4.470 ;
+; iSW[13]    ; HEX4[0]     ; 4.174 ; 4.174 ; 4.174 ; 4.174 ;
+; iSW[13]    ; HEX4[1]     ; 4.173 ; 4.173 ; 4.173 ; 4.173 ;
+; iSW[13]    ; HEX4[2]     ; 4.235 ;       ;       ; 4.235 ;
+; iSW[13]    ; HEX4[3]     ; 4.299 ; 4.299 ; 4.299 ; 4.299 ;
+; iSW[13]    ; HEX4[4]     ;       ; 4.301 ; 4.301 ;       ;
+; iSW[13]    ; HEX4[5]     ; 4.330 ; 4.330 ; 4.330 ; 4.330 ;
+; iSW[13]    ; HEX4[6]     ; 4.318 ; 4.318 ; 4.318 ; 4.318 ;
+; iSW[14]    ; HEX4[0]     ; 3.010 ; 3.010 ; 3.010 ; 3.010 ;
+; iSW[14]    ; HEX4[1]     ; 3.012 ;       ;       ; 3.012 ;
+; iSW[14]    ; HEX4[2]     ; 3.075 ; 3.075 ; 3.075 ; 3.075 ;
+; iSW[14]    ; HEX4[3]     ; 3.136 ; 3.136 ; 3.136 ; 3.136 ;
+; iSW[14]    ; HEX4[4]     ; 3.139 ; 3.139 ; 3.139 ; 3.139 ;
+; iSW[14]    ; HEX4[5]     ; 3.167 ; 3.167 ; 3.167 ; 3.167 ;
+; iSW[14]    ; HEX4[6]     ; 3.154 ; 3.154 ; 3.154 ; 3.154 ;
+; iSW[15]    ; HEX4[0]     ; 2.975 ; 2.975 ; 2.975 ; 2.975 ;
+; iSW[15]    ; HEX4[1]     ; 2.970 ; 2.970 ; 2.970 ; 2.970 ;
+; iSW[15]    ; HEX4[2]     ; 2.967 ; 2.967 ; 2.967 ; 2.967 ;
+; iSW[15]    ; HEX4[3]     ; 3.028 ; 3.028 ; 3.028 ; 3.028 ;
+; iSW[15]    ; HEX4[4]     ;       ; 3.031 ; 3.031 ;       ;
+; iSW[15]    ; HEX4[5]     ; 3.063 ; 3.063 ; 3.063 ; 3.063 ;
+; iSW[15]    ; HEX4[6]     ; 3.049 ; 3.049 ; 3.049 ; 3.049 ;
++------------+-------------+-------+-------+-------+-------+
+
+
++----------------------------------------------------------+
+; Minimum Propagation Delay                                ;
++------------+-------------+-------+-------+-------+-------+
+; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
++------------+-------------+-------+-------+-------+-------+
+; iSW[0]     ; HEX6[0]     ; 4.491 ; 4.491 ; 4.491 ; 4.491 ;
+; iSW[0]     ; HEX6[1]     ; 4.356 ; 4.356 ; 4.356 ; 4.356 ;
+; iSW[0]     ; HEX6[2]     ;       ; 4.405 ; 4.405 ;       ;
+; iSW[0]     ; HEX6[3]     ; 4.404 ; 4.404 ; 4.404 ; 4.404 ;
+; iSW[0]     ; HEX6[4]     ; 4.508 ;       ;       ; 4.508 ;
+; iSW[0]     ; HEX6[5]     ; 4.522 ;       ;       ; 4.522 ;
+; iSW[0]     ; HEX6[6]     ; 4.516 ; 4.516 ; 4.516 ; 4.516 ;
+; iSW[1]     ; HEX6[0]     ; 4.519 ; 4.519 ; 4.519 ; 4.519 ;
+; iSW[1]     ; HEX6[1]     ; 4.389 ; 4.389 ; 4.389 ; 4.389 ;
+; iSW[1]     ; HEX6[2]     ; 4.517 ;       ;       ; 4.517 ;
+; iSW[1]     ; HEX6[3]     ; 4.509 ; 4.509 ; 4.509 ; 4.509 ;
+; iSW[1]     ; HEX6[4]     ;       ; 4.471 ; 4.471 ;       ;
+; iSW[1]     ; HEX6[5]     ; 4.474 ; 4.474 ; 4.474 ; 4.474 ;
+; iSW[1]     ; HEX6[6]     ; 4.468 ; 4.468 ; 4.468 ; 4.468 ;
+; iSW[2]     ; HEX6[0]     ; 4.474 ; 4.474 ; 4.474 ; 4.474 ;
+; iSW[2]     ; HEX6[1]     ; 4.424 ;       ;       ; 4.424 ;
+; iSW[2]     ; HEX6[2]     ; 4.487 ; 4.487 ; 4.487 ; 4.487 ;
+; iSW[2]     ; HEX6[3]     ; 4.485 ; 4.485 ; 4.485 ; 4.485 ;
+; iSW[2]     ; HEX6[4]     ; 4.570 ; 4.570 ; 4.570 ; 4.570 ;
+; iSW[2]     ; HEX6[5]     ; 4.586 ; 4.586 ; 4.586 ; 4.586 ;
+; iSW[2]     ; HEX6[6]     ; 4.580 ; 4.580 ; 4.580 ; 4.580 ;
+; iSW[3]     ; HEX6[0]     ; 4.398 ; 4.398 ; 4.398 ; 4.398 ;
+; iSW[3]     ; HEX6[1]     ; 4.285 ; 4.285 ; 4.285 ; 4.285 ;
+; iSW[3]     ; HEX6[2]     ; 4.488 ; 4.488 ; 4.488 ; 4.488 ;
+; iSW[3]     ; HEX6[3]     ; 4.480 ; 4.480 ; 4.480 ; 4.480 ;
+; iSW[3]     ; HEX6[4]     ;       ; 4.415 ; 4.415 ;       ;
+; iSW[3]     ; HEX6[5]     ; 4.544 ; 4.544 ; 4.544 ; 4.544 ;
+; iSW[3]     ; HEX6[6]     ; 4.537 ; 4.537 ; 4.537 ; 4.537 ;
+; iSW[4]     ; HEX7[0]     ; 4.383 ; 4.383 ; 4.383 ; 4.383 ;
+; iSW[4]     ; HEX7[1]     ; 4.332 ; 4.332 ; 4.332 ; 4.332 ;
+; iSW[4]     ; HEX7[2]     ;       ; 4.334 ; 4.334 ;       ;
+; iSW[4]     ; HEX7[3]     ; 4.409 ; 4.409 ; 4.409 ; 4.409 ;
+; iSW[4]     ; HEX7[4]     ; 4.402 ;       ;       ; 4.402 ;
+; iSW[4]     ; HEX7[5]     ; 4.576 ;       ;       ; 4.576 ;
+; iSW[4]     ; HEX7[6]     ; 4.418 ; 4.418 ; 4.418 ; 4.418 ;
+; iSW[5]     ; HEX7[0]     ; 4.387 ; 4.387 ; 4.387 ; 4.387 ;
+; iSW[5]     ; HEX7[1]     ; 4.400 ; 4.400 ; 4.400 ; 4.400 ;
+; iSW[5]     ; HEX7[2]     ; 4.395 ;       ;       ; 4.395 ;
+; iSW[5]     ; HEX7[3]     ; 4.418 ; 4.418 ; 4.418 ; 4.418 ;
+; iSW[5]     ; HEX7[4]     ;       ; 4.406 ; 4.406 ;       ;
+; iSW[5]     ; HEX7[5]     ; 4.571 ; 4.571 ; 4.571 ; 4.571 ;
+; iSW[5]     ; HEX7[6]     ; 4.418 ; 4.418 ; 4.418 ; 4.418 ;
+; iSW[6]     ; HEX7[0]     ; 4.425 ; 4.425 ; 4.425 ; 4.425 ;
+; iSW[6]     ; HEX7[1]     ; 4.375 ;       ;       ; 4.375 ;
+; iSW[6]     ; HEX7[2]     ; 4.377 ; 4.377 ; 4.377 ; 4.377 ;
+; iSW[6]     ; HEX7[3]     ; 4.487 ; 4.487 ; 4.487 ; 4.487 ;
+; iSW[6]     ; HEX7[4]     ; 4.443 ; 4.443 ; 4.443 ; 4.443 ;
+; iSW[6]     ; HEX7[5]     ; 4.545 ; 4.545 ; 4.545 ; 4.545 ;
+; iSW[6]     ; HEX7[6]     ; 4.494 ; 4.494 ; 4.494 ; 4.494 ;
+; iSW[7]     ; HEX7[0]     ; 4.452 ; 4.452 ; 4.452 ; 4.452 ;
+; iSW[7]     ; HEX7[1]     ; 4.457 ; 4.457 ; 4.457 ; 4.457 ;
+; iSW[7]     ; HEX7[2]     ; 4.462 ; 4.462 ; 4.462 ; 4.462 ;
+; iSW[7]     ; HEX7[3]     ; 4.569 ; 4.569 ; 4.569 ; 4.569 ;
+; iSW[7]     ; HEX7[4]     ;       ; 4.470 ; 4.470 ;       ;
+; iSW[7]     ; HEX7[5]     ; 4.598 ; 4.598 ; 4.598 ; 4.598 ;
+; iSW[7]     ; HEX7[6]     ; 4.578 ; 4.578 ; 4.578 ; 4.578 ;
+; iSW[8]     ; HEX3[0]     ; 4.206 ; 4.206 ; 4.206 ; 4.206 ;
+; iSW[8]     ; HEX3[1]     ; 4.343 ; 4.343 ; 4.343 ; 4.343 ;
+; iSW[8]     ; HEX3[2]     ;       ; 4.337 ; 4.337 ;       ;
+; iSW[8]     ; HEX3[3]     ; 4.345 ; 4.345 ; 4.345 ; 4.345 ;
+; iSW[8]     ; HEX3[4]     ; 4.474 ;       ;       ; 4.474 ;
+; iSW[8]     ; HEX3[5]     ; 4.317 ;       ;       ; 4.317 ;
+; iSW[8]     ; HEX3[6]     ; 4.313 ; 4.313 ; 4.313 ; 4.313 ;
+; iSW[9]     ; HEX3[0]     ; 4.100 ; 4.100 ; 4.100 ; 4.100 ;
+; iSW[9]     ; HEX3[1]     ; 4.239 ; 4.239 ; 4.239 ; 4.239 ;
+; iSW[9]     ; HEX3[2]     ; 4.252 ;       ;       ; 4.252 ;
+; iSW[9]     ; HEX3[3]     ; 4.241 ; 4.241 ; 4.241 ; 4.241 ;
+; iSW[9]     ; HEX3[4]     ;       ; 4.389 ; 4.389 ;       ;
+; iSW[9]     ; HEX3[5]     ; 4.228 ; 4.228 ; 4.228 ; 4.228 ;
+; iSW[9]     ; HEX3[6]     ; 4.232 ; 4.232 ; 4.232 ; 4.232 ;
+; iSW[10]    ; HEX3[0]     ; 3.989 ; 3.989 ; 3.989 ; 3.989 ;
+; iSW[10]    ; HEX3[1]     ; 4.129 ;       ;       ; 4.129 ;
+; iSW[10]    ; HEX3[2]     ; 4.242 ; 4.242 ; 4.242 ; 4.242 ;
+; iSW[10]    ; HEX3[3]     ; 4.131 ; 4.131 ; 4.131 ; 4.131 ;
+; iSW[10]    ; HEX3[4]     ; 4.372 ; 4.372 ; 4.372 ; 4.372 ;
+; iSW[10]    ; HEX3[5]     ; 4.216 ; 4.216 ; 4.216 ; 4.216 ;
+; iSW[10]    ; HEX3[6]     ; 4.210 ; 4.210 ; 4.210 ; 4.210 ;
+; iSW[11]    ; HEX3[0]     ; 4.156 ; 4.156 ; 4.156 ; 4.156 ;
+; iSW[11]    ; HEX3[1]     ; 4.291 ; 4.291 ; 4.291 ; 4.291 ;
+; iSW[11]    ; HEX3[2]     ; 4.314 ; 4.314 ; 4.314 ; 4.314 ;
+; iSW[11]    ; HEX3[3]     ; 4.294 ; 4.294 ; 4.294 ; 4.294 ;
+; iSW[11]    ; HEX3[4]     ;       ; 4.445 ; 4.445 ;       ;
+; iSW[11]    ; HEX3[5]     ; 4.289 ; 4.289 ; 4.289 ; 4.289 ;
+; iSW[11]    ; HEX3[6]     ; 4.288 ; 4.288 ; 4.288 ; 4.288 ;
+; iSW[12]    ; HEX4[0]     ; 4.259 ; 4.259 ; 4.259 ; 4.259 ;
+; iSW[12]    ; HEX4[1]     ; 4.257 ; 4.257 ; 4.257 ; 4.257 ;
+; iSW[12]    ; HEX4[2]     ;       ; 4.389 ; 4.389 ;       ;
+; iSW[12]    ; HEX4[3]     ; 4.449 ; 4.449 ; 4.449 ; 4.449 ;
+; iSW[12]    ; HEX4[4]     ; 4.452 ;       ;       ; 4.452 ;
+; iSW[12]    ; HEX4[5]     ; 4.489 ;       ;       ; 4.489 ;
+; iSW[12]    ; HEX4[6]     ; 4.470 ; 4.470 ; 4.470 ; 4.470 ;
+; iSW[13]    ; HEX4[0]     ; 4.174 ; 4.174 ; 4.174 ; 4.174 ;
+; iSW[13]    ; HEX4[1]     ; 4.173 ; 4.173 ; 4.173 ; 4.173 ;
+; iSW[13]    ; HEX4[2]     ; 4.235 ;       ;       ; 4.235 ;
+; iSW[13]    ; HEX4[3]     ; 4.299 ; 4.299 ; 4.299 ; 4.299 ;
+; iSW[13]    ; HEX4[4]     ;       ; 4.301 ; 4.301 ;       ;
+; iSW[13]    ; HEX4[5]     ; 4.330 ; 4.330 ; 4.330 ; 4.330 ;
+; iSW[13]    ; HEX4[6]     ; 4.318 ; 4.318 ; 4.318 ; 4.318 ;
+; iSW[14]    ; HEX4[0]     ; 3.010 ; 3.010 ; 3.010 ; 3.010 ;
+; iSW[14]    ; HEX4[1]     ; 3.012 ;       ;       ; 3.012 ;
+; iSW[14]    ; HEX4[2]     ; 3.075 ; 3.075 ; 3.075 ; 3.075 ;
+; iSW[14]    ; HEX4[3]     ; 3.136 ; 3.136 ; 3.136 ; 3.136 ;
+; iSW[14]    ; HEX4[4]     ; 3.139 ; 3.139 ; 3.139 ; 3.139 ;
+; iSW[14]    ; HEX4[5]     ; 3.167 ; 3.167 ; 3.167 ; 3.167 ;
+; iSW[14]    ; HEX4[6]     ; 3.154 ; 3.154 ; 3.154 ; 3.154 ;
+; iSW[15]    ; HEX4[0]     ; 2.975 ; 2.975 ; 2.975 ; 2.975 ;
+; iSW[15]    ; HEX4[1]     ; 2.970 ; 2.970 ; 2.970 ; 2.970 ;
+; iSW[15]    ; HEX4[2]     ; 2.967 ; 2.967 ; 2.967 ; 2.967 ;
+; iSW[15]    ; HEX4[3]     ; 3.028 ; 3.028 ; 3.028 ; 3.028 ;
+; iSW[15]    ; HEX4[4]     ;       ; 3.031 ; 3.031 ;       ;
+; iSW[15]    ; HEX4[5]     ; 3.063 ; 3.063 ; 3.063 ; 3.063 ;
+; iSW[15]    ; HEX4[6]     ; 3.049 ; 3.049 ; 3.049 ; 3.049 ;
++------------+-------------+-------+-------+-------+-------+
+
+
++-----------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                         ;
++------------------+-------+-------+----------+---------+---------------------+
+; Clock            ; Setup ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++------------------+-------+-------+----------+---------+---------------------+
+; Worst-case Slack ; 1.327 ; 0.215 ; N/A      ; N/A     ; 5.000               ;
+;  zegar           ; 1.327 ; 0.215 ; N/A      ; N/A     ; 5.000               ;
+; Design-wide TNS  ; 0.0   ; 0.0   ; 0.0      ; 0.0     ; 0.0                 ;
+;  zegar           ; 0.000 ; 0.000 ; N/A      ; N/A     ; 0.000               ;
++------------------+-------+-------+----------+---------+---------------------+
+
+
++-----------------------------------------------------------------------+
+; Setup Times                                                           ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; iSW[*]    ; zegar      ; 5.416 ; 5.416 ; Rise       ; zegar           ;
+;  iSW[0]   ; zegar      ; 5.327 ; 5.327 ; Rise       ; zegar           ;
+;  iSW[1]   ; zegar      ; 5.398 ; 5.398 ; Rise       ; zegar           ;
+;  iSW[2]   ; zegar      ; 5.349 ; 5.349 ; Rise       ; zegar           ;
+;  iSW[3]   ; zegar      ; 4.932 ; 4.932 ; Rise       ; zegar           ;
+;  iSW[4]   ; zegar      ; 4.870 ; 4.870 ; Rise       ; zegar           ;
+;  iSW[5]   ; zegar      ; 4.856 ; 4.856 ; Rise       ; zegar           ;
+;  iSW[6]   ; zegar      ; 5.064 ; 5.064 ; Rise       ; zegar           ;
+;  iSW[7]   ; zegar      ; 4.913 ; 4.913 ; Rise       ; zegar           ;
+;  iSW[8]   ; zegar      ; 5.416 ; 5.416 ; Rise       ; zegar           ;
+;  iSW[9]   ; zegar      ; 5.263 ; 5.263 ; Rise       ; zegar           ;
+;  iSW[10]  ; zegar      ; 2.250 ; 2.250 ; Rise       ; zegar           ;
+;  iSW[11]  ; zegar      ; 1.387 ; 1.387 ; Rise       ; zegar           ;
+;  iSW[12]  ; zegar      ; 2.043 ; 2.043 ; Rise       ; zegar           ;
+;  iSW[13]  ; zegar      ; 1.987 ; 1.987 ; Rise       ; zegar           ;
+;  iSW[14]  ; zegar      ; 4.487 ; 4.487 ; Rise       ; zegar           ;
+;  iSW[15]  ; zegar      ; 4.379 ; 4.379 ; Rise       ; zegar           ;
+;  iSW[16]  ; zegar      ; 4.365 ; 4.365 ; Rise       ; zegar           ;
+;  iSW[17]  ; zegar      ; 4.482 ; 4.482 ; Rise       ; zegar           ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++-------------------------------------------------------------------------+
+; Hold Times                                                              ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; iSW[*]    ; zegar      ; -0.410 ; -0.410 ; Rise       ; zegar           ;
+;  iSW[0]   ; zegar      ; -2.769 ; -2.769 ; Rise       ; zegar           ;
+;  iSW[1]   ; zegar      ; -2.811 ; -2.811 ; Rise       ; zegar           ;
+;  iSW[2]   ; zegar      ; -2.799 ; -2.799 ; Rise       ; zegar           ;
+;  iSW[3]   ; zegar      ; -2.569 ; -2.569 ; Rise       ; zegar           ;
+;  iSW[4]   ; zegar      ; -2.507 ; -2.507 ; Rise       ; zegar           ;
+;  iSW[5]   ; zegar      ; -2.497 ; -2.497 ; Rise       ; zegar           ;
+;  iSW[6]   ; zegar      ; -2.588 ; -2.588 ; Rise       ; zegar           ;
+;  iSW[7]   ; zegar      ; -2.542 ; -2.542 ; Rise       ; zegar           ;
+;  iSW[8]   ; zegar      ; -2.829 ; -2.829 ; Rise       ; zegar           ;
+;  iSW[9]   ; zegar      ; -2.738 ; -2.738 ; Rise       ; zegar           ;
+;  iSW[10]  ; zegar      ; -0.861 ; -0.861 ; Rise       ; zegar           ;
+;  iSW[11]  ; zegar      ; -0.410 ; -0.410 ; Rise       ; zegar           ;
+;  iSW[12]  ; zegar      ; -0.827 ; -0.827 ; Rise       ; zegar           ;
+;  iSW[13]  ; zegar      ; -0.786 ; -0.786 ; Rise       ; zegar           ;
+;  iSW[14]  ; zegar      ; -2.353 ; -2.353 ; Rise       ; zegar           ;
+;  iSW[15]  ; zegar      ; -2.286 ; -2.286 ; Rise       ; zegar           ;
+;  iSW[16]  ; zegar      ; -2.276 ; -2.276 ; Rise       ; zegar           ;
+;  iSW[17]  ; zegar      ; -2.356 ; -2.356 ; Rise       ; zegar           ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++-----------------------------------------------------------------------+
+; Clock to Output Times                                                 ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; HEX0[*]   ; zegar      ; 8.651 ; 8.651 ; Rise       ; zegar           ;
+;  HEX0[0]  ; zegar      ; 8.041 ; 8.041 ; Rise       ; zegar           ;
+;  HEX0[1]  ; zegar      ; 7.747 ; 7.747 ; Rise       ; zegar           ;
+;  HEX0[2]  ; zegar      ; 8.651 ; 8.651 ; Rise       ; zegar           ;
+;  HEX0[3]  ; zegar      ; 8.243 ; 8.243 ; Rise       ; zegar           ;
+;  HEX0[4]  ; zegar      ; 8.265 ; 8.265 ; Rise       ; zegar           ;
+;  HEX0[5]  ; zegar      ; 7.965 ; 7.965 ; Rise       ; zegar           ;
+;  HEX0[6]  ; zegar      ; 8.181 ; 8.181 ; Rise       ; zegar           ;
+; HEX1[*]   ; zegar      ; 8.895 ; 8.895 ; Rise       ; zegar           ;
+;  HEX1[0]  ; zegar      ; 8.565 ; 8.565 ; Rise       ; zegar           ;
+;  HEX1[1]  ; zegar      ; 8.808 ; 8.808 ; Rise       ; zegar           ;
+;  HEX1[2]  ; zegar      ; 8.853 ; 8.853 ; Rise       ; zegar           ;
+;  HEX1[3]  ; zegar      ; 8.874 ; 8.874 ; Rise       ; zegar           ;
+;  HEX1[4]  ; zegar      ; 8.600 ; 8.600 ; Rise       ; zegar           ;
+;  HEX1[5]  ; zegar      ; 8.895 ; 8.895 ; Rise       ; zegar           ;
+;  HEX1[6]  ; zegar      ; 8.667 ; 8.667 ; Rise       ; zegar           ;
+; oLEDR[*]  ; zegar      ; 6.210 ; 6.210 ; Rise       ; zegar           ;
+;  oLEDR[0] ; zegar      ; 6.210 ; 6.210 ; Rise       ; zegar           ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++-----------------------------------------------------------------------+
+; Minimum Clock to Output Times                                         ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; HEX0[*]   ; zegar      ; 4.202 ; 4.202 ; Rise       ; zegar           ;
+;  HEX0[0]  ; zegar      ; 4.336 ; 4.336 ; Rise       ; zegar           ;
+;  HEX0[1]  ; zegar      ; 4.202 ; 4.202 ; Rise       ; zegar           ;
+;  HEX0[2]  ; zegar      ; 4.647 ; 4.647 ; Rise       ; zegar           ;
+;  HEX0[3]  ; zegar      ; 4.415 ; 4.415 ; Rise       ; zegar           ;
+;  HEX0[4]  ; zegar      ; 4.445 ; 4.445 ; Rise       ; zegar           ;
+;  HEX0[5]  ; zegar      ; 4.303 ; 4.303 ; Rise       ; zegar           ;
+;  HEX0[6]  ; zegar      ; 4.427 ; 4.427 ; Rise       ; zegar           ;
+; HEX1[*]   ; zegar      ; 4.535 ; 4.535 ; Rise       ; zegar           ;
+;  HEX1[0]  ; zegar      ; 4.535 ; 4.535 ; Rise       ; zegar           ;
+;  HEX1[1]  ; zegar      ; 4.798 ; 4.798 ; Rise       ; zegar           ;
+;  HEX1[2]  ; zegar      ; 4.837 ; 4.837 ; Rise       ; zegar           ;
+;  HEX1[3]  ; zegar      ; 4.837 ; 4.837 ; Rise       ; zegar           ;
+;  HEX1[4]  ; zegar      ; 4.707 ; 4.707 ; Rise       ; zegar           ;
+;  HEX1[5]  ; zegar      ; 4.854 ; 4.854 ; Rise       ; zegar           ;
+;  HEX1[6]  ; zegar      ; 4.732 ; 4.732 ; Rise       ; zegar           ;
+; oLEDR[*]  ; zegar      ; 3.576 ; 3.576 ; Rise       ; zegar           ;
+;  oLEDR[0] ; zegar      ; 3.576 ; 3.576 ; Rise       ; zegar           ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++----------------------------------------------------------+
+; Progagation Delay                                        ;
++------------+-------------+-------+-------+-------+-------+
+; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
++------------+-------------+-------+-------+-------+-------+
+; iSW[0]     ; HEX6[0]     ; 8.531 ; 8.531 ; 8.531 ; 8.531 ;
+; iSW[0]     ; HEX6[1]     ; 8.247 ; 8.247 ; 8.247 ; 8.247 ;
+; iSW[0]     ; HEX6[2]     ;       ; 8.331 ; 8.331 ;       ;
+; iSW[0]     ; HEX6[3]     ; 8.327 ; 8.327 ; 8.327 ; 8.327 ;
+; iSW[0]     ; HEX6[4]     ; 8.546 ;       ;       ; 8.546 ;
+; iSW[0]     ; HEX6[5]     ; 8.582 ;       ;       ; 8.582 ;
+; iSW[0]     ; HEX6[6]     ; 8.569 ; 8.569 ; 8.569 ; 8.569 ;
+; iSW[1]     ; HEX6[0]     ; 8.550 ; 8.550 ; 8.550 ; 8.550 ;
+; iSW[1]     ; HEX6[1]     ; 8.317 ; 8.317 ; 8.317 ; 8.317 ;
+; iSW[1]     ; HEX6[2]     ; 8.582 ;       ;       ; 8.582 ;
+; iSW[1]     ; HEX6[3]     ; 8.577 ; 8.577 ; 8.577 ; 8.577 ;
+; iSW[1]     ; HEX6[4]     ;       ; 8.459 ; 8.459 ;       ;
+; iSW[1]     ; HEX6[5]     ; 8.475 ; 8.475 ; 8.475 ; 8.475 ;
+; iSW[1]     ; HEX6[6]     ; 8.462 ; 8.462 ; 8.462 ; 8.462 ;
+; iSW[2]     ; HEX6[0]     ; 8.472 ; 8.472 ; 8.472 ; 8.472 ;
+; iSW[2]     ; HEX6[1]     ; 8.353 ;       ;       ; 8.353 ;
+; iSW[2]     ; HEX6[2]     ; 8.510 ; 8.510 ; 8.510 ; 8.510 ;
+; iSW[2]     ; HEX6[3]     ; 8.508 ; 8.508 ; 8.508 ; 8.508 ;
+; iSW[2]     ; HEX6[4]     ; 8.639 ; 8.639 ; 8.639 ; 8.639 ;
+; iSW[2]     ; HEX6[5]     ; 8.654 ; 8.654 ; 8.654 ; 8.654 ;
+; iSW[2]     ; HEX6[6]     ; 8.673 ; 8.673 ; 8.673 ; 8.673 ;
+; iSW[3]     ; HEX6[0]     ; 8.220 ; 8.220 ; 8.220 ; 8.220 ;
+; iSW[3]     ; HEX6[1]     ; 8.026 ; 8.026 ; 8.026 ; 8.026 ;
+; iSW[3]     ; HEX6[2]     ; 8.440 ; 8.440 ; 8.440 ; 8.440 ;
+; iSW[3]     ; HEX6[3]     ; 8.435 ; 8.435 ; 8.435 ; 8.435 ;
+; iSW[3]     ; HEX6[4]     ;       ; 8.230 ; 8.230 ;       ;
+; iSW[3]     ; HEX6[5]     ; 8.519 ; 8.519 ; 8.519 ; 8.519 ;
+; iSW[3]     ; HEX6[6]     ; 8.537 ; 8.537 ; 8.537 ; 8.537 ;
+; iSW[4]     ; HEX7[0]     ; 8.293 ; 8.293 ; 8.293 ; 8.293 ;
+; iSW[4]     ; HEX7[1]     ; 8.196 ; 8.196 ; 8.196 ; 8.196 ;
+; iSW[4]     ; HEX7[2]     ;       ; 8.170 ; 8.170 ;       ;
+; iSW[4]     ; HEX7[3]     ; 8.324 ; 8.324 ; 8.324 ; 8.324 ;
+; iSW[4]     ; HEX7[4]     ; 8.313 ;       ;       ; 8.313 ;
+; iSW[4]     ; HEX7[5]     ; 8.643 ;       ;       ; 8.643 ;
+; iSW[4]     ; HEX7[6]     ; 8.334 ; 8.334 ; 8.334 ; 8.334 ;
+; iSW[5]     ; HEX7[0]     ; 8.291 ; 8.291 ; 8.291 ; 8.291 ;
+; iSW[5]     ; HEX7[1]     ; 8.330 ; 8.330 ; 8.330 ; 8.330 ;
+; iSW[5]     ; HEX7[2]     ; 8.325 ;       ;       ; 8.325 ;
+; iSW[5]     ; HEX7[3]     ; 8.346 ; 8.346 ; 8.346 ; 8.346 ;
+; iSW[5]     ; HEX7[4]     ;       ; 8.339 ; 8.339 ;       ;
+; iSW[5]     ; HEX7[5]     ; 8.646 ; 8.646 ; 8.646 ; 8.646 ;
+; iSW[5]     ; HEX7[6]     ; 8.352 ; 8.352 ; 8.352 ; 8.352 ;
+; iSW[6]     ; HEX7[0]     ; 8.396 ; 8.396 ; 8.396 ; 8.396 ;
+; iSW[6]     ; HEX7[1]     ; 8.265 ;       ;       ; 8.265 ;
+; iSW[6]     ; HEX7[2]     ; 8.265 ; 8.265 ; 8.265 ; 8.265 ;
+; iSW[6]     ; HEX7[3]     ; 8.405 ; 8.405 ; 8.405 ; 8.405 ;
+; iSW[6]     ; HEX7[4]     ; 8.412 ; 8.412 ; 8.412 ; 8.412 ;
+; iSW[6]     ; HEX7[5]     ; 8.567 ; 8.567 ; 8.567 ; 8.567 ;
+; iSW[6]     ; HEX7[6]     ; 8.410 ; 8.410 ; 8.410 ; 8.410 ;
+; iSW[7]     ; HEX7[0]     ; 8.456 ; 8.456 ; 8.456 ; 8.456 ;
+; iSW[7]     ; HEX7[1]     ; 8.480 ; 8.480 ; 8.480 ; 8.480 ;
+; iSW[7]     ; HEX7[2]     ; 8.480 ; 8.480 ; 8.480 ; 8.480 ;
+; iSW[7]     ; HEX7[3]     ; 8.626 ; 8.626 ; 8.626 ; 8.626 ;
+; iSW[7]     ; HEX7[4]     ;       ; 8.472 ; 8.472 ;       ;
+; iSW[7]     ; HEX7[5]     ; 8.661 ; 8.661 ; 8.661 ; 8.661 ;
+; iSW[7]     ; HEX7[6]     ; 8.631 ; 8.631 ; 8.631 ; 8.631 ;
+; iSW[8]     ; HEX3[0]     ; 7.991 ; 7.991 ; 7.991 ; 7.991 ;
+; iSW[8]     ; HEX3[1]     ; 8.268 ; 8.268 ; 8.268 ; 8.268 ;
+; iSW[8]     ; HEX3[2]     ;       ; 8.212 ; 8.212 ;       ;
+; iSW[8]     ; HEX3[3]     ; 8.296 ; 8.296 ; 8.296 ; 8.296 ;
+; iSW[8]     ; HEX3[4]     ; 8.510 ;       ;       ; 8.510 ;
+; iSW[8]     ; HEX3[5]     ; 8.192 ;       ;       ; 8.192 ;
+; iSW[8]     ; HEX3[6]     ; 8.185 ; 8.185 ; 8.185 ; 8.185 ;
+; iSW[9]     ; HEX3[0]     ; 7.710 ; 7.710 ; 7.710 ; 7.710 ;
+; iSW[9]     ; HEX3[1]     ; 7.986 ; 7.986 ; 7.986 ; 7.986 ;
+; iSW[9]     ; HEX3[2]     ; 8.033 ;       ;       ; 8.033 ;
+; iSW[9]     ; HEX3[3]     ; 8.013 ; 8.013 ; 8.013 ; 8.013 ;
+; iSW[9]     ; HEX3[4]     ;       ; 8.333 ; 8.333 ;       ;
+; iSW[9]     ; HEX3[5]     ; 8.012 ; 8.012 ; 8.012 ; 8.012 ;
+; iSW[9]     ; HEX3[6]     ; 8.013 ; 8.013 ; 8.013 ; 8.013 ;
+; iSW[10]    ; HEX3[0]     ; 7.498 ; 7.498 ; 7.498 ; 7.498 ;
+; iSW[10]    ; HEX3[1]     ; 7.776 ;       ;       ; 7.776 ;
+; iSW[10]    ; HEX3[2]     ; 7.959 ; 7.959 ; 7.959 ; 7.959 ;
+; iSW[10]    ; HEX3[3]     ; 7.804 ; 7.804 ; 7.804 ; 7.804 ;
+; iSW[10]    ; HEX3[4]     ; 8.258 ; 8.258 ; 8.258 ; 8.258 ;
+; iSW[10]    ; HEX3[5]     ; 7.916 ; 7.916 ; 7.916 ; 7.916 ;
+; iSW[10]    ; HEX3[6]     ; 7.933 ; 7.933 ; 7.933 ; 7.933 ;
+; iSW[11]    ; HEX3[0]     ; 7.839 ; 7.839 ; 7.839 ; 7.839 ;
+; iSW[11]    ; HEX3[1]     ; 8.114 ; 8.114 ; 8.114 ; 8.114 ;
+; iSW[11]    ; HEX3[2]     ; 8.136 ; 8.136 ; 8.136 ; 8.136 ;
+; iSW[11]    ; HEX3[3]     ; 8.114 ; 8.114 ; 8.114 ; 8.114 ;
+; iSW[11]    ; HEX3[4]     ;       ; 8.398 ; 8.398 ;       ;
+; iSW[11]    ; HEX3[5]     ; 8.084 ; 8.084 ; 8.084 ; 8.084 ;
+; iSW[11]    ; HEX3[6]     ; 8.112 ; 8.112 ; 8.112 ; 8.112 ;
+; iSW[12]    ; HEX4[0]     ; 7.815 ; 7.815 ; 7.815 ; 7.815 ;
+; iSW[12]    ; HEX4[1]     ; 7.820 ; 7.820 ; 7.820 ; 7.820 ;
+; iSW[12]    ; HEX4[2]     ;       ; 8.081 ; 8.081 ;       ;
+; iSW[12]    ; HEX4[3]     ; 8.232 ; 8.232 ; 8.232 ; 8.232 ;
+; iSW[12]    ; HEX4[4]     ; 8.247 ;       ;       ; 8.247 ;
+; iSW[12]    ; HEX4[5]     ; 8.276 ;       ;       ; 8.276 ;
+; iSW[12]    ; HEX4[6]     ; 8.258 ; 8.258 ; 8.258 ; 8.258 ;
+; iSW[13]    ; HEX4[0]     ; 7.666 ; 7.666 ; 7.666 ; 7.666 ;
+; iSW[13]    ; HEX4[1]     ; 7.672 ; 7.672 ; 7.672 ; 7.672 ;
+; iSW[13]    ; HEX4[2]     ; 7.823 ;       ;       ; 7.823 ;
+; iSW[13]    ; HEX4[3]     ; 7.952 ; 7.952 ; 7.952 ; 7.952 ;
+; iSW[13]    ; HEX4[4]     ;       ; 7.960 ; 7.960 ;       ;
+; iSW[13]    ; HEX4[5]     ; 7.990 ; 7.990 ; 7.990 ; 7.990 ;
+; iSW[13]    ; HEX4[6]     ; 7.973 ; 7.973 ; 7.973 ; 7.973 ;
+; iSW[14]    ; HEX4[0]     ; 5.773 ; 5.773 ; 5.773 ; 5.773 ;
+; iSW[14]    ; HEX4[1]     ; 5.782 ;       ;       ; 5.782 ;
+; iSW[14]    ; HEX4[2]     ; 5.930 ; 5.930 ; 5.930 ; 5.930 ;
+; iSW[14]    ; HEX4[3]     ; 6.059 ; 6.059 ; 6.059 ; 6.059 ;
+; iSW[14]    ; HEX4[4]     ; 6.070 ; 6.070 ; 6.070 ; 6.070 ;
+; iSW[14]    ; HEX4[5]     ; 6.094 ; 6.094 ; 6.094 ; 6.094 ;
+; iSW[14]    ; HEX4[6]     ; 6.078 ; 6.078 ; 6.078 ; 6.078 ;
+; iSW[15]    ; HEX4[0]     ; 5.754 ; 5.754 ; 5.754 ; 5.754 ;
+; iSW[15]    ; HEX4[1]     ; 5.755 ; 5.755 ; 5.755 ; 5.755 ;
+; iSW[15]    ; HEX4[2]     ; 5.765 ; 5.765 ; 5.765 ; 5.765 ;
+; iSW[15]    ; HEX4[3]     ; 5.897 ; 5.897 ; 5.897 ; 5.897 ;
+; iSW[15]    ; HEX4[4]     ;       ; 5.908 ; 5.908 ;       ;
+; iSW[15]    ; HEX4[5]     ; 5.937 ; 5.937 ; 5.937 ; 5.937 ;
+; iSW[15]    ; HEX4[6]     ; 5.919 ; 5.919 ; 5.919 ; 5.919 ;
++------------+-------------+-------+-------+-------+-------+
+
+
++----------------------------------------------------------+
+; Minimum Progagation Delay                                ;
++------------+-------------+-------+-------+-------+-------+
+; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
++------------+-------------+-------+-------+-------+-------+
+; iSW[0]     ; HEX6[0]     ; 4.491 ; 4.491 ; 4.491 ; 4.491 ;
+; iSW[0]     ; HEX6[1]     ; 4.356 ; 4.356 ; 4.356 ; 4.356 ;
+; iSW[0]     ; HEX6[2]     ;       ; 4.405 ; 4.405 ;       ;
+; iSW[0]     ; HEX6[3]     ; 4.404 ; 4.404 ; 4.404 ; 4.404 ;
+; iSW[0]     ; HEX6[4]     ; 4.508 ;       ;       ; 4.508 ;
+; iSW[0]     ; HEX6[5]     ; 4.522 ;       ;       ; 4.522 ;
+; iSW[0]     ; HEX6[6]     ; 4.516 ; 4.516 ; 4.516 ; 4.516 ;
+; iSW[1]     ; HEX6[0]     ; 4.519 ; 4.519 ; 4.519 ; 4.519 ;
+; iSW[1]     ; HEX6[1]     ; 4.389 ; 4.389 ; 4.389 ; 4.389 ;
+; iSW[1]     ; HEX6[2]     ; 4.517 ;       ;       ; 4.517 ;
+; iSW[1]     ; HEX6[3]     ; 4.509 ; 4.509 ; 4.509 ; 4.509 ;
+; iSW[1]     ; HEX6[4]     ;       ; 4.471 ; 4.471 ;       ;
+; iSW[1]     ; HEX6[5]     ; 4.474 ; 4.474 ; 4.474 ; 4.474 ;
+; iSW[1]     ; HEX6[6]     ; 4.468 ; 4.468 ; 4.468 ; 4.468 ;
+; iSW[2]     ; HEX6[0]     ; 4.474 ; 4.474 ; 4.474 ; 4.474 ;
+; iSW[2]     ; HEX6[1]     ; 4.424 ;       ;       ; 4.424 ;
+; iSW[2]     ; HEX6[2]     ; 4.487 ; 4.487 ; 4.487 ; 4.487 ;
+; iSW[2]     ; HEX6[3]     ; 4.485 ; 4.485 ; 4.485 ; 4.485 ;
+; iSW[2]     ; HEX6[4]     ; 4.570 ; 4.570 ; 4.570 ; 4.570 ;
+; iSW[2]     ; HEX6[5]     ; 4.586 ; 4.586 ; 4.586 ; 4.586 ;
+; iSW[2]     ; HEX6[6]     ; 4.580 ; 4.580 ; 4.580 ; 4.580 ;
+; iSW[3]     ; HEX6[0]     ; 4.398 ; 4.398 ; 4.398 ; 4.398 ;
+; iSW[3]     ; HEX6[1]     ; 4.285 ; 4.285 ; 4.285 ; 4.285 ;
+; iSW[3]     ; HEX6[2]     ; 4.488 ; 4.488 ; 4.488 ; 4.488 ;
+; iSW[3]     ; HEX6[3]     ; 4.480 ; 4.480 ; 4.480 ; 4.480 ;
+; iSW[3]     ; HEX6[4]     ;       ; 4.415 ; 4.415 ;       ;
+; iSW[3]     ; HEX6[5]     ; 4.544 ; 4.544 ; 4.544 ; 4.544 ;
+; iSW[3]     ; HEX6[6]     ; 4.537 ; 4.537 ; 4.537 ; 4.537 ;
+; iSW[4]     ; HEX7[0]     ; 4.383 ; 4.383 ; 4.383 ; 4.383 ;
+; iSW[4]     ; HEX7[1]     ; 4.332 ; 4.332 ; 4.332 ; 4.332 ;
+; iSW[4]     ; HEX7[2]     ;       ; 4.334 ; 4.334 ;       ;
+; iSW[4]     ; HEX7[3]     ; 4.409 ; 4.409 ; 4.409 ; 4.409 ;
+; iSW[4]     ; HEX7[4]     ; 4.402 ;       ;       ; 4.402 ;
+; iSW[4]     ; HEX7[5]     ; 4.576 ;       ;       ; 4.576 ;
+; iSW[4]     ; HEX7[6]     ; 4.418 ; 4.418 ; 4.418 ; 4.418 ;
+; iSW[5]     ; HEX7[0]     ; 4.387 ; 4.387 ; 4.387 ; 4.387 ;
+; iSW[5]     ; HEX7[1]     ; 4.400 ; 4.400 ; 4.400 ; 4.400 ;
+; iSW[5]     ; HEX7[2]     ; 4.395 ;       ;       ; 4.395 ;
+; iSW[5]     ; HEX7[3]     ; 4.418 ; 4.418 ; 4.418 ; 4.418 ;
+; iSW[5]     ; HEX7[4]     ;       ; 4.406 ; 4.406 ;       ;
+; iSW[5]     ; HEX7[5]     ; 4.571 ; 4.571 ; 4.571 ; 4.571 ;
+; iSW[5]     ; HEX7[6]     ; 4.418 ; 4.418 ; 4.418 ; 4.418 ;
+; iSW[6]     ; HEX7[0]     ; 4.425 ; 4.425 ; 4.425 ; 4.425 ;
+; iSW[6]     ; HEX7[1]     ; 4.375 ;       ;       ; 4.375 ;
+; iSW[6]     ; HEX7[2]     ; 4.377 ; 4.377 ; 4.377 ; 4.377 ;
+; iSW[6]     ; HEX7[3]     ; 4.487 ; 4.487 ; 4.487 ; 4.487 ;
+; iSW[6]     ; HEX7[4]     ; 4.443 ; 4.443 ; 4.443 ; 4.443 ;
+; iSW[6]     ; HEX7[5]     ; 4.545 ; 4.545 ; 4.545 ; 4.545 ;
+; iSW[6]     ; HEX7[6]     ; 4.494 ; 4.494 ; 4.494 ; 4.494 ;
+; iSW[7]     ; HEX7[0]     ; 4.452 ; 4.452 ; 4.452 ; 4.452 ;
+; iSW[7]     ; HEX7[1]     ; 4.457 ; 4.457 ; 4.457 ; 4.457 ;
+; iSW[7]     ; HEX7[2]     ; 4.462 ; 4.462 ; 4.462 ; 4.462 ;
+; iSW[7]     ; HEX7[3]     ; 4.569 ; 4.569 ; 4.569 ; 4.569 ;
+; iSW[7]     ; HEX7[4]     ;       ; 4.470 ; 4.470 ;       ;
+; iSW[7]     ; HEX7[5]     ; 4.598 ; 4.598 ; 4.598 ; 4.598 ;
+; iSW[7]     ; HEX7[6]     ; 4.578 ; 4.578 ; 4.578 ; 4.578 ;
+; iSW[8]     ; HEX3[0]     ; 4.206 ; 4.206 ; 4.206 ; 4.206 ;
+; iSW[8]     ; HEX3[1]     ; 4.343 ; 4.343 ; 4.343 ; 4.343 ;
+; iSW[8]     ; HEX3[2]     ;       ; 4.337 ; 4.337 ;       ;
+; iSW[8]     ; HEX3[3]     ; 4.345 ; 4.345 ; 4.345 ; 4.345 ;
+; iSW[8]     ; HEX3[4]     ; 4.474 ;       ;       ; 4.474 ;
+; iSW[8]     ; HEX3[5]     ; 4.317 ;       ;       ; 4.317 ;
+; iSW[8]     ; HEX3[6]     ; 4.313 ; 4.313 ; 4.313 ; 4.313 ;
+; iSW[9]     ; HEX3[0]     ; 4.100 ; 4.100 ; 4.100 ; 4.100 ;
+; iSW[9]     ; HEX3[1]     ; 4.239 ; 4.239 ; 4.239 ; 4.239 ;
+; iSW[9]     ; HEX3[2]     ; 4.252 ;       ;       ; 4.252 ;
+; iSW[9]     ; HEX3[3]     ; 4.241 ; 4.241 ; 4.241 ; 4.241 ;
+; iSW[9]     ; HEX3[4]     ;       ; 4.389 ; 4.389 ;       ;
+; iSW[9]     ; HEX3[5]     ; 4.228 ; 4.228 ; 4.228 ; 4.228 ;
+; iSW[9]     ; HEX3[6]     ; 4.232 ; 4.232 ; 4.232 ; 4.232 ;
+; iSW[10]    ; HEX3[0]     ; 3.989 ; 3.989 ; 3.989 ; 3.989 ;
+; iSW[10]    ; HEX3[1]     ; 4.129 ;       ;       ; 4.129 ;
+; iSW[10]    ; HEX3[2]     ; 4.242 ; 4.242 ; 4.242 ; 4.242 ;
+; iSW[10]    ; HEX3[3]     ; 4.131 ; 4.131 ; 4.131 ; 4.131 ;
+; iSW[10]    ; HEX3[4]     ; 4.372 ; 4.372 ; 4.372 ; 4.372 ;
+; iSW[10]    ; HEX3[5]     ; 4.216 ; 4.216 ; 4.216 ; 4.216 ;
+; iSW[10]    ; HEX3[6]     ; 4.210 ; 4.210 ; 4.210 ; 4.210 ;
+; iSW[11]    ; HEX3[0]     ; 4.156 ; 4.156 ; 4.156 ; 4.156 ;
+; iSW[11]    ; HEX3[1]     ; 4.291 ; 4.291 ; 4.291 ; 4.291 ;
+; iSW[11]    ; HEX3[2]     ; 4.314 ; 4.314 ; 4.314 ; 4.314 ;
+; iSW[11]    ; HEX3[3]     ; 4.294 ; 4.294 ; 4.294 ; 4.294 ;
+; iSW[11]    ; HEX3[4]     ;       ; 4.445 ; 4.445 ;       ;
+; iSW[11]    ; HEX3[5]     ; 4.289 ; 4.289 ; 4.289 ; 4.289 ;
+; iSW[11]    ; HEX3[6]     ; 4.288 ; 4.288 ; 4.288 ; 4.288 ;
+; iSW[12]    ; HEX4[0]     ; 4.259 ; 4.259 ; 4.259 ; 4.259 ;
+; iSW[12]    ; HEX4[1]     ; 4.257 ; 4.257 ; 4.257 ; 4.257 ;
+; iSW[12]    ; HEX4[2]     ;       ; 4.389 ; 4.389 ;       ;
+; iSW[12]    ; HEX4[3]     ; 4.449 ; 4.449 ; 4.449 ; 4.449 ;
+; iSW[12]    ; HEX4[4]     ; 4.452 ;       ;       ; 4.452 ;
+; iSW[12]    ; HEX4[5]     ; 4.489 ;       ;       ; 4.489 ;
+; iSW[12]    ; HEX4[6]     ; 4.470 ; 4.470 ; 4.470 ; 4.470 ;
+; iSW[13]    ; HEX4[0]     ; 4.174 ; 4.174 ; 4.174 ; 4.174 ;
+; iSW[13]    ; HEX4[1]     ; 4.173 ; 4.173 ; 4.173 ; 4.173 ;
+; iSW[13]    ; HEX4[2]     ; 4.235 ;       ;       ; 4.235 ;
+; iSW[13]    ; HEX4[3]     ; 4.299 ; 4.299 ; 4.299 ; 4.299 ;
+; iSW[13]    ; HEX4[4]     ;       ; 4.301 ; 4.301 ;       ;
+; iSW[13]    ; HEX4[5]     ; 4.330 ; 4.330 ; 4.330 ; 4.330 ;
+; iSW[13]    ; HEX4[6]     ; 4.318 ; 4.318 ; 4.318 ; 4.318 ;
+; iSW[14]    ; HEX4[0]     ; 3.010 ; 3.010 ; 3.010 ; 3.010 ;
+; iSW[14]    ; HEX4[1]     ; 3.012 ;       ;       ; 3.012 ;
+; iSW[14]    ; HEX4[2]     ; 3.075 ; 3.075 ; 3.075 ; 3.075 ;
+; iSW[14]    ; HEX4[3]     ; 3.136 ; 3.136 ; 3.136 ; 3.136 ;
+; iSW[14]    ; HEX4[4]     ; 3.139 ; 3.139 ; 3.139 ; 3.139 ;
+; iSW[14]    ; HEX4[5]     ; 3.167 ; 3.167 ; 3.167 ; 3.167 ;
+; iSW[14]    ; HEX4[6]     ; 3.154 ; 3.154 ; 3.154 ; 3.154 ;
+; iSW[15]    ; HEX4[0]     ; 2.975 ; 2.975 ; 2.975 ; 2.975 ;
+; iSW[15]    ; HEX4[1]     ; 2.970 ; 2.970 ; 2.970 ; 2.970 ;
+; iSW[15]    ; HEX4[2]     ; 2.967 ; 2.967 ; 2.967 ; 2.967 ;
+; iSW[15]    ; HEX4[3]     ; 3.028 ; 3.028 ; 3.028 ; 3.028 ;
+; iSW[15]    ; HEX4[4]     ;       ; 3.031 ; 3.031 ;       ;
+; iSW[15]    ; HEX4[5]     ; 3.063 ; 3.063 ; 3.063 ; 3.063 ;
+; iSW[15]    ; HEX4[6]     ; 3.049 ; 3.049 ; 3.049 ; 3.049 ;
++------------+-------------+-------+-------+-------+-------+
+
+
++-------------------------------------------------------------------+
+; Setup Transfers                                                   ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; zegar      ; zegar    ; 449      ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++-------------------------------------------------------------------+
+; Hold Transfers                                                    ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; zegar      ; zegar    ; 449      ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
+---------------
+; Report TCCS ;
+---------------
+No dedicated SERDES Transmitter circuitry present in device or used in design
+
+
+---------------
+; Report RSKM ;
+---------------
+No dedicated SERDES Receiver circuitry present in device or used in design
+
+
++------------------------------------------------+
+; Unconstrained Paths                            ;
++---------------------------------+-------+------+
+; Property                        ; Setup ; Hold ;
++---------------------------------+-------+------+
+; Illegal Clocks                  ; 0     ; 0    ;
+; Unconstrained Clocks            ; 0     ; 0    ;
+; Unconstrained Input Ports       ; 0     ; 0    ;
+; Unconstrained Input Port Paths  ; 0     ; 0    ;
+; Unconstrained Output Ports      ; 0     ; 0    ;
+; Unconstrained Output Port Paths ; 0     ; 0    ;
++---------------------------------+-------+------+
+
+
++------------------------------------+
+; TimeQuest Timing Analyzer Messages ;
++------------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 32-bit TimeQuest Timing Analyzer
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Wed Jan 03 16:25:09 2018
+Info: Command: quartus_sta Cwiczenie5_4 -c Cwiczenie5_4
+Info: qsta_default_script.tcl version: #1
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (21077): Low junction temperature is 0 degrees C
+Info (21077): High junction temperature is 85 degrees C
+Info (332104): Reading SDC File: 'Cwiczenie5_4.sdc'
+Info: Found TIMEQUEST_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
+Info: Analyzing Slow Model
+Info (332146): Worst-case setup slack is 1.327
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     1.327         0.000 zegar 
+Info (332146): Worst-case hold slack is 0.391
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     0.391         0.000 zegar 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 5.000
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     5.000         0.000 zegar 
+Info (332001): The selected device family is not supported by the report_metastability command.
+Info: Analyzing Fast Model
+Info (332146): Worst-case setup slack is 5.402
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     5.402         0.000 zegar 
+Info (332146): Worst-case hold slack is 0.215
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     0.215         0.000 zegar 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 5.000
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     5.000         0.000 zegar 
+Info (332001): The selected device family is not supported by the report_metastability command.
+Info (332101): Design is fully constrained for setup requirements
+Info (332101): Design is fully constrained for hold requirements
+Info: Quartus II 32-bit TimeQuest Timing Analyzer was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 376 megabytes
+    Info: Processing ended: Wed Jan 03 16:25:11 2018
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:01
+
+

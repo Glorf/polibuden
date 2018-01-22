@@ -1,0 +1,634 @@
+|Cwiczenie5_5
+iSW[0] => mul4bit:mul0.b[0]
+iSW[0] => char7seg:ohex3.number[0]
+iSW[1] => mul4bit:mul0.b[1]
+iSW[1] => char7seg:ohex3.number[1]
+iSW[2] => mul4bit:mul0.b[2]
+iSW[2] => char7seg:ohex3.number[2]
+iSW[3] => mul4bit:mul0.b[3]
+iSW[3] => char7seg:ohex3.number[3]
+iSW[4] => mul4bit:mul0.a[0]
+iSW[4] => char7seg:ohex0.number[0]
+iSW[5] => mul4bit:mul0.a[1]
+iSW[5] => char7seg:ohex0.number[1]
+iSW[6] => mul4bit:mul0.a[2]
+iSW[6] => char7seg:ohex0.number[2]
+iSW[7] => mul4bit:mul0.a[3]
+iSW[7] => char7seg:ohex0.number[3]
+KEY[0] => mul4bit:mul0.clk
+HEX0[6] <= char7seg:ohex7.display[6]
+HEX0[5] <= char7seg:ohex7.display[5]
+HEX0[4] <= char7seg:ohex7.display[4]
+HEX0[3] <= char7seg:ohex7.display[3]
+HEX0[2] <= char7seg:ohex7.display[2]
+HEX0[1] <= char7seg:ohex7.display[1]
+HEX0[0] <= char7seg:ohex7.display[0]
+HEX1[6] <= char7seg:ohex6.display[6]
+HEX1[5] <= char7seg:ohex6.display[5]
+HEX1[4] <= char7seg:ohex6.display[4]
+HEX1[3] <= char7seg:ohex6.display[3]
+HEX1[2] <= char7seg:ohex6.display[2]
+HEX1[1] <= char7seg:ohex6.display[1]
+HEX1[0] <= char7seg:ohex6.display[0]
+HEX2[6] <= <VCC>
+HEX2[5] <= <VCC>
+HEX2[4] <= <VCC>
+HEX2[3] <= <VCC>
+HEX2[2] <= <VCC>
+HEX2[1] <= <VCC>
+HEX2[0] <= <VCC>
+HEX3[6] <= <VCC>
+HEX3[5] <= <VCC>
+HEX3[4] <= <VCC>
+HEX3[3] <= <VCC>
+HEX3[2] <= <VCC>
+HEX3[1] <= <VCC>
+HEX3[0] <= <VCC>
+HEX4[6] <= char7seg:ohex0.display[6]
+HEX4[5] <= char7seg:ohex0.display[5]
+HEX4[4] <= char7seg:ohex0.display[4]
+HEX4[3] <= char7seg:ohex0.display[3]
+HEX4[2] <= char7seg:ohex0.display[2]
+HEX4[1] <= char7seg:ohex0.display[1]
+HEX4[0] <= char7seg:ohex0.display[0]
+HEX5[6] <= <VCC>
+HEX5[5] <= <VCC>
+HEX5[4] <= <VCC>
+HEX5[3] <= <VCC>
+HEX5[2] <= <VCC>
+HEX5[1] <= <VCC>
+HEX5[0] <= <VCC>
+HEX6[6] <= <VCC>
+HEX6[5] <= <VCC>
+HEX6[4] <= <VCC>
+HEX6[3] <= <VCC>
+HEX6[2] <= <VCC>
+HEX6[1] <= <VCC>
+HEX6[0] <= <VCC>
+HEX7[6] <= char7seg:ohex3.display[6]
+HEX7[5] <= char7seg:ohex3.display[5]
+HEX7[4] <= char7seg:ohex3.display[4]
+HEX7[3] <= char7seg:ohex3.display[3]
+HEX7[2] <= char7seg:ohex3.display[2]
+HEX7[1] <= char7seg:ohex3.display[1]
+HEX7[0] <= char7seg:ohex3.display[0]
+
+
+|Cwiczenie5_5|mul4bit:mul0
+a[0] => rejestr4bit:rega.r[0]
+a[1] => rejestr4bit:rega.r[1]
+a[2] => rejestr4bit:rega.r[2]
+a[3] => rejestr4bit:rega.r[3]
+b[0] => rejestr4bit:regb.r[0]
+b[1] => rejestr4bit:regb.r[1]
+b[2] => rejestr4bit:regb.r[2]
+b[3] => rejestr4bit:regb.r[3]
+w[0] <= rejestr8bit:regout.q[0]
+w[1] <= rejestr8bit:regout.q[1]
+w[2] <= rejestr8bit:regout.q[2]
+w[3] <= rejestr8bit:regout.q[3]
+w[4] <= rejestr8bit:regout.q[4]
+w[5] <= rejestr8bit:regout.q[5]
+w[6] <= rejestr8bit:regout.q[6]
+w[7] <= rejestr8bit:regout.q[7]
+clk => rejestr4bit:rega.clk
+clk => rejestr4bit:regb.clk
+clk => rejestr8bit:regout.clk
+
+
+|Cwiczenie5_5|mul4bit:mul0|rejestr4bit:rega
+clk => mydff:dff0.clk
+clk => mydff:dff1.clk
+clk => mydff:dff2.clk
+clk => mydff:dff3.clk
+r[0] => mydff:dff0.d
+r[1] => mydff:dff1.d
+r[2] => mydff:dff2.d
+r[3] => mydff:dff3.d
+q[0] <= mydff:dff0.q
+q[1] <= mydff:dff1.q
+q[2] <= mydff:dff2.q
+q[3] <= mydff:dff3.q
+
+
+|Cwiczenie5_5|mul4bit:mul0|rejestr4bit:rega|mydff:dff0
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_5|mul4bit:mul0|rejestr4bit:rega|mydff:dff1
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_5|mul4bit:mul0|rejestr4bit:rega|mydff:dff2
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_5|mul4bit:mul0|rejestr4bit:rega|mydff:dff3
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_5|mul4bit:mul0|rejestr4bit:regb
+clk => mydff:dff0.clk
+clk => mydff:dff1.clk
+clk => mydff:dff2.clk
+clk => mydff:dff3.clk
+r[0] => mydff:dff0.d
+r[1] => mydff:dff1.d
+r[2] => mydff:dff2.d
+r[3] => mydff:dff3.d
+q[0] <= mydff:dff0.q
+q[1] <= mydff:dff1.q
+q[2] <= mydff:dff2.q
+q[3] <= mydff:dff3.q
+
+
+|Cwiczenie5_5|mul4bit:mul0|rejestr4bit:regb|mydff:dff0
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_5|mul4bit:mul0|rejestr4bit:regb|mydff:dff1
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_5|mul4bit:mul0|rejestr4bit:regb|mydff:dff2
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_5|mul4bit:mul0|rejestr4bit:regb|mydff:dff3
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_5|mul4bit:mul0|mul4bitpart:part1
+a[0] => comb.IN0
+a[1] => comb.IN0
+a[2] => comb.IN0
+a[3] => comb.IN0
+b => comb.IN1
+b => comb.IN1
+b => comb.IN1
+b => comb.IN1
+s[0] => ~NO_FANOUT~
+s[1] => sumator1bit:sum0.a
+s[2] => sumator1bit:sum1.a
+s[3] => sumator1bit:sum2.a
+cin => sumator1bit:sum3.a
+w[0] <= sumator1bit:sum0.s
+w[1] <= sumator1bit:sum1.s
+w[2] <= sumator1bit:sum2.s
+w[3] <= sumator1bit:sum3.s
+cout <= sumator1bit:sum3.cout
+
+
+|Cwiczenie5_5|mul4bit:mul0|mul4bitpart:part1|sumator1bit:sum0
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_5|mul4bit:mul0|mul4bitpart:part1|sumator1bit:sum1
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_5|mul4bit:mul0|mul4bitpart:part1|sumator1bit:sum2
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_5|mul4bit:mul0|mul4bitpart:part1|sumator1bit:sum3
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_5|mul4bit:mul0|mul4bitpart:part2
+a[0] => comb.IN0
+a[1] => comb.IN0
+a[2] => comb.IN0
+a[3] => comb.IN0
+b => comb.IN1
+b => comb.IN1
+b => comb.IN1
+b => comb.IN1
+s[0] => ~NO_FANOUT~
+s[1] => sumator1bit:sum0.a
+s[2] => sumator1bit:sum1.a
+s[3] => sumator1bit:sum2.a
+cin => sumator1bit:sum3.a
+w[0] <= sumator1bit:sum0.s
+w[1] <= sumator1bit:sum1.s
+w[2] <= sumator1bit:sum2.s
+w[3] <= sumator1bit:sum3.s
+cout <= sumator1bit:sum3.cout
+
+
+|Cwiczenie5_5|mul4bit:mul0|mul4bitpart:part2|sumator1bit:sum0
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_5|mul4bit:mul0|mul4bitpart:part2|sumator1bit:sum1
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_5|mul4bit:mul0|mul4bitpart:part2|sumator1bit:sum2
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_5|mul4bit:mul0|mul4bitpart:part2|sumator1bit:sum3
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_5|mul4bit:mul0|mul4bitpart:part3
+a[0] => comb.IN0
+a[1] => comb.IN0
+a[2] => comb.IN0
+a[3] => comb.IN0
+b => comb.IN1
+b => comb.IN1
+b => comb.IN1
+b => comb.IN1
+s[0] => ~NO_FANOUT~
+s[1] => sumator1bit:sum0.a
+s[2] => sumator1bit:sum1.a
+s[3] => sumator1bit:sum2.a
+cin => sumator1bit:sum3.a
+w[0] <= sumator1bit:sum0.s
+w[1] <= sumator1bit:sum1.s
+w[2] <= sumator1bit:sum2.s
+w[3] <= sumator1bit:sum3.s
+cout <= sumator1bit:sum3.cout
+
+
+|Cwiczenie5_5|mul4bit:mul0|mul4bitpart:part3|sumator1bit:sum0
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_5|mul4bit:mul0|mul4bitpart:part3|sumator1bit:sum1
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_5|mul4bit:mul0|mul4bitpart:part3|sumator1bit:sum2
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_5|mul4bit:mul0|mul4bitpart:part3|sumator1bit:sum3
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_5|mul4bit:mul0|rejestr8bit:regout
+clk => mydff:dff0.clk
+clk => mydff:dff1.clk
+clk => mydff:dff2.clk
+clk => mydff:dff3.clk
+clk => mydff:dff4.clk
+clk => mydff:dff5.clk
+clk => mydff:dff6.clk
+clk => mydff:dff7.clk
+r[0] => mydff:dff0.d
+r[1] => mydff:dff1.d
+r[2] => mydff:dff2.d
+r[3] => mydff:dff3.d
+r[4] => mydff:dff4.d
+r[5] => mydff:dff5.d
+r[6] => mydff:dff6.d
+r[7] => mydff:dff7.d
+q[0] <= mydff:dff0.q
+q[1] <= mydff:dff1.q
+q[2] <= mydff:dff2.q
+q[3] <= mydff:dff3.q
+q[4] <= mydff:dff4.q
+q[5] <= mydff:dff5.q
+q[6] <= mydff:dff6.q
+q[7] <= mydff:dff7.q
+
+
+|Cwiczenie5_5|mul4bit:mul0|rejestr8bit:regout|mydff:dff0
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_5|mul4bit:mul0|rejestr8bit:regout|mydff:dff1
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_5|mul4bit:mul0|rejestr8bit:regout|mydff:dff2
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_5|mul4bit:mul0|rejestr8bit:regout|mydff:dff3
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_5|mul4bit:mul0|rejestr8bit:regout|mydff:dff4
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_5|mul4bit:mul0|rejestr8bit:regout|mydff:dff5
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_5|mul4bit:mul0|rejestr8bit:regout|mydff:dff6
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_5|mul4bit:mul0|rejestr8bit:regout|mydff:dff7
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_5|char7seg:ohex0
+number[0] => Mux0.IN19
+number[0] => Mux1.IN19
+number[0] => Mux2.IN19
+number[0] => Mux3.IN19
+number[0] => Mux4.IN19
+number[0] => Mux5.IN19
+number[0] => Mux6.IN19
+number[1] => Mux0.IN18
+number[1] => Mux1.IN18
+number[1] => Mux2.IN18
+number[1] => Mux3.IN18
+number[1] => Mux4.IN18
+number[1] => Mux5.IN18
+number[1] => Mux6.IN18
+number[2] => Mux0.IN17
+number[2] => Mux1.IN17
+number[2] => Mux2.IN17
+number[2] => Mux3.IN17
+number[2] => Mux4.IN17
+number[2] => Mux5.IN17
+number[2] => Mux6.IN17
+number[3] => Mux0.IN16
+number[3] => Mux1.IN16
+number[3] => Mux2.IN16
+number[3] => Mux3.IN16
+number[3] => Mux4.IN16
+number[3] => Mux5.IN16
+number[3] => Mux6.IN16
+display[6] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+display[5] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+display[4] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+display[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+display[2] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+display[1] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+display[0] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_5|char7seg:ohex3
+number[0] => Mux0.IN19
+number[0] => Mux1.IN19
+number[0] => Mux2.IN19
+number[0] => Mux3.IN19
+number[0] => Mux4.IN19
+number[0] => Mux5.IN19
+number[0] => Mux6.IN19
+number[1] => Mux0.IN18
+number[1] => Mux1.IN18
+number[1] => Mux2.IN18
+number[1] => Mux3.IN18
+number[1] => Mux4.IN18
+number[1] => Mux5.IN18
+number[1] => Mux6.IN18
+number[2] => Mux0.IN17
+number[2] => Mux1.IN17
+number[2] => Mux2.IN17
+number[2] => Mux3.IN17
+number[2] => Mux4.IN17
+number[2] => Mux5.IN17
+number[2] => Mux6.IN17
+number[3] => Mux0.IN16
+number[3] => Mux1.IN16
+number[3] => Mux2.IN16
+number[3] => Mux3.IN16
+number[3] => Mux4.IN16
+number[3] => Mux5.IN16
+number[3] => Mux6.IN16
+display[6] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+display[5] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+display[4] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+display[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+display[2] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+display[1] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+display[0] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_5|char7seg:ohex6
+number[0] => Mux0.IN19
+number[0] => Mux1.IN19
+number[0] => Mux2.IN19
+number[0] => Mux3.IN19
+number[0] => Mux4.IN19
+number[0] => Mux5.IN19
+number[0] => Mux6.IN19
+number[1] => Mux0.IN18
+number[1] => Mux1.IN18
+number[1] => Mux2.IN18
+number[1] => Mux3.IN18
+number[1] => Mux4.IN18
+number[1] => Mux5.IN18
+number[1] => Mux6.IN18
+number[2] => Mux0.IN17
+number[2] => Mux1.IN17
+number[2] => Mux2.IN17
+number[2] => Mux3.IN17
+number[2] => Mux4.IN17
+number[2] => Mux5.IN17
+number[2] => Mux6.IN17
+number[3] => Mux0.IN16
+number[3] => Mux1.IN16
+number[3] => Mux2.IN16
+number[3] => Mux3.IN16
+number[3] => Mux4.IN16
+number[3] => Mux5.IN16
+number[3] => Mux6.IN16
+display[6] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+display[5] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+display[4] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+display[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+display[2] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+display[1] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+display[0] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_5|char7seg:ohex7
+number[0] => Mux0.IN19
+number[0] => Mux1.IN19
+number[0] => Mux2.IN19
+number[0] => Mux3.IN19
+number[0] => Mux4.IN19
+number[0] => Mux5.IN19
+number[0] => Mux6.IN19
+number[1] => Mux0.IN18
+number[1] => Mux1.IN18
+number[1] => Mux2.IN18
+number[1] => Mux3.IN18
+number[1] => Mux4.IN18
+number[1] => Mux5.IN18
+number[1] => Mux6.IN18
+number[2] => Mux0.IN17
+number[2] => Mux1.IN17
+number[2] => Mux2.IN17
+number[2] => Mux3.IN17
+number[2] => Mux4.IN17
+number[2] => Mux5.IN17
+number[2] => Mux6.IN17
+number[3] => Mux0.IN16
+number[3] => Mux1.IN16
+number[3] => Mux2.IN16
+number[3] => Mux3.IN16
+number[3] => Mux4.IN16
+number[3] => Mux5.IN16
+number[3] => Mux6.IN16
+display[6] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+display[5] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+display[4] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+display[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+display[2] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+display[1] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+display[0] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+

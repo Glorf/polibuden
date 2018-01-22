@@ -1,0 +1,433 @@
+|Cwiczenie5_3
+in1[7] => sumator8bitseq:sum.in1[7]
+in1[6] => sumator8bitseq:sum.in1[6]
+in1[5] => sumator8bitseq:sum.in1[5]
+in1[4] => sumator8bitseq:sum.in1[4]
+in1[3] => sumator8bitseq:sum.in1[3]
+in1[2] => sumator8bitseq:sum.in1[2]
+in1[1] => sumator8bitseq:sum.in1[1]
+in1[0] => sumator8bitseq:sum.in1[0]
+in2[7] => sumator8bitseq:sum.in2[7]
+in2[6] => sumator8bitseq:sum.in2[6]
+in2[5] => sumator8bitseq:sum.in2[5]
+in2[4] => sumator8bitseq:sum.in2[4]
+in2[3] => sumator8bitseq:sum.in2[3]
+in2[2] => sumator8bitseq:sum.in2[2]
+in2[1] => sumator8bitseq:sum.in2[1]
+in2[0] => sumator8bitseq:sum.in2[0]
+clk => sumator8bitseq:sum.clk
+out0[7] <= sumator8bitseq:sum.out0[7]
+out0[6] <= sumator8bitseq:sum.out0[6]
+out0[5] <= sumator8bitseq:sum.out0[5]
+out0[4] <= sumator8bitseq:sum.out0[4]
+out0[3] <= sumator8bitseq:sum.out0[3]
+out0[2] <= sumator8bitseq:sum.out0[2]
+out0[1] <= sumator8bitseq:sum.out0[1]
+out0[0] <= sumator8bitseq:sum.out0[0]
+overf <= sumator8bitseq:sum.overf
+
+
+|Cwiczenie5_3|sumator8bitseq:sum
+in1[7] => rejestr8bit:rejestr1in.r[7]
+in1[6] => rejestr8bit:rejestr1in.r[6]
+in1[5] => rejestr8bit:rejestr1in.r[5]
+in1[4] => rejestr8bit:rejestr1in.r[4]
+in1[3] => rejestr8bit:rejestr1in.r[3]
+in1[2] => rejestr8bit:rejestr1in.r[2]
+in1[1] => rejestr8bit:rejestr1in.r[1]
+in1[0] => rejestr8bit:rejestr1in.r[0]
+in2[7] => rejestr8bit:rejestr2in.r[7]
+in2[6] => rejestr8bit:rejestr2in.r[6]
+in2[5] => rejestr8bit:rejestr2in.r[5]
+in2[4] => rejestr8bit:rejestr2in.r[4]
+in2[3] => rejestr8bit:rejestr2in.r[3]
+in2[2] => rejestr8bit:rejestr2in.r[2]
+in2[1] => rejestr8bit:rejestr2in.r[1]
+in2[0] => rejestr8bit:rejestr2in.r[0]
+clk => rejestr8bit:rejestr1in.clk
+clk => rejestr8bit:rejestr2in.clk
+clk => rejestr8bit:rejestrout.clk
+clk => mydff:overflowout.clk
+out0[7] <= rejestr8bit:rejestrout.q[7]
+out0[6] <= rejestr8bit:rejestrout.q[6]
+out0[5] <= rejestr8bit:rejestrout.q[5]
+out0[4] <= rejestr8bit:rejestrout.q[4]
+out0[3] <= rejestr8bit:rejestrout.q[3]
+out0[2] <= rejestr8bit:rejestrout.q[2]
+out0[1] <= rejestr8bit:rejestrout.q[1]
+out0[0] <= rejestr8bit:rejestrout.q[0]
+overf <= mydff:overflowout.q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestr1in
+clk => mydff:dff0.clk
+clk => mydff:dff1.clk
+clk => mydff:dff2.clk
+clk => mydff:dff3.clk
+clk => mydff:dff4.clk
+clk => mydff:dff5.clk
+clk => mydff:dff6.clk
+clk => mydff:dff7.clk
+r[7] => mydff:dff7.d
+r[6] => mydff:dff6.d
+r[5] => mydff:dff5.d
+r[4] => mydff:dff4.d
+r[3] => mydff:dff3.d
+r[2] => mydff:dff2.d
+r[1] => mydff:dff1.d
+r[0] => mydff:dff0.d
+q[7] <= mydff:dff7.q
+q[6] <= mydff:dff6.q
+q[5] <= mydff:dff5.q
+q[4] <= mydff:dff4.q
+q[3] <= mydff:dff3.q
+q[2] <= mydff:dff2.q
+q[1] <= mydff:dff1.q
+q[0] <= mydff:dff0.q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff7
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestr2in
+clk => mydff:dff0.clk
+clk => mydff:dff1.clk
+clk => mydff:dff2.clk
+clk => mydff:dff3.clk
+clk => mydff:dff4.clk
+clk => mydff:dff5.clk
+clk => mydff:dff6.clk
+clk => mydff:dff7.clk
+r[7] => mydff:dff7.d
+r[6] => mydff:dff6.d
+r[5] => mydff:dff5.d
+r[4] => mydff:dff4.d
+r[3] => mydff:dff3.d
+r[2] => mydff:dff2.d
+r[1] => mydff:dff1.d
+r[0] => mydff:dff0.d
+q[7] <= mydff:dff7.q
+q[6] <= mydff:dff6.q
+q[5] <= mydff:dff5.q
+q[4] <= mydff:dff4.q
+q[3] <= mydff:dff3.q
+q[2] <= mydff:dff2.q
+q[1] <= mydff:dff1.q
+q[0] <= mydff:dff0.q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff7
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|sumator8bit:sumator
+in1[7] => sumator1bit:SUM7.a
+in1[6] => sumator1bit:SUM6.a
+in1[5] => sumator1bit:SUM5.a
+in1[4] => sumator1bit:SUM4.a
+in1[3] => sumator1bit:SUM3.a
+in1[2] => sumator1bit:SUM2.a
+in1[1] => sumator1bit:SUM1.a
+in1[0] => sumator1bit:SUM0.a
+in2[7] => sumator1bit:SUM7.b
+in2[6] => sumator1bit:SUM6.b
+in2[5] => sumator1bit:SUM5.b
+in2[4] => sumator1bit:SUM4.b
+in2[3] => sumator1bit:SUM3.b
+in2[2] => sumator1bit:SUM2.b
+in2[1] => sumator1bit:SUM1.b
+in2[0] => sumator1bit:SUM0.b
+cin => sumator1bit:SUM0.cin
+sout[7] <= sumator1bit:SUM7.s
+sout[6] <= sumator1bit:SUM6.s
+sout[5] <= sumator1bit:SUM5.s
+sout[4] <= sumator1bit:SUM4.s
+sout[3] <= sumator1bit:SUM3.s
+sout[2] <= sumator1bit:SUM2.s
+sout[1] <= sumator1bit:SUM1.s
+sout[0] <= sumator1bit:SUM0.s
+cout <= sumator1bit:SUM7.cout
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|sumator8bit:sumator|sumator1bit:SUM0
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|sumator8bit:sumator|sumator1bit:SUM1
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|sumator8bit:sumator|sumator1bit:SUM2
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|sumator8bit:sumator|sumator1bit:SUM3
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|sumator8bit:sumator|sumator1bit:SUM4
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|sumator8bit:sumator|sumator1bit:SUM5
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|sumator8bit:sumator|sumator1bit:SUM6
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|sumator8bit:sumator|sumator1bit:SUM7
+a => cout.IN0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => cout.IN0
+b => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestrout
+clk => mydff:dff0.clk
+clk => mydff:dff1.clk
+clk => mydff:dff2.clk
+clk => mydff:dff3.clk
+clk => mydff:dff4.clk
+clk => mydff:dff5.clk
+clk => mydff:dff6.clk
+clk => mydff:dff7.clk
+r[7] => mydff:dff7.d
+r[6] => mydff:dff6.d
+r[5] => mydff:dff5.d
+r[4] => mydff:dff4.d
+r[3] => mydff:dff3.d
+r[2] => mydff:dff2.d
+r[1] => mydff:dff1.d
+r[0] => mydff:dff0.d
+q[7] <= mydff:dff7.q
+q[6] <= mydff:dff6.q
+q[5] <= mydff:dff5.q
+q[4] <= mydff:dff4.q
+q[3] <= mydff:dff3.q
+q[2] <= mydff:dff2.q
+q[1] <= mydff:dff1.q
+q[0] <= mydff:dff0.q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff0
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff1
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+
+|Cwiczenie5_3|sumator8bitseq:sum|mydff:overflowout
+d => shortdff.DATAIN
+clk => shortdff.CLK
+q <> q
+
+

@@ -1,0 +1,1226 @@
+TimeQuest Timing Analyzer report for Cwiczenie5_3
+Tue Dec 19 14:00:11 2017
+Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. TimeQuest Timing Analyzer Summary
+  3. Parallel Compilation
+  4. SDC File List
+  5. Clocks
+  6. Slow Model Fmax Summary
+  7. Slow Model Setup Summary
+  8. Slow Model Hold Summary
+  9. Slow Model Recovery Summary
+ 10. Slow Model Removal Summary
+ 11. Slow Model Minimum Pulse Width Summary
+ 12. Slow Model Setup: 'zegar'
+ 13. Slow Model Hold: 'zegar'
+ 14. Slow Model Minimum Pulse Width: 'zegar'
+ 15. Setup Times
+ 16. Hold Times
+ 17. Clock to Output Times
+ 18. Minimum Clock to Output Times
+ 19. Fast Model Setup Summary
+ 20. Fast Model Hold Summary
+ 21. Fast Model Recovery Summary
+ 22. Fast Model Removal Summary
+ 23. Fast Model Minimum Pulse Width Summary
+ 24. Fast Model Setup: 'zegar'
+ 25. Fast Model Hold: 'zegar'
+ 26. Fast Model Minimum Pulse Width: 'zegar'
+ 27. Setup Times
+ 28. Hold Times
+ 29. Clock to Output Times
+ 30. Minimum Clock to Output Times
+ 31. Multicorner Timing Analysis Summary
+ 32. Setup Times
+ 33. Hold Times
+ 34. Clock to Output Times
+ 35. Minimum Clock to Output Times
+ 36. Setup Transfers
+ 37. Hold Transfers
+ 38. Report TCCS
+ 39. Report RSKM
+ 40. Unconstrained Paths
+ 41. TimeQuest Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------------------+
+; TimeQuest Timing Analyzer Summary                                                      ;
++--------------------+-------------------------------------------------------------------+
+; Quartus II Version ; Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition ;
+; Revision Name      ; Cwiczenie5_3                                                      ;
+; Device Family      ; Cyclone II                                                        ;
+; Device Name        ; EP2C70F896C6                                                      ;
+; Timing Models      ; Final                                                             ;
+; Delay Model        ; Combined                                                          ;
+; Rise/Fall Delays   ; Unavailable                                                       ;
++--------------------+-------------------------------------------------------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++------------------------------------------------------+
+; SDC File List                                        ;
++------------------+--------+--------------------------+
+; SDC File Path    ; Status ; Read at                  ;
++------------------+--------+--------------------------+
+; Cwiczenie5_3.sdc ; OK     ; Tue Dec 19 14:00:10 2017 ;
++------------------+--------+--------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                         ;
++------------+------+--------+-----------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------+
+; Clock Name ; Type ; Period ; Frequency ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets ;
++------------+------+--------+-----------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------+
+; zegar      ; Base ; 10.000 ; 100.0 MHz ; 0.000 ; 5.000 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { clk } ;
++------------+------+--------+-----------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------+
+
+
++--------------------------------------------------+
+; Slow Model Fmax Summary                          ;
++------------+-----------------+------------+------+
+; Fmax       ; Restricted Fmax ; Clock Name ; Note ;
++------------+-----------------+------------+------+
+; 149.99 MHz ; 149.99 MHz      ; zegar      ;      ;
++------------+-----------------+------------+------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
++-------------------------------+
+; Slow Model Setup Summary      ;
++-------+-------+---------------+
+; Clock ; Slack ; End Point TNS ;
++-------+-------+---------------+
+; zegar ; 3.333 ; 0.000         ;
++-------+-------+---------------+
+
+
++-------------------------------+
+; Slow Model Hold Summary       ;
++-------+-------+---------------+
+; Clock ; Slack ; End Point TNS ;
++-------+-------+---------------+
+; zegar ; 1.305 ; 0.000         ;
++-------+-------+---------------+
+
+
+-------------------------------
+; Slow Model Recovery Summary ;
+-------------------------------
+No paths to report.
+
+
+------------------------------
+; Slow Model Removal Summary ;
+------------------------------
+No paths to report.
+
+
++----------------------------------------+
+; Slow Model Minimum Pulse Width Summary ;
++-------+-------+------------------------+
+; Clock ; Slack ; End Point TNS          ;
++-------+-------+------------------------+
+; zegar ; 4.000 ; 0.000                  ;
++-------+-------+------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow Model Setup: 'zegar'                                                                                                                                                                                   ;
++-------+---------------------------------------------------------------+---------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                                                     ; To Node                                                       ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+---------------------------------------------------------------+---------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 3.333 ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff1|shortdff ; out0[1]                                                       ; zegar        ; zegar       ; 10.000       ; -2.942     ; 2.725      ;
+; 3.364 ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff0|shortdff ; out0[0]                                                       ; zegar        ; zegar       ; 10.000       ; -2.941     ; 2.695      ;
+; 3.364 ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; out0[2]                                                       ; zegar        ; zegar       ; 10.000       ; -2.941     ; 2.695      ;
+; 3.383 ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; out0[6]                                                       ; zegar        ; zegar       ; 10.000       ; -2.942     ; 2.675      ;
+; 3.384 ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; out0[5]                                                       ; zegar        ; zegar       ; 10.000       ; -2.941     ; 2.675      ;
+; 3.780 ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; out0[4]                                                       ; zegar        ; zegar       ; 10.000       ; -2.722     ; 2.498      ;
+; 3.780 ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; out0[7]                                                       ; zegar        ; zegar       ; 10.000       ; -2.722     ; 2.498      ;
+; 3.790 ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; out0[3]                                                       ; zegar        ; zegar       ; 10.000       ; -2.722     ; 2.488      ;
+; 3.800 ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; overf                                                         ; zegar        ; zegar       ; 10.000       ; -2.722     ; 2.478      ;
+; 4.042 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 5.731      ;
+; 4.071 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 5.702      ;
+; 4.189 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 5.584      ;
+; 4.218 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 5.555      ;
+; 4.219 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 5.554      ;
+; 4.348 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 5.425      ;
+; 4.366 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 5.407      ;
+; 4.463 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 5.310      ;
+; 4.483 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 5.290      ;
+; 4.495 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 5.278      ;
+; 4.610 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 5.163      ;
+; 4.630 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 5.143      ;
+; 4.631 ; in2[5]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; 2.873      ; 6.278      ;
+; 4.663 ; in1[6]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; 2.873      ; 6.246      ;
+; 4.664 ; in2[6]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; 2.873      ; 6.245      ;
+; 4.677 ; in2[2]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; zegar        ; zegar       ; 10.000       ; 2.873      ; 6.232      ;
+; 4.713 ; in2[4]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; 2.873      ; 6.196      ;
+; 4.872 ; in1[2]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; zegar        ; zegar       ; 10.000       ; 2.873      ; 6.037      ;
+; 4.883 ; in1[3]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; zegar        ; zegar       ; 10.000       ; 2.873      ; 6.026      ;
+; 4.895 ; in1[5]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; 2.874      ; 6.015      ;
+; 4.917 ; in2[3]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; zegar        ; zegar       ; 10.000       ; 2.873      ; 5.992      ;
+; 4.951 ; in2[0]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; zegar        ; zegar       ; 10.000       ; 2.873      ; 5.958      ;
+; 4.952 ; in1[1]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; zegar        ; zegar       ; 10.000       ; 2.873      ; 5.957      ;
+; 4.955 ; in1[0]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; zegar        ; zegar       ; 10.000       ; 2.873      ; 5.954      ;
+; 4.978 ; in1[4]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; 2.873      ; 5.931      ;
+; 5.018 ; in2[1]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; zegar        ; zegar       ; 10.000       ; 2.873      ; 5.891      ;
+; 5.419 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; 0.069      ; 4.572      ;
+; 5.448 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; 0.069      ; 4.543      ;
+; 5.455 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 4.318      ;
+; 5.590 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 4.183      ;
+; 5.596 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; 0.069      ; 4.395      ;
+; 5.602 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 4.171      ;
+; 5.687 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; 0.068      ; 4.303      ;
+; 5.716 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; 0.068      ; 4.274      ;
+; 5.725 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; 0.069      ; 4.266      ;
+; 5.737 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 4.036      ;
+; 5.840 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; 0.069      ; 4.151      ;
+; 5.860 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; 0.069      ; 4.131      ;
+; 5.864 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; 0.068      ; 4.126      ;
+; 5.993 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; 0.068      ; 3.997      ;
+; 6.108 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; 0.068      ; 3.882      ;
+; 6.128 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; 0.068      ; 3.862      ;
+; 6.132 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 3.641      ;
+; 6.241 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 3.532      ;
+; 6.270 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 3.503      ;
+; 6.273 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 3.500      ;
+; 6.279 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 3.494      ;
+; 6.418 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 3.355      ;
+; 6.420 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 3.353      ;
+; 6.547 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 3.226      ;
+; 6.637 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.152     ; 3.135      ;
+; 6.662 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 3.111      ;
+; 6.682 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 3.091      ;
+; 6.784 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.152     ; 2.988      ;
+; 6.832 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; 0.069      ; 3.159      ;
+; 6.945 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.828      ;
+; 6.951 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.822      ;
+; 6.967 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; 0.069      ; 3.024      ;
+; 6.996 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; 0.069      ; 2.995      ;
+; 7.029 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.744      ;
+; 7.036 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.737      ;
+; 7.065 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.708      ;
+; 7.096 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.677      ;
+; 7.098 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.675      ;
+; 7.100 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; 0.068      ; 2.890      ;
+; 7.104 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.669      ;
+; 7.107 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; 0.069      ; 2.884      ;
+; 7.213 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.560      ;
+; 7.235 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; 0.068      ; 2.755      ;
+; 7.342 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.431      ;
+; 7.457 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.316      ;
+; 7.477 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.296      ;
+; 7.509 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; 0.069      ; 2.482      ;
+; 7.629 ; in2[7]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; 2.873      ; 3.280      ;
+; 7.644 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 10.000       ; 0.068      ; 2.346      ;
+; 7.650 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; 0.069      ; 2.341      ;
+; 7.654 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.119      ;
+; 7.673 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 10.000       ; 0.068      ; 2.317      ;
+; 7.688 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.085      ;
+; 7.777 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; 0.068      ; 2.213      ;
+; 7.782 ; in1[7]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; 2.873      ; 3.127      ;
+; 7.789 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.984      ;
+; 7.821 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 10.000       ; 0.068      ; 2.169      ;
+; 7.845 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff1|shortdff ; zegar        ; zegar       ; 10.000       ; 0.069      ; 2.146      ;
+; 7.863 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff7|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.910      ;
+; 7.877 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff1|shortdff ; zegar        ; zegar       ; 10.000       ; 0.069      ; 2.114      ;
+; 7.918 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; 0.068      ; 2.072      ;
+; 7.920 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; 0.068      ; 2.070      ;
+; 7.935 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.838      ;
+; 7.950 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 10.000       ; 0.068      ; 2.040      ;
+; 8.053 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff0|shortdff ; zegar        ; zegar       ; 10.000       ; 0.068      ; 1.937      ;
++-------+---------------------------------------------------------------+---------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow Model Hold: 'zegar'                                                                                                                                                                                    ;
++-------+---------------------------------------------------------------+---------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                                                     ; To Node                                                       ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+---------------------------------------------------------------+---------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 1.305 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 1.476      ;
+; 1.307 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 1.478      ;
+; 1.316 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff0|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 1.487      ;
+; 1.364 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.301      ;
+; 1.371 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff7|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.308      ;
+; 1.508 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff7|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.445      ;
+; 1.516 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.069      ; 1.688      ;
+; 1.524 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.461      ;
+; 1.524 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff7|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.461      ;
+; 1.621 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.069      ; 1.793      ;
+; 1.665 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.069      ; 1.837      ;
+; 1.735 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 1.906      ;
+; 1.749 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.067      ; 1.919      ;
+; 1.766 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff0|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 1.937      ;
+; 1.869 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 2.040      ;
+; 1.899 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 2.070      ;
+; 1.901 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.838      ;
+; 1.901 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 2.072      ;
+; 1.942 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.069      ; 2.114      ;
+; 1.973 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff7|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.910      ;
+; 1.974 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 0.069      ; 2.146      ;
+; 1.988 ; in1[7]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 2.873      ; 3.127      ;
+; 1.998 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 2.169      ;
+; 2.042 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 2.213      ;
+; 2.047 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.984      ;
+; 2.064 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.001      ;
+; 2.141 ; in2[7]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 2.873      ; 3.280      ;
+; 2.146 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 2.317      ;
+; 2.148 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.085      ;
+; 2.169 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.069      ; 2.341      ;
+; 2.175 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 2.346      ;
+; 2.182 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.119      ;
+; 2.211 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.148      ;
+; 2.310 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.069      ; 2.482      ;
+; 2.359 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.296      ;
+; 2.379 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.316      ;
+; 2.494 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.431      ;
+; 2.584 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 2.755      ;
+; 2.593 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.530      ;
+; 2.623 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.560      ;
+; 2.648 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.585      ;
+; 2.712 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.069      ; 2.884      ;
+; 2.719 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 2.890      ;
+; 2.738 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.675      ;
+; 2.771 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.708      ;
+; 2.800 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.737      ;
+; 2.823 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.069      ; 2.995      ;
+; 2.852 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.069      ; 3.024      ;
+; 2.885 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.822      ;
+; 2.987 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.069      ; 3.159      ;
+; 3.052 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.152     ; 2.988      ;
+; 3.154 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 3.091      ;
+; 3.174 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 3.111      ;
+; 3.199 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.152     ; 3.135      ;
+; 3.289 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 3.226      ;
+; 3.416 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 3.353      ;
+; 3.418 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 3.355      ;
+; 3.557 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 3.494      ;
+; 3.563 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 3.500      ;
+; 3.566 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 3.503      ;
+; 3.595 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 3.532      ;
+; 3.691 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 3.862      ;
+; 3.704 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 3.641      ;
+; 3.711 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 3.882      ;
+; 3.826 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 3.997      ;
+; 3.955 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 4.126      ;
+; 3.959 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.069      ; 4.131      ;
+; 3.979 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.069      ; 4.151      ;
+; 4.094 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.069      ; 4.266      ;
+; 4.099 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 4.036      ;
+; 4.103 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 4.274      ;
+; 4.132 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 0.068      ; 4.303      ;
+; 4.223 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.069      ; 4.395      ;
+; 4.234 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 4.171      ;
+; 4.246 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 4.183      ;
+; 4.371 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.069      ; 4.543      ;
+; 4.381 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 4.318      ;
+; 4.400 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 0.069      ; 4.572      ;
+; 4.752 ; in2[1]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 2.873      ; 5.891      ;
+; 4.792 ; in1[4]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 2.873      ; 5.931      ;
+; 4.815 ; in1[0]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; zegar        ; zegar       ; 0.000        ; 2.873      ; 5.954      ;
+; 4.818 ; in1[1]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 2.873      ; 5.957      ;
+; 4.819 ; in2[0]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; zegar        ; zegar       ; 0.000        ; 2.873      ; 5.958      ;
+; 4.853 ; in2[3]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 2.873      ; 5.992      ;
+; 4.875 ; in1[5]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 2.874      ; 6.015      ;
+; 4.887 ; in1[3]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 2.873      ; 6.026      ;
+; 4.898 ; in1[2]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 2.873      ; 6.037      ;
+; 5.057 ; in2[4]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 2.873      ; 6.196      ;
+; 5.093 ; in2[2]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 2.873      ; 6.232      ;
+; 5.106 ; in2[6]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 2.873      ; 6.245      ;
+; 5.107 ; in1[6]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; 2.873      ; 6.246      ;
+; 5.139 ; in2[5]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 2.873      ; 6.278      ;
+; 5.206 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 5.143      ;
+; 5.226 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 5.163      ;
+; 5.341 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 5.278      ;
+; 5.353 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 5.290      ;
+; 5.373 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 5.310      ;
+; 5.470 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 5.407      ;
+; 5.488 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 5.425      ;
+; 5.617 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 5.554      ;
++-------+---------------------------------------------------------------+---------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow Model Minimum Pulse Width: 'zegar'                                                                                                       ;
++-------+--------------+----------------+------------------+-------+------------+---------------------------------------------------------------+
+; Slack ; Actual Width ; Required Width ; Type             ; Clock ; Clock Edge ; Target                                                        ;
++-------+--------------+----------------+------------------+-------+------------+---------------------------------------------------------------+
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff7|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff7|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff7|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff7|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff0|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff0|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff1|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff1|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; clk|combout                                                   ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; clk|combout                                                   ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; clk~clkctrl|inclk[0]                                          ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; clk~clkctrl|inclk[0]                                          ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; clk~clkctrl|outclk                                            ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; clk~clkctrl|outclk                                            ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; out0[0]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; out0[0]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; out0[1]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; out0[1]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; out0[2]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; out0[2]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; out0[3]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; out0[3]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; out0[4]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; out0[4]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; out0[5]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; out0[5]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; out0[6]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; out0[6]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; out0[7]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; out0[7]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; overf|outclk                                                  ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; overf|outclk                                                  ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr1in|dff0|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr1in|dff0|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr1in|dff1|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr1in|dff1|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr1in|dff2|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr1in|dff2|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr1in|dff3|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr1in|dff3|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr1in|dff4|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr1in|dff4|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr1in|dff5|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr1in|dff5|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr1in|dff6|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr1in|dff6|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr1in|dff7|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr1in|dff7|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr2in|dff0|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr2in|dff0|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr2in|dff1|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr2in|dff1|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr2in|dff2|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr2in|dff2|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr2in|dff3|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr2in|dff3|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr2in|dff4|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr2in|dff4|shortdff|clk                              ;
++-------+--------------+----------------+------------------+-------+------------+---------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------+
+; Setup Times                                                           ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; in1[*]    ; zegar      ; 3.337 ; 3.337 ; Rise       ; zegar           ;
+;  in1[0]   ; zegar      ; 3.045 ; 3.045 ; Rise       ; zegar           ;
+;  in1[1]   ; zegar      ; 3.048 ; 3.048 ; Rise       ; zegar           ;
+;  in1[2]   ; zegar      ; 3.128 ; 3.128 ; Rise       ; zegar           ;
+;  in1[3]   ; zegar      ; 3.117 ; 3.117 ; Rise       ; zegar           ;
+;  in1[4]   ; zegar      ; 3.022 ; 3.022 ; Rise       ; zegar           ;
+;  in1[5]   ; zegar      ; 3.105 ; 3.105 ; Rise       ; zegar           ;
+;  in1[6]   ; zegar      ; 3.337 ; 3.337 ; Rise       ; zegar           ;
+;  in1[7]   ; zegar      ; 0.218 ; 0.218 ; Rise       ; zegar           ;
+; in2[*]    ; zegar      ; 3.369 ; 3.369 ; Rise       ; zegar           ;
+;  in2[0]   ; zegar      ; 3.049 ; 3.049 ; Rise       ; zegar           ;
+;  in2[1]   ; zegar      ; 2.982 ; 2.982 ; Rise       ; zegar           ;
+;  in2[2]   ; zegar      ; 3.323 ; 3.323 ; Rise       ; zegar           ;
+;  in2[3]   ; zegar      ; 3.083 ; 3.083 ; Rise       ; zegar           ;
+;  in2[4]   ; zegar      ; 3.287 ; 3.287 ; Rise       ; zegar           ;
+;  in2[5]   ; zegar      ; 3.369 ; 3.369 ; Rise       ; zegar           ;
+;  in2[6]   ; zegar      ; 3.336 ; 3.336 ; Rise       ; zegar           ;
+;  in2[7]   ; zegar      ; 0.371 ; 0.371 ; Rise       ; zegar           ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++-------------------------------------------------------------------------+
+; Hold Times                                                              ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; in1[*]    ; zegar      ; 0.012  ; 0.012  ; Rise       ; zegar           ;
+;  in1[0]   ; zegar      ; -2.815 ; -2.815 ; Rise       ; zegar           ;
+;  in1[1]   ; zegar      ; -2.818 ; -2.818 ; Rise       ; zegar           ;
+;  in1[2]   ; zegar      ; -2.898 ; -2.898 ; Rise       ; zegar           ;
+;  in1[3]   ; zegar      ; -2.887 ; -2.887 ; Rise       ; zegar           ;
+;  in1[4]   ; zegar      ; -2.792 ; -2.792 ; Rise       ; zegar           ;
+;  in1[5]   ; zegar      ; -2.875 ; -2.875 ; Rise       ; zegar           ;
+;  in1[6]   ; zegar      ; -3.107 ; -3.107 ; Rise       ; zegar           ;
+;  in1[7]   ; zegar      ; 0.012  ; 0.012  ; Rise       ; zegar           ;
+; in2[*]    ; zegar      ; -0.141 ; -0.141 ; Rise       ; zegar           ;
+;  in2[0]   ; zegar      ; -2.819 ; -2.819 ; Rise       ; zegar           ;
+;  in2[1]   ; zegar      ; -2.752 ; -2.752 ; Rise       ; zegar           ;
+;  in2[2]   ; zegar      ; -3.093 ; -3.093 ; Rise       ; zegar           ;
+;  in2[3]   ; zegar      ; -2.853 ; -2.853 ; Rise       ; zegar           ;
+;  in2[4]   ; zegar      ; -3.057 ; -3.057 ; Rise       ; zegar           ;
+;  in2[5]   ; zegar      ; -3.139 ; -3.139 ; Rise       ; zegar           ;
+;  in2[6]   ; zegar      ; -3.106 ; -3.106 ; Rise       ; zegar           ;
+;  in2[7]   ; zegar      ; -0.141 ; -0.141 ; Rise       ; zegar           ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++-----------------------------------------------------------------------+
+; Clock to Output Times                                                 ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; out0[*]   ; zegar      ; 5.667 ; 5.667 ; Rise       ; zegar           ;
+;  out0[0]  ; zegar      ; 5.636 ; 5.636 ; Rise       ; zegar           ;
+;  out0[1]  ; zegar      ; 5.667 ; 5.667 ; Rise       ; zegar           ;
+;  out0[2]  ; zegar      ; 5.636 ; 5.636 ; Rise       ; zegar           ;
+;  out0[3]  ; zegar      ; 5.210 ; 5.210 ; Rise       ; zegar           ;
+;  out0[4]  ; zegar      ; 5.220 ; 5.220 ; Rise       ; zegar           ;
+;  out0[5]  ; zegar      ; 5.616 ; 5.616 ; Rise       ; zegar           ;
+;  out0[6]  ; zegar      ; 5.617 ; 5.617 ; Rise       ; zegar           ;
+;  out0[7]  ; zegar      ; 5.220 ; 5.220 ; Rise       ; zegar           ;
+; overf     ; zegar      ; 5.200 ; 5.200 ; Rise       ; zegar           ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++-----------------------------------------------------------------------+
+; Minimum Clock to Output Times                                         ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; out0[*]   ; zegar      ; 5.210 ; 5.210 ; Rise       ; zegar           ;
+;  out0[0]  ; zegar      ; 5.636 ; 5.636 ; Rise       ; zegar           ;
+;  out0[1]  ; zegar      ; 5.667 ; 5.667 ; Rise       ; zegar           ;
+;  out0[2]  ; zegar      ; 5.636 ; 5.636 ; Rise       ; zegar           ;
+;  out0[3]  ; zegar      ; 5.210 ; 5.210 ; Rise       ; zegar           ;
+;  out0[4]  ; zegar      ; 5.220 ; 5.220 ; Rise       ; zegar           ;
+;  out0[5]  ; zegar      ; 5.616 ; 5.616 ; Rise       ; zegar           ;
+;  out0[6]  ; zegar      ; 5.617 ; 5.617 ; Rise       ; zegar           ;
+;  out0[7]  ; zegar      ; 5.220 ; 5.220 ; Rise       ; zegar           ;
+; overf     ; zegar      ; 5.200 ; 5.200 ; Rise       ; zegar           ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++-------------------------------+
+; Fast Model Setup Summary      ;
++-------+-------+---------------+
+; Clock ; Slack ; End Point TNS ;
++-------+-------+---------------+
+; zegar ; 5.721 ; 0.000         ;
++-------+-------+---------------+
+
+
++-------------------------------+
+; Fast Model Hold Summary       ;
++-------+-------+---------------+
+; Clock ; Slack ; End Point TNS ;
++-------+-------+---------------+
+; zegar ; 0.720 ; 0.000         ;
++-------+-------+---------------+
+
+
+-------------------------------
+; Fast Model Recovery Summary ;
+-------------------------------
+No paths to report.
+
+
+------------------------------
+; Fast Model Removal Summary ;
+------------------------------
+No paths to report.
+
+
++----------------------------------------+
+; Fast Model Minimum Pulse Width Summary ;
++-------+-------+------------------------+
+; Clock ; Slack ; End Point TNS          ;
++-------+-------+------------------------+
+; zegar ; 4.000 ; 0.000                  ;
++-------+-------+------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fast Model Setup: 'zegar'                                                                                                                                                                                   ;
++-------+---------------------------------------------------------------+---------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                                                     ; To Node                                                       ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+---------------------------------------------------------------+---------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 5.721 ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff1|shortdff ; out0[1]                                                       ; zegar        ; zegar       ; 10.000       ; -1.782     ; 1.497      ;
+; 5.752 ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff0|shortdff ; out0[0]                                                       ; zegar        ; zegar       ; 10.000       ; -1.781     ; 1.467      ;
+; 5.752 ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; out0[2]                                                       ; zegar        ; zegar       ; 10.000       ; -1.781     ; 1.467      ;
+; 5.771 ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; out0[6]                                                       ; zegar        ; zegar       ; 10.000       ; -1.782     ; 1.447      ;
+; 5.772 ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; out0[5]                                                       ; zegar        ; zegar       ; 10.000       ; -1.781     ; 1.447      ;
+; 6.019 ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; out0[4]                                                       ; zegar        ; zegar       ; 10.000       ; -1.634     ; 1.347      ;
+; 6.019 ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; out0[7]                                                       ; zegar        ; zegar       ; 10.000       ; -1.634     ; 1.347      ;
+; 6.029 ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; out0[3]                                                       ; zegar        ; zegar       ; 10.000       ; -1.634     ; 1.337      ;
+; 6.039 ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; overf                                                         ; zegar        ; zegar       ; 10.000       ; -1.634     ; 1.327      ;
+; 6.169 ; in2[6]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; 1.785      ; 3.648      ;
+; 6.192 ; in1[6]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; 1.785      ; 3.625      ;
+; 6.197 ; in2[5]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; 1.785      ; 3.620      ;
+; 6.203 ; in2[2]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; zegar        ; zegar       ; 10.000       ; 1.785      ; 3.614      ;
+; 6.234 ; in2[4]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; 1.785      ; 3.583      ;
+; 6.270 ; in1[2]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; zegar        ; zegar       ; 10.000       ; 1.785      ; 3.547      ;
+; 6.308 ; in2[3]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; zegar        ; zegar       ; 10.000       ; 1.785      ; 3.509      ;
+; 6.328 ; in1[3]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; zegar        ; zegar       ; 10.000       ; 1.785      ; 3.489      ;
+; 6.336 ; in1[5]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; 1.787      ; 3.483      ;
+; 6.340 ; in1[4]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; 1.785      ; 3.477      ;
+; 6.343 ; in1[0]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; zegar        ; zegar       ; 10.000       ; 1.785      ; 3.474      ;
+; 6.345 ; in2[0]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; zegar        ; zegar       ; 10.000       ; 1.785      ; 3.472      ;
+; 6.348 ; in1[1]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; zegar        ; zegar       ; 10.000       ; 1.785      ; 3.469      ;
+; 6.364 ; in2[1]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; zegar        ; zegar       ; 10.000       ; 1.785      ; 3.453      ;
+; 7.215 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.599      ;
+; 7.222 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.592      ;
+; 7.294 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.520      ;
+; 7.328 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.486      ;
+; 7.335 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.479      ;
+; 7.343 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.471      ;
+; 7.395 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.419      ;
+; 7.397 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.417      ;
+; 7.407 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.407      ;
+; 7.456 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.358      ;
+; 7.508 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.306      ;
+; 7.510 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 2.304      ;
+; 7.815 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.999      ;
+; 7.844 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.970      ;
+; 7.894 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; -0.003     ; 2.065      ;
+; 7.901 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; -0.003     ; 2.058      ;
+; 7.928 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.886      ;
+; 7.957 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.857      ;
+; 7.973 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; -0.003     ; 1.986      ;
+; 8.010 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; -0.004     ; 1.948      ;
+; 8.017 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; -0.004     ; 1.941      ;
+; 8.022 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; -0.003     ; 1.937      ;
+; 8.074 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; -0.003     ; 1.885      ;
+; 8.076 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; -0.003     ; 1.883      ;
+; 8.089 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; -0.004     ; 1.869      ;
+; 8.103 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.711      ;
+; 8.112 ; in2[7]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; 1.785      ; 1.705      ;
+; 8.134 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.680      ;
+; 8.138 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; -0.004     ; 1.820      ;
+; 8.190 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; -0.004     ; 1.768      ;
+; 8.192 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; -0.004     ; 1.766      ;
+; 8.201 ; in1[7]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; 1.785      ; 1.616      ;
+; 8.204 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.610      ;
+; 8.211 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.603      ;
+; 8.216 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.598      ;
+; 8.247 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.567      ;
+; 8.283 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.531      ;
+; 8.313 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.153     ; 1.499      ;
+; 8.332 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.482      ;
+; 8.384 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.430      ;
+; 8.386 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.428      ;
+; 8.419 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.395      ;
+; 8.426 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.153     ; 1.386      ;
+; 8.483 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.331      ;
+; 8.489 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.325      ;
+; 8.494 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; -0.003     ; 1.465      ;
+; 8.496 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.318      ;
+; 8.496 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.318      ;
+; 8.508 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.306      ;
+; 8.523 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; -0.003     ; 1.436      ;
+; 8.532 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.282      ;
+; 8.532 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.282      ;
+; 8.565 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; -0.003     ; 1.394      ;
+; 8.568 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.246      ;
+; 8.609 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; -0.003     ; 1.350      ;
+; 8.610 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; -0.004     ; 1.348      ;
+; 8.617 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.197      ;
+; 8.639 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; -0.004     ; 1.319      ;
+; 8.669 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.145      ;
+; 8.671 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.143      ;
+; 8.762 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.052      ;
+; 8.782 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; -0.003     ; 1.177      ;
+; 8.804 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 1.010      ;
+; 8.813 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 10.000       ; -0.003     ; 1.146      ;
+; 8.833 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 0.981      ;
+; 8.838 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 10.000       ; -0.004     ; 1.120      ;
+; 8.839 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff7|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 0.975      ;
+; 8.845 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 10.000       ; -0.004     ; 1.113      ;
+; 8.898 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; -0.004     ; 1.060      ;
+; 8.917 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 10.000       ; -0.004     ; 1.041      ;
+; 8.918 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 10.000       ; -0.151     ; 0.896      ;
+; 8.921 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff1|shortdff ; zegar        ; zegar       ; 10.000       ; -0.003     ; 1.038      ;
+; 8.929 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; -0.004     ; 1.029      ;
+; 8.933 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff1|shortdff ; zegar        ; zegar       ; 10.000       ; -0.003     ; 1.026      ;
+; 8.952 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 10.000       ; -0.004     ; 1.006      ;
+; 8.966 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 10.000       ; -0.004     ; 0.992      ;
+; 9.001 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff7|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 10.000       ; -0.151     ; 0.813      ;
++-------+---------------------------------------------------------------+---------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fast Model Hold: 'zegar'                                                                                                                                                                                    ;
++-------+---------------------------------------------------------------+---------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                                                     ; To Node                                                       ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+---------------------------------------------------------------+---------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 0.720 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; -0.005     ; 0.778      ;
+; 0.720 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; -0.004     ; 0.779      ;
+; 0.725 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff0|shortdff ; zegar        ; zegar       ; 0.000        ; -0.004     ; 0.784      ;
+; 0.792 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 0.692      ;
+; 0.794 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff7|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 0.694      ;
+; 0.811 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; -0.003     ; 0.871      ;
+; 0.825 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff7|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 0.725      ;
+; 0.827 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; -0.003     ; 0.887      ;
+; 0.848 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; -0.003     ; 0.908      ;
+; 0.875 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; -0.006     ; 0.932      ;
+; 0.877 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; -0.004     ; 0.936      ;
+; 0.887 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff0|shortdff ; zegar        ; zegar       ; 0.000        ; -0.004     ; 0.946      ;
+; 0.913 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 0.813      ;
+; 0.913 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff7|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 0.813      ;
+; 0.933 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; -0.004     ; 0.992      ;
+; 0.947 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; -0.004     ; 1.006      ;
+; 0.966 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; -0.003     ; 1.026      ;
+; 0.970 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; -0.004     ; 1.029      ;
+; 0.978 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; -0.003     ; 1.038      ;
+; 0.982 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; -0.004     ; 1.041      ;
+; 0.996 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 0.896      ;
+; 1.001 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; -0.004     ; 1.060      ;
+; 1.054 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; -0.004     ; 1.113      ;
+; 1.061 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; -0.004     ; 1.120      ;
+; 1.075 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff7|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 0.975      ;
+; 1.081 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 0.981      ;
+; 1.086 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; -0.003     ; 1.146      ;
+; 1.091 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 0.991      ;
+; 1.110 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.010      ;
+; 1.117 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; -0.003     ; 1.177      ;
+; 1.152 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.052      ;
+; 1.204 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.104      ;
+; 1.243 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.143      ;
+; 1.245 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.145      ;
+; 1.260 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; -0.004     ; 1.319      ;
+; 1.289 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; -0.004     ; 1.348      ;
+; 1.290 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; -0.003     ; 1.350      ;
+; 1.293 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.193      ;
+; 1.297 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.197      ;
+; 1.334 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; -0.003     ; 1.394      ;
+; 1.346 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.246      ;
+; 1.369 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.269      ;
+; 1.376 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; -0.003     ; 1.436      ;
+; 1.382 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.282      ;
+; 1.405 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; -0.003     ; 1.465      ;
+; 1.418 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.318      ;
+; 1.425 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.325      ;
+; 1.488 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.153     ; 1.386      ;
+; 1.495 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.395      ;
+; 1.528 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.428      ;
+; 1.530 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.430      ;
+; 1.582 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.482      ;
+; 1.601 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.153     ; 1.499      ;
+; 1.631 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.531      ;
+; 1.667 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.567      ;
+; 1.679 ; in1[7]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 1.785      ; 1.616      ;
+; 1.698 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.598      ;
+; 1.703 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.603      ;
+; 1.707 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; -0.004     ; 1.766      ;
+; 1.709 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; -0.004     ; 1.768      ;
+; 1.710 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.610      ;
+; 1.761 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; -0.004     ; 1.820      ;
+; 1.768 ; in2[7]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; 1.785      ; 1.705      ;
+; 1.780 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.680      ;
+; 1.810 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; -0.004     ; 1.869      ;
+; 1.811 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.711      ;
+; 1.823 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; -0.003     ; 1.883      ;
+; 1.825 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; -0.003     ; 1.885      ;
+; 1.877 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; -0.003     ; 1.937      ;
+; 1.882 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; -0.004     ; 1.941      ;
+; 1.889 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; -0.004     ; 1.948      ;
+; 1.926 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; -0.003     ; 1.986      ;
+; 1.957 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.857      ;
+; 1.986 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.886      ;
+; 1.998 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; -0.003     ; 2.058      ;
+; 2.005 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ; zegar        ; zegar       ; 0.000        ; -0.003     ; 2.065      ;
+; 2.070 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.970      ;
+; 2.099 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 1.999      ;
+; 2.404 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.304      ;
+; 2.406 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.306      ;
+; 2.458 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.358      ;
+; 2.507 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.407      ;
+; 2.517 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.417      ;
+; 2.519 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.419      ;
+; 2.571 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.471      ;
+; 2.579 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.479      ;
+; 2.586 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.486      ;
+; 2.620 ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.520      ;
+; 2.692 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.592      ;
+; 2.699 ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ; zegar        ; zegar       ; 0.000        ; -0.151     ; 2.599      ;
+; 3.516 ; in2[1]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 1.785      ; 3.453      ;
+; 3.532 ; in1[1]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ; zegar        ; zegar       ; 0.000        ; 1.785      ; 3.469      ;
+; 3.535 ; in2[0]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ; zegar        ; zegar       ; 0.000        ; 1.785      ; 3.472      ;
+; 3.537 ; in1[0]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ; zegar        ; zegar       ; 0.000        ; 1.785      ; 3.474      ;
+; 3.540 ; in1[4]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 1.785      ; 3.477      ;
+; 3.544 ; in1[5]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ; zegar        ; zegar       ; 0.000        ; 1.787      ; 3.483      ;
+; 3.552 ; in1[3]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 1.785      ; 3.489      ;
+; 3.572 ; in2[3]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ; zegar        ; zegar       ; 0.000        ; 1.785      ; 3.509      ;
+; 3.610 ; in1[2]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ; zegar        ; zegar       ; 0.000        ; 1.785      ; 3.547      ;
+; 3.646 ; in2[4]                                                        ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ; zegar        ; zegar       ; 0.000        ; 1.785      ; 3.583      ;
++-------+---------------------------------------------------------------+---------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Fast Model Minimum Pulse Width: 'zegar'                                                                                                       ;
++-------+--------------+----------------+------------------+-------+------------+---------------------------------------------------------------+
+; Slack ; Actual Width ; Required Width ; Type             ; Clock ; Clock Edge ; Target                                                        ;
++-------+--------------+----------------+------------------+-------+------------+---------------------------------------------------------------+
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|mydff:overflowout|shortdff                 ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff0|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff1|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff2|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff3|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff4|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff5|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff6|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff7|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr1in|mydff:dff7|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff0|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff1|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff2|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff3|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff4|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff5|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff6|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff7|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestr2in|mydff:dff7|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff0|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff0|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff1|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff1|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff2|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff3|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff4|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff5|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff6|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; High Pulse Width ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ;
+; 4.000 ; 5.000        ; 1.000          ; Low Pulse Width  ; zegar ; Rise       ; sumator8bitseq:sum|rejestr8bit:rejestrout|mydff:dff7|shortdff ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; clk|combout                                                   ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; clk|combout                                                   ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; clk~clkctrl|inclk[0]                                          ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; clk~clkctrl|inclk[0]                                          ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; clk~clkctrl|outclk                                            ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; clk~clkctrl|outclk                                            ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; out0[0]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; out0[0]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; out0[1]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; out0[1]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; out0[2]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; out0[2]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; out0[3]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; out0[3]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; out0[4]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; out0[4]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; out0[5]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; out0[5]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; out0[6]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; out0[6]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; out0[7]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; out0[7]|outclk                                                ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; overf|outclk                                                  ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; overf|outclk                                                  ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr1in|dff0|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr1in|dff0|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr1in|dff1|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr1in|dff1|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr1in|dff2|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr1in|dff2|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr1in|dff3|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr1in|dff3|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr1in|dff4|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr1in|dff4|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr1in|dff5|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr1in|dff5|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr1in|dff6|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr1in|dff6|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr1in|dff7|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr1in|dff7|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr2in|dff0|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr2in|dff0|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr2in|dff1|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr2in|dff1|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr2in|dff2|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr2in|dff2|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr2in|dff3|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr2in|dff3|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; High Pulse Width ; zegar ; Rise       ; sum|rejestr2in|dff4|shortdff|clk                              ;
+; 5.000 ; 5.000        ; 0.000          ; Low Pulse Width  ; zegar ; Rise       ; sum|rejestr2in|dff4|shortdff|clk                              ;
++-------+--------------+----------------+------------------+-------+------------+---------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------+
+; Setup Times                                                             ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; in1[*]    ; zegar      ; 1.808  ; 1.808  ; Rise       ; zegar           ;
+;  in1[0]   ; zegar      ; 1.657  ; 1.657  ; Rise       ; zegar           ;
+;  in1[1]   ; zegar      ; 1.652  ; 1.652  ; Rise       ; zegar           ;
+;  in1[2]   ; zegar      ; 1.730  ; 1.730  ; Rise       ; zegar           ;
+;  in1[3]   ; zegar      ; 1.672  ; 1.672  ; Rise       ; zegar           ;
+;  in1[4]   ; zegar      ; 1.660  ; 1.660  ; Rise       ; zegar           ;
+;  in1[5]   ; zegar      ; 1.664  ; 1.664  ; Rise       ; zegar           ;
+;  in1[6]   ; zegar      ; 1.808  ; 1.808  ; Rise       ; zegar           ;
+;  in1[7]   ; zegar      ; -0.201 ; -0.201 ; Rise       ; zegar           ;
+; in2[*]    ; zegar      ; 1.831  ; 1.831  ; Rise       ; zegar           ;
+;  in2[0]   ; zegar      ; 1.655  ; 1.655  ; Rise       ; zegar           ;
+;  in2[1]   ; zegar      ; 1.636  ; 1.636  ; Rise       ; zegar           ;
+;  in2[2]   ; zegar      ; 1.797  ; 1.797  ; Rise       ; zegar           ;
+;  in2[3]   ; zegar      ; 1.692  ; 1.692  ; Rise       ; zegar           ;
+;  in2[4]   ; zegar      ; 1.766  ; 1.766  ; Rise       ; zegar           ;
+;  in2[5]   ; zegar      ; 1.803  ; 1.803  ; Rise       ; zegar           ;
+;  in2[6]   ; zegar      ; 1.831  ; 1.831  ; Rise       ; zegar           ;
+;  in2[7]   ; zegar      ; -0.112 ; -0.112 ; Rise       ; zegar           ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++-------------------------------------------------------------------------+
+; Hold Times                                                              ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; in1[*]    ; zegar      ; 0.321  ; 0.321  ; Rise       ; zegar           ;
+;  in1[0]   ; zegar      ; -1.537 ; -1.537 ; Rise       ; zegar           ;
+;  in1[1]   ; zegar      ; -1.532 ; -1.532 ; Rise       ; zegar           ;
+;  in1[2]   ; zegar      ; -1.610 ; -1.610 ; Rise       ; zegar           ;
+;  in1[3]   ; zegar      ; -1.552 ; -1.552 ; Rise       ; zegar           ;
+;  in1[4]   ; zegar      ; -1.540 ; -1.540 ; Rise       ; zegar           ;
+;  in1[5]   ; zegar      ; -1.544 ; -1.544 ; Rise       ; zegar           ;
+;  in1[6]   ; zegar      ; -1.688 ; -1.688 ; Rise       ; zegar           ;
+;  in1[7]   ; zegar      ; 0.321  ; 0.321  ; Rise       ; zegar           ;
+; in2[*]    ; zegar      ; 0.232  ; 0.232  ; Rise       ; zegar           ;
+;  in2[0]   ; zegar      ; -1.535 ; -1.535 ; Rise       ; zegar           ;
+;  in2[1]   ; zegar      ; -1.516 ; -1.516 ; Rise       ; zegar           ;
+;  in2[2]   ; zegar      ; -1.677 ; -1.677 ; Rise       ; zegar           ;
+;  in2[3]   ; zegar      ; -1.572 ; -1.572 ; Rise       ; zegar           ;
+;  in2[4]   ; zegar      ; -1.646 ; -1.646 ; Rise       ; zegar           ;
+;  in2[5]   ; zegar      ; -1.683 ; -1.683 ; Rise       ; zegar           ;
+;  in2[6]   ; zegar      ; -1.711 ; -1.711 ; Rise       ; zegar           ;
+;  in2[7]   ; zegar      ; 0.232  ; 0.232  ; Rise       ; zegar           ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++-----------------------------------------------------------------------+
+; Clock to Output Times                                                 ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; out0[*]   ; zegar      ; 3.279 ; 3.279 ; Rise       ; zegar           ;
+;  out0[0]  ; zegar      ; 3.248 ; 3.248 ; Rise       ; zegar           ;
+;  out0[1]  ; zegar      ; 3.279 ; 3.279 ; Rise       ; zegar           ;
+;  out0[2]  ; zegar      ; 3.248 ; 3.248 ; Rise       ; zegar           ;
+;  out0[3]  ; zegar      ; 2.971 ; 2.971 ; Rise       ; zegar           ;
+;  out0[4]  ; zegar      ; 2.981 ; 2.981 ; Rise       ; zegar           ;
+;  out0[5]  ; zegar      ; 3.228 ; 3.228 ; Rise       ; zegar           ;
+;  out0[6]  ; zegar      ; 3.229 ; 3.229 ; Rise       ; zegar           ;
+;  out0[7]  ; zegar      ; 2.981 ; 2.981 ; Rise       ; zegar           ;
+; overf     ; zegar      ; 2.961 ; 2.961 ; Rise       ; zegar           ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++-----------------------------------------------------------------------+
+; Minimum Clock to Output Times                                         ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; out0[*]   ; zegar      ; 2.971 ; 2.971 ; Rise       ; zegar           ;
+;  out0[0]  ; zegar      ; 3.248 ; 3.248 ; Rise       ; zegar           ;
+;  out0[1]  ; zegar      ; 3.279 ; 3.279 ; Rise       ; zegar           ;
+;  out0[2]  ; zegar      ; 3.248 ; 3.248 ; Rise       ; zegar           ;
+;  out0[3]  ; zegar      ; 2.971 ; 2.971 ; Rise       ; zegar           ;
+;  out0[4]  ; zegar      ; 2.981 ; 2.981 ; Rise       ; zegar           ;
+;  out0[5]  ; zegar      ; 3.228 ; 3.228 ; Rise       ; zegar           ;
+;  out0[6]  ; zegar      ; 3.229 ; 3.229 ; Rise       ; zegar           ;
+;  out0[7]  ; zegar      ; 2.981 ; 2.981 ; Rise       ; zegar           ;
+; overf     ; zegar      ; 2.961 ; 2.961 ; Rise       ; zegar           ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++-----------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                         ;
++------------------+-------+-------+----------+---------+---------------------+
+; Clock            ; Setup ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++------------------+-------+-------+----------+---------+---------------------+
+; Worst-case Slack ; 3.333 ; 0.720 ; N/A      ; N/A     ; 4.000               ;
+;  zegar           ; 3.333 ; 0.720 ; N/A      ; N/A     ; 4.000               ;
+; Design-wide TNS  ; 0.0   ; 0.0   ; 0.0      ; 0.0     ; 0.0                 ;
+;  zegar           ; 0.000 ; 0.000 ; N/A      ; N/A     ; 0.000               ;
++------------------+-------+-------+----------+---------+---------------------+
+
+
++-----------------------------------------------------------------------+
+; Setup Times                                                           ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; in1[*]    ; zegar      ; 3.337 ; 3.337 ; Rise       ; zegar           ;
+;  in1[0]   ; zegar      ; 3.045 ; 3.045 ; Rise       ; zegar           ;
+;  in1[1]   ; zegar      ; 3.048 ; 3.048 ; Rise       ; zegar           ;
+;  in1[2]   ; zegar      ; 3.128 ; 3.128 ; Rise       ; zegar           ;
+;  in1[3]   ; zegar      ; 3.117 ; 3.117 ; Rise       ; zegar           ;
+;  in1[4]   ; zegar      ; 3.022 ; 3.022 ; Rise       ; zegar           ;
+;  in1[5]   ; zegar      ; 3.105 ; 3.105 ; Rise       ; zegar           ;
+;  in1[6]   ; zegar      ; 3.337 ; 3.337 ; Rise       ; zegar           ;
+;  in1[7]   ; zegar      ; 0.218 ; 0.218 ; Rise       ; zegar           ;
+; in2[*]    ; zegar      ; 3.369 ; 3.369 ; Rise       ; zegar           ;
+;  in2[0]   ; zegar      ; 3.049 ; 3.049 ; Rise       ; zegar           ;
+;  in2[1]   ; zegar      ; 2.982 ; 2.982 ; Rise       ; zegar           ;
+;  in2[2]   ; zegar      ; 3.323 ; 3.323 ; Rise       ; zegar           ;
+;  in2[3]   ; zegar      ; 3.083 ; 3.083 ; Rise       ; zegar           ;
+;  in2[4]   ; zegar      ; 3.287 ; 3.287 ; Rise       ; zegar           ;
+;  in2[5]   ; zegar      ; 3.369 ; 3.369 ; Rise       ; zegar           ;
+;  in2[6]   ; zegar      ; 3.336 ; 3.336 ; Rise       ; zegar           ;
+;  in2[7]   ; zegar      ; 0.371 ; 0.371 ; Rise       ; zegar           ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++-------------------------------------------------------------------------+
+; Hold Times                                                              ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; in1[*]    ; zegar      ; 0.321  ; 0.321  ; Rise       ; zegar           ;
+;  in1[0]   ; zegar      ; -1.537 ; -1.537 ; Rise       ; zegar           ;
+;  in1[1]   ; zegar      ; -1.532 ; -1.532 ; Rise       ; zegar           ;
+;  in1[2]   ; zegar      ; -1.610 ; -1.610 ; Rise       ; zegar           ;
+;  in1[3]   ; zegar      ; -1.552 ; -1.552 ; Rise       ; zegar           ;
+;  in1[4]   ; zegar      ; -1.540 ; -1.540 ; Rise       ; zegar           ;
+;  in1[5]   ; zegar      ; -1.544 ; -1.544 ; Rise       ; zegar           ;
+;  in1[6]   ; zegar      ; -1.688 ; -1.688 ; Rise       ; zegar           ;
+;  in1[7]   ; zegar      ; 0.321  ; 0.321  ; Rise       ; zegar           ;
+; in2[*]    ; zegar      ; 0.232  ; 0.232  ; Rise       ; zegar           ;
+;  in2[0]   ; zegar      ; -1.535 ; -1.535 ; Rise       ; zegar           ;
+;  in2[1]   ; zegar      ; -1.516 ; -1.516 ; Rise       ; zegar           ;
+;  in2[2]   ; zegar      ; -1.677 ; -1.677 ; Rise       ; zegar           ;
+;  in2[3]   ; zegar      ; -1.572 ; -1.572 ; Rise       ; zegar           ;
+;  in2[4]   ; zegar      ; -1.646 ; -1.646 ; Rise       ; zegar           ;
+;  in2[5]   ; zegar      ; -1.683 ; -1.683 ; Rise       ; zegar           ;
+;  in2[6]   ; zegar      ; -1.711 ; -1.711 ; Rise       ; zegar           ;
+;  in2[7]   ; zegar      ; 0.232  ; 0.232  ; Rise       ; zegar           ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++-----------------------------------------------------------------------+
+; Clock to Output Times                                                 ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; out0[*]   ; zegar      ; 5.667 ; 5.667 ; Rise       ; zegar           ;
+;  out0[0]  ; zegar      ; 5.636 ; 5.636 ; Rise       ; zegar           ;
+;  out0[1]  ; zegar      ; 5.667 ; 5.667 ; Rise       ; zegar           ;
+;  out0[2]  ; zegar      ; 5.636 ; 5.636 ; Rise       ; zegar           ;
+;  out0[3]  ; zegar      ; 5.210 ; 5.210 ; Rise       ; zegar           ;
+;  out0[4]  ; zegar      ; 5.220 ; 5.220 ; Rise       ; zegar           ;
+;  out0[5]  ; zegar      ; 5.616 ; 5.616 ; Rise       ; zegar           ;
+;  out0[6]  ; zegar      ; 5.617 ; 5.617 ; Rise       ; zegar           ;
+;  out0[7]  ; zegar      ; 5.220 ; 5.220 ; Rise       ; zegar           ;
+; overf     ; zegar      ; 5.200 ; 5.200 ; Rise       ; zegar           ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++-----------------------------------------------------------------------+
+; Minimum Clock to Output Times                                         ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; out0[*]   ; zegar      ; 2.971 ; 2.971 ; Rise       ; zegar           ;
+;  out0[0]  ; zegar      ; 3.248 ; 3.248 ; Rise       ; zegar           ;
+;  out0[1]  ; zegar      ; 3.279 ; 3.279 ; Rise       ; zegar           ;
+;  out0[2]  ; zegar      ; 3.248 ; 3.248 ; Rise       ; zegar           ;
+;  out0[3]  ; zegar      ; 2.971 ; 2.971 ; Rise       ; zegar           ;
+;  out0[4]  ; zegar      ; 2.981 ; 2.981 ; Rise       ; zegar           ;
+;  out0[5]  ; zegar      ; 3.228 ; 3.228 ; Rise       ; zegar           ;
+;  out0[6]  ; zegar      ; 3.229 ; 3.229 ; Rise       ; zegar           ;
+;  out0[7]  ; zegar      ; 2.981 ; 2.981 ; Rise       ; zegar           ;
+; overf     ; zegar      ; 2.961 ; 2.961 ; Rise       ; zegar           ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++-------------------------------------------------------------------+
+; Setup Transfers                                                   ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; zegar      ; zegar    ; 117      ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++-------------------------------------------------------------------+
+; Hold Transfers                                                    ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; zegar      ; zegar    ; 117      ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
+---------------
+; Report TCCS ;
+---------------
+No dedicated SERDES Transmitter circuitry present in device or used in design
+
+
+---------------
+; Report RSKM ;
+---------------
+No dedicated SERDES Receiver circuitry present in device or used in design
+
+
++------------------------------------------------+
+; Unconstrained Paths                            ;
++---------------------------------+-------+------+
+; Property                        ; Setup ; Hold ;
++---------------------------------+-------+------+
+; Illegal Clocks                  ; 0     ; 0    ;
+; Unconstrained Clocks            ; 0     ; 0    ;
+; Unconstrained Input Ports       ; 0     ; 0    ;
+; Unconstrained Input Port Paths  ; 0     ; 0    ;
+; Unconstrained Output Ports      ; 0     ; 0    ;
+; Unconstrained Output Port Paths ; 0     ; 0    ;
++---------------------------------+-------+------+
+
+
++------------------------------------+
+; TimeQuest Timing Analyzer Messages ;
++------------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 32-bit TimeQuest Timing Analyzer
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Tue Dec 19 14:00:09 2017
+Info: Command: quartus_sta Cwiczenie5_3 -c Cwiczenie5_3
+Info: qsta_default_script.tcl version: #1
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (21077): Low junction temperature is 0 degrees C
+Info (21077): High junction temperature is 85 degrees C
+Info (332104): Reading SDC File: 'Cwiczenie5_3.sdc'
+Info: Found TIMEQUEST_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
+Info: Analyzing Slow Model
+Info (332146): Worst-case setup slack is 3.333
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     3.333         0.000 zegar 
+Info (332146): Worst-case hold slack is 1.305
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     1.305         0.000 zegar 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 4.000
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     4.000         0.000 zegar 
+Info (332001): The selected device family is not supported by the report_metastability command.
+Info: Analyzing Fast Model
+Info (332146): Worst-case setup slack is 5.721
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     5.721         0.000 zegar 
+Info (332146): Worst-case hold slack is 0.720
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     0.720         0.000 zegar 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 4.000
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     4.000         0.000 zegar 
+Info (332001): The selected device family is not supported by the report_metastability command.
+Info (332101): Design is fully constrained for setup requirements
+Info (332101): Design is fully constrained for hold requirements
+Info: Quartus II 32-bit TimeQuest Timing Analyzer was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 377 megabytes
+    Info: Processing ended: Tue Dec 19 14:00:11 2017
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:01
+
+

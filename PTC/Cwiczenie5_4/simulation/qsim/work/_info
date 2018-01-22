@@ -1,0 +1,85 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\Developer\Documents\Quartus\Cwiczenie5_4\simulation\qsim
+vCwiczenie5_4
+Z1 !s100 iNG6>FdZHf:iLHSdMfdi`0
+Z2 I?Z7IJNc=>oYF;::MkNeSY3
+Z3 VzF`NkjXLGbcRDA;jg;WAB3
+Z4 dC:\Users\Developer\Documents\Quartus\Cwiczenie5_4\simulation\qsim
+Z5 w1514567308
+Z6 8Cwiczenie5_4.vo
+Z7 FCwiczenie5_4.vo
+L0 31
+Z8 OV;L;10.1d;51
+r1
+31
+Z9 !s90 -work|work|Cwiczenie5_4.vo|
+Z10 o-work work -O0
+Z11 n@cwiczenie5_4
+!i10b 1
+!s85 0
+Z12 !s108 1514567312.175000
+Z13 !s107 Cwiczenie5_4.vo|
+!s101 -O0
+vCwiczenie5_4_vlg_check_tst
+!i10b 1
+!s100 MAFZ3fH^B9:;5giDhhA>o2
+II0MdRnIJcASD>?<I3<>Y>0
+V<D2h>1`bH2D;U9ao?1B[a1
+R4
+Z14 w1514567307
+Z15 8Cwiczenie5_4.vt
+Z16 FCwiczenie5_4.vt
+L0 59
+R8
+r1
+!s85 0
+31
+Z17 !s108 1514567312.568000
+Z18 !s107 Cwiczenie5_4.vt|
+Z19 !s90 -work|work|Cwiczenie5_4.vt|
+!s101 -O0
+R10
+Z20 n@cwiczenie5_4_vlg_check_tst
+vCwiczenie5_4_vlg_sample_tst
+!i10b 1
+!s100 28G[FO5YLD<_`O1JoN8[l1
+IA0UH3H:;YSL^zl<T]`kNI1
+VTiV_@jLGL=HSfZUlM;6[g1
+R4
+R14
+R15
+R16
+L0 29
+R8
+r1
+!s85 0
+31
+R17
+R18
+R19
+!s101 -O0
+R10
+Z21 n@cwiczenie5_4_vlg_sample_tst
+vCwiczenie5_4_vlg_vec_tst
+!i10b 1
+!s100 iR2VVg9FD7;j6V^g3^?cW0
+IAzDc3zBN<HdMB_mTSL[573
+Z22 VCXeRC@2cOKL5C;W81mFkm0
+R4
+R14
+R15
+R16
+L0 1226
+R8
+r1
+!s85 0
+31
+R17
+R18
+R19
+!s101 -O0
+R10
+Z23 n@cwiczenie5_4_vlg_vec_tst

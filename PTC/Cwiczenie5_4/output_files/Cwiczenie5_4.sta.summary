@@ -1,0 +1,29 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow Model Setup 'zegar'
+Slack : 1.327
+TNS   : 0.000
+
+Type  : Slow Model Hold 'zegar'
+Slack : 0.391
+TNS   : 0.000
+
+Type  : Slow Model Minimum Pulse Width 'zegar'
+Slack : 5.000
+TNS   : 0.000
+
+Type  : Fast Model Setup 'zegar'
+Slack : 5.402
+TNS   : 0.000
+
+Type  : Fast Model Hold 'zegar'
+Slack : 0.215
+TNS   : 0.000
+
+Type  : Fast Model Minimum Pulse Width 'zegar'
+Slack : 5.000
+TNS   : 0.000
+
+------------------------------------------------------------

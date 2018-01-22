@@ -1,0 +1,21 @@
+library ieee;
+use ieee.std_logic_1164.all;
+library altera;
+use altera.altera_primitives_components.all;
+
+entity sumator1bit is
+	Port(
+		a,b,cin,clk: in std_logic;
+		s, cout: out std_logic
+	);
+end sumator1bit;
+
+architecture sumatory of sumator1bit is
+component dff
+   Port(d, clk, clrn, prn: in std_logic;
+        q: out std_logic);
+end component;
+begin
+	dff0: dff port map((b and a) or (cin and a) or (cin and b), clk, '1', '1', cout);
+	s <= (a xor b) xor cin;
+end sumatory;
