@@ -1,0 +1,212 @@
+\documentclass[polish,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,amsthm}
+\usepackage[english,main=polish]{babel}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{etoolbox}
+\usepackage{pgfplots}
+\usepackage{gensymb}
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\patchcmd{\thebibliography}{\section*}{\section}{}{}
+
+\selectlanguage{polish}
+\title{FizLab5}
+
+\newcommand{\PRzFieldDsc}[1]{\sffamily\bfseries\scriptsize #1}
+\newcommand{\PRzFieldCnt}[1]{\textit{#1}}
+\newcommand{\PRzHeading}[8]{
+\begin{center}
+\begin{tabular}{ p{0.32\textwidth} p{0.15\textwidth} p{0.15\textwidth} p{0.12\textwidth} p{0.12\textwidth} }
+
+  &   &   &   &   \\
+\hline
+\multicolumn{5}{|c|}{}\\[-1ex]
+\multicolumn{5}{|c|}{{\LARGE #1}}\\
+\multicolumn{5}{|c|}{}\\[-1ex]
+
+\hline
+\multicolumn{1}{|l|}{\PRzFieldDsc{Kierunek}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Specjalność}}	& \multicolumn{1}{|l|}{\PRzFieldDsc{Rok studiów}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Symbol grupy lab.}} \\
+\multicolumn{1}{|c|}{\PRzFieldCnt{#2}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#3}}		& \multicolumn{1}{|c|}{\PRzFieldCnt{#4}}		& \multicolumn{2}{|c|}{\PRzFieldCnt{#5}} \\
+
+\hline
+\multicolumn{4}{|l|}{\PRzFieldDsc{Temat Laboratorium}}		& \multicolumn{1}{|l|}{\PRzFieldDsc{Numer lab.}} \\
+\multicolumn{4}{|c|}{\PRzFieldCnt{#6}}				& \multicolumn{1}{|c|}{\PRzFieldCnt{#7}} \\
+
+\hline
+\multicolumn{5}{|l|}{\PRzFieldDsc{Skład grupy ćwiczeniowej oraz numery indeksów}}\\
+\multicolumn{5}{|c|}{\PRzFieldCnt{#8}}\\
+
+\hline
+\multicolumn{3}{|l|}{\PRzFieldDsc{Uwagi}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Ocena}} \\
+\multicolumn{3}{|c|}{\PRzFieldCnt{\ }}		& \multicolumn{2}{|c|}{\PRzFieldCnt{\ }} \\
+
+\hline
+\end{tabular}
+\end{center}
+}
+\pgfplotsset{compat=1.14}
+\begin{document}
+\PRzHeading{Laboratorium Fizyczne}{Informatyka}{--}{II}{1}{ Wyznaczanie współczynnika załamania światła}{301}{Michał Bień(132191), Wojciech Taisner(132330)}{}
+
+\section{Wstęp Teoretyczny}
+\begin{quotation}\cite{szuba}
+Światło, które po drodze do naszego oka przechodzi przez jedną lub więcej powierzchni załamujących ma na ogół inny kierunek, niż gdyby biegło po linii prostej w ośrodku jednorodnym. Z tego powodu obserwator odnosi wrażenie, że światło wychodzi z innego źródła, niż jest to w rzeczywistości. Obserwowane źródło jest obrazem źródła rzeczywistego lub \emph{źródłem pozornym}. Z załamania światła na granicy dwóch ośrodków wynika pozorna zmiana odległości od przedmiotów leżących po drugiej stronie załamania.\\
+Według \emph{prawa załamania} stosunek sinusów kąta padania $\alpha$ i kąta załamania $\beta$ jest dla danej pary ośrodków wielkością stałą, równą stosunkowi bezwzględnych współczynników załamania obu ośrodków: $$\frac{\sin\alpha}{\sin\beta} = \frac{n_2}{n_1}$$
+Wartość współczynnika \emph{bezwzględnego załamania} otrzymujemy z powyższego równania gdy jednym z ośrodków jest próżnia ($n_1=1$). Prawo załamania światła na granicy próżnia-ośrodek, a także w przybliżeniu na granicy powietrze-ośrodek przyjmuje wtedy postać:
+$$\frac{\sin\alpha}{\sin\beta} = n$$
+\end{quotation}
+Współczynnik załamania światła w szkle możemy zbadać korzystając ze szklanych płytek z oznaczoną górną i dolną częścią. Wpierw mierzymy grubość rzeczywistą $d$ płytki korzystając ze śruby mikrometrycznej. Następnie dokonujemy pomiarów różnicy odległości między wyostrzeniem się obrazu górnej i dolnej części płytki w soczewce mikroskopu. Otrzymana różnica to grubość pozorna $h$ płytki.
+Zakładając, że promienie biegnące w płytce tworzą bardzo mały kąt z prostopadłą padania, możemy uznać, że sinus tego kąta ma prawie taką samą wartość jak jego tangens. Okazuje się wtedy, że prawo załamania światła dla tego doświadczenia sprowadzić można do stosunku grubości rzeczywistej i pozornej płytki. $$ n = \frac{d}{h} $$
+Możemy więc wyznaczyć współczynnik załamania światła w płytce mierząc jej grubość rzeczywistą i pozorną, a następnie porównując je.
+
+\section{Tabela wyników}
+\subsection{Płytka 1}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Płytka 1 &  d [mm] &  ad [mm] &  ag [mm] &  h [mm] &  n = d/h \\
+\hline
+1 &  4,14 &  9,97 &  7,55 &  2,42 &  1,710743802 \\
+2 &  4,13 &  9,95 &  7,55 &  2,4 &  1,720833333 \\
+3 &  4,13 &  9,92 &  7,57 &  2,35 &  1,757446809 \\
+4 &  4,13 &  9,97 &  7,5 &  2,47 &  1,672064777 \\
+5 &  4,13 &  9,93 &  7,51 &  2,42 &  1,70661157 \\
+6 &  4,14 &  9,97 &  7,57 &  2,4 &  1,725 \\
+7 &  4,14 &  9,95 &  7,53 &  2,42 &  1,710743802 \\
+8 &  4,13 &  10 &  7,49 &  2,51 &  1,645418327 \\
+9 &  4,13 &  9,98 &  7,51 &  2,47 &  1,672064777 \\
+10 &  4,13 &  9,95 &  7,53 &  2,42 &  1,70661157 \\
+\hline
+Średnio &  4,133 &  9,959 &  7,531 &  2,428 &  1,702753877 \\
+Błędy &  0,004830459 &  0,023781412 &  0,028460499 &  0,052241911 &  0,022685191 \\
+\hline
+\end{tabular}
+\end{table}
+\subsection{Płytka 2}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Płytka 2 &  d [mm] &  ad [mm] &  ag [mm] &  h [mm] &  n = d/h \\
+\hline
+1 &  6,43 &  9,3 &  5,43 &  3,87 &  1,661498708 \\
+2 &  6,45 &  9,31 &  5,41 &  3,9 &  1,653846154 \\
+3 &  6,43 &  9,34 &  5,42 &  3,92 &  1,640306122 \\
+4 &  6,4 &  9,32 &  5,43 &  3,89 &  1,645244216 \\
+5 &  6,43 &  9,33 &  5,42 &  3,91 &  1,644501279 \\
+6 &  6,45 &  9,32 &  5,41 &  3,91 &  1,649616368 \\
+7 &  6,43 &  9,34 &  5,4 &  3,94 &  1,631979695 \\
+8 &  6,41 &  9,32 &  5,43 &  3,89 &  1,64781491 \\
+9 &  6,43 &  9,33 &  5,42 &  3,91 &  1,644501279 \\
+10 &  6,44 &  9,34 &  5,41 &  3,93 &  1,638676845 \\
+\hline
+Średnio &  6,43 &  9,325 &  5,418 &  3,907 &  1,645798558 \\
+Błędy &  0,015634719 &  0,013540064 &  0,010327956 &  0,02386802 &  0,008540567 \\
+\hline
+\end{tabular}
+\end{table}
+\subsection{Płytka 3}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Płytka 3 &  d [mm] &  ad [mm] &  ag [mm] &  h [mm] &  n = d/h \\
+\hline
+1 &  4,33 &  9,91 &  7,35 &  2,56 &  1,69140625 \\
+2 &  4,34 &  9,93 &  7,31 &  2,62 &  1,65648855 \\
+3 &  4,34 &  9,92 &  7,33 &  2,59 &  1,675675676 \\
+4 &  4,34 &  9,89 &  7,32 &  2,57 &  1,688715953 \\
+5 &  4,34 &  9,9 &  7,36 &  2,54 &  1,708661417 \\
+6 &  4,35 &  9,91 &  7,33 &  2,58 &  1,686046512 \\
+7 &  4,34 &  9,92 &  7,35 &  2,57 &  1,688715953 \\
+8 &  4,35 &  9,91 &  7,32 &  2,59 &  1,67953668 \\
+9 &  4,34 &  9,91 &  7,31 &  2,6 &  1,669230769 \\
+10 &  4,34 &  9,9 &  7,34 &  2,56 &  1,6953125 \\
+\hline
+Średnio &  4,341 &  9,91 &  7,332 &  2,578 &  1,683979026 \\
+Błędy &  0,005676462 &  0,011547005 &  0,017511901 &  0,029058906 &  0,012579519 \\
+\hline
+\end{tabular}
+\end{table}
+\subsection{Płytka 4}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Płytka 4 &  d [mm] &  ad [mm] &  ag [mm] &  h [mm] &  n = d/h \\
+\hline
+1 &  5,34 &  9,57 &  6,53 &  3,04 &  1,756578947 \\
+2 &  5,34 &  9,61 &  6,54 &  3,07 &  1,739413681 \\
+3 &  5,35 &  9,57 &  6,53 &  3,04 &  1,759868421 \\
+4 &  5,34 &  9,59 &  6,52 &  3,07 &  1,739413681 \\
+5 &  5,34 &  9,58 &  6,54 &  3,04 &  1,756578947 \\
+6 &  5,34 &  9,56 &  6,51 &  3,05 &  1,750819672 \\
+7 &  5,34 &  9,59 &  6,52 &  3,07 &  1,739413681 \\
+8 &  5,34 &  9,58 &  6,53 &  3,05 &  1,750819672 \\
+9 &  5,33 &  9,57 &  6,54 &  3,03 &  1,759075908 \\
+10 &  5,33 &  9,58 &  6,52 &  3,06 &  1,741830065 \\
+\hline
+Średnio &  5,339 &  9,58 &  6,528 &  3,052 &  1,749381268 \\
+Błędy &  0,005676462 &  0,014142136 &  0,010327956 &  0,024470091 &  0,00908093 \\
+
+\hline
+\end{tabular}
+\end{table}
+\subsection{Płytka 6}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Płytka 6 &  d [mm] &  ad [mm] &  ag [mm] &  h [mm] &  n = d/h \\
+\hline
+1 &  6,31 &  9,29 &  5,5 &  3,79 &  1,664907652 \\
+2 &  6,32 &  9,26 &  5,52 &  3,74 &  1,689839572 \\
+3 &  6,31 &  9,27 &  5,48 &  3,79 &  1,664907652 \\
+4 &  6,3 &  9,26 &  5,5 &  3,76 &  1,675531915 \\
+5 &  6,31 &  9,27 &  5,49 &  3,78 &  1,669312169 \\
+6 &  6,31 &  9,28 &  5,51 &  3,77 &  1,673740053 \\
+7 &  6,31 &  9,3 &  5,5 &  3,8 &  1,660526316 \\
+8 &  6,31 &  9,26 &  5,49 &  3,77 &  1,673740053 \\
+9 &  6,31 &  9,29 &  5,52 &  3,77 &  1,673740053 \\
+10 &  6,31 &  9,28 &  5,48 &  3,8 &  1,660526316 \\
+\hline
+Średnio &  6,31 &  9,276 &  5,499 &  3,777 &  1,670677175 \\
+Błędy &  0,004714045 &  0,014298407 &  0,014491377 &  0,028789784 &  0,00836947 \\
+\hline
+\end{tabular}
+\end{table}
+\section{Obliczenia}
+Błędy grubości płytek obliczyliśmy używając odchylenia standardowego.
+Niepewność wzpółczynnika załamania światła obliczyliśmy używając metody różniczki logarytmicznej. (d - grubość rzeczywista; h - grubość pozorna)
+$$n = \frac{d}{h} = d^1*h^{-1}$$
+$$\Delta n = |1*\frac{\Delta d}{d}|+|-1*\frac{\Delta h}{h}|$$
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+Płytka & $n$ & $\Delta n$ \\
+\hline
+1 & 1,703 & 0,023 \\
+2 & 1,646 & 0,009 \\
+3 & 1,684 & 0,013 \\
+4 & 1,749 & 0,009 \\
+6 & 1,671 & 0,009 \\
+\hline
+\end{tabular}
+\caption{Zaokrąglone wyniki}
+\end{table}
+$$ n_{sr} = 1,691 \pm 0,012 $$
+\section{Wnioski}
+Współczynnik załamania światła w szkle wynosi, według różnych źródeł, w zależności od stosowanej technologii wytwarzania i domieszek, między 1,5 a 1,7. Otrzymany przez nas wynik 1,69 mieści się w tych ramach dowodząc poprawności przeprowadzonych pomiarów.
+
+\begin{thebibliography}{1}
+\bibitem{szuba} Stanisław Szuba, Ćwiczenia laboratoryjne z fizyki, Wydawnictwo Politechniki Poznańskiej, Poznań 2007
+\end{thebibliography}
+\end{document}
+
