@@ -1,0 +1,160 @@
+\documentclass[a4paper]{article}
+\usepackage[polish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{minted}
+
+\author{Michał Bień, Krzysztof Bończyk}
+\title{PW Specyfikacja komunikatora IPC}
+\date{}
+\begin{document}
+\maketitle
+\section{Architektura i porty}
+Komunikacja między serwerem a klientami odbywa się przy pomocy dwóch kolejek IPC tworzonych przez serwer, o z góry zdefiniowanych wartościach: kolejka wejścia do serwera o kluczu 2137; kolejka wyjścia z serwera o numerze 2138.
+\section{Struktury danych}
+\subsection{Wiadomość}
+Każda wiadomość ma rozmiar 128 bajtów i składa się z:
+\begin{itemize}
+\item \textbf{typu} będącego identyfikatorem unikalnym dla połączenia - wielkości 8 bajtów
+\item \textbf{kodu} będącego enumerowanym typem - kodem wiadomości opisującym jej zawartość lub treść żądania - wielkości 4 bajty
+\item \textbf{payloadu} będącego właściwą zawartością wiadomości dowolnego typu - wielkości 116 bajtów
+\end{itemize}
+\begin{minted}[bgcolor=lightgray]{C}
+struct message {
+	long mtype;
+	int code;
+	char payload[116];
+}
+\end{minted}
+\subsection{Payloady}
+\begin{itemize}
+\item \textbf{Login} wysyłany jest w celu zalogowania się
+\begin{minted}[bgcolor=lightgray]{C}
+struct login {
+    char login[56];
+    char password[56];
+}
+\end{minted}
+
+\item \textbf{Show list} służy do przechowywania listy integerów
+\begin{minted}[bgcolor=lightgray]{C}
+struct show_list {
+	int list[29];
+}
+\end{minted}
+
+\item \textbf{Addressed text} przechowuje integer i tablicę charów
+\begin{minted}[bgcolor=lightgray]{C}
+struct addressed_text {
+    int address;
+    char text[112];
+};
+\end{minted}
+\\
+\item \textbf{Group addressed text} przechowuje dwa integery i tablicę charów
+\begin{minted}[bgcolor=lightgray]{C}
+struct group_addressed_text {
+    int user;
+    int group;
+    char text[108];
+};
+\end{minted}
+
+\item \textbf{String} będący domyślnym typem który przekazuje tablica charów
+\end{itemize}
+\section{Kody informacji}
+\subsection{Żądania klienta:} FREE, LOGIN, LOGOUT, USERID\_NAME, SHOW\_LOGGED, SHOW\_GROUPUSERS, GROUPID\_NAME, SIGNIN\_GROUP, SIGNOUT\_GROUP, SHOW\_GROUPS, SEND\_GROUP, SEND\_PRIV
+\subsection{Odpowiedzi serwera:} STATUS\_OK, STATUS\_ERROR
+\subsection{Żądania serwera:} RCV\_GROUP, RCV\_PRIV
+\begin{minted}[bgcolor=lightgray]{C}
+enum TypWiadomosci {
+    FREE,
+    LOGIN,
+    LOGOUT,
+    USERID_NAME,
+    NAME_USERID,
+    SHOW_LOGGED,
+    SHOW_GROUPUSERS,
+    GROUPID_NAME,
+    SIGNIN_GROUP,
+    SIGNOUT_GROUP,
+    SHOW_GROUPS,
+    SEND_GROUP,
+    SEND_PRIV,
+    RCV_GROUP,
+    RCV_PRIV,
+    STATUS_OK,
+    STATUS_ERROR
+};
+\end{minted}
+
+\section{Struktura zapytań}
+connectionPort -- seria portów wybrana przez klienta
+odpowiednio x, 1x i 2x, gdzie x to liczba od 1 do 9.
+Port x odpowiada na zapytania dotyczące swojej zajętości (FREE)
+Port 1x odpowiada na zapytania kontrolne oraz logowania klienta
+Port 2x wysyła wiadomości z serwera do klienta (RCV\_*)
+
+\subsection{Sprawdzenie portu}
+Zapytanie klienta: message(connectionPort, FREE, NULL) \\
+Odpowiedź serwera: message(connectionPort, STATUS\_*, string(status))\\
+Sprawdzenie zajętości otwartego portu skutkuje jego natychmiastowym zamknięciem.
+Zajęte porty zwracają STATUS\_ERROR, otwarte STATUS\_OK.
+\subsection{Logowanie}
+Zapytanie klienta: message(connectionPort, LOGIN, login(login, password,connectionPort))\\
+Odpowiedź serwera: message(connectionPort, STATUS\_*, string(status))
+\subsection{Wylogowywanie}
+Zapytanie klienta: message(connectionPort, LOGOUT, NULL) \\
+Odpowiedź serwera: message(connectionPort, STATUS\_*, string(status)) \\
+Wylogowywanie zwalnia zajęty przez połączenie port
+\subsection{Lista zalogowanych}
+Zapytanie klienta: message(connectionPort, SHOW\_LOGGED, NULL) \\
+Odpowiedź serwera: message(connectionPort, STATUS\_OK, show\_list(id\_userów)) \\
+Zwraca listę podłączonych w danej chwili użytkowników
+\subsection{Nazwa użytkownika o podanym id}
+Zapytanie klienta: message(connectionPort, USERID\_NAME, addressed\_text(id, NULL))\\
+Odpowiedź serwera: message(connectionPort, STATUS\_OK, string(login))
+\subsection{Id użytkownika o podanej nazwie}
+Zapytanie klienta: message(connectionPort, NAME\_USERID, string(name))\\
+Odpowiedź serwera: message(connectionPort, STATUS\_OK, addressed\_text(id, NULL))
+\subsection{Lista aktywnych grup}
+Zapytanie klienta: message(connectionPort, SHOW\_GROUPS, NULL) \\
+Odpowiedź serwera: message(connectionPort, STATUS\_OK, show\_list(id\_grup))
+\subsection{Nazwa grupy o podanym id}
+Zapytanie klienta: message(connectionPort, GROUPID\_NAME, addressed\_text(id, NULL))\\
+Odpowiedź serwera: message(connectionPort, STATUS\_OK, string(nazwa))
+\subsection{Lista członków grupy o podanym id}
+Zapytanie klienta: message(connectionPort, SHOW\_GROUPUSERS, addressed\_text(id, NULL))\\
+Odpowiedź serwera: message(connectionPort, STATUS\_OK, show\_list(id\_userów))
+\subsection{Zapisz się do grupy o podanym id}
+Zapytanie klienta: message(connectionPort, SIGNIN\_GROUP, addressed\_text(id, NULL))\\
+Odpowiedź serwera: message(connectionPort, STATUS\_*, string(status))
+\subsection{Wypisz się z grupy o podanym id}
+Zapytanie klienta: message(connectionPort, SIGNOUT\_GROUP, addressed\_text(id, NULL))\\
+Odpowiedź serwera: message(connectionPort, STATUS\_*, string(status))
+\subsection{Wyślij do grupy o podanym id}
+Zapytanie klienta: message(connectionPort, SEND\_GROUP, addressed\_text(idgrupy, tresc)\\
+Odpowiedź serwera: message(connectionPort, STATUS\_OK, string(status))
+\subsection{Wyślij do użytkownika o podanym id}
+Zapytanie klienta: message(connectionPort, SEND\_PRIV, addressed\_text(idusera, tresc)\\
+Odpowiedź serwera: message(connectionPort, STATUS\_OK, string(status))
+\subsection{Odbierz wiadomość od grupy}
+Żądanie serwera: message(cP, RCV\_GROUP, group\_addressed\_text(idusera, idgrupy, tresc)\\
+\subsection{Odbierz wiadomość prywatną}
+Żądanie serwera: message(cP, RCV\_PRIV, addressed\_text(idusera, tresc)\\
+
+
+\section{Typowy flow}
+\begin{enumerate}
+\item Klient odpala się, szuka najniższego możliwego portu w serwerze: 1 zajęte, 2 zajęte... 3 wolne!
+\item Serwer odpowiadając twierdząco na niezajęcie trójki, pekuje ją dla klienta
+\item Klient będzie teraz wysyłał wiadomości do serwera na porcie 13, oraz odbierał na porcie 23.
+\item Użytkownik loguje się i wykonuje operacje. W międzyczasie asynchronicznie otrzymuje wiadomości.
+\end{enumerate}
+
+\end{document}
+

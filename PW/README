@@ -1,0 +1,4 @@
+Projekt należy zbudować wykorzystując narzędzia CMake
+Źródła kompilują się do plików binarnych client i server
+Plik .h jest wspólnym plikiem źródła opartym o zaprezentowaną specyfikację
+Proszę uruchamiać w katalogu z obecnym plikiem config

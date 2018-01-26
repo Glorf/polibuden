@@ -1,0 +1,61 @@
+\documentclass[a4paper]{article}
+\usepackage[polish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\author{}
+\title{PA - 2. kolokwium}
+\date{}
+\begin{document}
+\maketitle
+\section{Regulatory}
+\begin{itemize}
+\item \textbf{Regulator PI} realizuje działanie proporcjonalne i całkujące \\
+$$G_r(s) = \frac{k_p}{1+Ts}(1+\frac{1}{T_is}) $$
+Gdzie $T_i$ to stała czasowa zdwojenia\\
+Charakterystyka skokowa: \\\\\\\\\\\\
+\item \textbf{Regulator PD} realizuje działanie proporcjonalne i różniczkujące \\
+$$G_r(s) = \frac{k_p}{1+Ts}(1+T_ds) $$
+Gdzie $T_d$ to stała czasowa wyprzedzenia\\
+Charakterystyka skokowa: \\\\\\\\\\\\
+\item \textbf{Regulator PID} realizuje działanie proporcjonalne, całkujące i różniczkujące\\
+$$G_r(s) = \frac{k_p}{1+Ts}(1+\frac{1}{T_is}+T_ds)$$
+Gdzie $T_d$ i $T_i$ to odpowiednio stałe czasowe wyprzedzenia i zdwojenia
+Charakterystyka skokowa: \\\\\\\\\\\\
+\end{itemize}
+\section{Pomiary}
+
+\subsection{Pirometr}
+Termometr optyczny badający spektrum fali czerwonej emitowanej przez ciało
+
+\subsection{Termopara}
+Czujnik temperatury składający się z dwóch przewodów wykonanych z innych stopów metali - wykorzystuje zjawisko różnego przewodnictwa elektrycznego metali pod działaniem temperatury
+
+\section{Dobór nastaw}
+Dla regulatora P: $$k_p = 0,5k_{kr}$$
+Dla regulatora PI: $$k_p = 0,5k_{kr} \text{    } T_i=0,85T_{kr}$$
+Dla regulatora PID: $$k_p = 0,5k_{kr} \text{     } T_i=0,85T_{kr} \text{     } T_d = 0,12T_{kr}$$
+
+
+\section{Kryterium Hurwitza}
+\subsection{Warunek konieczny}
+Wszystkie współczynniki wielomianu muszą być dodatnie
+\subsection{Macierz Hurwitza}
+$$ H = 
+\begin{bmatrix}
+a_{m-1} & a_m & 0 & 0 & \ldots \\
+a_{m-3} & a_{m-2} & a_{m-1} & a_m & \ldots \\
+a_{m-5} & a_{m-4} & a_{m-3} & a_{m-2} & \ldots \\
+\vdots & \vdots & \vdots & \vdots & \ddots \\
+0&0&0&0&a_0
+\end{bmatrix}$$
+\subsection{Warunek dostateczny}
+Wielomian jest wielomianem stabilnym wtedy i tylko wtedy gdy wszystkie jego minory główne (dla ludzi: wyznaczniki wyciętych niezerowych kwadratów) są dodatnie. Liczymy wyznaczniki sprawdzamy czy > 0 i bingo\\
+W układzie zamkniętym interesuje nas tylko mianownik\\
+W układzie otwartym liczymy jako sumę licznik+mianownik
+\end{document}
+
