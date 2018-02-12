@@ -1,0 +1,70 @@
+\documentclass[a4paper]{article}
+\usepackage[polish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{todonotes}
+
+\author{Michał Bień (132191), Krzysztof Bończyk (132194)}
+\title{Modelowanie wahadła Foucaulta}
+\date{}
+\begin{document}
+\maketitle
+\section{Opis problemu}
+Skonstruowane w 1851r. przez Jeana Bernarda Léona Foucaulta w Paryżu, jest to wahadło mające możliwość poruszania się w dowolnej płaszczyźnie pionowej. Powolna zmiana płaszczyzny ruchu wahadła względem Ziemi dowodzi jej obrotu wokół własnej osi. Wahadło Foucaulta rozpatruje się jako wahadło matematyczne zaburzane przez siłę wywołaną obrotem punktu zawieszenia wahadła. Zakłada się również, że amplituda drgań jest na tyle mała, że masa wahadła porusza się poziomo.
+
+\section{Model matematyczny}
+Wahadło traktuje się jako punkt masy zawieszony na linie o długości $L$. Punkt jego zawieszenia znajduję się na szerokości geograficznej $\lambda$. A więc zbierając potrzebne nam oznaczenia:\\
+\\
+$x,y$ -- współrzędne obciążnika \\
+$\Omega$ -- prędkość kątowa obrotów Ziemi wokół własnej osi [$\frac{rad}{s}$]\\
+$g$ -- przyspieszenie grawitacyjne Ziemi [$\frac{m}{s^2}$]\\
+$L$ -- długość wahadła [$m$]\\
+$\lambda$ -- szerokośc geograficzna [$rad$]\\
+
+\begin{center}
+\includegraphics[width=150mm]{sldemo_foucault_figure2.png}
+\end{center}
+
+\newpage
+\section{Schemat blokowy}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=160mm]{blokowy.png}
+\end{center}
+\caption{Schemat blokowy rozwiązania matematycznego\cite{matlab}}
+\end{figure}
+
+\section{Podejście do rozwiązania}
+Symulację układu wykonaliśmy wykorzystując bibliotekę scipy oraz zawarty w niej solver odeint do rozwiązania równań charakterystycznych układu. W tym celu należało sprowadzić równania różniczkowe drugiego stopnia do równań pierwszego stopnia. Równania charakterystyczne drugiego stopnia które wykorzystaliśmy prezentują się następująco \cite{matlab}:
+$$ \begin{cases}
+\ddot{x} - 2\Omega \sin{\lambda} \dot{y} + (\frac{g}{L}-\Omega^2 \sin^2{\lambda}) x =0\\
+\ddot{y} + 2\Omega\sin{\lambda} \dot{x} + (\frac{g}{L} - \Omega^2) y =0
+\end{cases}$$
+
+Po przekształceniu do równań pierwszego stopnia otrzymaliśmy układ równań:
+$$\begin{cases}
+\dot{x} = x_d \\
+\dot{y} = y_d \\
+\dot{x_d} = 2\Omega \sin{\lambda} y_d - (\frac{g}{L}-\Omega^2 \sin^2{\lambda}) x \\
+\dot{y_d} = -2\Omega \sin{\lambda} x_d - (\frac{g}{L} - \Omega^2) y
+\end{cases}$$
+Równanie takiej postaci rozwiązywane jest przez solver.
+\newpage
+\section{Symulacja i jej wyniki}
+Rozwiązanie zwracane przez solver odeint jest interpretowane na wykresie dzięki bibliotece matplotlib. W zależności od przyjętych parametrów programu, otrzymujemy wykres zbliżony do zaprezentowanego poniżej
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=160mm]{Figure_1.png}
+\end{center}
+\caption{Wykres położenia wahadła foucaulta ,,od góry", x(y)}
+\end{figure}
+
+\begin{thebibliography}{1}
+\bibitem{matlab} http://www.mathworks.com/examples/simulink/mw/simulink\_product-sldemo\_foucault-modeling-a-foucault-pendulum
+\end{thebibliography}
+\end{document}
+
