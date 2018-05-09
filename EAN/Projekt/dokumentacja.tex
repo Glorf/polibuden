@@ -1,0 +1,208 @@
+\documentclass[a4paper]{article}
+\usepackage[polish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{minted}
+
+\author{Michał Bień}
+\title{Obliczanie pierwiastków metodą Newtona}
+\date{}
+\begin{document}
+\maketitle
+\section{Zastosowanie}
+Funkcja \emph{inewtonroots} oblicza przedział będący przybliżoną wartością pierwiastka rzeczywistego wielomianu
+$$ p(x) = a_nx^n + a_{n-1}x^{n-1} + \cdots + a_1x + a_0 $$
+o współczynnikach rzeczywistych.
+\section{Opis metody}
+Przybliżona wartość pierwiastka wielomianu jest obliczana metodą iteracyjną Newtona, na podstawie wzoru: 
+$$ x_{k+1} = x_k - \frac{p(x_k)}{p'(x_k)} \text{,\ \ \ \ }k = 0, 1, 2, \cdots $$
+gdzie przybliżenie początkowe $x_0$ jest przedziałem zadanym z góry. Wartości $p(x_k)$ i $p'(x_k)$ wyznacza się korzystając ze schematu Hornera:
+$$ p(x) = ((\cdots(a_nx + a_{n-1})x + \cdots)x + a_1)x + a_0 $$
+Proces iteracyjny kończy się, gdy:
+$$ \frac{|x_{k+1} - x_k|}{\max(|x_{k+1}|,|x_k|)} < \epsilon\text{,\ \ \ \ } x_{k+1}\neq0 \vee x_k\neq0 $$
+gdzie $\epsilon$ oznacza zadaną z góry dokładność, lub gdy:
+$$ x_{k+1} = x_k = 0 $$
+
+Ze względu na implementację interwałową, część operacji matematycznych jest wykonywana w sposób niestandardowy:
+\begin{itemize}
+\item Porównywanie do zera polega na sprawdzaniu, czy wartości bezwzględne obydwu stron przedziału są mniejsze od zadanej dokładności ($10^{-16}$)
+\item Sprawdzanie nierówności jest koniunkcją wartości logicznych nierówności lewych i prawych stron sprawdzanych przedziałów
+\item Wykorzystywana jest funkcja iabs służąca do wyznaczania wartości bezwzględnej przedziału
+\item Warunek stopu jest sprawdzany osobno dla lewych i prawych stron odpowiednich przedziałów i jest koniunkcją tych dwóch wartości logicznych
+\item Pozostałe operacje matematyczne są wykonywane w sposób naturalny, oprogramowane przez przeciążone operatory w bibliotece Intervals.h
+\end{itemize}
+
+\section{Wywołanie funkcji}
+inewtonroots(n, a, x, mit, eps)
+
+\section{Dane}
+\begin{itemize}
+\item n -- stopień wielomianu
+\item a -- tablica przedziałów będących współczynnikami wielomianu (indeks w tablicy odpowiada stopniowi)
+\item x -- przedział będący początkowym przybliżeniem pierwiastka
+\item mit -- maksymalna dozwolona liczba operacji w procesie
+\item eps -- względna dokładność rozwiązania
+\end{itemize}
+
+\section{Wyniki}
+Funkcja zwraca strukturę wynikową \emph{ires} o następujących polach wynikowych:
+\begin{itemize}
+\item val -- przedział, w którym zawiera się obliczona wartość pierwiastka
+\item w -- przedział, w którym zawiera się wartość wielomianu dla obliczonego pierwiastka
+\end{itemize}
+
+\section{Inne parametry}
+Struktura wynikowa \emph{ires} zawiera także pola stanu, opisujące przebieg działania algorytmu
+\begin{itemize}
+\item it -- liczba wykonanych iteracji algorytmu do zatrzymania
+\item st -- stan algorytmu:
+\begin{itemize}
+\item 0 -- algorytm zakończył się poprawnie
+\item 1 -- wprowadzono niepoprawne dane
+\item 2 -- wykryto dzielenie przez przedział zawierający zero podczas działania algorytmu
+\item 3 -- po maksymalnej liczbie iteracji algorytm zakończył się, nie osiągając zadanej dokładności
+\end{itemize}
+\end{itemize}
+
+\section{Typy parametrów}
+\begin{itemize}
+\item \textbf{int} -- n, mit, it
+\item ld -- eps
+\item ild --  x, val, w
+\item vector -- a
+\end{itemize}
+
+\section{Identyfikatory nielokalne}
+\begin{itemize}
+\item ld -- alias long double
+\item ild -- alias Interval<long double> z biblioteki interval\_arithmetic
+\item vector -- nazwa typu tablicowego o elementach typu long double
+\end{itemize}
+\pagebreak
+\section{Kod}
+
+\begin{minted}[bgcolor=white]{C++}
+ires inewtonroots (int n, ild *a, ild x, int mit, ld eps) {
+    ires to_return;
+    to_return.st = 0;
+    to_return.it = 0;
+
+    if(n<1 || mit<1) {
+        to_return.st = 1;
+        return to_return;
+    }
+
+    ild w = a[n];
+    for(int i=n-1; i>=0; i--)
+        w = w * x + a[i];
+
+    if(abs(w.a) > 1e-16 || abs(w.b) > 1e-16) {
+        to_return.st = 3;
+        do {
+            to_return.it++;
+            w = a[n];
+            ild dw = w;
+
+            for(int i = n-1; i>0; i--) {
+                w = w * x + a[i];
+                dw = dw * x + w;
+            }
+            w = w * x + a[0];
+
+            if(dw.a < 0 && dw.b >0) {
+                to_return.st = 2;
+                return to_return;
+            }
+
+            ild xh = x;
+            ild u = iabs(xh);
+            x = x-(w/dw);
+            ild v = iabs(x);
+
+            if(v.a<u.a && v.b<u.b) v = u;
+            if((abs(v.a) < 1e-16 && abs(v.b) < 1e-16) || 
+            (abs(x.a-xh.a)/abs(v.a) <= eps && abs(x.b-xh.b)/abs(v.b) <= eps))
+                to_return.st = 0;
+
+        } while(to_return.it!=mit && to_return.st==3);
+    }
+
+    to_return.val = x;
+    w = a[n];
+    for(int i = n-1; i>=0; i--)
+        w = w * x + a[i];
+    to_return.w = w;
+
+    return to_return;
+}
+\end{minted}
+
+\section{Przykłady}
+\begin{itemize}
+\item Wielomian: 
+$$ p(x) = x^3 - 3x^2 - x + 3 = (x-1)(x+1)(x-3) $$
+Dane:\\
+n=3,a = \{3, -1, -3, 1\}, x = 2, mit = 10, eps = 1e-16 \\
+Wyniki: \\
+ires.val.l = -1.00000000000000E0\\
+ires.val.r = -1.00000000000000E0\\
+ires.w.l = -0.00000000000000E-1\\
+ires.w.r = 0.00000000000000E-1\\
+ires.it = 2\\
+ires.st = 0\\
+
+\item Wielomian:
+$$ p(x) = x^9 - 4x^7 + x^5 = x^5(x-\sqrt{2-\sqrt{3}})(x+\sqrt{2-\sqrt{3}})(x-\sqrt{2+\sqrt{3}})(x+\sqrt{2+\sqrt{3}))} $$
+Dane: \\
+n=9, a= \{0, 0, 0, 0, 0, 1, 0, -4, 0, 1\}, x=3, mit = 20, eps = 1e-12 \\
+Wyniki: \\
+ires.val.l = 1.9318516525781361E0\\
+ires.val.r = 1.9318516525781370E0\\
+ires.w.l = -1.6327471328539744E-13\\
+ires.w.r = 1.63303886154400927E-13\\
+ires.it = 11\\
+ires.st = 0\\
+
+\item Wielomian:
+$$ p(x) = x^9 - 4x^7 + x^5 = x^5(x-\sqrt{2-\sqrt{3}})(x+\sqrt{2-\sqrt{3}})(x-\sqrt{2+\sqrt{3}})(x+\sqrt{2+\sqrt{3}))} $$
+Dane: \\
+n=9, a= \{0, 0, 0, 0, 0, 1, 0, -4, 0, 1\}, x=3, mit = 20, eps = 1e-16 \\
+Wyniki: \\
+ires.val.l = 1.9318516525777434E0\\
+ires.val.r = 1.9318516525785298E0\\
+ires.w.l = -1.6348970566103320E-10\\
+ires.w.r = 1.6348973337525876E-10\\
+ires.it = 20\\
+ires.st =3\\
+
+\item Wielomian:
+$$ p(x) = x^9 - 4x^7 + x^5 = x^5(x-\sqrt{2-\sqrt{3}})(x+\sqrt{2-\sqrt{3}})(x-\sqrt{2+\sqrt{3}})(x+\sqrt{2+\sqrt{3}))} $$
+Dane: \\
+n=9, a= \{0, 0, 0, 0, 0, 1, 0, -4, 0, 1\}, x.l=3.0, x.r=3.01, mit = 20, eps = 1e-16 \\
+Wyniki: \\
+ires.val.l = 0 \\
+ires.val.r = 0 \\
+ires.w.l = 0 \\
+ires.w.r = 0 \\
+ires.it = 6 \\
+ires.st = 2 \\
+
+\item Wielomian:
+$$ p(x) = 2 $$
+Dane: \\
+n = 0, a=\{2\}, x=-1, mit=10, eps=1e-16 \\
+ires.val.l = 0 \\
+ires.val.r = 0 \\
+ires.w.l = 0 \\
+ires.w.r = 0 \\
+ires.it = 0 \\
+ires.st = 1 \\
+\end{itemize}
+
+
+\end{document}
+
