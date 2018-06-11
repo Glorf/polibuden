@@ -1,0 +1,68 @@
+CREATE OR REPLACE PACKAGE KONWERSJA IS
+  FUNCTION CELS_TO_FAHR(cels NUMBER) RETURN NUMBER;
+  FUNCTION FAHR_TO_CELS(fahr NUMBER) RETURN NUMBER;
+END KONWERSJA;
+
+CREATE OR REPLACE PACKAGE BODY KONWERSJA IS
+  FUNCTION CELS_TO_FAHR(cels NUMBER) RETURN NUMBER IS
+  BEGIN
+    RETURN (cels*9/5)+32;
+  END;
+  FUNCTION FAHR_TO_CELS(fahr NUMBER) RETURN NUMBER IS
+  BEGIN
+    RETURN (fahr-32)*5/9;
+  END;
+END KONWERSJA;
+
+CREATE OR REPLACE PACKAGE ZMIENNE IS
+  vLicznik NUMBER := 0;
+  PROCEDURE ZwiekszLicznik;
+  PROCEDURE ZmniejszLicznik;
+  FUNCTION PokazLicznik RETURN NUMBER;
+END ZMIENNE;
+
+CREATE OR REPLACE PACKAGE BODY ZMIENNE IS
+  PROCEDURE ZwiekszLicznik IS
+  BEGIN
+    vLicznik:=vLicznik+1;
+    DBMS_OUTPUT.PUT_LINE('Zwiększono');
+  END;
+  PROCEDURE ZmniejszLicznik IS
+  BEGIN
+    vLicznik:=vLicznik-1;
+    DBMS_OUTPUT.PUT_LINE('Zmniejszono');
+  END;
+  FUNCTION PokazLicznik RETURN NUMBER IS
+  BEGIN
+    return vLicznik;
+  END;
+BEGIN
+  vLicznik:=1;
+  DBMS_OUTPUT.PUT_LINE('Zainicjalizowano');
+END ZMIENNE;
+
+CREATE OR REPLACE PACKAGE MODYFIKACJE IS
+  PROCEDURE DodajKolumne(relacja IN VARCHAR2, kolumna IN VARCHAR2, typ_wartosci IN VARCHAR2);
+  PROCEDURE UsunKolumne(relacja IN VARCHAR2, kolumna IN VARCHAR2);
+  PROCEDURE ZmienTypKolumny(relacja IN VARCHAR2, kolumna IN VARCHAR2, typ_wartosci IN VARCHAR2, czy_zachowac_dane BOOLEAN);
+END MODYFIKACJE;
+
+CREATE OR REPLACE PACKAGE BODY MODYFIKACJE IS
+  PROCEDURE DodajKolumne(relacja IN VARCHAR2, kolumna IN VARCHAR2, typ_wartosci IN VARCHAR2) IS
+  BEGIN
+    EXECUTE IMMEDIATE 'ALTER TABLE '||relacja||' ADD COLUMN '||kolumna||' '||typ_wartosci||';';
+  END;
+  PROCEDURE UsunKolumne(relacja IN VARCHAR2, kolumna IN VARCHAR2) IS
+  BEGIN
+    EXECUTE IMMEDIATE 'ALTER TABLE '||relacja||' DROP COLUMN '||kolumna||';';
+  END;
+  PROCEDURE ZmienTypKolumny(relacja IN VARCHAR2, kolumna IN VARCHAR2, typ_wartosci IN VARCHAR2, czy_zachowac_dane BOOLEAN) IS
+  BEGIN
+    IF NOT czy_zachowac_dane THEN
+      EXECUTE IMMEDIATE 'ALTER TABLE '||relacja||' DROP COLUMN '||kolumna||';';
+      EXECUTE IMMEDIATE 'ALTER TABLE '||relacja||' ADD COLUMN '||kolumna||' '||typ_wartosci||';';
+    ELSE
+      EXECUTE IMMEDIATE 'ALTER TABLE '||relacja||' MODIFY '||kolumna||' '||typ_wartosci||';';
+    END IF;
+  END;
+END MODYFIKACJE;
