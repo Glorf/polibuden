@@ -1,0 +1,204 @@
+\documentclass[a4paper]{article}
+\usepackage[polish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+
+\author{}
+\title{Skrypt ASK}
+\date{}
+\begin{document}
+\maketitle
+\section{Procesor}
+\subsection{Cykle pracy procesora}
+\textbf{Cykl zegarowy} - najmniejsza jednostka pracy procesora, oznaczająca jeden okres zegara taktującego procesor\\
+\textbf{Cykl maszynowy} - jeden lub wiele cykli zegarowych, wspólnie składających się na proces pobrania danych z pamięci operacyjnej do rejestrów procesora\\
+\textbf{Cykl rozkazowy} - jeden lub wiele cykli maszynowych, realizujących jeden rozkaz procesora.
+
+\subsection{Rejestry procesora}
+\textbf{Rejestry ogólnego przeznaczenia} - np. AX, BX, CX...\\
+\textbf{Rejestry segmentowe:}\\
+CS - Code segment - przechowuje adres segmentu kodu do wykonania\\
+DS - Data segment - przechowuje adres segmentu danych\\
+SS - Stack segment - przechowuje adres stosu\\
+\textbf{Rejestry stanu:}\\
+Rejestr FLAGS przechowuje flagi: Sign, Zero, Carry, Overflow\\
+Rejestr IP przechowuje offset aktualnie wykonywanej instrukcji w segmencie kodu\\
+
+\subsection{Fazy cyklu rozkazowego}
+\begin{enumerate}
+\item Faza pobrania rozkazu - pobranie rozkazu z CS+IP do pamięci podręcznej
+\item Faza dekodowania rozkazy - określenie operacji do wykonania i adresów fizycznych
+\item Faza wykonania
+\item Faza zapisania wyników - zapisanie danych, ustawienie nowego IP
+\end{enumerate}
+\newpage
+\section{Pamięć operacyjna}
+\subsection{Linie sygnałowe: }
+Adresowa, Danych, CE, WE, OE, RAS, CAS
+\subsection{Tryby pracy}
+\textbf{Page mode}\\
+odczyt: RAS -> adres wiersza -> CAS -> adres kolumny -> na 'CAS i 'RAS pojawia się dana\\
+zapis: RAS -> adres wiersza -> CAS -> adres kolumny -> WE i dane na data\\
+\textbf{FPM - fast page mode}\\
+Wybieramy wiersz i probujemy kolejne adresy kolumn\\
+\textbf{Burst mode}\\
+Odczyt blokowy - podajemy adres wiersza i kolumny, każdy kolejny takt strobujący CAS odnosi się do adresu n+1 względem poprzedniego.\\
+\subsection{Odświeżanie pamięci}
+\textbf{RAS-only: } wysyłamy tylko sygnał RAS z konkretnym adresem, cały wiersz jest odświeżany.
+\textbf{Inne nieopisane metody: } CBR (CAS before RAS), ukryte, autoodświeżanie
+
+\newpage
+\section{Pamięć dyskowa}
+\subsection{Adresowanie danych}
+adres CHS:\\
+C - numer cylindra - czyli logicznego walca przechodzącego przez ścieżki wszystkich talerzy dysku na tej samej wysokości - adres synchronizacyjny dla głowic sprzężonych\\
+H - numer głowicy - czyli numer i strona talerza, do którego przylega konkretna głowica\\
+S - numer sektora - logiczny fragment ścieżki zawierający interesujące nas dane\\
+\subsection{Macierze RAID}
+\begin{itemize}
+\item RAID 0 (striping) - łączenie wielu dysków w logicznie jeden - dane "paski"
+\item RAID 1 (mirroring) - na dwóch dyskach kopia dokładnie tych samych danych
+\item RAID 2 - dane zapisane pojednyczo na n dyskach. Na log(n) dyskach dane korekcyjne
+\item RAID 3 - dane zapisane pojedynczo na dyskach, jeden dysk na dane korekcyjne.
+\item RAID 4 - dane zapisane pojedynczo na niezależnych od siebie dyskach działąjących równolegle. Jeden dysk na dane korekcyjne
+\item RAID 5 - dane zapisane pojedynczo na niezależnych od siebie dyskach działających równolegle. Dane korekcyjne rozproszone w macierzy
+\end{itemize}
+
+\newpage
+\section{Interfejsy:}
+\subsection{IDE}
+\textbf{Tryby pracy standardowe Power Management: }\\
+gotowości, jałowy, czuwania, uśpienia\\
+\textbf{APM} - 254 możliwe poziomy poboru energii\\
+\textbf{Mechanizmy ATAPI: }\\
+security mode - hasła\\
+S.M.A.R.T - wykrywanie awarii dysku\\
+AAM - wycisza pracę dysku
+
+\subsection{SATA}
+Symbole - informacje krótkie\\
+Ramki FIS - informacje długie
+
+\subsection{SCSI}
+\textbf{Fazy pracy: }\\
+Faza wolnej magistrali\\
+Faza arbitrażu - wybór urządzenia przejmującego kontrolę\\
+Faza selekcji - wybrane urządzenie wybiera cel transmisji\\
+Faza rozkazowa - wysyłanie rozkazów do celu\\
+Faza reselekcji - cel przejmuje magistrale i nawiązuje połączenie z nadawcą\\
+Faza przesyłania danych - w odpowiedzi na poprzednie rozkazy\\
+Faza przesyłania raportu - raport z przebiegu transmisji\\
+Faza przesyłania wiadomości - informacje pomocnicze\\
+Faza zgłaszania przesyłania wiadomości - żądanie wysłania wiadomości\\
+Faza zerowania - reset całej magistrali
+
+\subsection{IEEE-1284}
+\textbf{Tryby pracy: }\\
+Tryby SPP (Standard Parallel Port): \\
+Kompatybilny - stary, wolny, standardowy\\
+Półbajtowy - dwukierunkowa transmisja danych przejmując bity stanu (BSY, ACK, PERR, SEL)\\
+Bajtowy - najszybszy - dwukierunkowy port danych (?)\\
+Tryby SPP wymagają: rejestru stanu, rejestru danych, rejestru sterującego\\
+Tryb EPP (Enchanced Parallel Port): \\
+Wymaga rejestrów SPP + dwukierunkowego rejestru danych + dwukierunkowego rejestru adresowego\\
+Tryb ECP (Extended Capabilities Port): \\
+Wymaga rejestrów SPP +rejestr adresowy FIFO + rejestr danych FIFO + rejestr sterujący ECR \\
+\subsection{RS-232C}
+Stary dobry UART/USART\\
+Linie sygnałowe: \\
+Tx, Rx,\\
+RTS (Request to send)\\
+CTS (Clear to send)\\
+DSR (Data set ready)\\
+DTR (Data terminal ready)\\
+DCD (Data carrier detect)\\
+RI (Ring indicator)\\
+
+\subsection{USB}
+\textbf{Tryby: }\\
+asynchroniczny - bulk transfer - obsługa peryferiów wyjścia\\
+synchroniczny - isochronous transfer - transfer danych\\
+natychmiastowy - interrupt transfer - obsługa peryferiów wejścia\\
+sterujący - control transfer - konfiguracja nowego urządzenia\\
+\textbf{Rodzaje pakietów: }\\
+żeton - token - pakiet kontrolny określający adres urządzenia i kierunek przepływu danych\\
+pakiet danych - data - przesył danych zabezpieczonych CRC\\
+potwierdzenie - handshake - raport o pomyślnym przesłaniu danych\\
+pakiet specjalny - special - do sterowania przepływem danych przy urządzeniach o różnych prędkościach\\
+\subsection{Firewire}
+Do aparatów i sprzętu audiowizualnego
+\subsection{Thunderbolt}
+Zastąpić wszystkie magistrale
+\newpage
+
+\section{Przetwarzanie potokowe}
+Kolejne etapy przetwarzania kolejnych poleceń mogą odbywać się potokowo. Tzn. kolejna instrukcja zaczyna być wykonywana gdy poprzednia wyjdzie z pierwszej fazy i tak lecą potokiem. \\
+Problemy: np. przerwania, pętle warunkowe, powodują unieważnienie potoku \\
+\textbf{Postępowanie w przypadku rozgałęzień: }\\
+\begin{itemize}
+\item pobieranie rozkazów po rozgałęzieniach z wyprzedzeniem
+\item potokowe przetwarzanie kilku możliwych odgałęzień równocześnie
+\item bufor pętli - rozkazy z pętli zapisywane w L1 i sprowadzane szybko w kolejnej iteracji
+\item opóźnianie rozgałęzienia - agresywna zmiana kolejności wykonywania rozkazów
+\item zaawansowane przewidywanie wyników rozgałęzień
+\end{itemize}
+Najczęściej aktualnie stosowane jest to ostatnie - w oparciu o bufor decyzji (BTB) przewidywane są kolejne decyzje\\
+
+\section{Przetwarzanie superskalarne}
+Wiele potoków wykonawczych w rdzeniu - jeśli dwa, oznaczamy je U, V\\
+U - pozwala wykonać dowolną instrukcję x86\\
+V - pozwala wykonać tylko instrukcje proste\\
+\subsection{Łączenie instrukcji w pary}
+UV - połączone w pary mogą być wykonywane współbieżnie\\
+PU - instrukcje z potoku U czasami razem z instrukcjami z potoku V\\
+PV - instrukcje, które po połączeniu z potokiem PU albo PV wykonywane w V\\
+\subsection{Konflikty}
+\begin{itemize}
+\item RAR (Read After Read) - dwie instrukcje chcą odczytać wartość rejestru równocześnie - dublujemy port rejestru
+\item RAW (Read After Write) - jedna instrukcja zapisuje,a druga odczytuje dane z rejestru - należy określić kolejność, a następnie pozwolić instrukcjom wykonać się we właściwej kolejności
+\item WAR (Write After Read), WAW (Write After Write) - odpowiednio - zapis po odczycie i zapis po zapisie. Uwspółbieżniamy przydzielając potokowi wirtualny rejestr - realokując rejestr docelowy w tablicy RAT (Register Allocation Table). Po wykonaniu potoków dane należy złożyć.
+\end{itemize}
+
+\subsection{Dynamiczne wykonywanie instrukcji}
+Wykonywanie poza kolejnością w celu dobrania par UV, albo ominięcia rozgałęzień.\\
+\textbf{Systemy:}\\
+Zaawansowana predykcja rozgałęzień\\
+Dynamiczna analiza przepływu danych - analiza w czasie rzeczywistym uszeregowania instrukcji w jednostkach wykonawczych\\
+Spekulatywne wykonywanie rozkazów - wykonywanie instrukcji za nierozstrzygniętą jeszcze pętlą warunkową.\\
+\textbf{Typowa sekwencja: }\\
+\begin{itemize}
+\item MIS (Microcode Instruction Sequencer) tworzy zaoptymalizowaną sekwencje instrukcji
+\item MIS ładuje oryginalną sekwencję instrukcji
+\item operacje z konfliktów typu WAR i WAW dostają rejestry tymczasowe
+\item RS (Reservation Station) pobiera zoptymalizowaną sekwencję żądań przydziałów zasobów
+\item RU (Retirement Unit) scala wyniki operacji i porządkuje je w oryginalnym układzie
+\end{itemize}
+
+\section{Pamięć podręczna}
+\subsection{Schematy architektury}
+\begin{itemize}
+\item Look-Aside - procesor odwołuje się do kontrolera pamięci - jeśli ten znajdzie daną w cache (cache hit) to sprowadza z cache, jeśli nie znajdzie (cache miss), to sprowadza z pamięci.
+\item Look-Through - procesor odwołuje się do cache - jeśli dana istnieje to jest uzyskiwany dostęp, jeśli nie, \textbf{kontroler pamięci cache} sprowadza daną do cache i jest uzyskiwany dostęp
+\item Backside - Procesor dostaje dostęp do magistrali BSB niezależnej od FSB i robi z pamięcią podręczną co mu się żywnie podoba - sam nią zarządza.
+\end{itemize}
+\subsection{Strategie zapisu}
+\begin{itemize}
+\item Write-through - każdy zapis do cache powoduje natychmiastowy zapis do pamięci
+\item Buffered write-through - każdy zapis do cache powoduje zapis do bufora, który w wolnej chwili zapisuje do pamięci
+\item Write-back - dane nadpisane sa oznaczane jako przeterminowane i uaktualniane przy próbie dostępu
+\end{itemize}
+Spójność pamięci - MESI - każdy wiersz może być Modified, Exclusive, Shared, Invalid
+\subsection{Odwzorowania pamięci}
+\begin{itemize}
+\item bezpośrednie - n-ty wiersz każdej strony może być odwzorowany tylko w n-tym wierszu pamięci operacyjnej
+\item skojarzeniowe - dowolne odwzorowanie wierszy pamięci na cache, zapisane w katalogu translacji TAG-RAM
+\item sekwencyjno-skojarzeniowe - podział cache na 2/4/8 części - odwzorowanie bezpośrednie w ramach jednej częsci i skojarzeniowe odwzorowanie części w ramach całej pamięci - metoda łączy zalety dwóch powyższych niwelując ich wady (ciągła wymiana pamięci, każdorazowe przeszukiwanie TAG-RAM).
+\end{itemize}
+
+\section{MMX i SSE}
+MMX (MultiMedia eXtension) - przetwarzanie równoległe SIMD (Single Instruction Multiple Data) - udostępnia 8 64-bitowych rejestrów (MM0-MM7) które pozwalają na przechowywanie nowych typów danych - paczek. Pozwala to na lepszy rozkład danych do jednostek obliczeniowych np. przy mnożeniu macierzy, wektorów.\\
+SSE (Streaming SIMD Extensions) - rozszerzenie MMX na zmiennoprzecinkowe typy danych - udostępnia 8 128-bitowych rejestrów (XMM0-XMM7)
+\end{document}
+

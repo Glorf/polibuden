@@ -1,0 +1,10 @@
+newmtl Grey
+Ka 0.0000 0.0000 0.0000
+Kd 0.7373 0.7373 0.7373
+Ks 1.0000 1.0000 1.0000
+Tf 0.0000 0.0000 0.0000
+d 1.0000
+Ns 0
+map_Bump Claimedwall2_nor3.png
+map_Kd Claimedwall2C.png
+map_Ks Claimedwall2_spec3.png

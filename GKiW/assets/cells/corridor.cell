@@ -1,0 +1,27 @@
+//ściana lewa
+model struct_wall_straight_main
+0 0 0.025
+0 0 0
+1 1 0.5
+default
+
+//ściana prawa
+model struct_wall_straight_main
+0 0 0.875
+0 0 0
+1 1 0.5
+default
+
+//podłoga
+model struct_floor_normal
+0 0 0.2
+0 0 0
+1 0.5 1
+default
+
+//sufit
+model struct_floor_normal
+0 1.1 0.2
+0 0 0
+1 0.5 1
+default

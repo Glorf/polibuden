@@ -1,0 +1,112 @@
+\documentclass[8pt]{extarticle}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ left=2mm,
+ top=2mm,
+ right=2mm,
+ bottom=2mm,
+ }
+\usepackage[english,main=polish]{babel}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{enumitem}
+\setitemize{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt,leftmargin=7pt}
+\setlength{\itemindent}{0.1in}
+\usepackage{multicol}
+\setlength{\columnsep}{2mm}
+\setlength{\columnseprule}{0.2pt}
+\title{Ściąga SK}
+\begin{document}
+\begin{multicols*}{3}
+\textbf{1. Nadawanie IP}
+\begin{itemize}
+\item ip addr show
+\item ip addr add 192.168.1.30/24 dev p4p1
+\item ip addr show p4p1
+\item ifconfig p4p1 up
+\item ip addr del 192.168.1.30/24 dev p4p1
+\end{itemize}
+
+\textbf{2. Sprawdzanie połączenia}
+\begin{itemize}
+\item ping 192.168.1.100
+\item traceroute -I 192.168.1.100
+\end{itemize}
+
+\textbf{3. Zmiana ustawień medium}
+\begin{itemize}
+\item ifconfig eth0 down
+\item ethtool eth0
+\item ethtool -s eth0 speed 10 duplex half autoneg off
+\item ethtool eth0 up
+\end{itemize}
+
+\textbf{4. Adresacja MAC}
+\begin{itemize}
+\item ip link show
+\item ip link set dev eth0 down
+\item ip link set dev eth0 address aa:bb:cc:dd:ee:ff
+\item ip link set dev eth0 up
+\item ethtool -P eth0 \emph{(permanent address MAC)}
+\end{itemize}
+
+\textbf{5. Pomiar prędkości}
+\begin{itemize}
+\item ping 192.168.1.2
+\item ethtool p4p1
+\item netserver -D \emph{(jako serwer)}
+\item netperf -H 192.168.1.2 \emph{(jako klient)}
+\end{itemize}
+
+\textbf{6. ARP}
+\begin{itemize}
+\item ip neigh show
+\item ping 192.168.1.2
+\item ip neigh add 192.168.1.100 lladdr \emph{MAC} dev eth0
+\item ip link set arp off dev eth0 \emph{włącza/wyłącza ARP}
+\item arping -I eth0 192.168.1.103 \emph{ARP REQUEST}
+\end{itemize}
+
+\textbf{7. Routing statyczny}
+\begin{itemize}
+\item ip route show
+\item ip route add 172.16.0.0/16 via 192.168.1.101
+\item ip route add default via 192.168.1.1
+\item ip route get 192.168.1.1 \emph{trasa do adresu}
+\item ip route del 172.16.0.0/16
+\item ip route flush \emph{wyczyszczenie tablicy routingu}
+\end{itemize}
+
+\textbf{8. Forwarding}
+\begin{itemize}
+\item cat /proc/sys/net/ipv4/ip\_forward
+\item echo 1 > /proc/sys/net/ipv4/ip\_forward
+\end{itemize}
+
+\textbf{9. Połączenie z konsolą Cisco}
+\begin{itemize}
+\item Kabel konsolowy (niebieski)
+\item picocom [-b 9600] /dev/ttyS0
+\item ctrl -a -q \emph{wyjście z programu}
+\item Router> \emph{tryb użytkownika}
+\item Router> enable
+\item Router\# \emph{tryb uprzywilejowany}
+\item Router\# configure terminal
+\item Router(config)\# \emph{tryb konfiguracyjny}
+\item Router(config)\# do ping \emph{komenda niższego trybu}
+\item Router(config)\# interface FastEthernet 0/1
+\item Router(config-if)\# 
+\item Router(config)\# exit
+\item Router\# disable
+\item Router>
+\item Router\# show ip int 
+\item Router\# do ping 192.168.0.1 repeat 100000
+\end{itemize}
+\end{multicols*}
+\end{document}
+
