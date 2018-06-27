@@ -1,0 +1,1531 @@
+\documentclass[a4paper]{article}
+\usepackage[polish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{float}
+
+\author{Michał Bień, Michał Gilski, Martyna Maciejewska, Wojciech Taisner}
+\title{Żółty Skrypt}
+\begin{document}
+\maketitle
+\section{Arytmetyka przedziałowa}
+\subsection{Teoria}
+Działania na przedziałach:
+\begin{itemize}
+\item Dodawanie: $[\underline{x}, \overline{x}] + [\underline{y}, \overline{y}] = [\underline{x}+\underline{y}, \overline{x}+\overline{y}]$
+\item Odejmowanie: $[\underline{x}, \overline{x}] - [\underline{y}, \overline{y}] = [\underline{x}-\overline{y}, \overline{x}-\underline{y}]$
+\item Mnożenie: $[\underline{x}, \overline{x}] \cdot [\underline{y}, \overline{y}] = [\min(\underline{x}\underline{y}, \underline{x}\overline{y}, \overline{x}\underline{y}, \overline{x}\overline{y}), \max(\underline{x}\underline{y}, \underline{x}\overline{y}, \overline{x}\underline{y}, \overline{x}\overline{y})] $
+\item Dzielenie: $[\underline{x}, \overline{x}]/[\underline{y}, \overline{y}] = [\underline{x}, \overline{x}]\cdot[\frac{1}{\overline{y}},\frac{1}{\underline{y}}]$ \\ \textbf{nie można dzielić przez przedział zawierający zero}
+\item Średnica przedziału: $d([\underline{x}, \overline{x}]) = \overline{x} - \underline{x}$
+\item Promień przedziału: $r([\underline{x}, \overline{x}]) = \frac{\overline{x} - \underline{x}}{2}$
+\item Punkt środkowy: $m([\underline{x}, \overline{x}]) = \frac{\underline{x} - \overline{x}}{2}$
+\item Odległość między przedziałami: $q([\underline{x}, \overline{x}], [\underline{y}, \overline{y}]) = \max(|\underline{x}-\underline{y}|, |\overline{x}-\overline{y}|)$
+\item Najmniejsza wartość bezwzględna: $\forall_{x \in [\underline{x}, \overline{x}]}: \langle[\underline{x}, \overline{x}]\rangle = \min(|x|)$
+\item Największa wartość bezwzględna: $\forall_{x \in [\underline{x}, \overline{x}]}: |[\underline{x}, \overline{x}]| = \max(|x|)$
+\item Wartość bezwzględna przedziału: $\text{abs}([\underline{x}, \overline{x}]) = [\langle[\underline{x}, \overline{x}]\rangle, |[\underline{x}, \overline{x}]|]$
+\item Kwadrat przedziału: $[\underline{x}, \overline{x}]^2 = [\langle[\underline{x}, \overline{x}]\rangle^2, |[\underline{x}, \overline{x}]|^2]$
+\item Pierwiastek przedziału: $\sqrt{[\underline{x}, \overline{x}]} = [\sqrt{\underline{x}}, \sqrt{\overline{x}}]$
+\item $\mathbf{e}^{[\underline{x}, \overline{x}]} = [\mathbf{e}^{\underline{x}}, \mathbf{e}^{\overline{x}}]$
+\end{itemize}
+\subsection{Zadania}
+\subsubsection*{Zadanie 1}
+Oblicz:
+\begin{itemize}
+\item $[-1,0]+[0,\pi]$
+\item $[1,4]-[1,4]$
+\item $[\frac{1}{2}, 1]-[0,\frac{1}{6}]$
+\item $[2,4] - 3$
+\item $-1\cdot[2,5]$
+\item $[-2,3]\cdot[-2,3]$
+\item $[1,\sqrt{2}]\cdot[-1,1]$
+\item $[1,2]/[-2,-1]$
+\item $[1,2]/[-2,1]$
+\end{itemize}
+
+\subsubsection*{Zadanie 2}
+Znajdź przedziały $[x]$, $[y]$, $[z]$ dla których zachodzi:
+$$ [x]\cdot([y]+[z]) \subseteq [x]\cdot[y] + [x]\cdot[z] $$
+
+\subsubsection*{Zadanie 3}
+Podaj przykład przedziału, dla którego: 
+$$[x]^2 \subset [x]\cdot[x]$$
+
+\subsubsection*{Zadanie 4}
+Na przykładzie trzech, matematycznie równoważnych, zapisów funkcji $f$ zmiennej rzeczywistej $x$:
+$$f(x) = \frac{1}{2-x}+\frac{1}{2+x}$$
+$$f(x) = \frac{4}{4-x\cdot x}$$
+$$f(x) = \frac{4}{4-x^2}$$
+takiej że $|x|<2$, oraz przedziału
+$$[x]=\left[-\frac{1}{2},\frac{3}{2}\right]$$
+pokazać, że jej rozszerzenia przedziałowe mogą być różne. Jaka jest wartość funkcji przedziałowej odpowiadającej danej funkcji rzeczywistej dla podanego przedziału?
+
+\subsection{Rozwiązania}
+\subsubsection*{Zadanie 1}
+\begin{itemize}
+\item $[-1,\pi]$
+\item $[-3,3]$
+\item $[\frac{1}{3}, 1]$
+\item $[-1,1]$
+\item $[-5, -2]$
+\item $[-6, 9]$
+\item $[-\sqrt{2}, \sqrt{2}]$
+\item $[-2, -\frac{1}{2}]$
+\item \textbf{dzielenie przez przedział zawierający zero}
+\end{itemize}
+
+\subsubsection*{Zadanie 2}
+Szukamy na oko, poprawne rozwiązanie to np.\\
+$[x] = [-3,3]$, $[y] = [-1,2]$, $[z] = [-2,1]$ \\
+Wtedy: \\
+$L = [x]\cdot([y] + [z]) = [-3,3]\cdot[-3,3] = [-9,9] $\\
+$P = [-6,6]+[-6,6] = [-12, 12] $ \\
+Stąd $L\subseteq P$
+
+\subsubsection*{Zadanie 3}
+Wystarczy wybrać przedział z wartością ujemną po lewej stronie, np.\\
+$[x] = [-5,2]$ \\
+Wtedy:\\
+$L = [x]^2 = [0, 4]$ \\
+$[x]\cdot[x] = [-10, 4]$ \\
+Stąd $L\subset P$
+
+\subsubsection*{Zadanie 4}
+Należy wyliczyć wartości przedziałów dla każdego z równań:\\
+To odpowiednio:
+$$[x]=\left[\frac{24}{35}, \frac{8}{3}\right]$$
+$$[x]=\left[\frac{16}{19}, \frac{16}{7}\right]$$
+$$[x]=\left[1,\frac{16}{7}\right]$$
+Jak widać rozszerzenia przedziałowe różnią się
+Aby znaleźć wartość funkcji przedziałowej należy narysować sobie wykres funkcji rzeczywistej, zaznaczyć interesujący nas przedział i znaleźć minimalną i maksymalną wartość funkcji w tym przedziale.
+
+\section{Algorytm Hornera}
+\subsection{Teoria}
+Algorytm Hornera można przedstawić w postaci rekurencyjnej:\\
+$w_n = a_n$ \\
+$w_k = w_{k+1}x+a_k$, $k\in(n-1,0)$\\
+Algorytm można wykorzystać do:
+\begin{itemize}
+\item Obliczenia wartości wielomianu\\
+Liczymy $w(x)$ gdzie za $x$ podstawiamy liczbę, dla której wartość wielomianu chcemy policzyć.
+Wynik otrzymany w $w_0$ to wartość wielomianu dla zadanego $x$.\\
+\textbf{Algorytm Hornera jest optymalny - jest jedynym algorytmem, który minimalizuje liczbę dodawań i mnożeń przy obliczaniu wartości wielomianu danego w postaci naturalnej.}
+
+\item Dzielenia wielomianu przez dwumian (y-x)\\
+Za pomocą algorytmu Hornera można przedstawić wielomian jako iloczyn dwumianu $(y-x)$ oraz wielomianu $W(y)$ stopnia $n-1$ o współczynnikach wartości $a_k = w_{k+1}\cdot x$ (gdzie $k \in (n-1, 0)$ Wartość rozwiązania jest z kolei resztą z dzielenia tych wielomianów.
+
+\item Znajdywania pochodnej znormalizowanej wielomianu\\
+Stosując podejście klasyczne możemy dla wielomianu znaleźć pochodną znormalizowaną stopnia $j$ w punkcie $x$ korzystając ze wzoru:
+$$\nu_j(x) = \frac{w^{(j)}(x)}{j!}$$
+W przypadku algorytmu Hornera sprawa jest dużo prostsza i wystarczy wielokrotnie podzielić wielomian zgodnie z powyższym algorytmem.
+\textbf{Znalezienie $m \leq n$ początkowych znormalizowanych pochodnych wielomianu wymaga $(m+1)\left(n-\frac{m}{2}\right)$ dodawań i mnożeń.}
+\end{itemize}
+\subsection{Zadania}
+\subsubsection*{Zadanie 1}
+Stosując algorytm Hornera znajdź $w(1)$ dla wielomianu
+$$w(x)=x^4+x^3-4x^2-3x+3$$
+
+\subsubsection*{Zadanie 2}
+Jaki wielomian jest ilorazem z dzielenia przez dwumian $(x-1)$ wielomianu
+$$w(x)=x^4+x^3-4x^2-3x+3$$
+
+\subsubsection*{Zadanie 3}
+Za pomocą algorytmu Hornera znajdź wartości wszystkich znormalizowanych pochodnych w punkcie $x = 1$ wielomianu
+$$w(x)=x^4+x^3-4x^2-3x+3$$
+
+\subsubsection*{Zadanie 4}
+Stosując algorytm Hornera znajdź wartości wszystkich znormalizowanych pochodnych w punkcie $x = -1$ wielomianu
+$$w(x)=4x^4-2x^2+x-3$$
+
+\subsection{Rozwiązania}
+\subsubsection*{Zadanie 1}
+Dla $x=1$:\\
+$w_4 = a_4 = 1$ \\
+$w_3 = w_4\cdot x + a_3 = 1 \cdot 1 + 1 = 2 $ \\ 
+$w_2 = w_3\cdot x + a_2 = 2 \cdot 1 - 4 = -2 $ \\
+$w_1 = w_2\cdot x + a_1 = -2 \cdot 1 - 3 = -5$ \\
+$w_0 = w_1\cdot x + a_0 = -5+3 = -2$ \\
+Czyli $w(1) = -2$
+\subsubsection*{Zadanie 2}
+Rozwiązujemy zadanie ($x=1$ czyli analogicznie jak w zad 1) i bierzemy:\\
+$a_3 = w_4 \cdot x = 1$\\
+$a_2 = w_3 \cdot x = 2$\\
+$a_1 = w_2 \cdot x = -2$\\
+$a_0 = w_1 \cdot x = -5$\\
+Czyli wielomian ma postać:\\
+$y^3+2y^2-2y-5$ \\
+A reszta wynosi: \\
+$r = w_0 = -2 $
+\subsubsection*{Zadanie 3}
+Bierzemy wynik z poprzedniego równania i liczymy schematem Hornera wartość wielomianu w punkcie $x=1$\\
+$w_3 = a_3 = 1$ \\
+$w_2 = w_3\cdot x + a_2 = 1\cdot 1 + 2 = 3$ \\
+$w_1 = w_2\cdot x + a_1 = 3\cdot 1 - 2 = 1$ \\
+$w_0 = w_1\cdot x + a_0 = 1\cdot 1 - 5 = -4$ \\
+Odczytujemy wartość pochodnej $w'(1) = -4$ i liczymy kolejną dla wielomianu: \\
+$y^2 + 3y + 1$ \\
+$w_2 = a_2 = 1$ \\
+$w_1 = w_2\cdot x + a_1 = 1 \cdot 1 + 3 = 4$ \\
+$w_0 = w_1\cdot x + a_0 = 4 \cdot 1 + 1 = 5$ \\
+Odczytujemy wartość pochodnej $w''(1) = 5$ i liczymy kolejną dla wielomianu: \\
+$y + 4$\\
+$w_1 = a_1 = 1$ \\
+$w_0 = w_1 \cdot x + a_0 = 1\cdot 1+4 = 5$ \\
+Odczytujemy wartość pochodnej $w'''(1) = 5$ i liczymy dalej: \\
+$w_0 = 1$\\
+Tak więc $w''''(1) = 1$\\
+Obliczyliśmy wszystkie pochodne znormalizowane wielomianu.
+
+\subsubsection*{Zadanie 4}
+Postępujemy jak w poprzednim zadaniu ale dla $x=-1$ i wielomianu:\\
+$w(x)=x^4-2x^2+x-3$\\
+$w_4 = a_4 = 1$\\
+$w_3 = w_4 \cdot x + a_3 = 1 \cdot -1 + 0 = -1$\\
+$w_2 = w_3 \cdot x + a_2 = -1 \cdot -1 - 2 = -1$\\
+$w_1 = w_2 \cdot x + a_1 = -1 \cdot -1 + 1 = 2$\\
+$w_0 = w_1 \cdot x + a_0 = 2 \cdot -1 - 3 = -5$\\
+$w(y) = -y^3 + y^2 + y - 2$\\
+$w_3 = a_3 = -1$\\
+$w_2 = w_3 \cdot x + a_2 = -1 \cdot -1 + 1 = 2$\\
+$w_1 = w_2 \cdot x + a_1 = 2 \cdot -1 + 1 = -1$\\
+$w_0 = w_1 \cdot x + a_0 = -1 \cdot -1 - 2 = -1$\\
+$w'(-1) = -1$ \\
+$w(y) = y^2 - 2y + 1$\\
+$w_2 = a_2 = 1$\\
+$w_1 = w_2 \cdot x + a_1 = 1 \cdot -1 - 2 = -3$\\
+$w_0 = w_1 \cdot x + a_0 = -2 \cdot -1 + 1 = 3$\\
+$w''(-1) = 3$\\
+$w(y) = -y + 2$\\
+$w_1 = a_1 = -1$\\
+$w_0 = w_1 \cdot x + a_0 = -1 \cdot -1 + 2 = 3$\\
+$w'''(-1) = 3$\\
+$w(y) = 1$\\
+$w_0 = a_0 = 1$\\
+$w''''(-1) = 1$
+
+\section{Algorytm Shaw-Trauba}
+\subsection{Teoria}
+Algorytm lepszy od Hornera, gdy chcemy policzyć wiele, lub wszystkie, pochodne wielomianu\\
+Określamy pewne p i q, gdzie: \\
+Jeśli $q = 1$, to mamy algorytm Hornera.\\
+Jeśli $q = n+1$ to mamy optymalną liczbę działań (algorytm jest optymalny ze względu na liczbę mnożeń).\\
+$p=\frac{n+1}{q}$\\
+Określamy funkcje pomocnicze:
+$$ s(j) = (n-j)\mod q $$
+$$ r(j) = \begin{cases} 0\text{,\ \ } j\mod q \neq 0 \\ q\text{,\ \ } j\mod q = 0 \end{cases} $$\\
+
+Wyznaczamy tablicę $T^j_i$ za pomocą funkcji rekurencyjnej, gdzie:
+$$ T^{-1}_i = a_{n-i-1}x^{s(i+1)} $$
+$$ T^j_j = a_nx^{s(0)} $$
+$$ T^j_i = T^{j-1}_{i-1}+T^j_{i-1}x^{r(i-j)} $$
+Wyniki pobieramy z:
+$$ T^j_n = \frac{w^{(j)}(x)}{j!}x^{j \mod q} $$
+
+
+\subsection{Zadania}
+\subsubsection*{Zadanie 1}
+Za pomocą algorytmu Shaw-Trauba o odpowiednio dobranych wartościach $p$ i $q$ znaleźć wartości wszystkich znormalizowanych pochodnych w punkcie $x=1$ dla wielomianu:
+$$w(x)=x^4+x^3-4x^2-3x+3$$
+
+\subsection{Rozwiązania}
+\subsubsection*{Zadanie 1}
+Wybieramy $q = n+1 = 5$\\
+Wybieramy $p = 1$\\
+$s(0)=4$\\
+$s(1)=3$\\
+$s(2)=2$\\
+$s(3)=1$\\
+$s(4)=0$\\
+$r(j) = \begin{cases} 0\text{,\ \ } j=1,2,3,4\\5\text{,\ \ }j=0\\\end{cases}$\\
+Teraz możemy zacząć wypełniać pola tablicy:\\
+$T^{-1}_0 = 1\cdot 1^3 = 1 $ \\
+$T^{-1}_1 = -4\cdot 1^2 = -4 $\\
+$T^{-1}_2 = -3\cdot 1^1 = -3 $\\
+$T^{-1}_3 = 3 \cdot 1^0 = 3 $\\
+$T^j_j = 1$\\ 
+$T^0_1 = T^{-1}_0+T^0_0 = 1+1 = 2$\\
+$T^0_2 = T^{-1}_1+T^0_1 = -4+2 = -2$\\
+$T^0_3 = T^{-1}_2+T^0_2 = -3-2 = -5$\\
+$T^0_4 = T^{-1}_3+T^0_3 = 3-5 = -2$\\
+$T^1_2 = T^0_1+T^1_1 = 2 + 1 = 3$\\
+$T^1_3 = T^0_2+T^1_2 = -2 + 3 = 1$\\
+$T^1_4 = T^0_4+T^1_4 = -5 + 1 = -4$\\
+$T^2_3 = T^1_2+T^2_2 = 3 + 1 = 4$\\
+$T^2_4 = T^1_3+T^2_3 = 1 + 4 = 5$\\
+$T^3_4 = T^2_3+T^3_3 = 4 + 1 = 5$\\
+
+\section{Wzór interpolacyjny Lagrange'a}
+\subsection{Teoria}
+\textbf{Zadanie interpolacyjne Lagrange'a} polega na znalezieniu dla danej funkcji $f$ wielomianu $L_n$ stopnia nie wyższego niż $n$, którego wartości w $n+1$ punktach (wybranych) są takie same, jak wartości interpolowanej funkcji $f$. \\
+Wielomian interpolacyjny dla tego zadania (wyprowadzenie w skrypcie Kapłana) przyjmuje postać:
+$$L_n(x) = \sum^n_{i=0}f(x_i)\prod^n_{j=0, j\neq i}\frac{x-x_j}{x_i-x_j} $$
+\textbf{Nie korzystać z tego wzoru! Jest niepraktyczny. Wątpiących odsyłam do rozwiązań}
+
+\subsection{Zadania}
+\subsubsection*{Zadanie 1}
+Znajdź wielomian interpolacyjny Lagrange'a, który w punktach -2, 1, 2, 4 przyjmuje wartości odpowiednio 3, 1, -3, 8. Jaka jest wartość tego wielomianu w punkcie $x=0$?
+\subsubsection*{Zadanie 2}
+Znajdź wielomian interpolacyjny Lagrange'a, który w punktach 0, 1, 2 przyjmuje wartości odpowiednio 1, 1, 3. Jaka jest wartość tego wielomianu w punkcie $x=\frac{1}{2}$?
+
+\subsection{Rozwiązania}
+
+\subsubsection*{Zadanie 1}
+$$L_3(x) = 3\cdot\frac{x-1}{-2-1}\cdot\frac{x-2}{-2-2}\cdot\frac{x-4}{-2-4}+1\cdot\frac{x+1}{1+2}\cdot\frac{x-2}{1-2}\cdot\frac{x-4}{1-4}+(-3)\cdot\frac{x+2}{2+2}\cdot\frac{x-1}{2-1}\cdot\frac{x-4}{2-4}+8\cdot\frac{x+2}{4+2}\cdot\frac{x-1}{4-1}\cdot\frac{x-2}{4-2}$$
+WolframAlpha twierdzi, iż równa się to:
+$$L_3(x) = \frac{12x^3-29x^2-63x+92}{18}$$
+A więc $L_3(0) = \frac{46}{9}$
+
+\subsubsection*{Zadanie 2}
+
+$$L_2(x) = 1\cdot \frac{x-1}{0-1}\cdot\frac{x-2}{0-2} + 1\cdot\frac{x-0}{1-0}\cdot\frac{x-2}{1-2} + 3\cdot\frac{x-0}{2-0}\cdot\frac{x-1}{2-1}$$
+$$L_2(x) = \frac{(x-1)(x-2)}{2}+\frac{x(x-2)}{-1}+\frac{3x(x-1)}{2}$$
+I dalej przekształcamy\\
+Nasz wielomian interpolacyjny Lagrange'a przyjmuje postać:
+$$L_2(x) = x^2-x+1$$
+A jego wartość w punkcie $x=\frac{1}{2}$ wynosi:
+$$L_2(\frac{1}{2}) = \frac{1}{4}-\frac{1}{2} + 1 = \frac{3}{4}$$
+
+\section{Algorytm Neville'a}
+\subsection{Teoria}
+Powód dla którego nie używamy poprzedniego algorytmu\\
+Wyznaczamy go z wzorów rekurencyjnych:
+$$P_i(x) = f(x_i)$$
+$$P_{i_0,i_1\cdots i_k}(x) = \frac{(x-x_{i_0})P_{i_1i_2\cdots i_k}(x) - (x-x_{i_k})P_{i_0i_1\cdots i_{k-1}}(x)}{x_{i_k}-x_{i_0}}$$
+Oczywiście jak przystało na metody Kapłana, powyższy wzór nie jest do niczego potrzebny, więc nie ma się czego bać.\\
+Zadanie rozwiązujemy inaczej, przyjmijmy że szukamy wielomianu $L_3$\\
+Rysujemy tabelkę:\\
+\begin{tabular}{|ccccc|}
+\hline
+&$k=0$&$k=1$&$k=2$&$k=3$\\
+\hline
+$x_0$&$f(x_0)=P_{00}$&&&\\
+&&$\Big>P_{11}$&&\\
+$x_1$&$f(x_1)=P_{10}$&&$\Big>P_{22}$&\\
+&&$\Big>P_{21}$&&$\Big>P_{33}$\\
+$x_2$&$f(x_2)=P_{20}$&&$\Big>P_{32}$&\\
+&&$\Big>P_{31}$&&\\
+$x_3$&$f(x_3)=P_{30}$&&&\\
+\hline
+\end{tabular}\\
+Do kolumny $k=0$ wpisujemy początkowe wartości i zaczynamy:\\
+Kolejną wartość wyznacza się jako: \\
+((x - indeks góry)*wartość dołu - (x - indeks dołu)*wartość góry) przez różnicę między indeksami w całej rozpiętości przedziału z którego czerpiemy.\\
+Wiem, i tak brzmi okropnie, ale jak się zrobi z tego zadanie to można ogarnąć o co chodzi.
+
+\subsection{Zadania}
+\subsubsection*{Zadanie 1}
+Dla wielomianu interpolacyjnego, który w punktach 0,1,2 przyjmuje wartości odpowiednio 1,1,3, znajdź wartość w punkcie $x=\frac{1}{2}$ stosując algorytm Neville'a.
+
+\subsection{Rozwiązania}
+\subsubsection*{Zadanie 1}
+\begin{tabular}{|cccc|}
+\hline
+&$k=0$&$k=1$&$k=2$\\
+\hline
+$0$&$P_{00}=1$&&\\
+&&$\Big>P_{11}=\frac{(\frac{1}{2}-0)\cdot 1 - (\frac{1}{2}-1)\cdot 1}{1}=1$&\\
+$1$&$P_{10}=1$&&$\Big>P_{22}=\frac{(\frac{1}{2}-0)\cdot 0 - (\frac{1}{2}-2)\cdot 1}{2} = \frac{3}{4}$\\
+&&$\Big>P_{21}=\frac{(\frac{1}{2}-1)\cdot 3 - (\frac{1}{2}-2)\cdot 1}{1}=0$&\\
+$2$&$P_{20}=3$&&\\
+\hline
+\end{tabular}\\
+Rozwiązaniem jest $L_3(\frac{1}{2}) = P_{22}(\frac{1}{2}) = \frac{3}{4}$
+
+\section{Wzór interpolacyjny Newtona}
+\subsection{Teoria}
+Algorytm Neville'a jest przydatny gdy chcemy znaleźć wartość wielomianu interpolacyjnego w punkcie, ale co jeśli intersuje nas sam wielomian, a nie mamy ochoty na zabawę z Lagrange'em i przeklejanie wzorów do WolframAlpha?\\
+Z pomocą przychodzi wzór Newtona.\\
+I tu niestety sprawa się komplikuje bo musimy wprowadzić sobie kilka pojęć \\
+\textbf{Iloraz różnicowy} rzędu $k$ funkcji $f$ oparty na węzłach od $x_l$ do $x_{l+k}$ to taka funkcja, że:
+$$[x_l, x_{l+1},\cdots,x_{l+k};f] = \sum_{i=l}^{l+k}\frac{f(x_i)}{\prod_{j=l, j\neq i}^{l+k}(x_i - x_j)}$$
+TLDR, jest to przerobiony wzór Lagrange'a którego nie liczy się łatwiej ale jest tego liczenia wymiernie mniej. Po wielu przekształceniach Kapłan przestawia wielomian interpolacyjny Newtona (równoważny z Lagrange'a):
+$$N_n(x) = f(x_0) + [x_0,x_1;f](x-x_0) + [x_0,x_1,x_2;f](x-x_0)(x-x_1)+\cdots + [x_0,x_1,\cdots,x_n;f](x-x_0)(x-x_1)\cdots(x-x_{n-1})$$
+Ale oczywiście nie korzystamy z tego wzoru wprost, znów robimy tabelkę i wyznaczamy to krokowo \\
+\begin{tabular}{|cccc|}
+\hline
+&$k=0$&$k=1$&$k=2$\\
+\hline
+$x_0$&$f(x_0) = [x_0;f]$&&\\
+&&$\Big>[x_0,x_1;f]$&\\
+$x_1$&$f(x_1) = [x_1;f]$&&$\Big>[x_0,x_1,x_2;f]$\\
+&&$\Big>[x_1,x_2;f]$&\\
+$x_2$&$f(x_2) = [x_2;f]$&&\\
+\hline
+\end{tabular}\\
+Korzystamy z zależności:
+$$\frac{[x_{l+1},\cdots,x_{l+k};f] - [x_l,\cdots,x_{l+k-1};f]}{x_{l+k}-x_{l}} = [x_l,\cdots,x_{l+k};f]$$
+Czyli odejmujemy wyższe od niższego i dzielimy przez różnicę między największym i najmniejszym x w otrzymywanym wzorze
+
+\subsection{Zadania}
+\subsubsection*{Zadanie 1}
+Znajdź wielomian interpolacyjny Newtona, który w punktach 0, 1, 2 przyjmuje wartości odpowiednio: 1,1,3.
+
+\subsubsection*{Zadanie 2}
+Napisz wzór interpolacyjny Newtona dla funkcji $f(x)$ i następujących danych: $f(0)=1$, $f(2)=3$, $f(3)=2$, $f(4)=5$, $f(6)=7$
+
+\subsubsection*{Zadanie 3}
+Udowodnij, że jeżeli:
+$$f(x) = (x-x_0)(x-x_1)\cdots (x-x_p)$$
+i $n\leq p$ to:
+$$[x_0,x_1,\cdots,x_n;f] = 0$$
+Jaka jest wartość tego ilorazu, gdy $n=p+1$?
+
+\subsection{Rozwiązania}
+\subsubsection*{Zadanie 1}
+\begin{tabular}{|cccc|}
+\hline
+&$k=0$&$k=1$&$k=2$\\
+\hline
+$0$&$1$&&\\
+&&$\Big>\frac{1-1}{1-0}=0$&\\
+$1$&$1$&&$\Big>\frac{2-0}{2-0}=1$\\
+&&$\Big>\frac{3-1}{2-1}=2$&\\
+$2$&$3$&&\\
+\hline
+\end{tabular}\\
+$$N_2(x) = f(x_0)+[x_0,x_1;f](x-x_0)+[x_0,x_1,x_2;f](x-x_0)(x-x_1)$$
+$$N_2(x) = 1+0\cdot(x-0)+1\cdot(x-0)(x-1)$$
+$$N_2(x) = x^2 - x + 1$$
+\subsubsection*{Zadanie 2}
+\begin{tabular}{|cccccc|}
+\hline
+&$k=0$&$k=1$&$k=2$&$k=3$&$k=4$\\
+\hline
+$0$&$1$&&&&\\
+&&$\Big>\frac{3-1}{2-0}=1$&&&\\
+$2$&$3$&&$\Big>\frac{-1-1}{3-0}=-\frac{2}{3}$&&\\
+&&$\Big>\frac{2-3}{3-2}=-1$&&$\Big>\frac{2+\frac{2}{3}}{4-0}=\frac{2}{3}$&\\
+$3$&$2$&&$\Big>\frac{3+1}{4-2}=2$&&$\Big>\frac{-\frac{2}{3}-\frac{2}{3}}{6-0}=-\frac{2}{9}$\\
+&&$\Big>\frac{5-2}{4-3}=3$&&$\Big>\frac{-\frac{2}{3}-2}{6-2}=-\frac{2}{3}$&\\
+4&5&&$\Big>\frac{1-3}{6-3}=-\frac{2}{3}$&&\\
+&&$\Big>\frac{7-5}{6-4}=1$&&&\\
+6&7&&&&\\
+\hline
+\end{tabular}\\
+$$N_4(x) = f(x_0)+[x_0,x_1;f](x-x_0)+[x_0,x_1,x_2;f](x-x_0)(x-x_1)+[x_0,x_1,x_2,x_3;f](x-x_0)(x-x_1)(x-x_2)+$$
+$$+[x_0,x_1,x_2,x_3,x_4;f](x-x_0)(x-x_1)(x-x_2)(x-x_3)$$
+Podstawiamy i otrzymujemy wynik - wzór intepolacyjny dla wielomianu:\\
+$$N_4(x) = 1+1(x-0)-\frac{2}{3}(x-0)(x-2)+\frac{2}{3}(x-0)(x-2)(x-3)-\frac{2}{9}(x-0)(x-2)(x-3)(x-4)$$
+
+\subsubsection*{Zadanie 3}
+Zadanie na wkucie formułki na iloraz różnicowy. Wyjdźmy od tezy: \\
+$$L=[x_0,x_1,\cdots,x_n;f]$$
+Wiemy że iloraz różnicowy definiuje się jako:
+$$[x_l, x_{l+1},\cdots,x_{l+k};f] = \sum_{i=l}^{l+k}\frac{f(x_i)}{\prod_{j=l, j\neq i}^{l+k}(x_i - x_j)}$$
+Czyli:
+$$L=[x_0,x_1,\cdots,x_n;f] = \sum_{i=0}^{n}\frac{f(x_i)}{\prod_{j=0, j\neq i}^n(x_i - x_j)}$$
+Spójrzmy na licznik i przeanalizujmy wartości. Jako że wszystkie $x_i$ dla i od 0 do n są pierwiastkami równania, licznik zawsze będzie wynosił 0. Po matematycznemu:
+$$\forall_{x_i: i\in (0,n)}: f(x_i) = 0$$
+$$L=0$$
+$$L=P$$
+Teraz przypadek z $n=p+1$. Wszystkie mamy więc jeden x - $x_n$ który nie jest pierwiastkiem równania! A więc:
+$$n = p+1 \rightarrow p = n-1$$
+
+$$[x_0,x_1,\cdots,x_n;f] = 0 + 0 + \cdots + \frac{f(x_n)}{\prod_{j=0, j\neq n}^n(x_n - x_j)} = \frac{(x_n-x_0)(x_n-x_1)\cdots(x_n-x_{n-1})}{(x_n-x_0)(x_n-x_1)\cdots(x_n-x_{n-1})} = 1$$
+
+A więc dla $n = p+1$ iloraz różnicowy przyjmuje wartość 1.
+
+\section{Różnice progresywne i wsteczne}
+\subsection{Teoria}
+\textbf{Różnica zwykła (progresywna) funkcji rzędu n}, to operacja na funkcji $f$ którą zapisujemy jako $\Delta^n f$ i definiujemy wzorem:
+$$\Delta^1 f(x) = f(x+h) - f(x)$$
+$$\Delta^n f(x) = \Delta^{n-1}f(x+h) - \Delta^{n-1}f(x)$$
+Gdzie h jest stałą różnicą pomiędzy węzłami.\\
+\textbf{Różnica wsteczna rzędu n} jest analogiczna, ale do tyłu, tzn. zapisujemy ją jako:
+$$\nabla^1 f(x) = f(x) - f(x-h)$$
+$$\nabla^n f(x) = \nabla^{n-1}f(x) - \nabla^{n-1}f(x-h)$$
+\textbf{Różnica centralna} to funkcja:
+$$\delta f(x) = f(x+\frac{h}{2}) - f(x-\frac{h}{2})$$
+Na końcu \textbf{operacja przesunięcia}:
+$$Ef(x) = f(x+h)$$
+Teraz tak.\\
+Jeśli węzły funkcji są równoodległe, tzn. kolejne interpolowane $x_i$ maleją lub rosną za każdym razem o tę samą wartość stałą $h$ to możemy pokusić się o użycie wzoru interpolacyjnego dla węzłów równoodległych, co znacząco upraszcza obliczenia.\\
+$$L_n(x_0+th) = L_n(t) = \sum_{i=0}^n f(x_i) \prod_{j=0, j\neq i}^n\frac{t-j}{i-j}$$
+Gdzie $t$ jest stałą normalizującą wielomian:
+$$t = \frac{x-x_0}{h}$$
+Dla funkcji rosnących wykorzystujemy różnicę progresywną:
+$$L_n(x_0+th) = L_n(t) = \sum_{i=0}^n\frac{\Delta^if(x_0)}{i!}q_i(t)$$
+$$q_0(t) = 1\text{,\ \ }q_k(t)=\prod_{j=0}^{k-1}(t-j)\text{,\ \ }k=1,2,\cdots,n$$
+Dla funkcji malejących wykorzystujemy różnicę wsteczną:
+$$L_n(x_0+th) = L_n(t) = \sum_{i=0}^n\frac{\nabla^if(x_0)}{i!}q_i(t)$$
+$$q_0(t)=1 \text{,\ \ }q_k(t) = \prod_{j=0}^{k-1}(t+j)\text{,\ \ }k=1,2,\cdots,n$$
+
+\subsection{Zadania}
+\subsubsection*{Zadanie 1}
+Oblicz różnice progresywne wielomianu:
+$$W_4(x)=x^4-x-1$$
+przyjmując $h=1$
+
+\subsubsection*{Zadanie 2}
+Oblicz różnice wsteczne wielomianu:
+$$W_4(x)=x^4-x-1$$
+przyjmując $h=1$
+
+\subsubsection*{Zadanie 3}
+Udowodnij, że jeśli:
+$$x_i = x_0 + ih, i=0,1,\cdots,k$$
+to
+$$[x_0,x_1,\cdots,x_k;f]=\frac{\Delta^kf(x_0)}{k!h^k}$$
+
+\subsubsection*{Zadanie 4}
+Pokaż, że:
+$$\delta^2f(x)=(\Delta-\nabla)f(x)$$
+
+\subsubsection*{Zadanie 5}
+Udowodnij, że:
+$$\Delta(\alpha f(x) + \beta g(x)) = \alpha\Delta f(x) + \beta\Delta g(x)$$
+
+\subsubsection*{Zadanie 5}
+Korzystając z przedstawienia wielomianu interpolacyjnego za pomocą różnic progresywnych znajdź ten wielomian, gdy $f(0) = 1$, $f(1) = 3$, $f(2) = 2$, $f(3) = 3$
+
+\subsubsection*{Zadanie 6}
+Korzystając z przedstawienia wielomianu interpolacyjnego za pomocą różnic wstecznych znajdź ten wielomian, gdy $f(0) = 1$, $f(1) = 3$, $f(2) = 2$, $f(3) = 3$
+
+\subsection{Rozwiązania}
+\subsubsection*{Zadanie 1}
+$$\Delta^1 W_4(x) = (x+1)^4 - (x+1) - 1 - (x^4 - x - 1) = 4x^3 + 6x^2 + 4x$$
+$$\Delta^2 W_4(x) = 4(x+1)^3 + 6(x+1)^2 + 4(x+1) - (4x^3 + 6x^2 + 4x) = 12x^2 + 24x + 14$$
+$$\Delta^3 W_4(x) = 12(x+1)^2 + 24(x+1) + 14 - (12x^2 + 24x + 14) = 24x + 36$$
+$$\Delta^4 W_4(x) = 24(x+1) + 36 - (24x + 36) = 24$$
+
+\subsubsection*{Zadanie 2}
+$$\nabla^1 W_4(x) = x^4 - x - 1 - ((x-1)^4 - (x-1) - 1) = 4x^3 - 6x^2 + 4x - 2$$
+$$\nabla^2 W_4(x) = 4x^3 - 6x^2 + 4x - 2 - (4(x-1)^3 - 6(x-1)^2 + 4(x-1) -2) = 12x^2 - 24x + 14$$
+$$\nabla^3 W_4(x) = 12x^2 - 24x + 14 - (12(x-1)^2 - 24(x-1) + 14) = 24x - 36$$
+$$\nabla^4 W_4(x) = 24x - 36 - (24(x-1) - 36) = 24$$
+
+\subsubsection*{Zadanie 3}
+Wyjdźmy od definicji ilorazu różnicowego:
+$$[x_0, x_1, \cdots, x_k; f] = \sum_{i=0}^k\frac{f(x_i)}{\prod_{j=0, j\neq i}^k(x_i - x_j)}$$
+Mając dane $x_i = x_0 + ih$ możemy podstawić:
+$$L = \sum_{i=0}^k\frac{f(x_0 + ih)}{\prod_{j=0, j\neq i}^k(x_0 + ih - x_0 - jh)}$$
+$$L = \sum_{i=0}^k\frac{f(x_0 + ih)}{\prod_{j=0, j\neq i}^k((i - j)h)}$$
+$$L = \sum_{i=0}^k\frac{f(x_0 + ih)}{h^k\prod_{j=0, j\neq i}^k(i - j)}$$
+$$L = \frac{f(x_0)}{h^k\prod_{j=0, j\neq i}^k(0 - j)} + \frac{f(x_0 + h)}{h^k\prod_{j=0, j\neq i}^k(1 - j)} + \cdots + \frac{f(x_0 + kh)}{h^k\prod_{j=0, j\neq i}^k(k - j)}$$
+$$L = \frac{1}{h^k}\left(\frac{f(x_0)}{(-1)(-2)\cdots(-k)} + \cdots + \frac{f(x_0 + (k-1)h)}{(k-1)(k-2)\cdots 1 \cdot (-1)} + \frac{f(x_0 + kh)}{k\cdot(k-1)\cdots 2 \cdot 1}\right)$$
+Spróbujmy przeanalizować indukcyjnie dwa ostatnie wyrazy:
+$$\frac{f(x_0 + (k-1)h)}{(k-1)(k-2)\cdots 1 \cdot (-1)} + \frac{f(x_0 + kh)}{k\cdot(k-1)\cdots 2 \cdot 1}$$
+$$\frac{f(x_0 + ih)}{(i-k)! \cdot i!} + \frac{f(x_0 + (i+1)h)}{(i-k+1)!\cdot (i+1)!}$$
+$$\frac{f(x_0 + ih)\cdot (i-k+1)(i+1) + f(x_0 + (i+1)h)}{(i-k+1)! \cdot (i+1)!}$$
+\textbf{Dalej nie mam pomysłu}
+
+\subsubsection*{Zadanie 4}
+Z definicji:
+$$\delta^1 f(x) = f(x+\frac{h}{2}) - f(x-\frac{h}{2})$$
+$$L = \delta^2 f(x) = (f(x+h) - f(x)) - (f(x) - f(x-h)) = f(x+h) - 2f(x) + f(x-h)$$
+$$P = (\Delta - \nabla) f(x) = \Delta f(x) - \nabla f(x) = f(x+h) - f(x) - (f(x) - f(x-h)) = f(x+h) - 2f(x) + f(x-h)$$
+$$L = P$$
+
+\subsubsection*{Zadanie 5}
+$$L=\Delta (\alpha f(x) + \beta g(x)) = \alpha f(x+h) + \beta g(x+h) - (\alpha f(x) + \beta g(x))$$
+$$L = \alpha(f(x+h)-f(x)) + \beta(g(x+h)-g(x)) = \alpha\Delta f(x) + \beta\Delta g(x)$$
+$$L = P$$
+
+\subsubsection*{Zadanie 6}
+x różnią się zawsze o 1 więc $h=1$
+Liczymy różnice:
+$$\Delta^1 f(0) = f(1) - f(0) = 2 $$
+$$\Delta^1 f(1) = f(2) - f(1) = -1 $$
+$$\Delta^1 f(2) = f(3) - f(2) = 1 $$
+$$\Delta^2 f(0) = \Delta^1 f(1) - \Delta^1 f(0) = -3$$
+$$\Delta^2 f(1) = \Delta^1 f(2) - \Delta^1 f(1) = 2$$
+$$\Delta^3 f(0) = \Delta^2 f(1) - \Delta^2 f(0) = -5$$
+Korzystamy ze wzoru:
+$$L_n(x_0+th) = L_n(t) = \sum_{i=0}^n\frac{\Delta^if(x_0)}{i!}q_i(t)$$
+$$q_0(t) = 1\text{,\ \ }q_k(t)=\prod_{j=0}^{k-1}(t-j)\text{,\ \ }k=1,2,\cdots,n$$
+Stąd:
+$$L_3(t) = \frac{f(x_0)}{0!}q_0(t) + \frac{\Delta^1f(x_0)}{1!}q_1(t) + \frac{\Delta^2f(x_0)}{2!}q_2(t) + \frac{\Delta^3f(x_0)}{3!}q_3(t)$$
+$$L_3(t) = 1 + 2t + \frac{-3}{2}t(t-1) + \frac{-5}{6}t(t-1)(t-2) = -\frac{5}{6}t^3+t^2+\frac{11}{6}t+1$$
+$$t = \frac{x-1}{1}$$
+$$L_3(x) = -\frac{5}{6}(x-1)^3+(x-1)^2+\frac{11}{6}(x-1)+1 = -\frac{5}{6}x^3+\frac{7}{2}x^2-\frac{8}{3}x+1$$
+
+\subsubsection*{Zadanie 7}
+Jak wyżej liczymy różnice, tylko $h=-1$, bo zepsuliśmy algorytm (różnice wsteczne liczymy kiedy wartość faktycznie maleje) i musimy za to zapłacić:
+$$\nabla^1 f(0) = f(0) - f(1) = -2$$
+$$\nabla^1 f(1) = f(1) - f(2) = 1$$
+Etc, w efekcie wyjdzie to samo.
+
+\section{Interpolacja Hermita}
+\subsection{Teoria}
+\emph{Zadanie interpolacyjne Hermite'a} polega na znalezieniu wielomianu stopnia mniejszego lub równego $n$, takiego że:
+$$H_n^{(j)}(x_i) = f^{(j)}(x_i)$$
+dla $i \in [0,k]$, $j \in [0, m_i - 1]$
+przy czym:
+$$\sum_{i=0}^km_i = n+1$$
+\textbf{Po polsku: } możemy interpolować funkcję, która interpoluje nie tylko węzły podstawowej funkcji, ale też $j = m-1$ jej pochodnych. Stąd dla $m=1$ otrzymujemy ,,zwykłą" interpolację Lagrange'a.\\
+Jak to liczymy? Po pierwsze obliczamy wartość funkcji pomocniczej $s$ dla każdego węzła $i$:
+$$s(i) = \begin{cases}0,& i=0\\\sum_0^{n-1}m_n, & i>0 \end{cases}$$
+Potem obliczamy wartości wielomianu pomocniczego $p_{s(i)}(x)$ dla każdego $s(i):$\\
+$$p_{s(0)}(x) = 1$$
+$$p_{s(i)+j}(x) = (x-x_0)^{m_0}(x-x_1)^{m_1}\cdots (x-x_i)^j$$
+Teraz szukamy takich współczynników $l$, dla których kombinacja współczynników $i$ oraz $j$ jest równa kolejnym liczbom od 0 do n:\\
+np. jeśli $s(1) = 1$, a $s(2) = 3$ to $l_2 = s(1) + 1 = 2$, ale już $l_3 = s(2) + 0$\\
+Mając ustalone konfiguracje $l$ możemy policzyć współczynniki $b_l$ wielomianu:
+$$b_l = \frac{f^{(j)}(x_i) - W_1^{(j)}(x_i)}{p_{s(i)}(x_i)\cdot j!}$$
+gdzie $W_1(x_i) = \sum_{n=0}^ib_ip_i$ (gdzie $i$ jest współczynnikiem typu $l$)\\
+Mając policzone te wszystkie funkcje pomocnicze, konstruujemy wielomian interpolacyjny Hermite'a, licząc po prostu:
+$$H_n(x) = \sum_{l=0}^n b_lp_l(x)$$
+Aby sprawdzić, czy dobrze policzyliśmy, podstawiamy wartości do warunku początkowego.\\
+Wielomian Hermite'a możemy też uzyskać łatwiej, korzystając z pojęcia \emph{uogólnionych ilorazów różnicowych}.\\
+W skrócie, istnieje dowód na to, że współczynnik $b_l$ wielomianu Hermite'a można zapisać jako:
+$$b_l = [x_0,m_0;x_1,m_1;\cdots;x_{i-1}m_{i-1};x_i, j+1; f]$$
+\subsection{Zadania}
+\subsubsection*{Zadanie 1}
+Dane są punkty $x_i$ o krotnościach $m_i$ oraz wartościach funkcji $f$ i jej pochodnych w tych punktach:
+$$\begin{array}{c|ccc}
+i&0&1&2\\
+\hline
+x_i&0&1&2\\
+m_i&1&2&3\\
+f(x_i)&0&1&0\\
+f'(x_i)&-&2&1\\
+f''(x_i)&-&-&2\\
+\end{array}$$
+Posługując się wzorami na współczynniki, skonstruuj wielomian interpolacyjny Hermite'a
+
+\subsubsection*{Zadanie 2}
+Dane są punkty $x_i$ o krotnościach $m_i$ oraz wartościach funkcji $f$ i jej pochodnych w tych punktach:
+$$\begin{array}{c|ccc}
+i&0&1&2\\
+\hline
+x_i&0&1&2\\
+m_i&1&2&3\\
+f(x_i)&0&1&0\\
+f'(x_i)&-&2&1\\
+f''(x_i)&-&-&2\\
+\end{array}$$
+Wyznacz współczynniki wielomianu interpolacyjnego Hermite'a korzystając z uogólnionych ilorazów różnicowych
+
+\subsection{Rozwiązania}
+\subsubsection*{Zadanie 1}
+Liczymy stopień wielomianu:\\
+$n = \sum m - 1 = 1+2+3 - 1 = 5$\\
+Konstruujemy funkcję pomocniczą $s$ dla każdego $i$:\\
+$s(0) = 0$\\
+$s(1) = 1$\\
+$s(2) = 1+2 = 3$\\
+Liczymy $p_{s(i)}$ dla każdego $i$:\\
+$p_{s(0)}(x) = 1$\\
+$p_{s(1)}(x) = (x-0)^1 = x$\\
+$p_{s(2)}(x) = (x-0)^1(x-1)^2 = x(x-1)^2$\\
+Szukamy współczynników $l$:\\
+$l = 0 = 0+0 = s(0) + 0$\\
+$l = 1 = 1+0 = s(1) + 0$\\
+$l = 2 = 1+1 = s(1) + 1$\\
+$l = 3 = 3+0 = s(2) + 0$\\
+$l = 4 = 3+1 = s(2) + 1$\\
+$l = 5 = 3+2 = s(2) + 2$\\
+Liczymy wyrazy $b_l$ (pominięto duże objętościowo operacje na wielomianach):\\
+$b_0 = \frac{0-0}{1 \cdot 0!} = 0$\\\\
+$b_1 = \frac{1-0}{1 \cdot 0!} = 1$\\\\
+$b_2 = \frac{2-1}{1 \cdot 1!} = 1$\\\\
+$b_3 = \frac{8-4}{2 \cdot 0!} = 2$\\\\
+$b_4 = \frac{1+6}{2 \cdot 1!} = \frac{7}{2}$\\\\
+$b_5 = \frac{2-21}{2 \cdot 2!} = -\frac{19}{4}$\\\\
+Podstawiamy otrzymane współczynniki $b$ i wyrazy $p$ do wzoru:
+$$H_5(x) = \sum_{i=0}^5 b_l p_l(x)$$
+$$H_5(x) = x + x(x-1) -2x(x-2)^2 + \frac{7}{2}x(x-1)^2(x-2)-\frac{19}{4}x(x-1)^2(x-2)^2$$
+
+\subsubsection*{Zadanie 2}
+Z równania dot. uogólnionych ilorazów różnicowych wiemy, że:\\
+$b_0 = [x_0,m_0; f] = f(x_0) = 0$\\
+$b_1 = [x_0,m_0; x_1, m_1; f] = \frac{[x_1, 1] - [x_0, 1]}{x_1 - x_0} = \frac{1-0}{1-0} = 1$
+
+\section{Interpolacja wymierna i trygonometryczna (Michał)}
+\subsection{Teoria}
+
+\subsection{Zadania}
+
+\subsection{Rozwiązania}
+
+\section{Interpolacja funkcjami sklejanymi (Michał)}
+\subsection{Teoria}
+
+\subsection{Zadania}
+
+\subsection{Rozwiązania}
+
+
+
+\section{Metoda Crouta (Glą)}
+\subsection{Teoria}
+\emph {Metoda Crouta} to jedna z metod $LU$ służąca do rozwiązywania układów równań liniowych poprzez rodzielenie macierzy współczynników $A$ na macierz dolnotrójkątną $L$ oraz górnotrójkątną $U$. 
+
+\subsubsection*{Metoda LU}
+
+\emph {Metoda LU} pozwala na rozwiązywanie równań postaci $\mathbf{A} \cdot \mathbf{x} = \mathbf{y}$, gdzie $\mathbf{A}$ - macierz współczynników, $\mathbf{x}$ - wektor niewiadomych, $\mathbf{y}$ - wektor danych.\newline
+Macierz $A$ dzieli się na według wzoru : $$\mathbf{A} = \mathbf{L} \cdot \mathbf{U}$$ 
+gdzie: 
+\newline
+        $$\mathbf{L} =
+		\begin{bmatrix}
+		l_{11} & 0      & \cdots & 0 \\
+		l_{21} & l_{22} & \cdots & 0 \\
+		\vdots & \vdots & \ddots & 0 \\
+		l_{n1} & l_{n2} & \cdots & l_{nn}
+		\end{bmatrix},\quad 		
+	      \mathbf{U} = 
+		\begin{bmatrix}
+		u_{11} & u_{12} & \cdots & u_{1n} \\
+		0      & u_{22} & \cdots & u_{2n} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		0      & 0      & \cdots & u_{nn}
+		\end{bmatrix}$$
+Układ równań przyjmuje wówczas postać
+$$\mathbf{L} \cdot \mathbf{U} \cdot \mathbf{x} = \mathbf{y},$$\newline
+a jego rozwiązanie sprowadza się do rozwiązania dwóch układów równań z macierzami trójkątnymi:
+$$\mathbf{L} \cdot \mathbf{z} = \mathbf{y},$$
+$$\mathbf{U} \cdot \mathbf{x} = \mathbf{z}.$$
+
+\textbf{Właściwości rozkładu LU:}
+$$\mathbf{det(L)} = l_{11} \cdot l_{22} \cdot \cdots \cdot l_{nn}$$
+$$\mathbf{det(U)} = u_{11} \cdot u_{22} \cdot \cdots \cdot u_{nn},$$
+ czyli wyznaczniki są równe iloczynom przekątnych (jedno z nich jest zawsze równe 1, metodzie Croota jest macierz wyznacznik macierzy U).
+ \newline
+ Dodatkowo:
+ $$\mathbf{det(A)}=\mathbf{det(L \cdot \mathbf U)}=\mathbf{det(L)} \cdot \mathbf{det(U)},$$
+ co w przypadku metody Crouta sprowadza sie do:
+ $$\mathbf{det(A)}= \mathbf{det(L)} \cdot 1 = l_{11} \cdot l_{22} \cdot \cdots \cdot l_{nn}$$
+
+\subsubsection*{Metoda Crouta}
+Metoda Crouta zakłada, że na diagonali macierzy $\mathbf{U}$ znajdują się 1. (w przeciwieństwie do bliźniaczej metody Doolittle'a w której macierz $\mathbf{L}$ ma taką diagonalę).
+
+$$\begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{bmatrix} =
+\begin{bmatrix}
+l_{11}      & 0      & \cdots & 0 \\
+l_{21} & l_{22}      & \cdots & 0 \\
+\vdots & \vdots & \ddots & 0 \\
+l_{n1} & l_{n2} & \cdots & l_{nn}
+\end{bmatrix} \cdot
+\begin{bmatrix}
+1 & u_{12} & \cdots & u_{1n} \\
+0      & 1 & \cdots & u_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+0      & 0      & \cdots & 1
+\end{bmatrix}$$
+\textbf{Uwaga:} Metoda Crouta nie zadziała jeśli dowolna z liczb na przekątnej macierzy L jest równa 0, czyli nie może zajść $l_{ii} = 0$
+\newline \newline
+\textbf{Wzór na rozwiązanie:} 
+\newline \newline
+Dla macierzy 3x3 (większej raczej nie da, bo to dużo roboty, a dla większych wzór jest analogiczny)
+\newline
+Równanie $\mathbf{A} = \mathbf{L} \cdot \mathbf{U}$
+$$ \mathbf{A} =
+\begin{bmatrix}
+a_{11} & a_{12} &  a_{13} \\
+a_{21} & a_{22} &  a_{23} \\
+a_{n1} & a_{n2} & a_{33}
+\end{bmatrix} = 
+\begin{bmatrix}
+l_{11}      & 0      & 0 \\
+l_{21} & l_{22}      & 0 \\
+l_{31} & l_{32} & l_{33}
+\end{bmatrix} 
+\begin{bmatrix}
+1 & u_{12} & u_{13} \\
+0      & 1 &  u_{23} \\
+0      & 0      &  1
+\end{bmatrix} =
+\begin{bmatrix}
+l_{11} & l_{11}u_{12} & l_{11}u_{13} \\
+l_{21} &l_{11}u_{12} + l_{22} & l_{21}u_{13} + l_{22}u_{23} \\
+l_{31} & l_{31}u_{12} + l_{32} & l_{31}u_{13} + l_{32}u_{23} + l_{33} \\
+\end{bmatrix}$$
+
+Współczynniki $l_{ii}$ i $u_{ii}$ otrzymujemy poprzez koleje rozwiązywnie równań w kolumnach. 
+\newline
+Równanie $\mathbf{L} \cdot \mathbf{z} = \mathbf{y}:$
+
+$$\begin{bmatrix}
+l_{11}      & 0      & 0 \\
+l_{21} & l_{22}      & 0 \\
+l_{31} & l_{32} & l_{33}
+\end{bmatrix} 
+\begin{bmatrix}
+z_{1} \\
+z_{2} \\
+z_{3}\\
+\end{bmatrix} = 
+\begin{bmatrix}
+y_{1} \\
+y_{2} \\
+y_{3}\\
+\end{bmatrix}$$
+Wynik otrymujemy poprzez rozwiązanie po koleji równań rzędach macierzy, każdy wiersz ma tylko jedną niewiadomą, ponieważ poprzednie zmienne są wyzanczane z poprzednich równań.
+\newline
+Równanie $\mathbf{U} \cdot \mathbf{x} = \mathbf{z}:$
+$$\begin{bmatrix}
+1 & u_{12} & u_{13} \\
+0      & 1 &  u_{23} \\
+0      & 0      &  1
+\end{bmatrix}
+\begin{bmatrix}
+x_{1} \\
+x_{2} \\
+x_{3}\\
+\end{bmatrix} = 
+\begin{bmatrix}
+z_{1} \\
+z_{2} \\
+z_{3}\\
+\end{bmatrix}$$
+Analogicznie do poprzedniegu punktu, tylko że rozwiązujemy równania wierszy od dołu.
+
+\subsection{Zadania}
+
+\textbf{Zadanie 1:}
+\newline
+Rozwiąż ponizsze równanie liniowe metodą Crouta:
+$$5x_{1}+4x_{2}+x_{3} = 3.4 $$
+$$10x_{1}+9x_{2}+4x_{3} = 8.8 $$
+$$10x_{1}+13x_{2}+15x_{3} = 19.2  $$
+
+\subsection{Rozwiązania}
+
+\textbf{Zadanie 1:}
+
+$$ \mathbf{A} =
+\begin{bmatrix}
+5 & 4 & 1 \\
+10 &9 & 4 \\
+10 & 13 & 15 \\
+\end{bmatrix}
+\ \mathbf{x} =
+\begin{bmatrix}
+x_{1} \\
+x_{2} \\
+x_{3}\\
+\end{bmatrix}
+\ \mathbf{y} =
+\begin{bmatrix}
+3.4 \\
+8.8 \\
+19.2 \\
+\end{bmatrix}$$
+
+Równanie $\mathbf{A} = \mathbf{L} \cdot \mathbf{U}$ 
+$$\begin{bmatrix}
+5 & 4 & 1 \\
+10 &9 & 4 \\
+10 & 13 & 15 \\
+\end{bmatrix} =
+\begin{bmatrix}
+l_{11}      & 0      & 0 \\
+l_{21} & l_{22}      & 0 \\
+l_{31} & l_{32} & l_{33}
+\end{bmatrix}
+\begin{bmatrix}
+1 & u_{12} & u_{13} \\
+0      & 1 &  u_{23} \\
+0      & 0      &  1
+\end{bmatrix}$$
+
+$$\begin{bmatrix}
+5 & 4 & 1 \\
+10 &9 & 4 \\
+10 & 13 & 15 \\
+\end{bmatrix} =
+\begin{bmatrix}
+l_{11} & l_{11}u_{12} & l_{11}u_{13} \\
+l_{21} &l_{11}u_{12} + l_{22} & l_{21}u_{13} + l_{22}u_{23} \\
+l_{31} & l_{31}u_{12} + l_{32} & l_{31}u_{13} + l_{32}u_{23} + l_{33} \\
+\end{bmatrix}$$
+
+$$ l_{11}=5 \quad l_{21}=10 \quad l_{31}=10$$  
+$$ u_{12}=\frac{4}{5} \quad l_{22}=1 \quad l_{32}=5$$
+$$ u_{13}=\frac{1}{5} \quad u_{23}=1 \quad l_{33}=3$$
+
+Równanie $\mathbf{L} \cdot \mathbf{z} = \mathbf{y}:$
+
+$$\begin{bmatrix}
+5 & 0 & 0 \\
+10 &1 & 0 \\
+10 & 5 & 3 \\
+\end{bmatrix}
+\begin{bmatrix}
+z_{1} \\
+z_{2} \\
+z_{3}\\
+\end{bmatrix} = 
+\begin{bmatrix}
+3.4 \\
+8.8 \\
+19.2\\
+\end{bmatrix}$$
+
+$$ 5z_{1} = 3.4 \quad z_{1} = 0.68 $$
+$$ 10z_{1} + z_{2} = 8.8 \quad z_{2} = 2$$
+$$ 10z_{1} + 5z_{2} + 3z_{3}  = 19.2 \quad z_{3} = 0.8$$
+
+$$ \mathbf{z} =
+\begin{bmatrix}
+0.68 \\
+2 \\
+0.8\\
+\end{bmatrix}$$
+
+
+Równanie $\mathbf{U} \cdot \mathbf{x} = \mathbf{z}:$
+
+$$\begin{bmatrix}
+1 & \frac{4}{5} & \frac{1}{5} \\
+0 &1 & 2 \\
+0 & 0 & 1 \\
+\end{bmatrix}
+\begin{bmatrix}
+x_{1} \\
+x_{2} \\
+x_{3}\\
+\end{bmatrix} = 
+\begin{bmatrix}
+0.68 \\
+2 \\
+0.8\\
+\end{bmatrix}$$
+\newline
+{\centering Zaczynamy od dołu macierzy \par}
+$$ x_{3} = 0.8 $$
+$$ x_{2}  + 2x_{3} = 2 \quad x_{2} = 0.4$$
+$$ x_{1} + \frac{4}{5} x_{2} +  \frac{1}{5} x_{3}  = 0.68 \quad z_{1} = 0.2$$
+
+$$ \mathbf{x} =
+\begin{bmatrix}
+0.2 \\
+0.4 \\
+0.8\\
+\end{bmatrix}$$
+
+
+\section{Metoda Choleskiego (Glą)}
+\subsection{Teoria}
+Rozkład Choleskiego jest procedurą rozkładu symetrycznej, dodatnio określonej  macierzy $A$ na iloczyn postaci:
+ $$A=LL^T,$$
+
+gdzie $L$ jest macierz trójkątna|dolną macierzą trójkątną, a $L^T$ jej macierzą transponowaną.
+
+Macierz dowolnego typu można rozłożyć na iloczyn dolnej i górnej macierzy trójkątnej postaci $A=LU$ stosując metodę LU. Jedynie w przypadku macierzy symetrycznych i dodatnio określonych możliwy jest rozkład Choleskiego. Jeśli $A$ jest dodatnio określoną macierzą hermitowską to rozkład Choleskiego ma postać:
+$$A=LL^*.$$
+
+Metoda LU i jak stworzyć macierz dolnotrójkątną $L$ znajduje się w punkcie z metodą Crouta.
+
+Rozpisując iloczyn $A=LL^T,$ otrzymujemy:
+$$\begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{bmatrix}=
+\begin{bmatrix}
+l_{11} & 0 & \cdots & 0 \\
+l_{21} & l_{22} & \cdots & 0 \\
+\vdots & \vdots & \ddots & 0 \\
+l_{n1} & l_{n2} & \cdots & l_{nn}
+\end{bmatrix}
+\begin{bmatrix}
+l_{11} & l_{21} & \cdots & l_{n1} \\
+0 & l_{22} & \cdots & l_{n2} \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & l_{nn}
+\end{bmatrix}$$
+
+Współczynniki macierzy $A$ są zatem równe:
+\begin{align}
+& a_{11} = l_{11}^2 & \rightarrow\ & l_{11} = \sqrt{a_{11}}\\
+& a_{21} = l_{21}l_{11} & \rightarrow\ & l_{21} = \frac{a_{12}}{l_{11}}\\
+& a_{22} = l_{21}^2+l_{22}^2 & \rightarrow\ & l_{22} = \sqrt{a_{22}-l_{21}^2}\\
+& a_{32} = l_{31}l_{21} + l_{32}l_{22} & \rightarrow\ & l_{32} = \frac{a_{23} - l_{31}l_{21}}{l_{22}}\\
+&\dots\end{align}
+
+
+
+W ogólności (dla macierzy rzeczywistych):
+$$l_{ii} = \sqrt{ a_{ii} - \sum_{k=1}^{i-1}l^2_{ik}}, \quad i=1,2,...,n.$$
+$$l_{ji} = \frac{a_{ji} - \sum_{k=1}^{i-1}l_{jk}l_{ik}}{l_{ii}}, \quad j= i+1, i+2, ...,n$$
+Ze względu na to, że $A$ jest dodatnio określona, wyrażenie pod pierwiastkiem jest zawsze dodatnie.
+\newline \newline
+
+Dla wszystkich macierzy:
+$$l_{ii} = \sqrt{ a_{ii} - \sum_{k=1}^{i-1}|l_{ik}|^2}, \quad i=1,2,...,n.$$
+$$l_{ji} = \frac{a_{ji} - \sum_{k=1}^{i-1}l_{jk}l_{ik}^-}{l_{ii}^-}, \quad j= i+1, i+2, ...,n$$
+
+
+
+Powyższe wzory wynikają bezpośrednio z przedstawienia macierzy $A$ jako iloczyn $LL^T$ , a
+następnie iterowania wierszami po kolejnych elementach macierzy $L$.
+Żeby rozwiązać układ równań $Ax = LL^T x = b$ z taką macierzą wystarczy rozwiązać naj-
+pierw układ równań z macierzą dolnotrójkątną Ly = b, a następnie układ równań z macierzą
+górnotrójkątną $L^T x = y$ (liczby sprzężone zastępujemy odpowiednimi liczbami rzeczywisty-
+mi).
+
+
+\subsection{Zadania}
+
+\subsection{Rozwiązania}
+
+\section{Metoda Jacobiego (Wojtek)}
+\subsection{Teoria}
+\textbf{Wstęp}
+[I - to macierz jednostkowa]\newline
+Metoda Jacobiego należy do metod iterayjnych rozwiązywania układu równań liniowych $Ax = b$ Po pewnych przekształceniach i stosowaniu teorii (ponad strona) wychodzi nam $M = I - NA$ Otrzymujemy w ten sposób rodzinę metod iteracyjnych w postaci:
+$$ x^{(i+1)} = (I-NA)x^{(i)} + Nb $$
+która umozliwia wyznaczenie wektora $x'$ rozwiązań układu równań, o ile $p(I-NA)<1$
+\newline Exclimer: $p$ jest promieniem spektralnym macierzy -> jest to największa z wartości własnych macierzy oznaczancyh jako $\lambda$. Wartości własne macierzy to pierwiastki równania charaktersytycznego macierzy. 
+$$w(\lambda) = det(A-\lambda I) = 0$$
+Rozkład macierzy A na L+D+U
+\begin{itemize}
+    \item L(lower) - macierz poddiagonalna
+    \item D(diagonal) - macierz diagonalna
+    \item U(upper) - macierz ponaddiagonalna
+\end{itemize}
+Przykład:
+$$ A \quad = \quad 
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{bmatrix}
+$$
+$$ L \quad = \quad 
+\begin{bmatrix}
+0 & 0 & 0 \\
+4 & 0 & 0 \\
+7 & 8 & 0
+\end{bmatrix} \quad
+D \quad = \quad 
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 5 & 0 \\
+0 & 0 & 9
+\end{bmatrix} \quad
+U \quad = \quad 
+\begin{bmatrix}
+0 & 2 & 3 \\
+0 & 0 & 6 \\
+0 & 0 & 0
+\end{bmatrix}
+$$
+\textbf{Właściwa metoda Jacobiego}\newline
+Jeżeli przyjmiemy, że: $N = D^{-1}$ tj. $M = -D^{-1}(L+U)$, otrzymamy metodę Jackobiego:
+$$ Dx^{(i+1)} = -(L+U)x^{(i)} + b, \quad i = 0, 1, ...$$
+Stosowanie tego wzoru wymaga, by elementy na głównej przekątnej macierzy A były niezerowe (jak są, to poprzestawiać wiersze - nie zmienia to zbieżności).
+Algorytm:
+\begin{itemize}
+    \item spośród kolumn (gdzie w głownej przekątnej jest zero), wybieramy tę, gdzie jest najwieksza liczba zer
+    \item w tej kolumnie wybieramy element o maksymalnym module i przestawiamy wiersze tak, by ten element był na głównej przekątnej, po czym "ustalamy go", czyli pomijamy w dalszych obliczeniach.
+    \item kontynuować do skutku.
+\end{itemize}
+Warunek zbieżności metody Jackobiego:
+$$ p(M_J)=p(-D^{-1}(L+U))<1 $$
+\subsection{Zadania}
+\subsubsection{Zadanie 1}
+Wykazać, że dla macierzy A metoda Jackobiego nie gwarantuje zbieżności przy dowolnie wybranym przybliżeniu początkowym.
+
+$$A \quad = \quad 
+\begin{bmatrix}
+1 & -\frac{1}{2} &  \frac{1}{2} \\
+ 1 & 1 &  1 \\
+ -\frac{1}{2} &  -\frac{1}{2} & 1
+\end{bmatrix}
+$$
+
+
+\subsubsection{Zadanie 2}
+Wykazać, że dla macierzy A metoda Jackobiego jest zbieżna przy dowolnie wybranym elemencie początkowym.
+
+$$A \quad = \quad 
+\begin{bmatrix}
+1 & \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} \\
+ \frac{1}{\sqrt{3}} & 1 &  \frac{1}{\sqrt{3}} \\
+ \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} & 1
+\end{bmatrix}
+$$
+
+
+\subsection{Rozwiązania}
+
+\subsubsection{Zadanie 1}
+$$A \quad = \quad 
+\begin{bmatrix}
+1 & -\frac{1}{2} &  \frac{1}{2} \\
+ 1 & 1 &  1 \\
+ -\frac{1}{2} &  -\frac{1}{2} & 1
+\end{bmatrix}
+$$
+
+$$L \quad = \quad 
+\begin{bmatrix}
+0 & 0 &  0 \\
+ 1 & 0 &  0 \\
+ -\frac{1}{2} &  -\frac{1}{2} & 0
+\end{bmatrix}
+\quad
+D \quad = \quad 
+\begin{bmatrix}
+1 & 0 &  0 \\
+ 0 & 1 &  0 \\
+ 0 &  0 & 1
+\end{bmatrix}
+\quad
+U \quad = \quad 
+\begin{bmatrix}
+0 & -\frac{1}{2} &  \frac{1}{2} \\
+0 & 0 &  1 \\
+ 0 &  0 & 0
+\end{bmatrix}
+$$
+
+$$M_J = -D^{-1}(L+U),\quad M_J\quad = \quad 
+\begin{bmatrix}
+0 & -\frac{1}{2} & \frac{1}{2} \\
+ 1 & 0 &  1 \\
+ -\frac{1}{2} &  -\frac{1}{2} & 0
+\end{bmatrix}
+$$
+
+$$ p(M_J) = det(M_J - \lambda I)<1$$
+
+$$
+\begin{vmatrix}
+-\lambda & -\frac{1}{2} &  \frac{1}{2} \\
+1 & -\lambda &  1 \\
+-\frac{1}{2} &  -\frac{1}{2} & -\lambda
+\end{vmatrix}
+\quad = \quad -\lambda^3 - \frac{5}{4}\lambda
+$$
+
+$$ p(M_J) = max(\lambda) = max(0, \sqrt{\frac{5}{4}},-\sqrt{\frac{5}{4}}) =  \sqrt{\frac{5}{4}} > 1 $$
+Dla tej macierzy metoda Jacobiego nie jest zbieżna przy dowolnym wyborze elementu początkowego.
+\subsubsection{Zadanie 2}
+$$A \quad = \quad 
+\begin{bmatrix}
+1 & \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} \\
+ \frac{1}{\sqrt{3}} & 1 &  \frac{1}{\sqrt{3}} \\
+ \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} & 1
+\end{bmatrix}
+$$
+
+$$L \quad = \quad 
+\begin{bmatrix}
+0 & 0 &  0 \\
+ \frac{1}{\sqrt{3}} & 0 &  0 \\
+ \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} & 0
+\end{bmatrix}
+\quad
+D \quad = \quad 
+\begin{bmatrix}
+1 & 0 &  0 \\
+ 0 & 1 &  0 \\
+ 0 &  0 & 1
+\end{bmatrix}
+\quad
+U \quad = \quad 
+\begin{bmatrix}
+0 & \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} \\
+0 & 0 &  \frac{1}{\sqrt{3}} \\
+ 0 &  0 & 0
+\end{bmatrix}
+$$
+
+$$M_J = -D^{-1}(L+U),\quad M_J\quad = \quad 
+\begin{bmatrix}
+0 & \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} \\
+ \frac{1}{\sqrt{3}} & 0 &  \frac{1}{\sqrt{3}} \\
+ \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} & 0
+\end{bmatrix}
+$$
+
+$$ p(M_J) = det(M_J - \lambda I)<1$$
+
+$$
+\begin{vmatrix}
+-\lambda & \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} \\
+ \frac{1}{\sqrt{3}} & -\lambda &  \frac{1}{\sqrt{3}} \\
+ \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} & -\lambda
+\end{vmatrix}
+\quad = \quad -\lambda^3 + \lambda - \frac{2}{3\sqrt{3}}
+$$
+
+$$ p(M_J) = max(\lambda) = max( \frac{1}{\sqrt{3}},-\frac{2}{\sqrt{3}}) = \frac{1}{\sqrt{3}} <1 $$
+Dla tej meacierzy metoda Jackobiego jest zbieżna.
+
+\section{Metoda Gaussa-Seidla (Wojtek)}
+\subsection{Teoria}
+Jak ktoś nie czytał polecam wstęp teoretyczny z metody Jacobiego, bo nie będę przepisywał, chrońmy drzewa. \newline
+\textbf{Metoda Gaussa-Seidla}\newline
+Jeżeli przyjmiemy, że: $N = (D+L)^{-1}$, tj. $M = -(D+L)^{-1}U$, otrzymamy metodę Gaussa-Seidla:
+$$ Dx^{(i+1)} = -Lx^{(i+1)} - Ux^{(i)} + b,\quad i=0,1,...$$
+Warunek zbieżności metody Gaussa-Seidla:
+$$ p(M_{GS}) = p(-(D+L)^{-1}U) <1 $$
+
+\textbf{Która metoda jest szybciej zbieżna}\newline
+Jeżeli: $$ 0<p(M_J)<1$$
+to $$ p(M_{GS}) < p(M_J) $$
+Innymi słowy: Jeżeli metoda Jacobiego jest zbieżna i promień spektralny jej macierzy M jest dodatni, to metoda Gaussa-Seidla jest asymptotycznie szybciej zbieżna.
+Zauważmy, że powyższe twierdzenie nie rozstrzyga, która metoda jest lepsza (szybciej zbieżna, o ile w ogóle jest zbieżna) w przypadku, gdy promień spektralny macierzy M w metodzie Jacobiego jest równy 0.
+
+
+\subsection{Zadania}
+
+\subsubsection{Zadanie 1} 
+Dla jakich wartości $\alpha$ układ równań można rozwiązać metodą Gaussa-Seidla?
+$$x_1 + x_2 + x_3 = 1, $$
+$$ \alpha x_3 = 0, $$
+$$ \alpha x_2 + x_3 = 0 $$
+
+\subsubsection{Zadanie 2}
+Zbadać zbieżność macierzy A metoda Gaussa-Seidla.
+
+$$A \quad = \quad 
+\begin{bmatrix}
+1 & \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} \\
+ \frac{1}{\sqrt{3}} & 1 &  \frac{1}{\sqrt{3}} \\
+ \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} & 1
+\end{bmatrix}
+$$
+\subsection{Rozwiązania}
+
+\subsubsection{Zadanie 1} 
+Uwaga, obliczenia wymagają sprawdzenia, przez kogoś, kto sie zna na rachunku macierzowym //Wojtek
+$$A \quad = \quad 
+\begin{bmatrix}
+1 & 1 &  1 \\
+ 0 & 0 &  \alpha \\
+ 0 &  \alpha & 1
+\end{bmatrix}
+\quad = \quad
+\begin{bmatrix}
+1 & 1 &  1 \\
+0 &  \alpha & 1  \\
+ 0 & 0 &  \alpha
+\end{bmatrix}
+$$
+
+$$L \quad = \quad 
+\begin{bmatrix}
+0 & 0 &  0 \\
+ 0 & 0 &  0 \\
+ 0 &  0 & 0
+\end{bmatrix}
+\quad
+D \quad = \quad 
+\begin{bmatrix}
+1 & 0 &  0 \\
+ 0 & \alpha &  0 \\
+ 0 &  0 & \alpha
+\end{bmatrix}
+\quad
+U \quad = \quad 
+\begin{bmatrix}
+0 & 1 & 1 \\
+0 & 0 &  1 \\
+ 0 &  0 & 0
+\end{bmatrix}
+$$
+
+$$M_{GS} = -(D+L)^{-1}U,\quad M_{GS}\quad = \quad -
+\begin{bmatrix}
+1 & 0 & 0 \\
+ 0 & \alpha & 0 \\
+ 0 &  0 & \alpha
+\end{bmatrix}
+^{-1} *
+\begin{bmatrix}
+0 & 1 & 1 \\
+0 & 0 &  1 \\
+ 0 &  0 & 0
+\end{bmatrix}
+$$
+
+$$ -
+\begin{bmatrix}
+1 & 0 & 0 \\
+ 0 & \frac{1}{\alpha} & 0 \\
+ 0 &  0 & \frac{1}{\alpha}
+\end{bmatrix}
+*
+\begin{bmatrix}
+0 & 1 & 1 \\
+0 & 0 &  1 \\
+ 0 &  0 & 0
+\end{bmatrix}
+\quad = \quad -
+\begin{bmatrix}
+0 & 1 & 1 \\
+0 & 0 &  \frac{1}{\alpha} \\
+ 0 &  0 & 0
+\end{bmatrix}
+$$
+
+
+$$ p(M_{GS}) = det(M_{GS} - \lambda I)<1$$
+
+$$ -
+\begin{vmatrix}
+-\lambda & 1 &  1 \\
+ 0 & -\lambda &  \frac{1}{\alpha} \\
+ 0 &  0 & -\lambda
+\end{vmatrix}
+\quad = \quad \lambda^3
+$$
+
+$$ p(M_J) = max(\lambda) =0  <1,
+\quad \alpha \neq 0 $$
+Podany układ równań można rozwiązać metodą Gaussa-Seidla gdy $\alpha \neq 0 $
+\subsubsection{Zadanie 2} 
+$$A \quad = \quad 
+\begin{bmatrix}
+1 & \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} \\
+ \frac{1}{\sqrt{3}} & 1 &  \frac{1}{\sqrt{3}} \\
+ \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} & 1
+\end{bmatrix}
+$$
+
+$$L \quad = \quad 
+\begin{bmatrix}
+0 & 0 &  0 \\
+ \frac{1}{\sqrt{3}} & 0 &  0 \\
+ \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} & 0
+\end{bmatrix}
+\quad
+D \quad = \quad 
+\begin{bmatrix}
+1 & 0 &  0 \\
+ 0 & 1 &  0 \\
+ 0 &  0 & 1
+\end{bmatrix}
+\quad
+U \quad = \quad 
+\begin{bmatrix}
+0 & \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} \\
+0 & 0 &  \frac{1}{\sqrt{3}} \\
+ 0 &  0 & 0
+\end{bmatrix}
+$$
+No i tu koniec łatwych rzeczy xDDD (rak macierzowy)
+$$M_{GS} = 
+\begin{bmatrix}
+1 & 0 &  0 \\
+ \frac{1}{\sqrt{3}} & 1 &  0 \\
+ \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} & 1
+\end{bmatrix}^{-1} * 
+\begin{bmatrix}
+0 & \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} \\
+0 & 0 &  \frac{1}{\sqrt{3}} \\
+ 0 &  0 & 0
+\end{bmatrix}
+$$
+Na szczęście tu jest wolfram (policzyłem to ręcznie, ale umarłem na liczeniu wielomianu charakterystycznego, jak będzie taka macierz, to nie ma co czasu tracić, tylko Jakobim)
+$$
+M_{GS} = 
+\begin{bmatrix}
+0 & \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} \\
+ 0 & -\frac{1}{3} & -\frac{1}{3}+\frac{1}{\sqrt{3}} \\
+ 0 &  -\frac{1}{3} + \frac{1}{3\sqrt{3}} & -\frac{2}{3} + \frac{1}{3\sqrt{3}}
+\end{bmatrix}
+$$
+Wielomian charakterystyczny:
+$$ \lambda(-\lambda^2 +\frac{\sqrt{3}-9}{9} \lambda - \frac{\sqrt{3}}{9}) $$
+Jak widać wielomian ma tylko jedno miejsce zerowe (w dziedzinie liczb rzeczywistych) w $\lambda = 0$, i to jest nasz promień spektralny macierzy. Wiedząc, że 0<1 stwierdzamy że możemy użyć metody Gaussa-Seidla.
+\section{Metoda połowienia}
+\subsection{Teoria}
+Metoda połowienie a.k.a. bisekcja służy do znajdywania miejsc zerowych wielomianu.
+\newline
+Załóżmy że mamy funkcję ciągłą w przedziale $[a,b]$ , wewnętrz którego znajduje się dokładnie jeden pierwiastek, a na jego końcach funkcja przyjmuje przeciwne znaki, tj. $f(a)*f(b)<0$.Wtedy, w takim przediale funkcja musi mieć miejsce zerowe.
+W celu znalezienia przybliżonej wartości pierwiastka, dzielimy przedział $[a,b]$, na połowy, punktem 
+$$ x^{(1)} = \frac{a+b}{2} $$
+
+Jeśli $f(x^{(1)}) = 0$ to $x^{(1)}$ jest miejscem zerowym. W przeciwnym wypadku rozważamy dwa przedziały $[a,x^{(1)}]$ i $[x^{(1)},b]$. Wybieramy ten, na którego końcach funkcja przyjmuje przeciwne znaki.
+Całość przetwarzamy rekurencyjnie.
+
+Po pewnej liczbie kroków otrzymamy: dokłądny pierwiastek, albo ciąg przedziałów, takich że wartość funkcji z ich końców jest przeciwnych znaków.
+$$f(x^{(i)}),f(x^{(i+1)})<0$$
+No i to by było fajnie gdyby nie to: 
+\begin{quote}
+    Ponieważ lewe końce ciągu przedziałów tworzą ciąg niemalejący i ograniczony z góry, a prawe końce – ciąg nierosnący i ograniczony z dołu, więc z zależności (5.2) wynika, że istnieje ich wspólna granica, która jest szukanym pierwiastkiem.
+\end{quote}
+Wzór 5.2: $$|x^{(i+1)} - x^{(i)}| = \frac{1}{2^i}(b-a)$$
+
+Wzór 5.2 ma jedno bardo ważne zastosowanie - jego lewa strona to szerokość przedziału. W zadaniach jest nam potrzebne, że szerokość przedziału można zamienić z dokładnością metody, dzięki czemu możemy policzyć liczbę przebiegów(kroków) algorytmu bisekcji.
+
+\subsection{Zadania}
+
+    \subsubsection*{Zadanie 1} Równanie $x^2 - 2 = 0$ ma pierwiastki. Ile iteracji należy wykonać w metodzie połowienia, aby startując z przedziału $[1, 2]$ obliczyć pierwiastek z dokładnością do czterech miejsc dziesiętnych? Jaki jest maksymalny błąd po tej liczbie iteracji?
+    \subsubsection*{Zadanie 2} Pokazać że równanie ma $sin x + x -1 = 0$ pierwiastek w przedziale $[0, 1]$. Ile iteracji trzeba wykonć, aby metodą połowienia otrzymać przybliżoną wartość pierwiastka z błędem nie przekraczającym $0,5 *10^{-4}$ ?
+    \subsubsection*{Zadanie 3} 3. Ile iteracji należy wykonać, aby metodą połowienia znaleźć pierwiastek równania $x^3-x-1 = 0$ z dokladnością $10^{-4}$ , który leży w przedziale [1, 2]?
+
+\subsection{Rozwiązania}
+\subsubsection*{Zadanie 1}
+No to jedziemy: 
+$$\epsilon = 10^{-4},\quad \frac{b-a}{2^i}<\epsilon ,\quad [a,b]=[1,2]$$
+$$ \frac{2-1}{2^i} < 10^{-4}$$
+$$ 2^{-i} < 10^{-4}, \quad 2^i>10^4$$
+$$ log_2 10^4 < log_2 2^i , \quad 4log_2 10^4 < i$$
+$$ 4\frac{log_{10}10}{log_{10}2}<i $$
+$$ \frac{4}{log_{10}2}<i $$
+Loguś który się ostał jest wartością tablicową i ostatecznie wychodzi nam: 
+$$ i>13,29 ,\quad i = 14$$
+Jeszcze tylko obliczamy maksymalny błąd ze wzoru:
+$$ \frac{b-a}{2^i} = 2^{-14}$$
+
+\subsubsection*{Zadanie 2}
+1. Sprawdzamy wartości funkcji na końcach przedziału
+$$f(0) = sin(0) + 0 - 1 = -1, \quad sin(1) +1 -1 = sin(1)>0 $$
+Są róznych znaków więc w tym przedziale jest rozwiązanie \newline
+2. Sprawdzamy czy funkcja jest ciągła -> tak jest ciągła
+\newline Wszystko działa
+\newline Ile iteracji wykonać: generalnie prawie taki sam przykład jak w zadaniu 1, tylko musimy uwzględnić dodatkowe 0,5
+$$\epsilon = 0,5*10^{-4},\quad \frac{b-a}{2^i}<\epsilon ,\quad [a,b]=[0,1]$$
+Nie będę bez sensu przepisywał reszty :)
+\subsubsection*{Zadanie 3}
+Wszystko podobnie jak w poprzednich zadaniach, sprowadza się do wznaczenia warunków:
+$$\epsilon = 10^{-4},\quad \frac{b-a}{2^i}<\epsilon ,\quad [a,b]=[1,2]$$
+(przez przypadek są takie same jak w zadaniu 1)
+
+\section{Regula falsi}
+\subsection{Teoria}
+Algorytm rozwiązywanie równań nieliniowych jednej zmiennej.
+\newline
+Ograniczenia: \newline
+1. W przedziale [a, b] znajduje się dokładnie jeden pierwiastek. \newline
+2. Na końcach przedziałów funkcja ma przeciwne znaki f(a)f(b)<0. \newline
+3. Istnieje pierwsza i druga pochodna funkcji. \newline
+4. Pierwsza i druga pochodna mają w tym przedziale stałe znaki \newline
+\newline
+Przy tych założeniach wykres może mieć jedną z czterech postaci: \newline
+a) malejąca wypukła \newline
+b) rosnąca wypukła \newline
+c) malejąca wklęsła \newline
+d) rozsnąca wklęsła \newline
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=120mm]{falsi2.jpg}
+\end{figure} 
+
+\subsection{Zadania}
+\subsubsection*{Zadanie 1}
+Rozpatrzmy zadanie, gdy $f'(x), f''(x) > 0$ dla $x \in [a, b]$
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{falsi.jpg}
+\end{figure} 
+
+\subsubsection*{Zadanie 2}
+Stosując metodę reguła falsi znaleźć z dokładnością do dwóch miejsc dziesiętnych pierwiastek równania
+$$ x^3+x^2-3x-3=0$$
+leżący w przedziale [1, 2]
+\subsection{Rozwiązania}
+\subsubsection*{Zadanie 1}
+1. Przez punkty  A(a, f(a)) i B(b, f(b)) prowadzimy cięciwę o równaniu: $y-f(a) = \frac{f(b)-f(a)}{b-a}(x-a)$ \newline
+Stąd $$x^{(1)} = a - \frac{f(a)}{f(b)-f(a)}(b-a)$$ 
+\newline
+2. Jeśli $f(x^{(1)}) = 0$ to $x^{(1)}$ jest szukanym pierwiastkiem. \newline
+3. Jeśli $f(x^{(1)}) \neq 0$ to przez punkt C($x^{(1)}$, $f(x^{(1)})$) oraz  ten z punktów A i B, którego rzędna ma przeciwny znak niż  $f(x^{(1)})$ prowadzimy następną cięciwę. 
+
+\subsubsection*{Zadanie 2}
+1. Funkcja spełnia ograniczenia: \newline
+- pierwiastki funkcji to $-1$, $-\sqrt[2]{3}$, $\sqrt[2]{3}$, funkcja ma dokładnie jeden pierwiastek w przedziale [1, 2] \newline
+- wartości funkcji na końcach przedziałów f(1)= -4; f(2)=3 z czego wynika f(1)f(2)<0 \newline
+- istnieje pierwsza i druga pochodna funkcji
+$f'(x) = 3x^2+2x-3$ oraz $f''(x)=6x+2$ \newline
+- pierwsza i druga pochodna mają na tym przedziale dodatnie znaki \newline
+
+2. Wyznaczamy punkty A(1, -4), B(2, 3), $$x^{(1)} = 1 - \frac{-4}{3-(-4)}(2-1)$$
+$x^{(1)} = \frac{11}{7}$; $f(x^{(1)})=-\frac{468}{343}$
+\newline
+\newline
+3. Wyznaczamy punkt C($\frac{11}{7}$, $-\frac{468}{343}$). Prowadzimy między punktami C i B.
+$$x^{(2)} = \frac{11}{7} - \frac{-\frac{468}{343}}{3-(-\frac{468}{343})}(2-\frac{11}{7})$$ \newline
+$x^{(2)} =1.705$, $f(x^{(2)})=-0.251$
+\newline \newline
+4. Wyznaczamy punkt D(1.705, -0.251). Prowadzimy styczną przez punkt D i B.
+$$x^{(3)} = 1.705 - \frac{-0.251}{3-(-0.251)}(2-1.705)$$ \newline
+$x^{(3)} =1.728$, $f(x^{(3)})=-0.038$
+\newline \newline
+5. Wyznaczamy punkt E(1.728, -0.038). Prowadzimy styczną przez punkt E i B.
+$$x^{(4)} = 1.728 - \frac{-0.038}{3-(-0.038)}(2-1.728)$$ \newline
+$x^{(4)} =1.731$, $f(x^{(4)})=0$
+\newline \newline
+6. Znaleźliśmy pierwiastek w przedziale [1, 2], w zaokrągleniu do drugiego miejsca dziesiętnego $x^{(0)} =1.73$
+\section{Reguła falsi - rekurencyjnie}
+$$x^{(0)} = a$$
+$$x^{(i+1)} = x^{(i)} - \frac{f(x^{(i)})}{f(b)-f(x^{(i)})}(b-x^{(i)})$$
+i=0,1,2,... \newline
+Ciąg jest rosnący i ograniczony, a więc zbieżny, jego granicą jest szukany pierwiastek $\xi$. W rozpatrywanym przypadku kolejne wyrazy ciągu są mniejsze od dokładnego pierwiastka $\xi$  oraz $f(x^{(i)}) < 0$ dla każdego i. 
+\newline
+Wadą metody jest stosunkowa wolna zbieżność. 
+
+
+\section{Metoda siecznych}
+\subsection{Teoria}
+Polepszona reguła falsi.\newline
+Metodę reguła falsi można polepszyć rezygnująć z żądania by funkcja f miała w punktach wytyczających następną cięciwę róźne znaki.\newline
+Wzór:
+$$x^{(i+1)} = x^{(i)} - \frac{f(x^{(i)})}{f(x^{(i)})-f(x^{(i-1)})}(x^{(i)}-x^{(i-1)})  \hspace{2cm} i=1,2,...$$ 
+Wymagane są dwa punkty początkowe: \newline
+$x^{(0)} = a$ \newline
+$x^{(1)} = b$ \newline
+Zbieżność metody jest znacznie szybsza niż metody falsi. Ale może się zdażyć, że nie będzie ona zbieżna np. gdy początkowe przybliżenia nie leżą dostatecznie blisko rozwiązania.
+
+\section{Metoda Newtona-Raphsona}
+\subsection{Teoria}
+Metoda służy do wyznaczenie przybliżonej wartości pierwiastka funkcji. \newline
+Przyjmujemy następujące założenia dla funkcji: \newline
+1. W przedziale [a, b] znajduje się dokładnie jeden pierwiastek. \newline
+2. Na końcach przedziałów funkcja ma przeciwne znaki f(a)f(b)<0. \newline
+3. Istnieje pierwsza i druga pochodna funkcji. \newline
+4. Pierwsza i druga pochodna mają w tym przedziale stałe znaki \newline
+\newline
+Załóżmy, że $\xi$ oznacza pierwiastek funkcji f. Funkcja ta w pewnym otoczeniu $U(\xi)$ jest dostatecznie wiele razy róźniczkowalna. Ze wzoru Taylora otrzymujemy rozwinięcie funkcji f wokół punktu $x^{(0)} \in U(\xi)$. Pomijając wyrazy rzędu $(\xi - x^{(0)})^p $ dla wszystkich p>2, otrzymujemy równanie:
+$$ 0= f(x^{(0)}) + (\overline{\xi}-x^{(0)})f'(x^{(0)})$$ \newline
+Stąd 
+$$ \overline{\xi}= x^{(0)} + \frac{f(x^{(0)})}{f'(x^{(0)})}$$ \newline
+Co prowadzi do 
+$$ x^{(i+1)}= x^{(i)} - \frac{f(x^{(i)})}{f'(x^{(i)})}$$
+\subsubsection*{Graficzna interpretacja}
+1. W danym punkcie $x^{(0)}$ wykreślamy styczną do krzywej f(x) (tanges kąta nachylenia $\alpha$ tej stycznej jest równy $f'(x^{(0)})$ ). \newline
+2. Punkt przecięcai stycznej z osią OX wyznacza $x^{(1)}$.
+
+\subsection{Zadania}
+Stosując metodę reguła Newtona znaleźć z dokładnością do dwóch miejsc dziesiętnych pierwiastek równania
+$$ x^3+x^2-3x-3=0$$
+przyjąć $x^{(0)}=2$
+
+\subsection{Rozwiązania}
+1. Funcja spełnia założenia (sprawdziliśmy to już w regule falsi - bo to ta sama funkcja i te same założeia). \newline
+2. $$ x^{(1)}= 2 - \frac{3}{13}$$ \newline
+$x^{(1)}= 1.77$; $f(x^{(1)})=0.37$\newline
+3. $$ x^{(2)}= 1.77 - \frac{0.37}{9.94}$$ 
+$x^{(2)}=1.73$;  $f(x^{(2)})=-0.02$\newline
+4. W przybliżeniu pierwiastek wielomianu wynosi 1.73.
+
+\section{Twierdzenia Sturma (Martyna)}
+\subsection{Teoria}
+
+\subsection{Zadania}
+
+\subsection{Rozwiązania}
+
+\section{Operacje numeryczne na macierzach (Michał)}
+\subsection{Teoria}
+W obliczeniach na komputerze, normalne metody liczenia wyznaczników nie są użycteczne. Zamiast tego stosujemy tzw. rozkład $LU$ macierzy, w którym rozkładamy macierz $A = L\cdot U$ stosując np. metodę eliminacji Gaussa.\\
+Macierz $L$ to macierz dolnotrójkątna o jednostkowej głównej przekątnej (czyli $det(L)=1$)\\
+Macierz $U$ to macierz górnotrójkątna.\\
+
+
+\subsection{Zadania}
+
+\subsection{Rozwiązania}
+
+\newpage
+\tableofcontents
+\end{document}
+
