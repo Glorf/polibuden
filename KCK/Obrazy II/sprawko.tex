@@ -1,0 +1,249 @@
+\documentclass[polish,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,amsthm}
+\usepackage[english,main=polish]{babel}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{float}
+\usepackage{etoolbox}
+\usepackage{pgfplots}
+\usepackage{enumerate}
+\patchcmd{\thebibliography}{\section*}{\section}{}{}
+
+\selectlanguage{polish}
+\title{Lab4}
+\newgeometry{tmargin=3cm, bmargin=3cm, lmargin=2cm, rmargin=2cm}
+
+\newcommand{\PRzFieldDsc}[1]{\sffamily\bfseries\scriptsize #1}
+\newcommand{\PRzFieldCnt}[1]{\textit{#1}}
+\newcommand{\PRzHeading}[8]{
+\begin{center}
+\begin{tabular}{ p{0.32\textwidth} p{0.15\textwidth} p{0.15\textwidth} p{0.12\textwidth} p{0.12\textwidth} }
+
+  &   &   &   &   \\
+\hline
+\multicolumn{5}{|c|}{}\\[-1ex]
+\multicolumn{5}{|c|}{{\LARGE #1}}\\
+\multicolumn{5}{|c|}{}\\[-1ex]
+
+\hline
+\multicolumn{2}{|l|}{\PRzFieldDsc{Kierunek}}		& \multicolumn{1}{|l|}{\PRzFieldDsc{Rok studiów}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Grupa}} \\
+\multicolumn{2}{|c|}{\PRzFieldCnt{#2}}				& \multicolumn{1}{|c|}{\PRzFieldCnt{#4}}		& \multicolumn{2}{|c|}{\PRzFieldCnt{#5}} \\
+
+\hline
+\multicolumn{3}{|l|}{\PRzFieldDsc{}}		& \multicolumn{2}{|l|}{\PRzFieldDsc{Data oddania}} \\
+\multicolumn{3}{|c|}{\PRzFieldCnt{#6}}				& \multicolumn{2}{|c|}{\PRzFieldCnt{#7}} \\
+
+\hline
+\multicolumn{5}{|l|}{\PRzFieldDsc{Imiona, nazwiska, numery indeksu}}\\
+\multicolumn{5}{|c|}{\PRzFieldCnt{#8}}\\
+
+
+
+\hline
+\end{tabular}
+\end{center}
+}
+\pgfplotsset{compat=1.14}
+\begin{document}
+\PRzHeading{Komunikacja człowiek-komputer}{Informatyka}{--}{III}{I2 piątek 9.45-11.15}{Obrazy II}{23.11.2018}{Martyna Maciejewska(132273), Michał Bień (132191), Mikołaj Wolicki (132344)}{}
+
+
+\section{Wstęp}
+Celem projektu było zaimplementowanie metod rozpoznawania symboli z kości do gry 'Story Cubes'. W trakcie prac, ze względu na fakt, iż większość przetestowanych przez nas metod nie okazała się zadowalająca, projekt stał się raczej przeglądem metod rozpoznawania obrazów - głównie z wykorzystaniem biblioteki OpenCV
+
+\section{Template matching}
+Template matching to metoda wyszukiwania i znajdowania położenia szablonu w większym obrazie. Działanie metody polega na przesuwaniu szablonu nad obrazem i porównywaniu obu fragmentów. Funkcja zwraca obraz w skali szarości, gdzie każdy piksel oznacza jak bardzo sąsiedztwo tego piksela pasuje do szablonu\cite{matching}.
+\begin{figure}[H]
+\centering
+\includegraphics[width=50mm]{image4.jpg}
+\end{figure}
+\section{ORB, SIFT, SURF z wykorzystaniem FLANN}
+FLANN oznacza Fast Library for Approximate Nearest Neighbors. Zawiera zbiór algorytmów zoptymalizowanych pod kątem szybkiego wyszukiwania najbliższego sąsiada w dużych zbiorach danych  i funkcji o dużych wymiarach. 
+Metody ORB, SIFT oraz SURF wykorzystuje się do znajdowania punktów szczególnych na obrazach. 
+\subsection{Metoda ORB}
+ORB jest rozszerzeniem algorytmu BRIFF\cite{brief}. Wprowadzono w nim niezmienność wobec rotacji. Na podstawie silnych zmian orientacji wybiera się dobry wzorzec. Detektor oblicza jakość narożników metodą Harrisa w celu uporządkowania punktów charakterystycznych\cite{keypoint}.
+\newline
+\newline
+Dla obrazu z kamerki i wzorca kostki znaleziono 11 wspólnych punktów szczególnych. 
+\begin{figure}[H]
+\centering
+\includegraphics[width=120mm]{ORB.jpg}
+\end{figure}
+\newpage
+\subsection{Metoda SURF}
+Algorytm SURF jest znany jako bardziej wydajny zamiennik algorytmu SIFT. Jego detektor jest oparty o Hessian, a deskryptor o położenie i rozmieszczenie punktów. Sposób działania deskryptora: najpierw punktowi kluczowemu przypisuje się orentację. Następnie dookoła punktu budowany jest kwadratowy obszar. Potem obszar ten jest rotowany zgodnie z wyznaczoną orientacją dla punktu. Region jest podzielony na mniejsze regiony o wymiarach 4x4. Dzięki temu zachowujemy istotne przestrzenne informacje. Algorytm SURF jest mniej odporny, jednak znacznie szybszy niż algorytm SIFT\cite{keypoint}.
+\newline
+\newline
+Dla obrazu z kamerki i wzorca kostki znaleziono 64 wspólnych punktów szczególnych. 
+\begin{figure}[H]
+\centering
+\includegraphics[width=120mm]{SURF.jpg}
+\end{figure} 
+\newpage
+\subsection{Metoda SIFT}
+SIFT (Scale Invariant Feature Transform) algorytm opiera się na wykrywaniu ekstremów w przestrzeni skali. Punkty mogące być kluczowymi wykrywane są za pomocą algorytmu, a następnie sprawdzane pod względem niezależności przekształceń\cite{sift}. Najpierw są lokalizowane w obrazie oraz w konkretnej skali w taki sposób, aby mogły być identycznie umiejscowione w innym widoku tego samego obiektu. Następnie przy wykorzystaniu ciągłej przestrzeni skali, znajdowane są punkty nie wrażliwe na zmianę skali poprzez wyszukiwanie cech stabilnych we wszystkich możliwych skalach\cite{keypoint}. 
+\newline
+\newline
+Dla obrazu z kamerki i wzorca kostki algorytm SIFT znalezł 27 wspólnych punktów szczególnych. 
+\begin{figure}[H]
+\centering
+\includegraphics[width=120mm]{SIFT.jpg}
+\end{figure} 
+\subsection{Wnioski}
+Metoda ORB znalazła najmniej wspólnych punktów. Metoda SURF najwięcej, jednak część zaznaczonych punktów znajduje się poza kostką.  
+\newline
+\newline
+Sposób przeprowadzenia testów: 
+10 obrazków, każdy pokazany do kamerki dwa razy.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|} 
+\hline
+metoda & \% skuteczności \\
+\hline
+ORB & 35\%\\
+\hline
+SIFT & 60\% \\
+\hline
+SURF & 50\% \\
+\hline
+\end{tabular}
+\caption{Procent skuteczności metod po przeprowadzeniu testów.}
+\end{table}
+
+\section{Konwolucyjna sieć neuronowa typu YOLOv3}
+\subsection{Użyte rozwiązanie}
+Jako o ostatnią deskę ratunku, pokusiliśmy się o próbę zastosowania głębokiej konwolucyjnej sieci neuronowej\cite{conv} najnowszej generacji\cite{yolo3}, używanej powszechnie do klasyfikowania obiektów - YOLOv3\cite{yolo}. Użyte przez nas rozwiązanie ze względów wydajnościowych (obraz miał być przetwarzany płynnie na laptopie ze zintegrowaną grafiką Intela) różni się od poniższej ,,pełnej sieci". Użyliśmy sieci YOLOv3-tiny, z wstępnie trenowanymi wagami, by z wykorzystaniem transfer learning\cite{transfer} nauczyć ją rozpoznawania zadanych przez nas obiektów.\\
+Wykorzystany, wykonany przez nas i ręcznie anotowany zbiór danych zawierał 840 zdjęć kostek w różnych pozycjach, konfiguracjach i przy zmiennym oświetleniu. Jako że nie mieliśmy ochoty generować ogromnych zbiorów danych, zdecydowaliśmy się na detekcję 4 klas obiektów (na każdą klasę przypadało około 200 zdjęć).
+\begin{figure}[H]
+\centering
+\includegraphics[width=120mm]{YOLOv3-arch.png}
+\caption{Architektura sieci}
+\end{figure} 
+
+\subsection{Przetwarzanie danych}
+Sieć została wytrenowana z wykorzystaniem karty graficznej Geforce GTX 650Ti BOOST, która przetwarzała tensory naszej sieci z wykorzystaniem bibliotek CUDA 10 i CUDnn 7.3\\
+Wykorzystany przez nas model, trenowany był z wykorzystaniem frameworku darknet\cite{darknet} - autorskiego frameworku twórców sieci YOLO. Karta graficzna była w stanie trenować tę konfigurację z prędkością ok 550 iteracji na godzinę. Jak nietrudno więc wyliczyć, trening w pełni przystosowanej do nowego zadania sieci (a za taką autorzy uważają sieć o $(2000\cdot \text{liczba klas})$ iteracjach), zajął zawrotne 15 godzin!\\
+Ostatecznie okazało się jednak, że nasz model ucierpiał z powodu przeuczenia na zbyt małym zbiorze danych - overfittingu. W efekcie najlepszym zapisanym modelem okazał się ten przy 3900. iteracji. Ze względu na różne kształty obrazków, a także różne jakości zbiorów danych i anotacji (każdy robił jeden obrazek), wyniki detekcji różnych klas różniły się znacząco od siebie. 
+
+\subsection{Rezultaty testowania metody YOLO}
+Do uruchomienia wytrenowanej sieci dla testów posłużyliśmy się biblioteką OpenCV 3.3, która zawiera moduł dnn, jak również masę przykładów, z których jeden w całości spełniał nasze oczekiwania.
+Wysiłek włożony w przygotowanie datasetu i obliczenia opłaciły się - metoda YOLO rozpoznaje zadane obiekty o wiele precyzyjniej niż jakakolwiek inna z testowanych przez nas metod. Co więcej - spełnia założenia programowe, wykonując się na laptopie z grafiką intela z prędkością 15 klatek na sekundę.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=120mm]{zarowka.png}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=120mm]{dymek.png}
+\end{figure}
+
+Aby uzyskać miarodajny wynik, przeprowadziliśmy test dla każdej z 4 wyuczonych klas. Kostka była pokazywana 20 razy w różnych konfiguracjach, za każdym razem z minimalnym progiem pewności równym 0.4, aby wykluczyć błędy pomiarowe. Procentowy wynik wykrywalności każdej z klas wyniósł odpowiednio:
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|} 
+\hline
+klasa & \% skuteczności \\
+\hline
+,,dymek" & 95\%\\
+\hline
+,,żarówka" & 90\% \\
+\hline
+,,różdżka" & 70\% \\
+\hline
+,,spadochron" & 5\% \\
+\hline
+\end{tabular}
+\caption{Procent skuteczności metody YOLO dla każdej z klas}
+\end{table}
+
+Słaba wykrywalność spadochronu wyniknęła zapewne z mniej dokładnego zaanotowania danych, lub niesprzyjających uczeniu sieci parametrów zdjęć. Tym niemniej, biorąc spadochron pod uwagę, otrzymujemy wciąż imponujący wynik 65\% skuteczności. Bez spadochronu to aż 85\%! Słowem - choć wytrenowanie sieci wymaga wiele czasu i dużych ilości danych, to jej skuteczność jest dużo większa niż ,,klasycznych" metod.
+
+\section{Podsumowanie}
+Po opisaniu części algorytmów wykrywania obrazu, poniżej krótkie podsumowanie wad i zalet każdej z metod.
+
+\subsection{SURF}
+\subsection{Zalety}
+\begin{itemize}
+  \item Szybszy od SIFT
+  \item Większa odporność na skalowanie
+  \item Nie musi uczyć się rozpoznawania obiektu
+\end{itemize}
+\subsection{Wady}
+\begin{itemize}
+  \item Chroniony patentem
+  \item Wolny w porównaniu do innych algorytmów
+\end{itemize}
+
+\subsection{SIFT}
+\subsection{Zalety}
+\begin{itemize}
+  \item Dokładność wyszukiwania
+  \item Działa dla rotacji i skalowania
+  \item Odporny na ,,nieład" na analizowanym obrazie
+  \item Nie musi uczyć się rozpoznawania obiektu
+\end{itemize}
+
+\subsection{Wady}
+\begin{itemize}
+  \item Wolny w porównaniu do innych algorytmów
+  \item Brak odporności na zmienne oświetlenie
+  \item Skomplikowany obliczeniowo
+\end{itemize}
+
+\subsection{ORB}
+\subsection{Zalety}
+\begin{itemize}
+  \item Szybkość działania
+  \item Łatwo dostępny - niechroniony patentem
+  \item Nie musi uczyć się rozpoznawania obiektu
+\end{itemize}
+
+\subsection{Wady}
+\begin{itemize}
+  \item Mniejsza odporność na rotację
+  \item Znajduje najmniej punktów wspólnych
+\end{itemize}
+
+
+\subsection{Sieć neuronowa YOLO}
+\subsection{Zalety}
+\begin{itemize}
+  \item Zdolność samonauki
+  \item Zdolność uogólniania zdobytej wiedzy
+\end{itemize}
+
+\subsection{Wady}
+\begin{itemize}
+  \item Konieczność zrobienia dużej ilości zdjęć w celu nauczenia
+  \item Niebezpieczeństwo przetrenowania lub niedouczenia sieci
+  \item Mało precyzyjne przy podobnych obiektach
+\end{itemize}
+
+\newpage
+\begin{thebibliography}{5}
+\bibitem{matching} L. Cole, D.Austin, L.Cole, \emph{Visual Object Recognition using Template Matching}, Australian National University
+\bibitem{keypoint} P. Guzik, \emph{Metody wyszukiwania punktów charakterystycznych i wyznaczania ich cech}, Politechnika Warszawska, 2014
+\bibitem{sift} David G. Lowe, \emph{Distinctive Image Features from Scale-Invariant Keypoint}, Computer Science Department University of British Columbia, January 2004
+\bibitem{brief} M. Calonder, V. Lepetit, \emph{BRIEF: Binary Robust Independent Elementary Features}, Switzerland, 2011
+\bibitem{conv} Yann LeCun et al., \emph{Gradient Based Learning Applied to Document Recognition}, Proc. of IEEE, November 1998
+\bibitem{yolo} J. Redmon, S. Divvala, R. Girshick, A. Farhadi, \emph{You Only Look Once: Unified, Real-Time Object Detection}
+\bibitem{yolo3} J. Redmon, A. Farhadi, \emph{YOLOv3: An Incremental Improvement}, University of Washington
+\bibitem{transfer} C. Tan et al., \emph{A Survey on Deep Transfer Learning}, ICANN 2018
+\bibitem{darknet} J. Redmon, \emph{Darknet: Open Source Neural Networks in C}
+\end{thebibliography}
+
+\newpage
+\tableofcontents{}
+
+\end{document}
+
