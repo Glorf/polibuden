@@ -1,0 +1,24 @@
+<!--TABLE-->
+<div class="table-responsive" id="containerFields" data-th-fragment="jednostkilekcyjne-detailModalConfirmBody" data-th-with="collectionLink=${@linkBuilder.of('PrzedmiotsItemJednostkiLekcyjneThymeleafController')}">
+    <table id="jednostkilekcyjne-detail-table-item-to-remove" data-parent-table="przedmiot-entity-table" data-data-parent-id="${przedmiot != null ? przedmiot.id : ''}" data-data-load-url="${collectionLink.to('datatablesByIdsIn').with('przedmiot', '_PARENTID_')}">
+      <thead>
+        <tr>
+              <th data-data="idSali" data-th-text="#{label_przedmiot_jednostkilekcyjne_idsali}">idSali</th>
+              <th data-data="idProwadzacy" data-th-text="#{label_przedmiot_jednostkilekcyjne_idprowadzacy}">idProwadzacy</th>
+              <th data-data="godzinaOd" data-th-text="#{label_przedmiot_jednostkilekcyjne_godzinaod}">godzinaOd</th>
+              <th data-data="godzinaDo" data-th-text="#{label_przedmiot_jednostkilekcyjne_godzinado}">godzinaDo</th>
+              <th data-data="idPrzedmiotu" data-th-text="#{label_przedmiot_jednostkilekcyjne_idprzedmiotu}">idPrzedmiotu</th>
+        </tr>
+      </thead>
+      <tbody data-th-remove="all">
+        <tr>
+              <td>idSali</td>
+              <td>idProwadzacy</td>
+              <td>godzinaOd</td>
+              <td>godzinaDo</td>
+              <td>idPrzedmiotu</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<!-- /TABLE -->

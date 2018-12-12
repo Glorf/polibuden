@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-layout}">
+  <head id="head">
+
+    <title data-th-text="#{label_edit_entity(#{label_jednostkalekcyjna})}">
+    Edit JednostkaLekcyjna - Spring Roo application</title>
+
+    <!-- DateTimePicker -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.css" data-th-href="@{/webjars/datetimepicker/2.5.4/build/jquery.datetimepicker.min.css}" />
+
+  </head>
+  
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!-- CONTAINER -->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-layout-fragment="content">
+
+        <div class="container-fluid content" data-th-with="collectionLink=${@linkBuilder.of('JednostkaLekcyjnasCollectionThymeleafController')},itemLink=${@linkBuilder.of('JednostkaLekcyjnasItemThymeleafController')}">
+
+          <h1 data-th-text="#{label_edit_entity(#{label_jednostkalekcyjna})}">Edit JednostkaLekcyjna</h1>
+
+          <!-- FORM -->
+          <form class="form-horizontal validate" method="POST" data-th-object="${jednostkaLekcyjna}" data-th-action="${itemLink.to('update').with('jednostkaLekcyjna', jednostkaLekcyjna.id)}">
+            <input type="hidden" name="_method" value="PUT" />
+            	<input type="hidden" name="version" data-th-value="*{version}" />
+
+            <!-- CONCURRENCY CONTROL -->
+            <div data-th-replace="~{fragments/concurrency-control :: concurrency-control(editFormUrl = ${itemLink.to('editForm').with('jednostkaLekcyjna', jednostkaLekcyjna.id)})}"></div>
+            <!-- /CONCURRENCY CONTROL -->
+
+             <fieldset id="containerFields">
+              <legend class="sr-only" data-th-text="#{label_data_entity(#{label_jednostkalekcyjna})}">JednostkaLekcyjna data </legend>
+
+<div class="form-group has-error has-feedback" data-z="9dc6930b" id="jednostkalekcyjna-idsali-field" data-th-classappend="${#fields.hasErrors('idSali')}? 'has-error has-feedback'" data-th-class="form-group" data-th-with="collectionLink=${@linkBuilder.of('SalasCollectionThymeleafController')}">
+    <label for="idSali" class="col-md-3 control-label" data-th-text="#{label_jednostkalekcyjna_idsali}">Sala</label>
+    <div class="col-md-6">
+      <!-- Select2 -->
+      <select data-th-field="*{idSali}" class="form-control dropdown-select-ajax" data-allow-clear="true" data-data-ajax--url="${collectionLink.to('select2')}" data-ajax--cache="true" data-ajax--delay="250" data-ajax--data-type="json" data-data-placeholder="#{info_select_an_option}" required="required">
+          <option data-th-unless="*{idSali} == null" data-th-value="*{idSali.id}" data-th-text="*{{idSali}}" selected="selected">Sala</option>
+      </select>
+      <span data-th-classappend="${#fields.hasErrors('idSali')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('idSali')}" aria-hidden="true"></span>
+      <span id="idSali-error" class="help-block" data-th-if="${#fields.hasErrors('idSali')}" data-th-errors="*{idSali}">Error message.</span>
+    </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="79a9522b" id="jednostkalekcyjna-idprowadzacy-field" data-th-classappend="${#fields.hasErrors('idProwadzacy')}? 'has-error has-feedback'" data-th-class="form-group" data-th-with="collectionLink=${@linkBuilder.of('WykladowcasCollectionThymeleafController')}">
+    <label for="idProwadzacy" class="col-md-3 control-label" data-th-text="#{label_jednostkalekcyjna_idprowadzacy}">Wykladowca</label>
+    <div class="col-md-6">
+      <!-- Select2 -->
+      <select data-th-field="*{idProwadzacy}" class="form-control dropdown-select-ajax" data-allow-clear="true" data-data-ajax--url="${collectionLink.to('select2')}" data-ajax--cache="true" data-ajax--delay="250" data-ajax--data-type="json" data-data-placeholder="#{info_select_an_option}" required="required">
+          <option data-th-unless="*{idProwadzacy} == null" data-th-value="*{idProwadzacy.id}" data-th-text="*{{idProwadzacy}}" selected="selected">Wykladowca</option>
+      </select>
+      <span data-th-classappend="${#fields.hasErrors('idProwadzacy')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('idProwadzacy')}" aria-hidden="true"></span>
+      <span id="idProwadzacy-error" class="help-block" data-th-if="${#fields.hasErrors('idProwadzacy')}" data-th-errors="*{idProwadzacy}">Error message.</span>
+    </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="9aa28b53" id="jednostkalekcyjna-godzinaod-field" data-th-classappend="${#fields.hasErrors('godzinaOd')}? 'has-error has-feedback'" data-th-class="form-group">
+  <label for="godzinaOd" class="col-md-3 control-label" data-th-text="#{label_jednostkalekcyjna_godzinaod}">godzinaOd</label>
+  <div class="col-md-6">
+    <input id="godzinaOd" name="godzinaOd" data-th-value="*{{godzinaOd}}" type="text" class="form-control" placeholder="godzinaOd" data-th-placeholder="#{label_jednostkalekcyjna_godzinaod}" data-toggle="tooltip" aria-describedby="godzinaOdStatus" required="required" />
+      <span data-th-classappend="${#fields.hasErrors('godzinaOd')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('godzinaOd')}" aria-hidden="true"></span>
+      <span id="godzinaOd-error" class="help-block" data-th-if="${#fields.hasErrors('godzinaOd')}" data-th-errors="*{godzinaOd}">Error message.</span>
+  </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="9a9d8c93" id="jednostkalekcyjna-godzinado-field" data-th-classappend="${#fields.hasErrors('godzinaDo')}? 'has-error has-feedback'" data-th-class="form-group">
+  <label for="godzinaDo" class="col-md-3 control-label" data-th-text="#{label_jednostkalekcyjna_godzinado}">godzinaDo</label>
+  <div class="col-md-6">
+    <input id="godzinaDo" name="godzinaDo" data-th-value="*{{godzinaDo}}" type="text" class="form-control" placeholder="godzinaDo" data-th-placeholder="#{label_jednostkalekcyjna_godzinado}" data-toggle="tooltip" aria-describedby="godzinaDoStatus" required="required" />
+      <span data-th-classappend="${#fields.hasErrors('godzinaDo')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('godzinaDo')}" aria-hidden="true"></span>
+      <span id="godzinaDo-error" class="help-block" data-th-if="${#fields.hasErrors('godzinaDo')}" data-th-errors="*{godzinaDo}">Error message.</span>
+  </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="41c887cb" id="jednostkalekcyjna-idprzedmiotu-field" data-th-classappend="${#fields.hasErrors('idPrzedmiotu')}? 'has-error has-feedback'" data-th-class="form-group" data-th-with="collectionLink=${@linkBuilder.of('PrzedmiotsCollectionThymeleafController')}">
+    <label for="idPrzedmiotu" class="col-md-3 control-label" data-th-text="#{label_jednostkalekcyjna_idprzedmiotu}">Przedmiot</label>
+    <div class="col-md-6">
+      <!-- Select2 -->
+      <select data-th-field="*{idPrzedmiotu}" class="form-control dropdown-select-ajax" data-allow-clear="true" data-data-ajax--url="${collectionLink.to('select2')}" data-ajax--cache="true" data-ajax--delay="250" data-ajax--data-type="json" data-data-placeholder="#{info_select_an_option}" required="required">
+          <option data-th-unless="*{idPrzedmiotu} == null" data-th-value="*{idPrzedmiotu.id}" data-th-text="*{{idPrzedmiotu}}" selected="selected">Przedmiot</option>
+      </select>
+      <span data-th-classappend="${#fields.hasErrors('idPrzedmiotu')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('idPrzedmiotu')}" aria-hidden="true"></span>
+      <span id="idPrzedmiotu-error" class="help-block" data-th-if="${#fields.hasErrors('idPrzedmiotu')}" data-th-errors="*{idPrzedmiotu}">Error message.</span>
+    </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="3d33db33" id="jednostkalekcyjna-typ-field" data-th-classappend="${#fields.hasErrors('typ')}? 'has-error has-feedback'" data-th-class="form-group" data-th-with="collectionLink=${@linkBuilder.of('TypZajecsCollectionThymeleafController')}">
+    <label for="typ" class="col-md-3 control-label" data-th-text="#{label_jednostkalekcyjna_typ}">TypZajec</label>
+    <div class="col-md-6">
+      <!-- Select2 -->
+      <select data-th-field="*{typ}" class="form-control dropdown-select-ajax" data-allow-clear="true" data-data-ajax--url="${collectionLink.to('select2')}" data-ajax--cache="true" data-ajax--delay="250" data-ajax--data-type="json" data-data-placeholder="#{info_select_an_option}" required="required">
+          <option data-th-unless="*{typ} == null" data-th-value="*{typ.id}" data-th-text="*{{typ}}" selected="selected">TypZajec</option>
+      </select>
+      <span data-th-classappend="${#fields.hasErrors('typ')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('typ')}" aria-hidden="true"></span>
+      <span id="typ-error" class="help-block" data-th-if="${#fields.hasErrors('typ')}" data-th-errors="*{typ}">Error message.</span>
+    </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="55d26413" id="jednostkalekcyjna-dzien-field" data-th-classappend="${#fields.hasErrors('dzien')}? 'has-error has-feedback'" data-th-class="form-group" data-th-with="collectionLink=${@linkBuilder.of('DziensCollectionThymeleafController')}">
+    <label for="dzien" class="col-md-3 control-label" data-th-text="#{label_jednostkalekcyjna_dzien}">Dzien</label>
+    <div class="col-md-6">
+      <!-- Select2 -->
+      <select data-th-field="*{dzien}" class="form-control dropdown-select-ajax" data-allow-clear="true" data-data-ajax--url="${collectionLink.to('select2')}" data-ajax--cache="true" data-ajax--delay="250" data-ajax--data-type="json" data-data-placeholder="#{info_select_an_option}" required="required">
+          <option data-th-unless="*{dzien} == null" data-th-value="*{dzien.id}" data-th-text="*{{dzien}}" selected="selected">Dzien</option>
+      </select>
+      <span data-th-classappend="${#fields.hasErrors('dzien')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('dzien')}" aria-hidden="true"></span>
+      <span id="dzien-error" class="help-block" data-th-if="${#fields.hasErrors('dzien')}" data-th-errors="*{dzien}">Error message.</span>
+    </div>
+</div>
+             </fieldset>
+
+
+              <!-- buttons form -->
+              <div class="form-group">
+                <div class="col-md-12">
+                  <div class="pull-left">
+                    <button type="reset" class="btn btn-default" onclick="location.href='list.html'" data-th-onclick="'location.href=\'' + @{${collectionLink.to('list')}} + '\''" data-th-text="#{label_reset}">Cancel</button>
+                  </div>
+                  <div class="pull-right">
+                    <button type="submit" class="btn btn-primary" data-th-text="#{label_save}">Save</button>
+                  </div>
+                </div>
+              </div>
+
+          </form>
+          <!-- /FORM -->
+
+        </div>
+
+      </section>
+      <!-- /CONTENT -->
+   </div>
+   <!-- /CONTAINER -->
+
+   <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+   </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+
+    <!-- DateTimePicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js" data-th-src="@{/webjars/datetimepicker/build/jquery.datetimepicker.full.min.js}"></script>
+    <script src="../../static/public/js/datetimepicker-defaults.js" data-th-src="@{/public/js/datetimepicker-defaults.js}"></script>
+
+    <!-- jquery.inputmask -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.1/jquery.inputmask.bundle.min.js" data-th-src="@{/webjars/jquery.inputmask/min/jquery.inputmask.bundle.min.js}"></script>
+    <script type="text/javascript" data-th-inline="javascript">
+      (function(jQuery) {
+        jQuery(document).ready(
+      	  function() {
+      	    Inputmask.extendAliases({
+      	      'numeric' : {
+      	         'groupSeparator' : /*[[#{label_inputmask_groupSeparator}]]*/'.',
+      	         'radixPoint' : /*[[#{label_inputmask_radixPoint}]]*/','
+      	       },
+      	       'currency' : {
+      	          'prefix' : /*[[#{label_inputmask_prefix}]]*/'',
+      	          'suffix' : /*[[#{label_inputmask_suffix}]]*/' €'
+      	        }
+      	    });
+      	 });
+       })(jQuery);
+    </script>
+    <script src="../../static/public/js/inputmask-defaults.js" data-th-src="@{/public/js/inputmask-defaults.js}"></script>
+
+    <!-- JQuery Validation -->
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js" data-th-src="@{/webjars/jquery-validation/dist/jquery.validate.min.js}">
+      </script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/additional-methods.min.js" data-th-src="@{/webjars/jquery-validation/dist/additional-methods.min.js}">
+      </script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/localization/messages_es.js" data-th-src="@{/webjars/jquery-validation/src/localization/messages_}+${#locale.language}+'.js'" data-th-if="${#locale.language} != 'en'">
+      </script>
+    <script src="../../static/public/js/validation-defaults.js" data-th-src="@{/public/js/validation-defaults.js}">
+      </script>
+    <!-- Concurrency control management -->
+    <script data-th-src="@{/public/js/concurrency-control.js}"></script>
+    <script type="text/javascript" data-th-inline="javascript">
+      (function(jQuery) {
+         jQuery(document).ready(function() {
+      	   jQuery.extend( jQuery.validator.messages, {
+      	     'dateformat' : /*[[#{error_invalid_date}]]*/ 'Please enter a correct date/time',
+      	     'inputmask': /*[[#{error_invalid_maskValue}]]*/ 'Please enter a valid value',
+      	   });
+      	 });
+      })(jQuery);
+      </script>
+
+    </div>
+
+  </body>
+
+</html>

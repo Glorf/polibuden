@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-list-layout}">
+    <head id="head">
+
+    <title data-th-text="|#{label_show_entity(#{label_jednostkalekcyjna})}|">Show JednostkaLekcyjna - Spring Roo application</title>
+
+  </head>
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!--CONTAINER-->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-th-fragment="inline-content" data-layout-fragment="content" data-th-object="${jednostkaLekcyjna}">
+        <div>
+
+          <!-- CONTENT -->
+            <div id="mainEntityFieldSet">
+              <ul class="list-unstyled" id="containerFields">
+                  <li id="jednostkalekcyjna-idsali-field" data-z="9dc6930b">
+            	      <strong data-th-text="#{label_jednostkalekcyjna_idsali}">idSali</strong>
+                    <span data-th-text="*{{idSali}}">idSaliValue</span>
+         	        </li>
+                  <li id="jednostkalekcyjna-idprowadzacy-field" data-z="79a9522b">
+            	      <strong data-th-text="#{label_jednostkalekcyjna_idprowadzacy}">idProwadzacy</strong>
+                    <span data-th-text="*{{idProwadzacy}}">idProwadzacyValue</span>
+         	        </li>
+                  <li id="jednostkalekcyjna-godzinaod-field" data-z="9aa28b53">
+            	      <strong data-th-text="#{label_jednostkalekcyjna_godzinaod}">godzinaOd</strong>
+                    <span data-th-text="*{{godzinaOd}}">godzinaOdValue</span>
+         	        </li>
+                  <li id="jednostkalekcyjna-godzinado-field" data-z="9a9d8c93">
+            	      <strong data-th-text="#{label_jednostkalekcyjna_godzinado}">godzinaDo</strong>
+                    <span data-th-text="*{{godzinaDo}}">godzinaDoValue</span>
+         	        </li>
+                  <li id="jednostkalekcyjna-idprzedmiotu-field" data-z="41c887cb">
+            	      <strong data-th-text="#{label_jednostkalekcyjna_idprzedmiotu}">idPrzedmiotu</strong>
+                    <span data-th-text="*{{idPrzedmiotu}}">idPrzedmiotuValue</span>
+         	        </li>
+                  <li id="jednostkalekcyjna-typ-field" data-z="3d33db33">
+            	      <strong data-th-text="#{label_jednostkalekcyjna_typ}">typ</strong>
+                    <span data-th-text="*{{typ}}">typValue</span>
+         	        </li>
+                  <li id="jednostkalekcyjna-dzien-field" data-z="55d26413">
+            	      <strong data-th-text="#{label_jednostkalekcyjna_dzien}">dzien</strong>
+                    <span data-th-text="*{{dzien}}">dzienValue</span>
+         	        </li>
+              </ul>
+            </div>
+
+        </div>
+
+      </section>
+      <!-- /CONTENT -->
+  </div>
+  <!-- /CONTAINER -->
+
+  <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+  </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+  </div>
+
+  </body>
+
+</html>

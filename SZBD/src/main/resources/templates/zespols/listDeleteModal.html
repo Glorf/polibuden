@@ -1,0 +1,18 @@
+<!--TABLE-->
+<div class="table-responsive" id="containerFields" data-th-fragment="zespol-entityModalConfirmBody" data-th-with="collectionLink=${@linkBuilder.of('ZespolsCollectionThymeleafController')},itemLink=${@linkBuilder.of('ZespolsItemThymeleafController')}">
+    <table id="zespol-entity-table-item-to-remove" data-data-load-url="${collectionLink.to('datatablesByIdsIn')}">
+      <thead>
+        <tr>
+          <th data-data="wydzial" data-th-text="#{label_zespol_wydzial}">wydzial</th>
+          <th data-data="nazwa" data-th-text="#{label_zespol_nazwa}">nazwa</th>
+        </tr>
+      </thead>
+      <tbody data-th-remove="all">
+        <tr>
+          <td>wydzial</td>
+          <td>nazwa</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<!-- /TABLE -->

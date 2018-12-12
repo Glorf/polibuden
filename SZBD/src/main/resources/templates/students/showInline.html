@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-list-layout}">
+    <head id="head">
+
+    <title data-th-text="|#{label_show_entity(#{label_student})}|">Show Student - Spring Roo application</title>
+
+  </head>
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!--CONTAINER-->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-th-fragment="inline-content" data-layout-fragment="content" data-th-object="${student}">
+        <div>
+
+          <!-- CONTENT -->
+            <div id="mainEntityFieldSet">
+              <ul class="list-unstyled" id="containerFields">
+                  <li id="student-podgrupa-field" data-z="8e93e810">
+            	      <strong data-th-text="#{label_student_podgrupa}">podgrupa</strong>
+                    <span data-th-text="*{{podgrupa}}">podgrupaValue</span>
+         	        </li>
+                  <li id="student-imie-field" data-z="6eb46f50">
+            	      <strong data-th-text="#{label_student_imie}">imie</strong>
+                    <span data-th-text="*{{imie}}">imieValue</span>
+         	        </li>
+                  <li id="student-nazwisko-field" data-z="86442710">
+            	      <strong data-th-text="#{label_student_nazwisko}">nazwisko</strong>
+                    <span data-th-text="*{{nazwisko}}">nazwiskoValue</span>
+         	        </li>
+              </ul>
+            </div>
+
+        </div>
+
+      </section>
+      <!-- /CONTENT -->
+  </div>
+  <!-- /CONTAINER -->
+
+  <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+  </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+  </div>
+
+  </body>
+
+</html>

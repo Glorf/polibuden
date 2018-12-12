@@ -1,0 +1,18 @@
+<!--TABLE-->
+<div class="table-responsive" id="containerFields" data-th-fragment="kierunek-entityModalConfirmBody" data-th-with="collectionLink=${@linkBuilder.of('KieruneksCollectionThymeleafController')},itemLink=${@linkBuilder.of('KieruneksItemThymeleafController')}">
+    <table id="kierunek-entity-table-items-to-remove-batch" data-data-load-url="${collectionLink.to('datatablesByIdsIn')}">
+      <thead>
+        <tr>
+          <th data-data="wydzial" data-th-text="#{label_kierunek_wydzial}">wydzial</th>
+          <th data-data="nazwa" data-th-text="#{label_kierunek_nazwa}">nazwa</th>
+        </tr>
+      </thead>
+      <tbody data-th-remove="all">
+        <tr>
+          <td>wydzial</td>
+          <td>nazwa</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<!-- /TABLE -->

@@ -1,0 +1,97 @@
+jpa setup --provider HIBERNATE --database H2_IN_MEMORY
+
+entity jpa --class ~.model.Wydzial --entityFormatExpression "#{nazwa}"
+entity jpa --class ~.model.Budynek --entityFormatExpression "#{nazwa}, #{adres}"
+entity jpa --class ~.model.Sala --entityFormatExpression "#{nazwa} (#{liczbaMiejsc})"
+entity jpa --class ~.model.Zespol --entityFormatExpression "#{nazwa}"
+entity jpa --class ~.model.Wykladowca --entityFormatExpression "#{imie} #{nazwisko}"
+entity jpa --class ~.model.Grupa --entityFormatExpression "#{nazwaGrupy} #{nazwaPodgrupy}"
+entity jpa --class ~.model.Student --entityFormatExpression "#{imie} #{nazwisko} (#{id})"
+entity jpa --class ~.model.JednostkaLekcyjna --entityFormatExpression "#{typ.nazwa} #{idPrzedmiotu.nazwa} #{idProwadzacy.nazwisko}, #{dzien.nazwa} #{godzinaOd}"
+entity jpa --class ~.model.Przedmiot --entityFormatExpression "#{nazwa}"
+entity jpa --class ~.model.Literatura --entityFormatExpression "#{autor}, \"#{tytul}\""
+entity jpa --class ~.model.Kierunek --entityFormatExpression "#{nazwa}"
+entity jpa --class ~.model.TypZajec --entityFormatExpression "#{nazwa}"
+entity jpa --class ~.model.Dzien --entityFormatExpression "#{nazwa}"
+entity jpa --class ~.model.Stopien --entityFormatExpression "#{nazwa}"
+
+focus --class ~.model.Wydzial
+field string --fieldName nazwa --notNull
+field set --fieldName zespoly --type ~.model.Zespol --mappedBy wydzial --notNull
+field set --fieldName kierunki --type ~.model.Kierunek --mappedBy wydzial --notNull
+
+focus --class ~.model.Budynek
+field string --fieldName nazwa --notNull
+field string --fieldName adres --notNull
+field set --fieldName sale --type ~.model.Sala --mappedBy budynek --notNull
+
+focus --class ~.model.Sala
+field string --fieldName nazwa --notNull
+field number --fieldName liczbaMiejsc --type Integer --notNull
+field set --fieldName jednostkiLekcyjne --type ~.model.JednostkaLekcyjna --mappedBy idSali --notNull
+
+focus --class ~.model.Zespol
+field string --fieldName nazwa --notNull
+field set --fieldName wykladowcy --type ~.model.Wykladowca --mappedBy zespol --notNull
+
+focus --class ~.model.Wykladowca
+field string --fieldName imie --notNull
+field string --fieldName nazwisko --notNull
+field number --fieldName pensja --type Integer --notNull
+field date --fieldName zatrudniony --type java.util.Date --notNull
+field set --fieldName jednostkiLekcyjne --type ~.model.JednostkaLekcyjna --mappedBy idProwadzacy --notNull
+
+focus --class ~.model.Grupa
+field string --fieldName nazwaGrupy --notNull
+field string --fieldName nazwaPodgrupy --notNull
+field set --fieldName studenci --type ~.model.Student --mappedBy podgrupa --notNull
+field set --fieldName jednostkiLekcyjne --type ~.model.JednostkaLekcyjna --cardinality MANY_TO_MANY --joinTable JednostkaGrupa --joinColumns grupy --referencedColumns id --inverseJoinColumns jednostkiLekcyjne --inverseReferencedColumns id
+
+focus --class ~.model.Student
+field string --fieldName imie --notNull
+field string --fieldName nazwisko --notNull
+
+focus --class ~.model.JednostkaLekcyjna
+field string --fieldName godzinaOd --notNull
+field string --fieldName godzinaDo --notNull
+
+focus --class ~.model.Przedmiot
+field string --fieldName nazwa --notNull
+field number --fieldName ects --type Integer
+field set --fieldName jednostkiLekcyjne --type ~.model.JednostkaLekcyjna --mappedBy idPrzedmiotu --notNull
+field set --fieldName literatura --type ~.model.Literatura --cardinality MANY_TO_MANY --joinTable PrzedmiotLiteratura --joinColumns literatura --referencedColumns id --inverseJoinColumns przedmioty --inverseReferencedColumns id --mappedBy przedmioty
+
+focus --class ~.model.Literatura
+field number --fieldName isbn --type Integer --notNull
+field string --fieldName autor --notNull
+field string --fieldName tytul --notNull
+field string --fieldName wydawnictwo --notNull
+
+focus --class ~.model.Kierunek
+field string --fieldName nazwa --notNull
+field set --fieldName grupy --type ~.model.Grupa --mappedBy kierunek --notNull
+
+focus --class ~.model.TypZajec
+field string --fieldName nazwa --notNull
+field set --fieldName jednostkiLekcyjne --type ~.model.JednostkaLekcyjna --mappedBy typ --notNull
+
+focus --class ~.model.Dzien
+field string --fieldName nazwa --notNull
+field set --fieldName jednostkiLekcyjne --type ~.model.JednostkaLekcyjna --mappedBy dzien --notNull
+
+focus --class ~.model.Stopien
+field string --fieldName nazwa --notNull
+field set --fieldName wykladowcy --type ~.model.Wykladowca --mappedBy stopien --notNull
+
+repository jpa --all
+
+service --all
+web mvc setup
+web mvc view setup --type THYMELEAF
+web mvc controller --all --responseType THYMELEAF
+web mvc detail --all --responseType THYMELEAF --views show
+web mvc templates setup --type THYMELEAF
+web mvc finder --all --responseType THYMELEAF
+
+push-in --all --force
+

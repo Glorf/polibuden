@@ -1,0 +1,16 @@
+<!--TABLE-->
+<div class="table-responsive" id="containerFields" data-th-fragment="typzajec-entityModalConfirmBody" data-th-with="collectionLink=${@linkBuilder.of('TypZajecsCollectionThymeleafController')},itemLink=${@linkBuilder.of('TypZajecsItemThymeleafController')}">
+    <table id="typzajec-entity-table-items-to-remove-batch" data-data-load-url="${collectionLink.to('datatablesByIdsIn')}">
+      <thead>
+        <tr>
+          <th data-data="nazwa" data-th-text="#{label_typzajec_nazwa}">nazwa</th>
+        </tr>
+      </thead>
+      <tbody data-th-remove="all">
+        <tr>
+          <td>nazwa</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<!-- /TABLE -->

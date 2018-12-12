@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-list-layout}">
+    <head id="head">
+
+    <title data-th-text="|#{label_show_entity(#{label_wykladowca})}|">Show Wykladowca - Spring Roo application</title>
+
+  </head>
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!--CONTAINER-->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-th-fragment="inline-content" data-layout-fragment="content" data-th-object="${wykladowca}">
+        <div>
+
+          <!-- CONTENT -->
+            <div id="mainEntityFieldSet">
+              <ul class="list-unstyled" id="containerFields">
+                  <li id="wykladowca-zespol-field" data-z="32eeda17">
+            	      <strong data-th-text="#{label_wykladowca_zespol}">zespol</strong>
+                    <span data-th-text="*{{zespol}}">zespolValue</span>
+         	        </li>
+                  <li id="wykladowca-imie-field" data-z="11b228b7">
+            	      <strong data-th-text="#{label_wykladowca_imie}">imie</strong>
+                    <span data-th-text="*{{imie}}">imieValue</span>
+         	        </li>
+                  <li id="wykladowca-nazwisko-field" data-z="9768d4f7">
+            	      <strong data-th-text="#{label_wykladowca_nazwisko}">nazwisko</strong>
+                    <span data-th-text="*{{nazwisko}}">nazwiskoValue</span>
+         	        </li>
+                  <li id="wykladowca-pensja-field" data-z="a7f3897">
+            	      <strong data-th-text="#{label_wykladowca_pensja}">pensja</strong>
+                    <span data-th-text="*{{pensja}}">pensjaValue</span>
+         	        </li>
+                  <li id="wykladowca-zatrudniony-field" data-z="65f6eba7">
+            	      <strong data-th-text="#{label_wykladowca_zatrudniony}">zatrudniony</strong>
+                    <span data-th-text="*{{zatrudniony}}">zatrudnionyValue</span>
+         	        </li>
+                  <li id="wykladowca-stopien-field" data-z="9ac16707">
+            	      <strong data-th-text="#{label_wykladowca_stopien}">stopien</strong>
+                    <span data-th-text="*{{stopien}}">stopienValue</span>
+         	        </li>
+              </ul>
+            </div>
+
+        </div>
+
+      </section>
+      <!-- /CONTENT -->
+  </div>
+  <!-- /CONTAINER -->
+
+  <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+  </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+  </div>
+
+  </body>
+
+</html>

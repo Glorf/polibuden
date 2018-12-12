@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Page menu</title>
+  </head>
+  <body id="body">
+    <!--
+    Only the internal content of the following div is included within
+    the template, in menu fragment
+    -->
+    <nav class="navbar navbar-default navbar-static-top" data-th-fragment="menu">
+
+         <div class="container">
+
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainnav" aria-expanded="false">
+                <span class="sr-only">Menu</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <!-- Brand logo -->
+              <div class="organization-logo navbar-brand">
+                <a title="Dziekanat" href="/" data-th-href="@{/}">
+                  <img alt="Dziekanat" data-th-src="@{/public/img/logo.png}" src="../../static/public/img/logo.png" />
+                </a>
+              </div>
+              <!-- Name application -->
+              <div class="application-name navbar-brand hidden-xs">
+                <a data-th-title="#{label_goHome}" href="/" data-th-href="@{/}">Dziekanat</a>
+              </div>
+
+            </div><!-- /navbar-header -->
+
+            <div id="mainnav" class="navbar-collapse collapse">
+
+              <ul class="nav navbar-nav" id="entitiesMenuEntries">
+                <li class="dropdown" id="administracja-entry" data-z="69e675d6">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administracja<span class="caret"></span></a>
+                 <ul class="dropdown-menu">
+	                  <li><a href="/budyneks" data-th-href="@{/budyneks}">Budynki</a></li>
+                     <li><a href="/salas" data-th-href="@{/salas}">Sale</a></li>
+                     <li><a href="/wydzials" data-th-href="@{/wydzials}">Wydziały</a></li>
+                 </ul>
+                </li>
+                  <li class="dropdown" id="studenci-entry" data-z="a594a796">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Studenci<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="/kieruneks" data-th-href="@{/kieruneks}">Kierunki</a></li>
+                          <li><a href="/grupas" data-th-href="@{/grupas}">Grupy</a></li>
+                          <li><a href="/students" data-th-href="@{/students}">Studenci</a></li>
+                      </ul>
+                  </li>
+
+                <li class="dropdown" id="zajecia-entry" data-z="8fc58396">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Zajęcia<span class="caret"></span></a>
+                 <ul class="dropdown-menu">
+                     <li><a href="/przedmiots" data-th-href="@{/przedmiots}">Przedmioty</a></li>
+                     <li><a href="/jednostkalekcyjnas" data-th-href="@{/jednostkalekcyjnas}">Jednostki lekcyjne</a></li>
+                     <li><a href="/literaturas" data-th-href="@{/literaturas}">Literatura</a></li>
+                     <li><a href="/typzajecs" data-th-href="@{/typzajecs}">Typy zajęć</a></li>
+                     <li><a href="/dziens" data-th-href="@{/dziens}">Dni</a></li>
+                 </ul>
+                </li>
+                <li class="dropdown" id="pracownicy-entry" data-z="66b65d6">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pracownicy<span class="caret"></span></a>
+                 <ul class="dropdown-menu">
+                     <li><a href="/wykladowcas" data-th-href="@{/wykladowcas}">Wykładowcy</a></li>
+                     <li><a href="/stopiens" data-th-href="@{/stopiens}">Stopnie</a></li>
+                     <li><a href="/zespols" data-th-href="@{/zespols}">Zespoły</a></li>
+                 </ul>
+                </li>
+              </ul>
+
+           </div>
+
+          </div>
+    </nav>
+
+    <!--
+    Only the internal content of the following div is included within
+    the template, in menu-languages fragment
+    -->
+    <nav class="navbar navbar-default navbar-static-top" data-th-fragment="menu-languages">
+
+         <div class="container">
+
+            <div class="navbar-header">
+
+              <!-- Brand logo -->
+              <div class="organization-logo navbar-brand">
+                <a title="Dziekanat" href="/" data-th-href="@{/}">
+                  <img alt="Dziekanat" data-th-src="@{/public/img/logo.png}" src="../../static/public/img/logo.png" />
+                </a>
+              </div>
+              <!-- Name application -->
+              <div class="application-name navbar-brand hidden-xs">
+                <a data-th-title="#{label_goHome}" href="/" data-th-href="@{/}">Dziekanat</a>
+              </div>
+
+            </div><!-- /navbar-header -->
+
+          </div>
+    </nav>
+
+  </body>
+</html>

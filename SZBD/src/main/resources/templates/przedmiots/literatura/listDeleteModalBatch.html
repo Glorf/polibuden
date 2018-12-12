@@ -1,0 +1,22 @@
+<!--TABLE-->
+<div class="table-responsive" id="containerFields" data-th-fragment="literatura-detailModalConfirmBody" data-th-with="collectionLink=${@linkBuilder.of('PrzedmiotsItemLiteraturaThymeleafController')}">
+    <table id="literatura-detail-table-items-to-remove-batch" data-parent-table="przedmiot-entity-table" data-data-parent-id="${przedmiot != null ? przedmiot.id : ''}" data-data-load-url="${collectionLink.to('datatablesByIdsIn').with('przedmiot', '_PARENTID_')}">
+      <thead>
+        <tr>
+              <th data-data="isbn" data-th-text="#{label_przedmiot_literatura_isbn}">isbn</th>
+              <th data-data="autor" data-th-text="#{label_przedmiot_literatura_autor}">autor</th>
+              <th data-data="tytul" data-th-text="#{label_przedmiot_literatura_tytul}">tytul</th>
+              <th data-data="wydawnictwo" data-th-text="#{label_przedmiot_literatura_wydawnictwo}">wydawnictwo</th>
+        </tr>
+      </thead>
+      <tbody data-th-remove="all">
+        <tr>
+              <td>isbn</td>
+              <td>autor</td>
+              <td>tytul</td>
+              <td>wydawnictwo</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<!-- /TABLE -->

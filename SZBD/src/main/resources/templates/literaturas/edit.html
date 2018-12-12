@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-layout}">
+  <head id="head">
+
+    <title data-th-text="#{label_edit_entity(#{label_literatura})}">
+    Edit Literatura - Spring Roo application</title>
+
+    <!-- DateTimePicker -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.css" data-th-href="@{/webjars/datetimepicker/2.5.4/build/jquery.datetimepicker.min.css}" />
+
+  </head>
+  
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!-- CONTAINER -->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-layout-fragment="content">
+
+        <div class="container-fluid content" data-th-with="collectionLink=${@linkBuilder.of('LiteraturasCollectionThymeleafController')},itemLink=${@linkBuilder.of('LiteraturasItemThymeleafController')}">
+
+          <h1 data-th-text="#{label_edit_entity(#{label_literatura})}">Edit Literatura</h1>
+
+          <!-- FORM -->
+          <form class="form-horizontal validate" method="POST" data-th-object="${literatura}" data-th-action="${itemLink.to('update').with('literatura', literatura.id)}">
+            <input type="hidden" name="_method" value="PUT" />
+            	<input type="hidden" name="version" data-th-value="*{version}" />
+
+            <!-- CONCURRENCY CONTROL -->
+            <div data-th-replace="~{fragments/concurrency-control :: concurrency-control(editFormUrl = ${itemLink.to('editForm').with('literatura', literatura.id)})}"></div>
+            <!-- /CONCURRENCY CONTROL -->
+
+             <fieldset id="containerFields">
+              <legend class="sr-only" data-th-text="#{label_data_entity(#{label_literatura})}">Literatura data </legend>
+
+<div class="form-group has-error has-feedback" data-z="a577e218" id="literatura-isbn-field" data-th-classappend="${#fields.hasErrors('isbn')}? 'has-error has-feedback'" data-th-class="form-group">
+  <label for="isbn" class="col-md-3 control-label" data-th-text="#{label_literatura_isbn}">isbn</label>
+  <div class="col-md-3">
+    <input id="isbn" name="isbn" data-th-value="*{{isbn}}" type="text" class="form-control inputmask" placeholder="isbn" data-th-placeholder="#{label_literatura_isbn}" data-toggle="tooltip" aria-describedby="isbnStatus" data-inputmask-alias="numeric" data-inputmask-digits="0" required="required" />
+      <span data-th-classappend="${#fields.hasErrors('isbn')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('isbn')}" aria-hidden="true"></span>
+      <span id="isbn-error" class="help-block" data-th-if="${#fields.hasErrors('isbn')}" data-th-errors="*{isbn}">Error message.</span>
+  </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="592c06a6" id="literatura-autor-field" data-th-classappend="${#fields.hasErrors('autor')}? 'has-error has-feedback'" data-th-class="form-group">
+  <label for="autor" class="col-md-3 control-label" data-th-text="#{label_literatura_autor}">autor</label>
+  <div class="col-md-6">
+    <input id="autor" name="autor" data-th-value="*{{autor}}" type="text" class="form-control" placeholder="autor" data-th-placeholder="#{label_literatura_autor}" data-toggle="tooltip" aria-describedby="autorStatus" required="required" />
+      <span data-th-classappend="${#fields.hasErrors('autor')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('autor')}" aria-hidden="true"></span>
+      <span id="autor-error" class="help-block" data-th-if="${#fields.hasErrors('autor')}" data-th-errors="*{autor}">Error message.</span>
+  </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="6dbcfa46" id="literatura-tytul-field" data-th-classappend="${#fields.hasErrors('tytul')}? 'has-error has-feedback'" data-th-class="form-group">
+  <label for="tytul" class="col-md-3 control-label" data-th-text="#{label_literatura_tytul}">tytul</label>
+  <div class="col-md-6">
+    <input id="tytul" name="tytul" data-th-value="*{{tytul}}" type="text" class="form-control" placeholder="tytul" data-th-placeholder="#{label_literatura_tytul}" data-toggle="tooltip" aria-describedby="tytulStatus" required="required" />
+      <span data-th-classappend="${#fields.hasErrors('tytul')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('tytul')}" aria-hidden="true"></span>
+      <span id="tytul-error" class="help-block" data-th-if="${#fields.hasErrors('tytul')}" data-th-errors="*{tytul}">Error message.</span>
+  </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="7c064e46" id="literatura-wydawnictwo-field" data-th-classappend="${#fields.hasErrors('wydawnictwo')}? 'has-error has-feedback'" data-th-class="form-group">
+  <label for="wydawnictwo" class="col-md-3 control-label" data-th-text="#{label_literatura_wydawnictwo}">wydawnictwo</label>
+  <div class="col-md-6">
+    <input id="wydawnictwo" name="wydawnictwo" data-th-value="*{{wydawnictwo}}" type="text" class="form-control" placeholder="wydawnictwo" data-th-placeholder="#{label_literatura_wydawnictwo}" data-toggle="tooltip" aria-describedby="wydawnictwoStatus" required="required" />
+      <span data-th-classappend="${#fields.hasErrors('wydawnictwo')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('wydawnictwo')}" aria-hidden="true"></span>
+      <span id="wydawnictwo-error" class="help-block" data-th-if="${#fields.hasErrors('wydawnictwo')}" data-th-errors="*{wydawnictwo}">Error message.</span>
+  </div>
+</div>
+             </fieldset>
+
+
+              <!-- buttons form -->
+              <div class="form-group">
+                <div class="col-md-12">
+                  <div class="pull-left">
+                    <button type="reset" class="btn btn-default" onclick="location.href='list.html'" data-th-onclick="'location.href=\'' + @{${collectionLink.to('list')}} + '\''" data-th-text="#{label_reset}">Cancel</button>
+                  </div>
+                  <div class="pull-right">
+                    <button type="submit" class="btn btn-primary" data-th-text="#{label_save}">Save</button>
+                  </div>
+                </div>
+              </div>
+
+          </form>
+          <!-- /FORM -->
+
+        </div>
+
+      </section>
+      <!-- /CONTENT -->
+   </div>
+   <!-- /CONTAINER -->
+
+   <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+   </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+
+    <!-- DateTimePicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js" data-th-src="@{/webjars/datetimepicker/build/jquery.datetimepicker.full.min.js}"></script>
+    <script src="../../static/public/js/datetimepicker-defaults.js" data-th-src="@{/public/js/datetimepicker-defaults.js}"></script>
+
+    <!-- jquery.inputmask -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.1/jquery.inputmask.bundle.min.js" data-th-src="@{/webjars/jquery.inputmask/min/jquery.inputmask.bundle.min.js}"></script>
+    <script type="text/javascript" data-th-inline="javascript">
+      (function(jQuery) {
+        jQuery(document).ready(
+      	  function() {
+      	    Inputmask.extendAliases({
+      	      'numeric' : {
+      	         'groupSeparator' : /*[[#{label_inputmask_groupSeparator}]]*/'.',
+      	         'radixPoint' : /*[[#{label_inputmask_radixPoint}]]*/','
+      	       },
+      	       'currency' : {
+      	          'prefix' : /*[[#{label_inputmask_prefix}]]*/'',
+      	          'suffix' : /*[[#{label_inputmask_suffix}]]*/' €'
+      	        }
+      	    });
+      	 });
+       })(jQuery);
+    </script>
+    <script src="../../static/public/js/inputmask-defaults.js" data-th-src="@{/public/js/inputmask-defaults.js}"></script>
+
+    <!-- JQuery Validation -->
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js" data-th-src="@{/webjars/jquery-validation/dist/jquery.validate.min.js}">
+      </script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/additional-methods.min.js" data-th-src="@{/webjars/jquery-validation/dist/additional-methods.min.js}">
+      </script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/localization/messages_es.js" data-th-src="@{/webjars/jquery-validation/src/localization/messages_}+${#locale.language}+'.js'" data-th-if="${#locale.language} != 'en'">
+      </script>
+    <script src="../../static/public/js/validation-defaults.js" data-th-src="@{/public/js/validation-defaults.js}">
+      </script>
+    <!-- Concurrency control management -->
+    <script data-th-src="@{/public/js/concurrency-control.js}"></script>
+    <script type="text/javascript" data-th-inline="javascript">
+      (function(jQuery) {
+         jQuery(document).ready(function() {
+      	   jQuery.extend( jQuery.validator.messages, {
+      	     'dateformat' : /*[[#{error_invalid_date}]]*/ 'Please enter a correct date/time',
+      	     'inputmask': /*[[#{error_invalid_maskValue}]]*/ 'Please enter a valid value',
+      	   });
+      	 });
+      })(jQuery);
+      </script>
+
+    </div>
+
+  </body>
+
+</html>
