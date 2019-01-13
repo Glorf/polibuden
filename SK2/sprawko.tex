@@ -1,0 +1,76 @@
+\documentclass[a4paper]{article}
+\usepackage[polish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[a4paper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.5cm]{geometry}
+\usepackage{minted}
+
+\author{Michał Bień}
+\title{Implementacja nieblokującego wieloprocesowego serwera HTTP/1.1 do wydajnej obsługi statycznych stron WWW}
+\date{}
+\begin{document}
+\maketitle
+\section{Motywacja}
+Współczesne aplikacje webowe zbudowane są najczęściej dwuczłonowo - z frontendu, będącego aplikacją Javascript uruchamianą w przeglądarce i backendu, z którym frontend komunikuje się z wykorzystaniem odpowiedniego API. Rosnący ciężar frameworków frontendowych powoduje, iż rośnie ilość danych, jakie serwer musi przesłać, aby wysłać całą aplikacją, a także być w stanie obsłużyć satysfakcjonującą liczbę klientów naraz. Serwery natomiast są ociężałe - jak Apache, lub mają zbyt wiele funkcjonalności - jak nginx, by działać prawdziwie wydajnie. Tym problemom zaradzić ma mój serwer o roboczej nazwie puthttpd.
+
+\section{Architektura}
+Architektura serwera inspirowana jest serwerem nginx - najwydajniejszym obecnie serwerem serwującym pliki statyczne. Cykl ,,życia'' serwera można przedstawić w następujący sposób:
+\begin{enumerate}
+    \item Główny proces serwera jest uruchamiany i wczytuje konfigurację. Przetrzymywana jest ona z pliku httpd.yaml i parsowana z pomocą libyaml. Inicjalizowany jest logger logujący na standardowe wyjście Obsługiwane jest kilka poziomów logowania: \emph{DEBUG, INFO, WARN, ERR}. Log na poziomie \emph{ERR} wyświetla także komunikat \emph{errno} oraz loguje na standardowym wyjściu błędów. Minimalny poziom logowania ustawić można za pomocą \textbf{logging.level}
+    \item Proces główny klonuje się w workery, które będą obsługiwać żądania - oraz przekazuje do nich swoje sygnały. Gdy zabijemy więc proces główny - zginą także workery. Liczba tworzonych workerów jest równa zmiennej konfiguracyjnej \textbf{maxNumWorkers}, ale nie większa niż liczba wątków procesora
+    \item Worker nasłuchuje na wybranym przez zmienną \textbf{listenPort} porcie. Dzięki wykorzystaniu obecnej w jądrze Linuxa >3.9 flagi \emph{SO\_REUSEPORT}, wszystkie workery mogą nasłuchiwać na tym samym porcie, a przychodzące nowe połączenia są do nich przydzielane przez jądro w sposób jednostajny.
+    \item Worker tworzy kolejkę epoll i dodaje do niej port. Port jest ustawiany w tryb nieblokujący, a epoll oczekuje dla niego na zdarzenia gotowości wejścia. Maksymalny rozmiar kolejki epoll wynosi \textbf{queueSize}
+    \item Gdy ktokolwiek łączy się na porcie nasłuchującym, w jednym z workerów pojawia się zdarzenie, akceptowane jest nowe połączenie. Nowy deskryptor jest ustawiany w tryb nieblokujący, po czym dodawany do kolejki epoll do nasłuchu gotowości zapisu lub odczytu. Dla połączenia inicjalizowane są zerowe bufory zapisu i odczytu
+    \item Wysłanie żądania do serwera powoduje wystąpienie zdarzenia gotowości odczytu na jednym z deskryptorów. Odebrane dane zapisywane są w pozostałe miejsce w buforze odczytu. Jeśli w buforze odczytu braknie miejsca, jest on rozszerzany (jednorazowo maksymalnie o \textbf{requestBlockSize}, aż do wielkości maksymalnej \textbf{maxRequestSize}. Dane odczytywane są tak długo, aż deskryptor zgłosi \emph{EAGAIN} lub w buforze skończy się miejsce.
+    \item Dane z bufora są interpretowane jako żądania HTTP. Pozostałe dane, niebędące pełnymi żądaniami, pozostają w buforze odczytu, który zostaje zmniejszony do minimalnej wielkości mieszczącej te dane. Interpreter zwraca strukturę żądania, która umieszczana jest w dynamicznej kolejce.
+    \item Uzyskane żądania HTTP są po kolei spełniane. Serwowane pliki są otwierane we współdzielonym trybie mmap, i nie są zamykane aż do końca działania aplikacji dzięki czemu uzyskiwana jest duża wydajność i system cachowania (oczywiście kosztem zużycia pamięci). Przygotowywany jest obiekt response, serializowany do tablicy bajtów i zapisywany do bufora zapisu.
+    \item Jeśli deskryptor jest dostępny do zapisu, bufor jest do niego zapisywany i czyszczony. Jeśli nie jest lub zapis uda się tylko częściowo, zapis jest kontynuowany po wystąpieniu zdarzenia gotowości zapisu, tak długo, aż bufor nie zostanie opróżniony.
+    \item Po obsłudze zdarzenia, klient obsługiwany trafia na koniec kolejki klientów oczekujących na odrzucenie, a jego zmienna timeout jest aktualizowana. System następnie sprawdza kolejkę klientów od końca, kończąc połączenia dla tych, dla których czas \textbf{requestTimeout} został przekroczony
+\end{enumerate}
+
+\section{Funkcjonalność}
+Serwer implementuje metody GET, HEAD oraz OPTIONS. Odpowiedzi serwera mają kody:
+\begin{itemize}
+    \item 200 OK - jeśli zapytanie przebiegło poprawnie
+    \item 400 Bad Request - jeżeli nie udało się sparsować zapytania
+    \item 404 Not Found - jeżeli nie znaleziono żądanego zasobu
+    \item 413 Request Entity Too Large - jeżeli wielkość żądania przekracza \textbf{maxRequestSize}
+    \item 414 Request-URI Too Long - jeżeli długość ścieżki żądanego zasobu przekracza \textbf{maxURILength}
+    \item 500 Internal Server Error - jeżeli wystąpi nieznany błąd
+    \item 501 Not Implemented - jeżeli klient spróbuje użyć niezaimplementowanej metody
+    \item 505 HTTP Version Not Supported - jeżeli klient spróbuje użyć wersji HTTP innej niż HTTP/1.x
+\end{itemize}
+
+Serwer poprawnie parsuje i składuje hostname oraz nagłowki, ale w obecnej nie korzysta z nich w żaden sposób. Odpowiedzi serwera zawierają nagłówki \emph{Content-Length} (wszystkie metody), oraz \emph{Allow} (metoda OPTIONS)
+
+\section{Kompilacja i uruchomienie}
+Serwer jest napisany w C11. Ze względu na wykorzystanie epoll oraz SO\_REUSEPORT, jest uruchamialny wyłącznie w systemie Linux z jądrem w wersji >3.9. Do automatycznej budowy niezbędny jest CMake w wersji >3.12. Do linkowania niezbędna jest biblioteka libyaml w wersji deweloperskiej. \\
+Kompilacja i uruchomienie ,,z konsoli'':
+\begin{minted}[bgcolor=lightgray]{bash}
+cd puthttpd
+cmake .
+make
+./puthttpd
+\end{minted}
+
+\section{Prędkość działania (ApacheBench)}
+\begin{table}[H]
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Wielkość pliku [B] & Ilość żądań & Ilość współbieżnych żądań & LEAR master [rps] & NGINX 1.5.15 [rps] \\
+\hline
+865 & 1000000 & 100 & \textbf{98885.12} & 62859.55 \\
+\hline
+865 & 1000000 & 1 & \textbf{27786.05} & 21591.06 \\
+\hline
+2229306 & 10000 & 100 & 760.80 & \textbf{1821.60} \\
+\hline
+2229306 & 10000 & 1 & 781.60 & \textbf{1508.20} \\
+\hline
+\end{tabular}
+\caption{Wyniki wydajnościowe dla LEARa i NGINXa. Jak widać LEAR wykazuje dużo wyższą wydajność w operacjach wielowątkowych na małych plikach, natomiast sprawny mechanizm cache NGINXa pozwala mu zwyciężyć w teście na dużych odczytach z dysku}
+\end{table}
+
+\end{document}
+

@@ -1,0 +1,88 @@
+\documentclass[polish,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,amsthm}
+\usepackage[english,main=polish]{babel}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{float}
+\usepackage{etoolbox}
+\usepackage{pgfplots}
+\usepackage{enumerate}
+\patchcmd{\thebibliography}{\section*}{\section}{}{}
+
+\selectlanguage{polish}
+\title{Lab4}
+\newgeometry{tmargin=3cm, bmargin=3cm, lmargin=2cm, rmargin=2cm}
+
+\newcommand{\PRzFieldDsc}[1]{\sffamily\bfseries\scriptsize #1}
+\newcommand{\PRzFieldCnt}[1]{\textit{#1}}
+\newcommand{\PRzHeading}[8]{
+\begin{center}
+\begin{tabular}{ p{0.32\textwidth} p{0.15\textwidth} p{0.15\textwidth} p{0.12\textwidth} p{0.12\textwidth} }
+
+  &   &   &   &   \\
+\hline
+\multicolumn{5}{|c|}{}\\[-1ex]
+\multicolumn{5}{|c|}{{\LARGE #1}}\\
+\multicolumn{5}{|c|}{}\\[-1ex]
+
+\hline
+\multicolumn{2}{|l|}{\PRzFieldDsc{Kierunek}}		& \multicolumn{1}{|l|}{\PRzFieldDsc{Rok studiów}}	& \multicolumn{2}{|l|}{\PRzFieldDsc{Grupa}} \\
+\multicolumn{2}{|c|}{\PRzFieldCnt{#2}}				& \multicolumn{1}{|c|}{\PRzFieldCnt{#4}}		& \multicolumn{2}{|c|}{\PRzFieldCnt{#5}} \\
+
+\hline
+\multicolumn{3}{|l|}{\PRzFieldDsc{}}		& \multicolumn{2}{|l|}{\PRzFieldDsc{Data oddania}} \\
+\multicolumn{3}{|c|}{\PRzFieldCnt{#6}}				& \multicolumn{2}{|c|}{\PRzFieldCnt{#7}} \\
+
+\hline
+\multicolumn{5}{|l|}{\PRzFieldDsc{Imiona, nazwiska, numery indeksu}}\\
+\multicolumn{5}{|c|}{\PRzFieldCnt{#8}}\\
+
+
+
+\hline
+\end{tabular}
+\end{center}
+}
+\pgfplotsset{compat=1.14}
+\begin{document}
+\PRzHeading{Komunikacja człowiek-komputer}{Informatyka}{--}{III}{I2 piątek 9.45-11.15}{Sygnały}{11.01.2019}{Martyna Maciejewska(132273), Michał Bień (132191), Mikołaj Wolicki (132344)}{}
+
+
+\section{Wstęp}
+
+
+\section{Autokorelacja}
+Autokorelacja jest to korelacja pomiędzy kolejnymi wartościami tej samej zmiennej.
+\newline
+Znajdowanie częstotliwości podstawowej za pomocą autokorelacji. Przed jej obliczeniem należy usunąć z sygnału składową stałą, poprzez odjęcie od sygnału jego wartości średniej. Operację tę nazywa się usuwaniem trendu. Po obliczeniu autokorelacji należy wyznaczyć indeks pierwszego "pełnego" maksimum funkcji. Częstotliwość podstawową obliczamy z równania :
+$$f = \frac{f_{s}}{m}$$
+gdzie m - indeks wyznaczający maksimum funkcji, 
+\newline
+$f_{s}$ - częstotliwość próbkowania sygnału
+\section{HPS}
+Celem HPS jest znalezienie podstawowej częstotliwości, która jest pierwszym
+występującym pikiem na wykresie FFT poprzez pomiar maksymalnej koincydencji dla każdej ramki. Na podstawie wzoru:
+\[Y(\omega )=\prod_{r=1}^{R}\left | X(\omega r) \right |\]
+\newline
+Następnie ciąg jest następnie przeszukiwany pod kątem maksymalnej wartości możliwych częstotliwości podstawowych.
+
+
+\section{Podsumowanie}
+Nasze algorytmy poddaliśmy sprawdzeniu na udostępnionych ścieżkach dzwiękowych. Do testu wybraliśmy losowo 50 plików dzwiękowych, w celu udoskonalenia parametrów odpowiedzialnych za określenie płci.
+
+\begin{itemize}
+  \item HPS:  Zgodność płci na poziomie 82 \%
+  \item Autokorelacja: Zgodność płci na poziomie 78 \%
+\end{itemize}
+
+Powyższe rezultaty testów uznaliśmy za odpowienie i zaprzestaliśmy dalszego polepszania parametrów.
+
+
+\end{document}
+
