@@ -1,0 +1,13 @@
+li { list-style-type: square}
+#cena { color: red; font-weight: bold }
+.wstęp { font-style: italic }
+td img { border-style: solid; border-color: blue; max-height: 50px; max-width: 50px}
+td img:hover { border-color: red }
+h1+h2 { letter-spacing: 5px }
+tr>td[colspan="2"] { font-size: small }
+td+td { color: gray }
+body {background-image: url(https://unizin.org/wp-content/uploads/2016/05/Purple-Book_small-300x227.png); background-repeat: repeat-y}
+h1{ color: blue}
+h1{ color: green}
+.wydawnictwo {text-decoration: underline}
+.lewa { font-weight: bold }

@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>JavaScript</title>
+</head>
+<body>
+    <form name="data">
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="f_name" required maxlength="64" pattern="^[A-Za-z ]+$"></td>
+            </tr>
+            <tr>
+                <td>E-mail</td>
+                <td><input type="email" name="f_email" required></td>
+            </tr>
+            <tr><td>Zip code</td><td><input type="text" name="f_zip" required pattern="^[0-9]{2}-[0-9]{3}$"></td></tr>
+            <tr><td>City</td><td><input type="text" name="f_city" required pattern="^[A-Za-z ]+$"></td></tr>
+            <tr><td colspan="2"><input type="submit" value="Submit"></td></tr>
+        </table>
+    </form>
+</body>
+</html>

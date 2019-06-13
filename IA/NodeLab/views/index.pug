@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  div
+    label Hello again, #{user}!
+
+    if(entries.length > 0)
+      table(border="1")
+        tr
+          th note
+          th time
+        each item in entries
+          tr
+            td #{item["note"]}
+            td #{item["time"]}
+  div
+    form(method="POST" action="/")
+      input(type='text' id='note' placeholder='Notka' name='note')
+      button(type='submit') Dodaj

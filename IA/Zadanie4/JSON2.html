@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>JSON</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        function getter(url) {
+            return new Promise(function (resolve, reject) {
+                let request = new XMLHttpRequest();
+                request.open("GET", url);
+                request.onload = function () {
+                    if(this.status == 200) {
+                        resolve(request.response)
+                    } else {
+                        reject({
+                            status: this.status,
+                            statusText: request.statusText
+                        });
+                    }
+                };
+                request.onerror = function () {
+                    reject({
+                        status: this.status,
+                        statusText: request.statusText
+                    })
+                };
+                request.send();
+            });
+        }
+
+        $(function() {
+            $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?", { tags: "cars", format: "json"}, function(data) {
+                $.each(data.items, function(i, item) {
+                    $('#samochody').append($("<img/>").attr("src", item.media.m));
+                });
+            });
+
+            getter("https://google.pl").then(text => {
+                $('#title').append(text);
+            }).catch(err=> {
+                $('#title').append(err.statusText);
+            })
+        });
+    </script>
+</head>
+<body>
+<div id="title"></div>
+<div id="samochody"></div>
+</body>
+</html>

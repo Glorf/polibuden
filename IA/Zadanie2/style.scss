@@ -1,0 +1,177 @@
+$normal-font: 16px;
+$medium-font: 1.5*$normal-font;
+$large-font: 2*$normal-font;
+$margin-size: 20px;
+$hamburger-size: 60px;
+
+$header-height: 80px;
+$footer-height: 70px;
+
+$ncols: 12;
+
+@import url("https://necolas.github.io/normalize.css/8.0.1/normalize.css");
+
+* {
+  font-size: $normal-font;
+  border-width: 2px;
+  border-color: black;
+}
+
+.grid {
+  display: grid;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  min-height: 90%;
+  min-width: 90%;
+  grid-template-columns: 1fr;
+  grid-template-rows: $header-height auto minmax(0%, 100%) $footer-height;
+  margin-top: $margin-size;
+}
+
+.articles {
+  display: grid;
+  grid-template-columns: repeat($ncols, 1fr);
+  grid-row-gap: $margin-size;
+  grid-column-gap: $margin-size;
+  margin: $margin-size;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  margin-right: $margin-size;
+  margin-left: $margin-size;
+  justify-content: space-between;
+
+  .title {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 70px;
+      padding-right: 20px;
+    }
+
+    p {
+      font-size: $large-font;
+    }
+  }
+
+  .menu {
+    display: flex;
+    width: 40%;
+    align-items: flex-start;
+    align-content: flex-end;
+    justify-content: space-evenly;
+    align-self: flex-start;
+  }
+
+  .hamburger {
+    font-size: 40px;
+    border-style: solid;
+    border-color: black;
+    background-color: beige;
+    text-align: center;
+    width: $hamburger-size;
+    height: $hamburger-size;
+    border-radius: 15px;
+  }
+}
+
+.article {
+  border-style: solid;
+  background-color: beige;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  .sectiontitle {
+    font-size: $medium-font;
+    padding: 10px;
+    border-style: solid;
+    margin-right: -2px;
+    margin-top: -2px;
+    width: 200px;
+    text-align: center;
+  }
+
+  .sectiontext {
+    padding: $margin-size;
+    text-align: justify;
+  }
+}
+
+
+.article-blue {
+  .sectiontitle {
+    background-color: turquoise;
+  }
+}
+
+.article-orange {
+  .sectiontitle {
+    background-color: orange;
+  }
+}
+
+.article-pink {
+  .sectiontitle {
+    background-color: pink;
+  }
+}
+
+.footer {
+  border-style: solid;
+  background-color: beige;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .author {
+    font-weight: bold;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .menu {
+    display: none !important;
+  }
+
+  .title p{
+    display: none !important;
+  }
+
+  .article {
+    grid-column: span $ncols;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1024px) {
+  .menu {
+    display: none !important;
+  }
+
+  .article {
+    grid-column: span $ncols/2;
+  }
+
+  .article-wide {
+    grid-column: span $ncols;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .hamburger {
+    display: none !important;
+  }
+
+  .article {
+    grid-column: span $ncols/3;
+  }
+}

@@ -1,0 +1,7 @@
+extends layout
+
+block content
+    div.okno
+        form(method='POST' action='/login')
+            input(type='text' id='login' placeholder='Login' name='login')
+            button(type='submit') Zaloguj
