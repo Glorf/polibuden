@@ -1,0 +1,62 @@
+#!/bin/bash
+
+if [ -z $1 ]
+then
+  echo "Please provide the instance file"
+  exit 1
+fi
+
+if [ -z $2 ]
+then
+  echo "Please provide the output file"
+  exit 1
+fi
+
+INSTANCES_P=()
+INSTANCES_R=()
+INSTANCES_D=()
+
+N=0
+while IFS="\n" read inst_line
+do
+  IFS=" " read -r -a INST_LINE <<< "$inst_line"
+  if (( $N == 0 )); then N=${INST_LINE[0]}; continue; fi;
+  INSTANCES_P+=(${INST_LINE[0]})
+  INSTANCES_R+=(${INST_LINE[1]})
+  INSTANCES_D+=(${INST_LINE[2]})
+done < $1
+
+COST_CALCULATED=0
+CPU_MOMENTS=(0 0 0 0)
+
+cpu=-1
+N_CALCULATED=0
+while IFS="\n" read line
+do
+  IFS=" " read -r -a TASKS <<< "$line"
+  if (($cpu == -1)); then COST=$line; cpu=0; continue; fi; #First line is the cost
+  for task in ${TASKS[@]}
+  do
+    if (( ${INSTANCES_R[$(($task-1))]} > ${CPU_MOMENTS[$cpu]} )); then CPU_MOMENTS[$cpu]=${INSTANCES_R[$(($task-1))]}; fi
+    CPU_MOMENTS[$cpu]=$((${CPU_MOMENTS[$cpu]}+${INSTANCES_P[$(($task-1))]}))
+    if (( ${CPU_MOMENTS[$cpu]} > ${INSTANCES_D[$(($task-1))]} )); then SINGLE_COST=$((${CPU_MOMENTS[$cpu]}-${INSTANCES_D[$(($task-1))]})); else SINGLE_COST=0; fi
+    COST_CALCULATED=$(($COST_CALCULATED+$SINGLE_COST))
+    N_CALCULATED=$(($N_CALCULATED+1))
+  done
+  cpu=$((cpu+1))
+done < $2
+
+
+if (( $N == $N_CALCULATED ))
+then
+    echo "N OK"
+else
+    echo "N FAIL $N/$N_CALCULATED"
+fi
+
+if (( $COST == $COST_CALCULATED ))
+then
+    echo "COST OK"
+else
+    echo "COST FAIL $COST/$COST_CALCULATED"
+fi

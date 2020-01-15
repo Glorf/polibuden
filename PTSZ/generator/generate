@@ -1,0 +1,41 @@
+#!/bin/bash
+INSTANCE_SIZE=$1
+MIN_START_TOLERATIONS=0
+MAX_START_TOLERATIONS=25
+MIN_END_TOLERATIONS=0
+MAX_END_TOLERATIONS=5
+MIN_LENGTH=1
+MAX_LENGTH=50
+
+MOMENTS=(0 0 0 0)
+
+for i in $(seq 1 $INSTANCE_SIZE)
+do
+  #Select least occupied core
+  SELECTED=0
+  for j in 0 1 2 3
+  do
+    if ((${MOMENTS[$SELECTED]} > ${MOMENTS[$j]})); then SELECTED=$j; fi
+  done
+
+  #Prepare context
+  MOMENT=${MOMENTS[$SELECTED]}
+
+  #Calculate minimum starting point
+  START_TOLERATIONS=$(($MIN_START_TOLERATIONS+($(od -A n -t d -N 2 /dev/urandom |tr -d ' ')%($MAX_START_TOLERATIONS-$MIN_START_TOLERATIONS+1))))
+  START_OUTPUT=$(($MOMENT-$START_TOLERATIONS))
+  if (($START_OUTPUT < 0)); then START_OUTPUT=0; fi
+
+  #Calculate job length
+  LENGTH_OUTPUT=$(($MIN_LENGTH+($(od -A n -t d -N 2 /dev/urandom |tr -d ' ')%($MAX_LENGTH-$MIN_LENGTH+1))))
+
+  #Update processor status
+  MOMENT=$(($MOMENT+$LENGTH_OUTPUT))
+  MOMENTS[$SELECTED]=$MOMENT
+
+  #Calculate maximum ending point
+  END_TOLERATIONS=$(($MIN_END_TOLERATIONS+($(od -A n -t d -N 2 /dev/urandom |tr -d ' ')%($MAX_END_TOLERATIONS-$MIN_END_TOLERATIONS+1))))
+  END_OUTPUT=$(($MOMENT+$END_TOLERATIONS))
+
+  echo "$LENGTH_OUTPUT $START_OUTPUT $END_OUTPUT"
+done
